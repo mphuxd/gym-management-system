@@ -1,34 +1,49 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). Additionally, it has npm packages that I frequently use in my workflow. 
 
-## Getting Started
+## React
+This project uses React with Next.js. No component library is installed.
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+### Component/UI Library
+- https://ui.docs.amplify.aws/react/getting-started/installation
+- https://mui.com/base/getting-started/overview/
+- https://www.radix-ui.com/docs/primitives/overview/getting-started
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## CSS
+This project has TailwindCSS or SASS to use for CSS. Choose one and delete the other.
+- https://tailwindcss.com/docs/installation
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+### Typography
+None installed. For a base preset, use Tailwind Typography plugin.
+- https://tailwindcss.com/docs/plugins#official-plugins
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+### Colors
+Uses Radix colors.
+- https://www.radix-ui.com/colors
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Implementation
+Create a ThemeProvider that wraps _App.js to provide a theme context to your entire app. With this, you can easily create a light/dark mode with props.
 
-## Learn More
+## Testing
 
-To learn more about Next.js, take a look at the following resources:
+### Unit Testing
+Use Jest & RTL for Unit testing.
+To run jest, use npm run test.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- https://jestjs.io/docs/getting-started
+- https://testing-library.com/docs/
+- https://testing-library.com/docs/user-event/intro/
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Integration & E2E Testing
+For integration & E2E testing, use Cypress or playright with Percy integration.
 
-## Deploy on Vercel
+### Accessibility
+Use @axe-core by uncommenting _App.js.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Icons
+radix-icons are installed for icons. 
+- https://icons.radix-ui.com/
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+
