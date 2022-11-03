@@ -29,7 +29,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "pages/api/auth/hook.js"  ],
   "exclude": [
     "node_modules"
   ]
