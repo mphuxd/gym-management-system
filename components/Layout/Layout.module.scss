@@ -1,0 +1,7 @@
+@use "/styles/0-settings/colors";
+@use "/styles/0-settings/sizes";
+
+.main {
+    grid-column: span 12;
+    padding-top: 16px;
+}

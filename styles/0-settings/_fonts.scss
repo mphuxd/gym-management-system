@@ -1,0 +1,53 @@
+// /*------------------------------------*\
+//   #FONTS
+// \*------------------------------------*/
+
+// Imported fonts using next/image/google at Layout component.
+
+$font-size-50: 11px;
+$font-size-75: 12px;
+$font-size-100: 14px;
+$font-size-150: 15px;
+$font-size-200: 16px;
+$font-size-300: 18px;
+$font-size-400: 20px;
+$font-size-500: 22px;
+$font-size-600: 24px;
+$font-size-700: 28px;
+$font-size-800: 32px;
+$font-size-900: 36px;
+$font-size-1000: 40px;
+$font-size-1100: 48px;
+$font-size-1200: 54px;
+$font-size-1300: 64px;
+$font-size-1400: 72px;
+$font-size-1500: 80px;
+
+$font-family-base: "opensans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+Ubuntu, "Trebuchet MS", "Lucida Grande", sans-serif;
+$font-family-serif: "stanley", "Source Serif Pro", Georgia, serif;
+$font-family-code: "officecode", Monaco, monospace;
+
+$font-weight-thin: 100;
+$font-weight-ultra-light: 200;
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semi-bold: 600;
+$font-weight-bold: 700;
+$font-weight-extra-bold: 800;
+$font-weight-black: 900;
+
+$font-style-regular: normal;
+$font-style-italic: italic;
+
+$font-letter-spacing-none: 0;
+$font-letter-spacing-small: 0.0125em;
+$font-letter-spacing-medium: 0.06em;
+
+$font-line-height-large: 1.7;
+$font-line-height-medium: 1.5;
+$font-line-height-small: 1.3;
+
+$font-multiplier-25: 0.25em;
+$font-multiplier-75: 0.75em;

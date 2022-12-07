@@ -1,0 +1,49 @@
+@use "../4-tokens/breakpoints"as *;
+
+@mixin xsmall {
+  @media (min-width: $breakpoint-xsmall) {
+    @content;
+  }
+}
+
+@mixin small {
+  @media (min-width: $breakpoint-small) {
+    @content;
+  }
+}
+
+@mixin medium {
+  @media screen and (min-width: $breakpoint-medium) {
+    @content;
+  }
+}
+
+@mixin large {
+  @media screen and(min-width: $breakpoint-large) {
+    @content;
+  }
+}
+
+@mixin xlarge {
+  @media screen and(min-width: $breakpoint-xlarge) {
+    @content;
+  }
+}
+
+@mixin xxlarge {
+  @media screen and(min-width: $breakpoint-2xlarge) {
+    @content;
+  }
+}
+
+@mixin xxxlarge {
+  @media screen and(min-width: $breakpoint-3xlarge) {
+    @content;
+  }
+}
+
+@mixin xxxxlarge {
+  @media screen and(min-width: $breakpoint-4xlarge) {
+    @content;
+  }
+}

@@ -1,4 +1,4 @@
-import { objectType } from "nexus";
+import { objectType, inputObjectType } from "nexus";
 
 export const Membership = objectType({
   name: "Membership",
@@ -7,7 +7,9 @@ export const Membership = objectType({
     t.datetime("signUpDate");
     t.string("signUpLocation");
     t.string("signedUpBy");
-    t.string("membershipEnds");
+    t.string("customerId");
+    t.string("stripeSubscriptionId");
+    t.datetime("membershipEnds");
     t.field("status", { type: "Status" });
     t.field("plan", {
       type: "MembershipPlan",
@@ -19,6 +21,7 @@ export const Membership = objectType({
           .plan();
       },
     });
+    t.string("membershipPlanId");
     t.field("member", {
       type: "Member",
       async resolve(_parent, _args, ctx) {
@@ -29,6 +32,22 @@ export const Membership = objectType({
           .member();
       },
     });
+  },
+});
+
+export const MembershipCreateInput = inputObjectType({
+  name: "MembershipCreateInput",
+  definition(t) {
+    t.string("id");
+    t.datetime("signUpDate");
+    t.string("signUpLocation");
+    t.string("signedUpBy");
+    t.string("customerId");
+    t.string("stripeSubscriptionId");
+    t.datetime("membershipEnds");
+    t.field("status", { type: "Status" });
+    t.field("plan", { type: "MembershipPlanCreateInput" });
     t.string("membershipPlanId");
+    t.field("member", { type: "MemberCreateInput" });
   },
 });

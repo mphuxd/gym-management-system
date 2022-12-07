@@ -1,4 +1,4 @@
-import { objectType } from "nexus";
+import { objectType, inputObjectType } from "nexus";
 
 export const Contact = objectType({
   name: "Contact",
@@ -21,5 +21,20 @@ export const Contact = objectType({
           .member();
       },
     });
+  },
+});
+
+export const ContactCreateInput = inputObjectType({
+  name: "ContactCreateInput",
+  definition(t) {
+    t.string("id");
+    t.string("streetAddress");
+    t.string("city");
+    t.string("state");
+    t.string("zipcode");
+    t.string("country");
+    t.string("phoneNumber");
+    t.string("email");
+    t.field("member", { type: "MemberCreateInput" });
   },
 });

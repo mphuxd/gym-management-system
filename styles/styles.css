@@ -4,5 +4,10 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+@import "4-utilties/_utilities.css";
 
-@import "_utilities.css";
+@forward "0-settings/*";
+@forward "1-tools/*";
+@forward "2-generic/*";
+@forward "3-elements/*";
+@forward "4-utilities/*";

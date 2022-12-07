@@ -29,7 +29,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "pages/api/auth/hook.js"  ],
+, "pages/api/auth/hook.js", "components/Checkout/CheckoutForm.js", "pages/api/checkout_sessions/index.ts"  ],
   "exclude": [
     "node_modules"
   ]

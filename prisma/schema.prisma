@@ -10,14 +10,29 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// model Transaction {
-//   id              String       @id @default(cuid())
-//   transactionID   Int
-//   transactionName String
-//   date            String
-//   amount          Int
-//   membership      Membership[]
-// }
+model Notes {
+  id        String   @id @default(cuid())
+  note      String   @default("")
+  createdAt DateTime @default(now())
+  updatedBy User     @relation(fields: [userId], references: [id])
+  userId    String   @unique
+  updatedAt DateTime @default(now())
+}
+
+model History {
+  id          String   @id @default(cuid())
+  performedBy User     @relation(fields: [userId], references: [id])
+  description String
+  createdAt   DateTime @default(now())
+  userId      String
+}
+
+model CheckIn {
+  id          String   @id @default(cuid())
+  checkInDate DateTime @default(now())
+  member      Member   @relation(fields: [memberId], references: [id])
+  memberId    String
+}
 
 model MembershipPlan {
   id             String       @id @default(cuid())
@@ -30,15 +45,17 @@ model MembershipPlan {
 }
 
 model Membership {
-  id               String          @id @default(cuid())
-  signUpDate       DateTime        @default(now())
-  signUpLocation   String?
-  signedUpBy       String?
-  membershipEnds   String
-  status           Status
-  plan             MembershipPlan? @relation(fields: [membershipPlanId], references: [id])
-  member           Member?
-  membershipPlanId String?
+  id                   String          @id @default(cuid())
+  signUpDate           DateTime        @default(now())
+  signUpLocation       String?
+  signedUpBy           String?
+  customerId           String?         @unique
+  stripeSubscriptionId String?         @unique
+  membershipEnds       DateTime?
+  status               Status
+  plan                 MembershipPlan? @relation(fields: [membershipPlanId], references: [id])
+  member               Member?
+  membershipPlanId     String?
 }
 
 model Contact {
@@ -55,19 +72,20 @@ model Contact {
 
 model Member {
   id           String      @id @default(cuid())
-  userId       String      @map("user_id")
+  userId       String?     @unique @map("user_id")
   firstName    String
-  middleName   String?
+  middleName   String?     @default("-")
   lastName     String
   image        String?
   gender       Boolean?
-  birthday     String
+  birthday     String?
   notes        String?
-  membership   Membership? @relation(fields: [membershipId], references: [id])
+  membership   Membership? @relation(fields: [membershipId], references: [id], onDelete: Cascade)
   membershipId String?     @unique
-  contact      Contact     @relation(fields: [contactId], references: [id])
+  contact      Contact     @relation(fields: [contactId], references: [id], onDelete: Cascade)
   contactId    String      @unique
   user         User?
+  checkIns     CheckIn[]
   updatedAt    DateTime    @updatedAt
 }
 
@@ -77,10 +95,12 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   role          Role      @default(USER)
-  member        Member?   @relation(fields: [memberId], references: [id])
+  member        Member?   @relation(fields: [memberId], references: [id], onDelete: Cascade)
   memberId      String?   @unique
   sessions      Session[]
   updatedAt     DateTime  @default(now()) @updatedAt
+  history       History[]
+  notes         Notes?
 }
 
 model Session {

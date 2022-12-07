@@ -1,87 +1,70 @@
+import React from "react";
 import { gql, useQuery } from "@apollo/client";
-import { useUser } from "@auth0/nextjs-auth0";
-import Link from "next/link";
+import { withPageAuthRequired } from "@auth0/nextjs-auth0";
+import {
+  DashboardCheckin,
+  DashboardHistory,
+  DashboardNotes,
+  Breadcrumbs,
+  BreadcrumbsChain,
+} from "/components";
 
-const allUsersQuery = gql`
-  query {
-    users {
+const GET_LAST_CHECKIN_MEMBER = gql`
+  query GetLastCheckinMember {
+    lastCheckInMember {
       id
-      username
-      email
-      role
-      member {
-        id
-        firstName
-        lastName
-        gender
-        contact {
-          id
-          streetAddress
-          city
-          state
-          zipcode
-          email
+      userId
+      firstName
+      lastName
+      gender
+      birthday
+      notes
+      contact {
+        streetAddress
+        city
+        state
+        zipcode
+        country
+        email
+        phoneNumber
+      }
+      membership {
+        signUpDate
+        membershipEnds
+        status
+        plan {
+          planName
+          annualFee
+          monthlyFee
+          contractLength
         }
-        membership {
-          plan {
-            id
-            planName
-          }
-        }
+      }
+      checkIns {
+        checkInDate
       }
     }
   }
 `;
 
-const CreateLinkMutation = gql`
-  mutation (
-    $title: String!
-    $url: String!
-    $imageUrl: String!
-    $category: String!
-    $description: String!
-  ) {
-    createLink(
-      title: $title
-      url: $url
-      imageUrl: $imageUrl
-      category: $category
-      description: $description
-    ) {
-      title
-      url
-      imageUrl
-      category
-      description
-    }
-  }
-`;
+export const getServerSideProps = withPageAuthRequired();
 
 export default function Home() {
-  const { user } = useUser();
-  const { data, loading, error } = useQuery(allUsersQuery);
-
-  if (loading) {
-    console.log("loading");
-  }
-  if (error) {
-    console.log(error);
-  }
-  if (data) {
-    console.log(data);
-  }
-  if (!user)
-    return (
-      <>
-        <div className='container mx-auto min-h-full flex flex-col justify-center items-center'></div>
-
-        <div className='center'>
-          <Link href='/api/auth/login' className='hover:underline'>
-            Please Login In
-          </Link>
-        </div>
-      </>
-    );
-
-  return <div></div>;
+  let { data } = useQuery(GET_LAST_CHECKIN_MEMBER);
+  return (
+    <div className='grid grid-cols-12 2xl:grid-rows-2 gap-y-8  min-w-[768px] max-w-[1839px] mx-auto'>
+      <div id='row-1' className='col-span-12 flex flex-col 2xl:flex-row gap-x-12 2xl:max-h-[400px] '>
+        {data && (
+          <DashboardCheckin
+            className='basis-full 2xl:basis-2/3'
+            lastCheckedInMember={data.lastCheckInMember}
+          />
+        )}
+        <DashboardHistory />
+      </div>
+      <div id='row-2' className='col-span-12 flex flex-col 2xl:flex-row gap-x-8'>
+        <div className='basis-full 2xl:basis-2/3'>Misc</div>
+        <DashboardNotes />
+      </div>
+    </div>
+  );
 }

@@ -2,6 +2,20 @@
 ### Do not make changes to this file directly
 
 
+type CheckIn {
+  checkInDate: DateTime!
+  id: String!
+  member: Member!
+  memberId: String!
+}
+
+input CheckInCreateInput {
+  checkInDate: DateTime!
+  id: String!
+  member: MemberCreateInput!
+  memberId: String!
+}
+
 type Contact {
   city: String
   country: String
@@ -31,6 +45,22 @@ A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `dat
 """
 scalar DateTime
 
+type History {
+  createdAt: DateTime
+  description: String
+  id: String
+  performedBy: User
+  userId: String
+}
+
+input HistoryCreateInput {
+  createdAt: DateTime
+  description: String
+  id: String
+  performedBy: UserCreateInput
+  userId: String
+}
+
 enum Length {
   DAY
   MONTH
@@ -39,6 +69,7 @@ enum Length {
 
 type Member {
   birthday: String
+  checkIns: [CheckIn]
   contact: Contact
   contactId: String
   firstName: String
@@ -57,6 +88,7 @@ type Member {
 
 input MemberCreateInput {
   birthday: String
+  checkIn: CheckInCreateInput
   contact: ContactCreateInput
   contactId: String
   firstName: String
@@ -74,27 +106,31 @@ input MemberCreateInput {
 }
 
 type Membership {
+  customerId: String
   id: String
   member: Member
-  membershipEnds: String
+  membershipEnds: DateTime
   membershipPlanId: String
   plan: MembershipPlan
   signUpDate: DateTime
   signUpLocation: String
   signedUpBy: String
   status: Status
+  stripeSubscriptionId: String
 }
 
 input MembershipCreateInput {
+  customerId: String
   id: String
   member: MemberCreateInput
-  membershipEnds: String
+  membershipEnds: DateTime
   membershipPlanId: String
   plan: MembershipPlanCreateInput
   signUpDate: DateTime
   signUpLocation: String
   signedUpBy: String
   status: Status
+  stripeSubscriptionId: String
 }
 
 type MembershipPlan {
@@ -117,10 +153,37 @@ input MembershipPlanCreateInput {
 }
 
 type Mutation {
-  createMember(birthday: String!, contact: ContactCreateInput!, firstName: String!, gender: Boolean, image: String, lastName: String!, membership: MembershipCreateInput!, middleName: String, notes: String, userId: String!): Member!
+  createCheckIn(memberId: String!): CheckIn!
+  createHistory(description: String!, userId: String!): History!
+  createMember(birthday: String, contact: ContactCreateInput!, firstName: String!, gender: Boolean, image: String, lastName: String!, membership: MembershipCreateInput!, middleName: String, notes: String, userId: String!): Member!
+  updateMember(firstName: String!, id: String!, lastName: String!, notes: String, userId: String!): Member
+  updateNote(id: String!, note: String, userId: String!): Notes!
+}
+
+type Notes {
+  createdAt: DateTime
+  id: String
+  note: String
+  updatedAt: DateTime
+  updatedBy: User
+  userId: String
+}
+
+input NotesCreateInput {
+  createdAt: DateTime
+  id: String
+  note: String
+  updatedAt: DateTime
+  updatedBy: UserCreateInput
+  userId: String
 }
 
 type Query {
+  history: [History]!
+  lastCheckInMember: Member
+  member(birthday: String, id: String, phoneNumber: String, userId: String): Member!
+  members: [Member]!
+  notes: Notes!
   users: [User]!
 }
 
@@ -157,9 +220,11 @@ enum Status {
 type User {
   email: String
   emailVerified: DateTime
+  history: [History]
   id: String
   member: Member
   memberId: String
+  notes: Notes
   role: Role
   sessions: [Session]
   updatedAt: DateTime
@@ -169,9 +234,11 @@ type User {
 input UserCreateInput {
   email: String
   emailVerified: DateTime
+  history: [HistoryCreateInput]
   id: String
   member: MemberCreateInput
   memberId: String
+  notes: [NotesCreateInput]
   role: Role
   sessions: [SessionCreateInput]
   updatedAt: DateTime

@@ -1,4 +1,4 @@
-import { objectType } from "nexus";
+import { objectType, inputObjectType } from "nexus";
 
 export const MembershipPlan = objectType({
   name: "MembershipPlan",
@@ -19,5 +19,17 @@ export const MembershipPlan = objectType({
           .membership();
       },
     });
+  },
+});
+
+export const MembershipPlanCreateInput = inputObjectType({
+  name: "MembershipPlanCreateInput",
+  definition(t) {
+    t.string("planName");
+    t.int("planId");
+    t.int("annualFee");
+    t.int("monthlyFee");
+    t.field("contractLength", { type: "Length" });
+    t.list.field("membership", { type: "MembershipCreateInput" });
   },
 });
