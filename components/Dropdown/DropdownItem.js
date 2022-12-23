@@ -1,6 +1,6 @@
 import React from "react";
-import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 import cx from "classnames";
+import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 
 const DropdownItem = React.forwardRef(({ children, ...props }, forwardedRef) => {
   const { className, ...rest } = { ...props };

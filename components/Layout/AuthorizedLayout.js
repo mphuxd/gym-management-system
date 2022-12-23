@@ -12,6 +12,9 @@ function AuthorizedLayout({ children }) {
           <Link href='/'>Home</Link>
         </NavbarItem>
         <NavbarItem>
+          <Link href='/checkin'>Check In</Link>
+        </NavbarItem>
+        <NavbarItem>
           <Link href='/members'>Members</Link>
         </NavbarItem>
         <NavbarItem>
@@ -21,10 +24,11 @@ function AuthorizedLayout({ children }) {
           <Link href='/analytics'>Analytics</Link>
         </NavbarItem>
       </Navbar>
-      <section className={styles.main}>
+
+      <main>
         {children}
         <Toast />
-      </section>
+      </main>
     </>
   );
 }

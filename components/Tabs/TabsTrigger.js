@@ -1,7 +1,7 @@
-import * as React from "react";
+import React from "react";
+import cx from "classnames";
 import * as Tabs from "@radix-ui/react-tabs";
 import styles from "./Tabs.module.scss";
-import cx from "classnames";
 
 export const TabsTrigger = React.forwardRef((props, forwardedRef) => {
   const { className, ...rest } = { ...props };

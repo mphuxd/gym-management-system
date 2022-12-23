@@ -1,0 +1,5 @@
+@use "/styles/0-settings/colors";
+
+.line {
+    stroke: colors.$blue-600;
+}

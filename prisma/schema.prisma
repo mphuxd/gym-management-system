@@ -87,6 +87,7 @@ model Member {
   user         User?
   checkIns     CheckIn[]
   updatedAt    DateTime    @updatedAt
+  createdAt    DateTime    @default(now())
 }
 
 model User {

@@ -12,7 +12,7 @@ const AlertDialog = React.forwardRef(
       // const response = await fetch(href);
       // const results = await response.json();
       console.log("Works but disabled");
-      //integrate with toast
+      // @@@ integrate with toast
     }
     return (
       <AlertDialogPrimitive.Root
@@ -24,7 +24,7 @@ const AlertDialog = React.forwardRef(
         <AlertDialogPrimitive.Portal>
           <AlertDialogPrimitive.Overlay className='fixed bg-black opacity-30 inset-0' />
           <AlertDialogPrimitive.Content className='absolute inset-1/2 -translate-x-1/2 -translate-y-3/4 h-fit w-[640px] bg-white p-6 rounded-lg space-y-4'>
-            <AlertDialogPrimitive.Title className='font-semibold '>
+            <AlertDialogPrimitive.Title className='font-semibold'>
               {title}
             </AlertDialogPrimitive.Title>
             <AlertDialogPrimitive.Description className=''>

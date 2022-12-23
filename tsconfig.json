@@ -22,14 +22,28 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./*"
+      ],
+      "@tokens/*": [
+        "/styles/tokens/*"
+      ],
+      "@styles/*": [
+        "/styles/*"
+      ]
+    }
   },
   "include": [
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "pages/api/auth/hook.js", "components/Checkout/CheckoutForm.js", "pages/api/checkout_sessions/index.ts"  ],
+    "**/*.tsx",
+    "**/*.js",
+    "**/*.jsx"
+  ],
   "exclude": [
     "node_modules"
   ]

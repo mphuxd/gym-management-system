@@ -1,8 +1,8 @@
 import React from "react";
-import * as ToastPrimitive from "@radix-ui/react-toast";
 import { useAtom } from "jotai";
-import { toastAtom } from "../../atoms";
+import { toastAtom } from "@/atoms";
 import { Cross2Icon } from "@radix-ui/react-icons";
+import * as ToastPrimitive from "@radix-ui/react-toast";
 import styles from "./Toast.module.scss";
 
 function Toast() {

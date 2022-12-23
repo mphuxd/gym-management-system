@@ -1,7 +1,8 @@
 import React from "react";
+import styles from "./Layout.module.scss";
 
 function GenericLayout({ children }) {
-  return <div className=''>{children}</div>
+  return <main className={styles.main}>{children}</main>;
 }
 
 export default GenericLayout;

@@ -1,0 +1,78 @@
+@use "/styles/0-settings/colors";
+@use "/styles/0-settings/sizes";
+@use "/styles/0-settings/fonts";
+@use "/styles/0-settings/breakpoints";
+@use "/styles/0-settings/grid";
+
+.header {
+    grid-column: span 12;
+    border-bottom: 1px solid colors.$gray-200;
+}
+
+.headerInner {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    margin: 0 auto;
+    padding: sizes.$size-100 grid.$padding-2xlarge;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    color: colors.$gray-900;
+    font-weight: fonts.$font-weight-medium;
+}
+
+.evolve {
+    font-weight: fonts.$font-weight-black;
+    font-size: fonts.$font-size-600;
+    margin-right: sizes.$size-50;
+}
+
+.gym {
+    font-weight: fonts.$font-weight-regular;
+    font-size: fonts.$font-size-600;
+}
+
+.headerNav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    font-size: fonts.$font-size-200;
+    margin-left: auto;
+}
+
+.login {
+    display: inline-flex;
+    align-items: center;
+    background-color: colors.$gray-100;
+    padding: sizes.$size-50 sizes.$size-150;
+    border-radius: sizes.$size-50;
+
+    :focus {
+        outline: none;
+    }
+
+    :hover {
+        background-color: colors.$gray-200;
+    }
+}
+
+.iconContainer {
+    display: flex;
+    align-items: center;
+
+    :not([hidden])~ :not([hidden]) {
+        margin-right: sizes.$size-300;
+        margin-left: sizes.$size-300;
+    }
+}
+
+.avatar {
+    border-radius: 9999px;
+    width: sizes.$size-500;
+    height: sizes.$size-500;
+}

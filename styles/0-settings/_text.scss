@@ -17,7 +17,6 @@ $heading-text-font-weight-regular-strong: $font-weight-black;
 $heading-text-font-weight-quiet: $font-weight-light;
 $heading-text-font-weight-quiet-strong: $font-weight-bold;
 $heading-text-font-weight-strong: $font-weight-black;
-$heading-text-font-weight-strong-strong: $font-weight-black;
 
 $subheading-text-font-weight: $font-weight-bold;
 $subheading-text-font-weight-strong: $font-weight-black;
@@ -28,18 +27,6 @@ $detail-text-font-weight-strong: $font-weight-black;
 
 $serif-text-font-family: $font-family-serif;
 
-$article-text-font-family: $font-family-serif;
-$article-body-text-font-weight: $font-weight-regular;
-$article-body-text-font-weight-strong: $font-weight-black;
-$article-heading-text-font-weight: $font-weight-bold;
-$article-heading-text-font-weight-strong: $font-weight-black;
-$article-heading-text-font-weight-quiet: $font-weight-regular;
-$article-heading-text-font-weight-quiet-strong: $font-weight-bold;
-$article-subheading-text-font-weight: $font-weight-bold;
-$article-subheading-text-font-weight-strong: $font-weight-black;
-$article-detail-text-font-weight: $font-weight-regular;
-$article-detail-text-font-weight-strong: $font-weight-bold;
-
 $code-text-font-family: $font-family-code;
 $code-text-font-weight-regular: $font-weight-regular;
 $code-text-font-weight-strong: $font-weight-bold;
@@ -49,7 +36,6 @@ $heading-margin-bottom: $font-multiplier-25;
 
 $body-margin-bottom: $font-multiplier-75;
 
-
 $font-size-default: $font-size-100;
 
 $line-height-small: $size-200;
@@ -58,12 +44,11 @@ $line-height-large: $size-300;
 $line-height-xlarge: $size-400;
 $line-height-xxlarge: $size-600;
 
-
 $heading-display1-text-size: $font-size-1300;
 $heading-3xl-text-size: $font-size-1300;
-
 $heading-display1-margin-top: $font-size-1200;
 $heading-3xl-margin-top: $font-size-1200;
+
 $heading-display2-text-size: $font-size-1100;
 $heading-2xl-text-size: $font-size-1100;
 $heading-display2-margin-top: $font-size-900;
@@ -88,10 +73,12 @@ $heading4-text-size: $font-size-300;
 $heading-s-text-size: $font-size-300;
 $heading4-margin-top: $font-size-200;
 $heading-s-margin-top: $font-size-200;
+
 $heading5-text-size: $font-size-200;
 $heading-xs-text-size: $font-size-200;
 $heading5-margin-top: $font-size-100;
 $heading-xs-margin-top: $font-size-100;
+
 $heading6-text-size: $font-size-100;
 $heading-xxs-text-size: $font-size-100;
 $heading6-margin-top: $font-size-75;

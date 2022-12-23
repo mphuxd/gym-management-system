@@ -72,6 +72,7 @@ type Member {
   checkIns: [CheckIn]
   contact: Contact
   contactId: String
+  createdAt: DateTime
   firstName: String
   gender: Boolean
   id: String
@@ -91,6 +92,7 @@ input MemberCreateInput {
   checkIn: CheckInCreateInput
   contact: ContactCreateInput
   contactId: String
+  createdAt: DateTime
   firstName: String
   gender: Boolean
   id: String

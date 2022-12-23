@@ -62,8 +62,9 @@ export const Member = objectType({
           })
           .checkIns();
       },
-    }),
-      t.datetime("updatedAt");
+    });
+    t.datetime("updatedAt");
+    t.datetime("createdAt");
   },
 });
 
@@ -229,5 +230,6 @@ export const MemberCreateInput = inputObjectType({
     t.nullable.field("user", { type: "UserCreateInput" });
     t.field("checkIn", { type: "CheckInCreateInput" });
     t.datetime("updatedAt");
+    t.datetime("createdAt");
   },
 });

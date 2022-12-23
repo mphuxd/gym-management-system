@@ -18,7 +18,7 @@ function CardSubscription({
 
   return (
     <div className={classNames}>
-      <div className='flex flex-col p-8 bg-gray-200 rounded-2xl  justify-between h-[32rem]'>
+      <div className='flex flex-col p-8 bg-white rounded-2xl  justify-between h-[32rem]'>
         <div className='description flex flex-col justify-center'>
           <h2 className='text-2xl font-semibold w-fit '>{planName}</h2>
           <h3 className='mt-5'>{planDescription}</h3>

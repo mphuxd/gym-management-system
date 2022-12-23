@@ -7,7 +7,7 @@ export const getServerSideProps = withPageAuthRequired();
 
 export default function SignUp() {
   return (
-    <section className='grid grid-cols-12 gap-y-0 min-w-[1280px] max-w-screen-[1839px] mx-auto justify-center'>
+    <section className='grid grid-cols-12 gap-y-0 min-w-[1280px] max-w-screen-[1839px] mx-auto justify-center p-8 bg-gray-100 min-h-screen-calc auto-rows-min'>
       <div className='col-span-full'>
         <h1 className='text-lg font-semibold mb-4 '>Sign Up New Member</h1>
         <p className='mb-4'>

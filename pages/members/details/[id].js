@@ -1,108 +1,61 @@
-import React from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
-import { useQuery, gql } from "@apollo/client";
 import useSWR from "swr";
 import fetcher from "/lib/useSWRFetcher";
+import { toastAtom } from "atoms";
+import { useAtom } from "jotai";
+import { ChevronDownIcon, Cross2Icon } from "@radix-ui/react-icons";
+import { TrashCan } from "@carbon/icons-react";
 import * as Tabs from "@radix-ui/react-tabs";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import {
+  AlertDialog,
+  Button,
+  DropdownContent,
+  DropdownItem,
+  DropdownSeparator,
+  DropdownTrigger,
   TabsTrigger,
   TabsContent,
   TabContentRow,
   TabContentRowItem,
-  DashboardModuleLabel,
-  CheckInHistory,
-} from "/components";
-
-const ONE_MEMBER_QUERY = gql`
-  query oneMemberQuery($id: String!) {
-    member(id: $id) {
-      id
-      userId
-      firstName
-      middleName
-      lastName
-      image
-      gender
-      birthday
-      notes
-      membership {
-        signUpDate
-        signUpLocation
-        signedUpBy
-        customerId
-        stripeSubscriptionId
-        membershipEnds
-        status
-        plan {
-          planId
-          planName
-          annualFee
-          monthlyFee
-          contractLength
-        }
-      }
-      membershipId
-      user {
-        role
-      }
-      contact {
-        streetAddress
-        city
-        state
-        zipcode
-        country
-        email
-        phoneNumber
-      }
-      contactId
-      checkIns {
-        checkInDate
-      }
-      updatedAt
-    }
-  }
-`;
+  Sidepanel,
+  Stack,
+} from "@/components";
+import {
+  CheckInMemberImage,
+  EditMemberDialogForm,
+  MemberTabContentCheckInHistory,
+} from "@/modules";
 
 export const getServerSideProps = withPageAuthRequired();
 
-function UserId() {
+export default function UserId() {
   const router = useRouter();
   const { id } = router.query;
-  const { data, loading, error } = useQuery(ONE_MEMBER_QUERY, { variables: { id } });
-  const { data: subscriptionData, error: subscriptionError } = useSWR(
-    data
-      ? `/api/member/getStripeSubscription/${data.member.membership.stripeSubscriptionId}`
+
+  let { data: member, mutate } = useSWR(`/api/member/getMember/${id}`, fetcher);
+  const { data: subscriptionData } = useSWR(
+    member
+      ? `/api/member/getStripeSubscription/${member.member.membership.stripeSubscriptionId}`
       : null,
     fetcher
   );
 
-  console.log(subscriptionData);
-
-  if (error) console.log(error);
-  if (subscriptionError) console.log(subscriptionError);
-
-  if (data && subscriptionData) {
-    const member = data.member;
+  if (member && subscriptionData) {
+    member = member.member;
     return (
-      <section className='grid grid-cols-12 min-w-[768px] max-w-[1856px] mx-auto gap-x-16'>
-        <div className='col-span-full mb-6'>
-          <DashboardModuleLabel label='Member' />
-        </div>
-
-        <aside id='sidepanel' className='col-span-3 flex flex-col gap-y-6'>
-          <div className='text-3xl mb-6 pb-1  border-b'>
-            {member.firstName + " " + member.lastName}
-          </div>
-
+      <section className='flex flex-row bg-gray-100 min-h-screen-calc'>
+        <Sidepanel id='sidepanel' className='flex flex-col gap-y-6 border-r'>
+          <Stack className='mb-3 gap-x-4'>
+            <h1 className='text-3xl pb-1 mb-3 font-medium'>
+              {`${member.firstName}  ${member.lastName}`}
+            </h1>
+            <CheckInMemberImage checkedInMember={member}></CheckInMemberImage>
+          </Stack>
           <TabContentRow>
             <TabContentRowItem label='Card Id' value={member.userId} space='full' />
-          </TabContentRow>
-          <TabContentRow>
-            <TabContentRowItem label='Gender' value={member.gender} space='full' />
-          </TabContentRow>
-          <TabContentRow>
-            <TabContentRowItem label='Birthday' value={member.birthday} space='full' />
           </TabContentRow>
           <TabContentRow className>
             <TabContentRowItem
@@ -120,44 +73,58 @@ function UserId() {
             <TabContentRowItem
               label='Mailing Address'
               value={
-                <div className='flex flex-col'>
-                  <span>{member.firstName + " " + member.lastName}</span>
+                <Stack>
+                  <span>{`${member.firstName} ${member.lastName}`}</span>
                   <span>{member.contact.streetAddress}</span>
                   <span>
-                    {member.contact.city +
-                      ", " +
-                      member.contact.state +
-                      " " +
-                      member.contact.zipcode}
+                    {`${member.contact.city}, 
+                      ${member.contact.state},
+                      ${member.contact.zipcode}`}
                   </span>
-                </div>
+                </Stack>
               }
               space='full'
             />
           </TabContentRow>
-
+          <TabContentRow>
+            <TabContentRowItem label='Birthday' value={member.birthday} space='full' />
+          </TabContentRow>
           <TabContentRow>
             <TabContentRowItem label='Notes' value={member.notes} />
           </TabContentRow>
-        </aside>
+        </Sidepanel>
 
-        <div id='' className='col-span-8 flex flex-col gap-y-6'>
-          <Tabs.Root defaultValue='tab1'>
-            <Tabs.List className='border-b flex flex-row gap-x-4 ' aria-label='tabs'>
-              <TabsTrigger className='py-2' value='tab1'>
-                Membership
-              </TabsTrigger>
-              <TabsTrigger value='tab2'>Check-in History</TabsTrigger>
+        <section
+          id=''
+          className='w-full grid grid-cols-12 gap-y-8 min-w-[768px] max-w-[1544px] p-8 mx-auto'
+        >
+          <Tabs.Root className='col-span-full' defaultValue='tab1'>
+            <Tabs.List
+              className='w-full justify-between border-b flex flex-row gap-x-[2px]'
+              aria-label='tabs'
+            >
+              <div>
+                <TabsTrigger className='py-2' value='tab1'>
+                  Membership
+                </TabsTrigger>
+                <TabsTrigger value='tab2'>Check-in History</TabsTrigger>
+                <TabsTrigger value='tab3'>Payments</TabsTrigger>
+                <TabsTrigger value='tab4'>Schedule</TabsTrigger>
+                <TabsTrigger value='tab5'>Overview</TabsTrigger>
+              </div>
+              <div className='my-auto'>
+                <MemberDropdownMenu member={member} mutate={mutate}></MemberDropdownMenu>
+              </div>
             </Tabs.List>
-            <TabsContent value='tab1' className='pt-8'>
-              <div className='mt-4 space-y-6 '>
+
+            <TabsContent value='tab1'>
+              <div className='space-y-6 '>
                 <TabContentRow>
                   <TabContentRowItem
                     label='Membership Status'
                     value={member.membership.status}
                     space='third'
                   />
-
                   <TabContentRowItem
                     label='Sign Up Date'
                     value={new Date(member.membership.signUpDate).toLocaleString()}
@@ -207,16 +174,136 @@ function UserId() {
                 </TabContentRow>
               </div>
             </TabsContent>
-            <TabsContent className='pt-8' value='tab2'>
-              <div className='mt-4'>
-                <CheckInHistory history={member.checkIns} />
-              </div>
-            </TabsContent>
+
+            <MemberTabContentCheckInHistory value='tab2' member={member} />
           </Tabs.Root>
-        </div>
+        </section>
       </section>
     );
   }
 }
 
-export default UserId;
+function MemberDropdownMenu({ member, mutate }) {
+  const router = useRouter();
+  const [toast, setToast] = useAtom(toastAtom);
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
+  const [isCancelDialogOpen, setIsCancelDialogOpen] = useState(false);
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+
+  return (
+    <React.Fragment>
+      <DropdownMenu.Root>
+        <DropdownTrigger className='overflow-hidden block'>
+          <Button
+            className='text-gray-600 my-auto flex flex-row justify-center items-center focus:outline-none'
+            as='div'
+            size='small'
+            variant='default'
+          >
+            <span>Actions</span>
+            <ChevronDownIcon />
+          </Button>
+        </DropdownTrigger>
+        <DropdownContent className='shadow-xl' align='end'>
+          <DropdownMenu.Group>
+            <DropdownItem>
+              <button
+                onClick={async () => {
+                  try {
+                    await fetch(`/api/checkin/${member.id}`, {
+                      method: "POST",
+                      headers: {
+                        "Content-Type": "application/json",
+                      },
+                    }).then(
+                      (res) =>
+                        setToast({
+                          title: "Checked In Member",
+                          description: member.id,
+                          isOpen: true,
+                        }),
+                      router.push("/checkin")
+                    );
+                  } catch (err) {
+                    console.log(err);
+                    setToast({
+                      title: "Edit Failed",
+                      description: err.message,
+                      isOpen: true,
+                    });
+                  }
+                }}
+              >
+                Check in member
+              </button>
+            </DropdownItem>
+            <DropdownItem>
+              <button className='hover:cursor-not-allowed' disabled>
+                Schedule appointment
+              </button>
+            </DropdownItem>
+          </DropdownMenu.Group>
+          <DropdownMenu.Group>
+            <DropdownItem>
+              <button
+                onClick={() => {
+                  setIsEditDialogOpen(true);
+                }}
+              >
+                Edit Member Information
+              </button>
+            </DropdownItem>
+            <DropdownSeparator />
+            <DropdownItem>
+              <button
+                className='text-red-600 font-semibold flex items-center gap-x-1'
+                onClick={() => {
+                  setIsCancelDialogOpen(true);
+                }}
+              >
+                <Cross2Icon />
+                Cancel Membership
+              </button>
+            </DropdownItem>
+            <DropdownItem>
+              <button
+                className='text-red-600 font-semibold flex items-center gap-x-1'
+                onClick={() => {
+                  setIsDeleteDialogOpen(true);
+                }}
+              >
+                <TrashCan />
+                Delete Member
+              </button>
+            </DropdownItem>
+          </DropdownMenu.Group>
+          <DropdownMenu.Arrow />
+        </DropdownContent>
+      </DropdownMenu.Root>
+      <EditMemberDialogForm
+        member={member}
+        open={isEditDialogOpen}
+        setOpen={setIsEditDialogOpen}
+        mutate={mutate}
+      />
+      <AlertDialog
+        isOpen={isCancelDialogOpen}
+        setIsOpen={setIsCancelDialogOpen}
+        title='Cancel Membership?'
+        description='This action cannot be undone. This will permanently cancel the membership. The member will have access until the end of their billing cycle, and will be charged applicable cancellation fees.'
+        close='No, go back.'
+        action='Yes, cancel membership.'
+        href={`api/member/cancel/${member.userId}`}
+      />
+      <AlertDialog
+        isOpen={isDeleteDialogOpen}
+        setIsOpen={setIsDeleteDialogOpen}
+        title='Delete Member?'
+        description='This action cannot be undone. This will permanently delete the member and remove their data from our servers. If the member has an active membership, this action will fail.'
+        close='No, go back.'
+        action='Yes, delete member.'
+        href={`api/member/delete/${member.userId}`}
+      />
+    </React.Fragment>
+  );
+}

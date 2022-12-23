@@ -1,0 +1,7 @@
+@use "/styles/0-settings/colors";
+@use "/styles/0-settings/sizes";
+
+.separator {
+    background-color: colors.$gray-400;
+    height: 1px;
+}

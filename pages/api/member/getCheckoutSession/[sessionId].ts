@@ -15,11 +15,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const checkoutSession = await stripe.checkout.sessions.retrieve(sessionIdString);
     const customerId = checkoutSession.customer;
 
-    const member = await prisma.membership
-      .findUnique({ where: { customerId: customerId } })
-      .member();
+    const membership = await prisma.membership.findUnique({
+      where: { customerId: customerId },
+      include: { plan: true, member: true },
+    });
 
-    res.status(200).json({ statusCode: 200, customerId, member, checkoutSession });
+    res.status(200).json({ statusCode: 200, customerId, membership, checkoutSession });
   } catch (err) {
     console.log(err);
     const errorMessage = err instanceof Error ? err.message : "Internal server error";

@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
-import Link from "next/link";
 import { useRouter } from "next/router";
-
 import { useForm } from "react-hook-form";
 import {
+  Grid,
   Table,
   TableRowCell,
   TablePagination,
   TableDropdown,
   Button,
   Searchbar,
-} from "/components";
+  Stack,
+} from "@/components";
 
 const allMembersQuery = gql`
   query {
@@ -21,27 +21,17 @@ const allMembersQuery = gql`
       userId
       firstName
       lastName
-      gender
       birthday
-      notes
+      createdAt
       contact {
-        streetAddress
-        city
-        state
-        zipcode
-        country
         email
         phoneNumber
       }
       membership {
         signUpDate
-        membershipEnds
         status
         plan {
           planName
-          annualFee
-          monthlyFee
-          contractLength
         }
       }
     }
@@ -50,12 +40,27 @@ const allMembersQuery = gql`
 
 export const getServerSideProps = withPageAuthRequired();
 
+function getRows(data) {
+  return data.members.map((member) => ({
+    id: member.id,
+    firstName: member.firstName,
+    lastName: member.lastName,
+    userId: member.userId,
+    birthday: member.birthday,
+    email: member.contact.email,
+    phoneNumber: member.contact.phoneNumber,
+    plan: member.membership.plan.planName,
+    status: member.membership.status,
+    created: new Date(member.createdAt).toLocaleString(),
+  }));
+}
+
 export default function Members() {
-  const { register, handleSubmit, resetField } = useForm();
-  const { data, loading, error } = useQuery(allMembersQuery);
+  const router = useRouter();
+  const { data: allMembers, loading, error } = useQuery(allMembersQuery);
   const [firstRowIndex, setFirstRowIndex] = useState(0);
   const [currentPageSize, setCurrentPageSize] = useState(10);
-  const router = useRouter();
+  const [filteredMembers, setFilteredMembers] = useState(null);
 
   const headers = [
     "First Name",
@@ -66,49 +71,79 @@ export default function Members() {
     "Phone Number",
     "Membership Plan",
     "Status",
+    "Created",
     "",
   ];
 
-  //create a link to edit their subscription details in the members tab using customer id
+  const { register } = useForm();
+  const { onChange } = register("searchValue", {
+    onChange: (e) => handleFilterMembers(e, allMembers),
+  });
 
-  if (loading) return <div>spinner</div>;
+  function handleFilterMembers(e, data) {
+    const input = e.target.value.toLowerCase().trim();
+    const filteredMembers = data.members.filter((member) => {
+      //create array of values to filter
+      const memberValues = [
+        member.firstName,
+        member.lastName,
+        member.firstName + " " + member.lastName,
+        member.userId,
+        member.birthday,
+        member.contact.email,
+        member.contact.phoneNumber,
+        member.membership.plan.planName,
+        member.membership.status,
+      ];
+      //return members with values that include input
+      for (let i = 0; i < memberValues.length; i++) {
+        if (memberValues[i] && memberValues[i].toLowerCase().includes(input)) return member;
+      }
+    });
+    setFilteredMembers(filteredMembers);
+  }
+
+  if (loading) return console.log("loading"); //@@@ Create skeleton
   if (error) return <div>{error}</div>;
-  if (data) {
-    const allRows = getRows(data);
+  if (allMembers) {
+    const members = filteredMembers ? { members: filteredMembers } : allMembers;
+    const allRows = getRows(members);
     const rows = allRows.slice(firstRowIndex, firstRowIndex + currentPageSize);
     return (
-      <section className='grid grid-cols-12 h-screen gap-y-0 min-w-[768px] max-w-screen-[1839px] mx-auto auto-rows-min'>
-        <div className='flex flex-row justify-between col-span-full h-fit mb-2'>
+      <Grid
+        as='section'
+        className='min-h-screen-calc gap-y-0 min-w-[1280px] mx-auto auto-rows-min p-8'
+      >
+        <div className='col-span-full mb-2'>
           <h1 className='font-semibold text-lg'>Members</h1>
-          <div className='flex flex-row gap-x-2'>
-            <Link href='/signup'>Sign up Member</Link>
-            <Link href='/create-new'>Create Member</Link>
-          </div>
         </div>
-        <div className='flex flex-row justify-between col-span-full h-fit'>
-          <div className='flex flex-row items-center'>
-            <Searchbar name='searchValue' placeholder='Search' {...register("searchValue")} />
-          </div>
-          <div className='flex flex-row gap-x-2'>
+        <Stack direction='row' className='justify-between col-span-full h-fit'>
+          <Stack direction='row' className='items-center'>
+            <Searchbar
+              name='searchValue'
+              className='w-80'
+              placeholder='Search'
+              onChange={onChange}
+              {...register("searchValue")}
+            />
+          </Stack>
+          <Stack direction='row' className='gap-x-2'>
             <button>
               <Button className='text-gray-600' as='div' size='small' variant='default'>
                 Filter
               </Button>
             </button>
-            {/* 
-            TO:DO: Add Filter
-            <button>
-                <Button as='div' size='small' variant='default'>
-                  Reset Filter
-                </Button>
-              </button> */}
-          </div>
-        </div>
+
+            {/* TO:DO: Add Filter */}
+            <Button disabled as='button' size='small' variant='default'>
+              Reset Filter
+            </Button>
+          </Stack>
+        </Stack>
         <div className='col-span-full h-fit mt-4'>
           <Table
             headers={headers}
             rows={rows}
-            href='`members/details/${row.id}`'
             onClick={(e, row) => {
               e.stopPropagation();
               e.preventDefault();
@@ -116,7 +151,7 @@ export default function Members() {
             }}
             render={(row) => {
               return (
-                <>
+                <React.Fragment>
                   {Object.values(row).map((cell, idx) => {
                     if (idx !== 0) {
                       return <TableRowCell key={idx}>{cell}</TableRowCell>;
@@ -125,7 +160,7 @@ export default function Members() {
                   <TableRowCell>
                     <TableDropdown row={row} />
                   </TableRowCell>
-                </>
+                </React.Fragment>
               );
             }}
           />
@@ -141,21 +176,7 @@ export default function Members() {
             }}
           />
         </div>
-      </section>
+      </Grid>
     );
   }
-}
-
-function getRows(data) {
-  return data.members.map((member) => ({
-    id: member.id,
-    firstName: member.firstName,
-    lastName: member.lastName,
-    userId: member.userId,
-    birthday: member.birthday,
-    email: member.contact.email,
-    phoneNumber: member.contact.phoneNumber,
-    plan: member.membership.plan.planName,
-    status: member.membership.status,
-  }));
 }

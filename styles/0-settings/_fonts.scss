@@ -23,10 +23,19 @@ $font-size-1300: 64px;
 $font-size-1400: 72px;
 $font-size-1500: 80px;
 
-$font-family-base: "opensans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-Ubuntu, "Trebuchet MS", "Lucida Grande", sans-serif;
-$font-family-serif: "stanley", "Source Serif Pro", Georgia, serif;
-$font-family-code: "officecode", Monaco, monospace;
+$font-family-base: "opensans",
+-apple-system,
+BlinkMacSystemFont,
+"Segoe UI",
+Roboto,
+Ubuntu,
+"Trebuchet MS",
+"Lucida Grande",
+sans-serif;
+$font-family-serif: Georgia,
+serif;
+$font-family-code: Monaco,
+monospace;
 
 $font-weight-thin: 100;
 $font-weight-ultra-light: 200;
