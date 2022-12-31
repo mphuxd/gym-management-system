@@ -1,8 +1,10 @@
 import AWS from "aws-sdk/global";
 import S3 from "aws-sdk/clients/s3";
+import { withApiAuthRequired, getSession } from "@auth0/nextjs-auth0";
 
-export default async function handler(req, res) {
+export default withApiAuthRequired(async function handler(req, res) {
   try {
+    const session = getSession(req, res);
     const { id } = req.query;
 
     AWS.config.apiVersions = {
@@ -24,10 +26,9 @@ export default async function handler(req, res) {
 
     await s3.headObject(params).promise();
     const url = await s3.getSignedUrlPromise("getObject", params);
-    console.log("called S3");
     return res.status(200).json({ statusCode: 200, imageUrl: url });
   } catch (error) {
     console.log("Unknown Error: ", error, "Check if object exists.");
     return res.json({ statusCode: error.statusCode, error });
   }
-}
+});

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "/components";
+import { Button } from "@/components";
 
 function TablePagination({ totalItems, pageSize, pageSizes, onChange, backText, nextText }) {
   const [page, setPage] = useState(1);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import * as AvatarPrimitive from "@radix-ui/react-avatar";
 import styles from "./Avatar.module.scss";
 

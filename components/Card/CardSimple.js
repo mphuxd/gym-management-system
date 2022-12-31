@@ -1,15 +1,14 @@
 import React from "react";
-import style from "./Card.module.scss";
 import { ArrowRight } from "@carbon/icons-react";
 
-function CardSimple({ heading, description, icon }) {
+function CardSimple({ heading, description }) {
   return (
-    <div className={style.cardSimple}>
+    <div className='flex flex-col justify-between h-52 p-4 bg-white focus:bg-slate5 active:bg-slate5 shadow-xl shadow-mauve7 hover:shadow-mauve8 '>
       <div className='flex flex-col gap-y-3'>
         <h2 className='text-2xl font-medium'>{heading}</h2>
-        <p className={style.cardSimpleDescription}>{description}</p>
+        <p className='max-w-sm text-lg'>{description}</p>
       </div>
-      <ArrowRight size={24}></ArrowRight>
+      <ArrowRight className='text-red11' size={24} />
     </div>
   );
 }

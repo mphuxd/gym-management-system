@@ -1,6 +1,6 @@
 // /graphql/context.ts
+import prisma from "@/lib/prisma";
 import { PrismaClient } from "@prisma/client";
-import prisma from "../lib/prisma";
 import { Claims, getSession } from "@auth0/nextjs-auth0";
 
 export type Context = {

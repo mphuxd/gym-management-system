@@ -15,6 +15,7 @@ export * from "./Overlay";
 export * from "./Searchbar";
 export * from "./Separator";
 export * from "./Sidepanel";
+export * from "./Status";
 export * from "./Stack";
 export * from "./Table";
 export * from "./Tabs";

@@ -1,13 +1,13 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import prisma from "../../../../lib/prisma";
 import { withApiAuthRequired, getSession } from "@auth0/nextjs-auth0";
+import prisma from "@/lib/prisma";
 
 export default withApiAuthRequired(async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const session = getSession(req, res);
   try {
+    const session = getSession(req, res);
     const history = await prisma.history.findMany();
     res.status(200).json({ statusCode: 200, history: history });
   } catch (err) {
@@ -15,3 +15,5 @@ export default withApiAuthRequired(async function handler(
     res.status(500).json({ statusCode: 500, message: errorMessage });
   }
 });
+
+// @@@ Unused. Delete or implement display user action history.

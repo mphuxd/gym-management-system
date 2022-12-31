@@ -1,8 +1,7 @@
-//trigger stripe event
-import Stripe from "stripe";
 import { NextApiRequest, NextApiResponse } from "next";
-import prisma from "../../../../lib/prisma";
 import { withApiAuthRequired, getSession } from "@auth0/nextjs-auth0";
+import Stripe from "stripe";
+import prisma from "@/lib/prisma";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   // https://github.com/stripe/stripe-node#configuration
@@ -13,25 +12,31 @@ export default withApiAuthRequired(async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const session = getSession(req, res);
   try {
+    const session = getSession(req, res);
+
     const { userId } = req.query;
     const userIdString = userId.toString();
+
     const member = await prisma.member.findUnique({ where: { userId: userIdString } });
-    const membership = await prisma.member
-      .findUnique({ where: { userId: userIdString } })
-      .membership();
 
     if (!member) {
       throw new Error("Member not found.");
     }
-    console.log("Member found");
+
+    const membership = await prisma.member
+      .findUnique({ where: { userId: userIdString } })
+      .membership();
+
+    if (!membership) {
+      throw new Error("Membership not found.");
+    }
 
     const membershipIsExpired = checkMembershipIsExpired(membership.membershipEnds);
 
     if (!membershipIsExpired) {
-      res.status(200).json({
-        statusCode: 200,
+      res.status(403).json({
+        statusCode: 403,
         message: `Member: ${userIdString} was not deleted. Cannot delete member with an active membership. Cancel the membership and wait until it ends before deleting a member.`,
       });
     } else {
@@ -57,8 +62,7 @@ export default withApiAuthRequired(async function handler(
 function checkMembershipIsExpired(memberEndDate) {
   let currDate = new Date();
   const currDateString = currDate.toDateString();
-  //check if membership is expired. returns false if still active
   return currDateString > memberEndDate;
 }
 
-//edit schema so deleting member deletes all related models contacts & memberships
+//@@@ On delete, delete all related models

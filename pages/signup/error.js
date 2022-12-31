@@ -1,7 +1,7 @@
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import Image from "next/image";
 import Link from "next/link";
-import { Separator, Stack } from "/components";
+import { Separator, Stack } from "@/components";
 
 export const getServerSideProps = withPageAuthRequired();
 

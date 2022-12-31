@@ -46,7 +46,7 @@ export default function UserId() {
   if (member && subscriptionData) {
     member = member.member;
     return (
-      <section className='flex flex-row bg-gray-100 min-h-screen-calc'>
+      <section className='flex flex-row bg-slate2 min-h-screen-calc'>
         <Sidepanel id='sidepanel' className='flex flex-col gap-y-6 border-r'>
           <Stack className='mb-3 gap-x-4'>
             <h1 className='text-3xl pb-1 mb-3 font-medium'>
@@ -193,12 +193,12 @@ function MemberDropdownMenu({ member, mutate }) {
   return (
     <React.Fragment>
       <DropdownMenu.Root>
-        <DropdownTrigger className='overflow-hidden block'>
+        <DropdownTrigger asChild className='overflow-hidden block'>
           <Button
-            className='text-gray-600 my-auto flex flex-row justify-center items-center focus:outline-none'
+            className='my-auto flex flex-row justify-center items-center'
             as='div'
-            size='small'
-            variant='default'
+            size='base'
+            intent='tertiary'
           >
             <span>Actions</span>
             <ChevronDownIcon />
@@ -234,7 +234,7 @@ function MemberDropdownMenu({ member, mutate }) {
                   }
                 }}
               >
-                Check in member
+                Check In Member
               </button>
             </DropdownItem>
             <DropdownItem>

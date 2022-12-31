@@ -6,8 +6,6 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useAtom } from "jotai";
 import { toastAtom } from "@/atoms";
-import { Cross2Icon } from "@radix-ui/react-icons";
-import * as Label from "@radix-ui/react-label";
 import * as ScrollArea from "@radix-ui/react-scroll-area";
 import Link from "next/link";
 import {
@@ -21,7 +19,6 @@ import {
   DialogTitle,
   DialogClose,
 } from "@/components";
-import styles from "./Home.module.scss";
 
 export const getServerSideProps = withPageAuthRequired();
 
@@ -29,7 +26,7 @@ export default function Home() {
   const { user } = useUser();
   return (
     user && (
-      <div className='w-full bg-gray-100 '>
+      <div className='w-full bg-slate2'>
         <Grid className='gap-8 min-w-[768px] max-w-[1920px] mx-auto px-8 min-h-screen-calc auto-rows-min grid-cols-12'>
           <h1 className='col-span-10 mt-12 text-4xl'>Welcome, {user.nickname}</h1>
           <Grid className='col-span-12 gap-x-8 grid-cols-4'>
@@ -52,8 +49,8 @@ export default function Home() {
               />
             </Link>
           </Grid>
-          <Grid className='grid-cols-4 col-span-12 gap-x-8'>
-            <Stack className='p-4'>
+          <Grid className='col-span-12 grid-cols-4 gap-x-8'>
+            <Stack className='p-4 hover:bg-slate4 focus:bg-slate5 active:bg-slate5'>
               <h3 className='font-semibold mb-2'>Quick Navigation</h3>
               <ul className='space-y-0.5'>
                 <li>
@@ -88,9 +85,12 @@ export default function Home() {
                 </li>
               </ul>
             </Stack>
-            <Stack className='col-span-2 p-4 gap-y-8'>
-              <DashboardNotes />
-              <Stack>
+
+            <Stack className='col-span-2 gap-y-8'>
+              <Stack className='hover:bg-slate4 focus:bg-slate5 active:bg-slate5 p-4'>
+                <DashboardNotes />
+              </Stack>
+              <Stack className=' p-4 '>
                 <h3 className='font-semibold mb-2'>Contacts</h3>
                 <Stack direction='row' className='gap-x-8'>
                   <Stack>
@@ -144,7 +144,7 @@ function DashboardNotes() {
   if (error) console.log(error);
   return (
     data && (
-      <ScrollArea.Root className='relative overflow-hidden rounded h-40 hover:cursor-pointer '>
+      <ScrollArea.Root tabIndex='0' className='relative overflow-hidden h-40 hover:cursor-pointer'>
         <ScrollArea.Viewport
           onClick={() => {
             setOpen(true);
@@ -219,29 +219,22 @@ function DashboardNotesDialog({ open, setOpen, note, refetch }) {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent className='inset-1/2 -translate-x-1/2 -translate-y-3/4 h-fit w-1/3'>
+      <DialogContent className='inset-1/2 -translate-x-1/2 -translate-y-3/4 h-fit w-1/3 p-8 space-y-4'>
         <Stack direction='row' className='justify-between items-center'>
           <DialogTitle>Edit Note</DialogTitle>
           <DialogClose />
         </Stack>
         <form className='space-y-4' onSubmit={handleSubmit(onSubmit)}>
-          <FormField>
-            <Label.Root htmlFor='input-notes'>Notes</Label.Root>
-            <textarea
-              id='input-notes'
-              defaultValue={note.note}
-              type='text'
-              className='h-80 input-field'
-              {...register("note")}
-            />
-          </FormField>
-          <Button
-            as='input'
-            label='Save'
-            type='submit'
-            variant='primary'
-            className='border-blue-500'
+          <FormField
+            id='note'
+            label={null}
+            as='textarea'
+            type='text'
+            className='h-80'
+            defaultValue={note.note}
+            register={register}
           />
+          <Button className='ml-auto' as='input' label='Save Note' type='submit' intent='primary' />
         </form>
       </DialogContent>
     </Dialog>

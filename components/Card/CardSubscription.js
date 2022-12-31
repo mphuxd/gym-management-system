@@ -1,6 +1,6 @@
 import React from "react";
 import cx from "classnames";
-import { Button } from "/components";
+import { Button } from "@/components";
 import * as Separator from "@radix-ui/react-separator";
 import { CheckCircledIcon } from "@radix-ui/react-icons";
 
@@ -18,7 +18,7 @@ function CardSubscription({
 
   return (
     <div className={classNames}>
-      <div className='flex flex-col p-8 bg-white rounded-2xl  justify-between h-[32rem]'>
+      <div className='flex flex-col p-8 bg-white hover:bg-slate3 active:bg-slate4 outline outline-slate7 outline-[1px] focus:outline-slate8 focus:ring-2 focus:ring-blue8 rounded-2xl justify-between h-[32rem] hover:shadow-lg hover:shadow-purple6'>
         <div className='description flex flex-col justify-center'>
           <h2 className='text-2xl font-semibold w-fit '>{planName}</h2>
           <h3 className='mt-5'>{planDescription}</h3>
@@ -42,7 +42,7 @@ function CardSubscription({
             <input type='hidden' name='lookup_key' value={planLookUpKey} />
             <input type='hidden' name='planId' value={planIdValue} />
             <button className='' id='checkout-and-portal-button' type='submit'>
-              <Button as='div' variant='primary'>
+              <Button as='div' intent='tertiary' size='large'>
                 Subscribe
               </Button>
             </button>

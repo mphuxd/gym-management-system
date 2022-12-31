@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
@@ -23,17 +23,16 @@ import {
 export default function CheckInSidepanel({ checkInHistory }) {
   return (
     <Sidepanel>
-      <Accordion className='w-full' type='single' defaultValue='item-1' collapsible>
-        <AccordionItem className='w-full' header='Analytics' value='item-1'>
+      <Accordion className='w-full' type='single' defaultValue='analytics' collapsible>
+        <AccordionItem className='w-full' header='Analytics' value='analytics'>
           <CheckInDailyCount checkInHistory={checkInHistory} />
           <CheckInXYChart checkInHistory={checkInHistory} />
-
           <Link
             href='/analytics'
-            className='flex flex-row items-center gap-x-1 w-fit text-sm hover:underline '
+            className='flex flex-row items-center gap-x-1 w-fit text-sm hover:underline mt-2'
           >
             <span>View More Analytics</span>
-            <ArrowRight size={12}></ArrowRight>
+            <ArrowRight size={12} />
           </Link>
         </AccordionItem>
       </Accordion>
@@ -57,7 +56,6 @@ function getDailyCheckInCount(checkInHistory) {
 
 function CheckInDailyCount({ checkInHistory }) {
   const checkInCount = checkInHistory ? getDailyCheckInCount(checkInHistory) : "-";
-
   return (
     <Stack>
       <span className='text-6xl'>{checkInCount}</span>
@@ -74,16 +72,13 @@ function processRecentHistory(history) {
     const time = hour + suffix;
     return time;
   }
-
   const WINDOW = 6;
-
   let buckets = [];
   for (let i = WINDOW; i >= 0; i--) {
     let hour = new Date().getHours() - i;
     const time = convertTimeScale24To12(hour);
     buckets.push({ hour: time, count: 0 });
   }
-
   if (history) {
     const historyWindow = history.history.filter((item) => {
       const itemTime = new Date(item.checkInDate).getTime();
@@ -92,7 +87,6 @@ function processRecentHistory(history) {
         return item;
       }
     });
-
     historyWindow.forEach((history) => {
       for (let i = 0; i < buckets.length; i++) {
         let eventHour = new Date(history.checkInDate).getHours();
@@ -104,13 +98,11 @@ function processRecentHistory(history) {
       }
     });
   }
-
   return buckets;
 }
 
 function CheckInXYChart({ checkInHistory }) {
   const chartData = processRecentHistory(checkInHistory);
-
   return (
     <XYChartWrapper
       accessors={{
@@ -226,7 +218,9 @@ function CheckInHistoryRow({ row }) {
                 {row.member.firstName + " " + row.member.lastName}
               </span>
               <Stack direction='row' className='items-center gap-x-1'>
-                <Link href={`/members/details/${row.memberId}`}>View Profile</Link>
+                <Link className='text-sm' href={`/members/details/${row.memberId}`}>
+                  View Profile
+                </Link>
                 <ArrowRightIcon />
               </Stack>
             </Stack>

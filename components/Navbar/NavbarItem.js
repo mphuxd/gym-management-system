@@ -4,16 +4,19 @@ import cx from "classnames";
 
 function NavbarItem({ children, className }) {
   const router = useRouter();
-  const classNames = cx(className, [
-    {
-      "bg-blue-600 hover:bg-blue-600 active:bg-blue-600 text-white":
-        router.asPath === children.props.href,
-    },
-    {
-      "hover:bg-gray-200": router.asPath !== children.props.href,
-    },
-    { "px-2 py-1 rounded-md": true },
-  ]);
+
+  let isActive = false;
+
+  if (router.asPath === children.props.href) isActive = true;
+  else if (router.asPath.includes(children.props.href) && children.props.href !== "/")
+    isActive = true;
+
+  const classNames = cx(className, {
+    "py-2 px-4 relative": true, //default
+    "font-semibold border-b-2 border-red9": isActive, //selected
+    "hover:border-b-2 hover:border-red8 ": !isActive, //not selected
+  });
+
   return <div className={classNames}>{children}</div>;
 }
 

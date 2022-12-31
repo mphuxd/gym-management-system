@@ -1,25 +1,26 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import prisma from "../../../lib/prisma";
 import { withApiAuthRequired, getSession } from "@auth0/nextjs-auth0";
+import prisma from "@/lib/prisma";
 
 export default withApiAuthRequired(async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const session = getSession(req, res);
   try {
+    const session = getSession(req, res);
+
     const history = await prisma.checkIn.findMany({
       include: {
         member: {
           include: {
-            contact : true,
+            contact: true,
             membership: {
               include: {
-                plan: true
-              }
+                plan: true,
+              },
             },
             checkIns: true,
-          }
+          },
         },
       },
     });

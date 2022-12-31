@@ -13,7 +13,7 @@ export default function XYChartWrapper({ data, accessors }) {
       <AnimatedAxis numTicks={6} orientation='right' />
       <AnimatedAxis width={310} orientation='bottom' />
       <AnimatedGrid columns={false} numTicks={6} />
-      <AnimatedLineSeries className={styles.line} dataKey='Check Ins' data={data} {...accessors} />
+      <AnimatedLineSeries className='stroke-blue9' dataKey='Check Ins' data={data} {...accessors} />
       <Tooltip
         glyphStyle={{ fill: "rgb(80, 80, 80)" }} //$gray-800: rgb(80, 80, 80);
         snapTooltipToDatumX

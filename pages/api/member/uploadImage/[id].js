@@ -1,12 +1,19 @@
 import AWS from "aws-sdk/global";
 import S3 from "aws-sdk/clients/s3";
-import { getSession } from "@auth0/nextjs-auth0";
+import { withApiAuthRequired, getSession } from "@auth0/nextjs-auth0";
 
-export default async function handler(req, res) {
+export default withApiAuthRequired(async function handler(req, res) {
   try {
+    const session = getSession(req, res);
+
+    if (req.method !== "POST") {
+      res.setHeader("Allow", "POST");
+      return res.status(405).json({ message: "Method not allowed" });
+    }
+
     const { id } = req.query;
     let imageSrc = req.body;
-    // const token = await getSession(req, res);
+    // const token = getSession(req, res);
 
     AWS.config.apiVersions = {
       s3: "2012-10-17",
@@ -42,12 +49,12 @@ export default async function handler(req, res) {
     };
 
     const response = s3.putObject(params, function (err, data) {
-      if (err) console.log(err, err.stack); // an error occurred
-      else console.log(data); // successful response
+      if (err) throw new Error(err, err.stack);
     });
 
-    return res.end("200");
+    res.status(200).json({ message: " Member image uploaded successfully." });
   } catch (error) {
-    console.log(error);
+    const errorMessage = err instanceof Error ? err.message : "Internal server error";
+    res.status(500).json({ statusCode: 500, message: errorMessage });
   }
-}
+});

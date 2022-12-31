@@ -1,7 +1,7 @@
-import { buffer } from "micro";
-import Cors from "micro-cors";
 import { NextApiRequest, NextApiResponse } from "next";
-import prisma from "../../../lib/prisma";
+import Cors from "micro-cors";
+import { buffer } from "micro";
+import prisma from "@/lib/prisma";
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -23,47 +23,39 @@ const cors = Cors({
 });
 
 async function webhookHandler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method === "POST" && webhookSecret) {
+  try {
+    if (req.method !== "POST") {
+      res.setHeader("Allow", "POST");
+      return res.status(405).json({ message: "Method not allowed" });
+    }
+
+    if (!webhookSecret) {
+      return res.status(403).json({ message: `You must provide the secret` });
+    }
+
     const buf = await buffer(req);
     const sig = req.headers["stripe-signature"]!;
     let event: Stripe.Event;
 
-    try {
-      event = stripe.webhooks.constructEvent(buf.toString(), sig, webhookSecret);
-    } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : "Unknown error";
-      // On error, log and return the error message.
-      if (err! instanceof Error) console.log(err);
-      console.log(`❌ Error message: ${errorMessage}`);
-      res.status(400).send(`Webhook Error: ${errorMessage}`);
-      return;
-    }
-    // Successfully constructed event.
+    event = stripe.webhooks.constructEvent(buf.toString(), sig, webhookSecret);
     console.log("✅ Success:", event.id);
 
     switch (event.type) {
       case "checkout.session.completed":
         const session = event.data.object;
-        if (session) {
-          try {
-            createMember(session);
-          } catch (error) {
-            const errorMessage = error instanceof Error ? error.message : "Unknown error";
-            if (error! instanceof Error) console.log(error);
-            console.log(`❌ Error message: ${errorMessage}`);
-            res.status(400).send(`Webhook Error: ${errorMessage}`);
-            throw new Error(error);
-          }
-        }
+        if (session) createMember(session);
         res.status(200).json({ message: `New member has been created successfully!` });
         break;
-      // ... handle other event types
       default:
         console.log(`Unhandled event type ${event.type}`);
+        throw new Error(`Unhandled event type ${event.type}`);
     }
-  } else {
-    res.setHeader("Allow", "POST");
-    res.status(405).end("Method Not Allowed");
+  } catch (err) {
+    const errorMessage = err instanceof Error ? err.message : "Unknown error";
+    if (err! instanceof Error) console.log(err);
+    console.log(`❌ Error message: ${errorMessage}`);
+    res.status(500).send(`Webhook Error: ${errorMessage}`);
+    return;
   }
 }
 
@@ -101,7 +93,7 @@ async function createMember(session) {
 function getEndDate() {
   let date = new Date();
   date.setFullYear(date.getFullYear() + 1);
-  return date
+  return date;
 }
 
 export default cors(webhookHandler as any);

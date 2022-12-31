@@ -21,9 +21,13 @@
     height: sizes.$size-25;
   }
 
+  &:hover {
+    background: colors.$gray-300;
+  }
+
   &[data-state=active] {
     color: colors.$black;
-    font-weight: fonts.$font-weight-semi-bold;
+    font-weight: fonts.$font-weight-medium;
     position: relative;
 
     &:after {

@@ -1,17 +1,26 @@
 import React, { useState } from "react";
-import { gql, useQuery } from "@apollo/client";
+import Link from "next/link";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
+import { gql, useQuery } from "@apollo/client";
+import { toastAtom } from "atoms";
+import { useAtom } from "jotai";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
+import { Cross2Icon, DotsHorizontalIcon } from "@radix-ui/react-icons";
+import { TrashCan } from "@carbon/icons-react";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import {
+  AlertDialog,
+  Button,
+  DropdownContent,
+  DropdownItem,
+  DropdownSeparator,
   Grid,
+  Searchbar,
+  Stack,
   Table,
   TableRowCell,
   TablePagination,
-  TableDropdown,
-  Button,
-  Searchbar,
-  Stack,
 } from "@/components";
 
 const allMembersQuery = gql`
@@ -112,7 +121,7 @@ export default function Members() {
     return (
       <Grid
         as='section'
-        className='min-h-screen-calc gap-y-0 min-w-[1280px] mx-auto auto-rows-min p-8'
+        className='min-h-screen-calc gap-y-0 min-w-[1280px] mx-auto auto-rows-min p-8 bg-slate2'
       >
         <div className='col-span-full mb-2'>
           <h1 className='font-semibold text-lg'>Members</h1>
@@ -121,8 +130,9 @@ export default function Members() {
           <Stack direction='row' className='items-center'>
             <Searchbar
               name='searchValue'
-              className='w-80'
               placeholder='Search'
+              intent='primary'
+              size='base'
               onChange={onChange}
               {...register("searchValue")}
             />
@@ -179,4 +189,107 @@ export default function Members() {
       </Grid>
     );
   }
+}
+
+function TableDropdown({ row }) {
+  const router = useRouter();
+  const [toast, setToast] = useAtom(toastAtom);
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  const [isCancelDialogOpen, setIsCancelDialogOpen] = useState(false);
+
+  return (
+    <DropdownMenu.Root className=''>
+      <DropdownMenu.Trigger
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        }}
+        className='mx-auto p-2 hover:shadow-xl hover:outline outline-1 rounded-lg outline-gray7 active:outline-gray8 active:outline overflow-hidden block'
+      >
+        <DotsHorizontalIcon className='' />
+      </DropdownMenu.Trigger>
+      <DropdownContent onClick={(e) => e.stopPropagation()} align='end'>
+        <DropdownMenu.Group>
+          <DropdownItem>
+            <Link href={`members/details/${row.id}`}>View Member Details</Link>
+          </DropdownItem>
+          <DropdownItem>
+            <button
+              onClick={async () => {
+                try {
+                  await fetch(`/api/checkin/${row.id}`, {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                  }).then(
+                    (res) =>
+                      setToast({
+                        title: "Checked In Member",
+                        description: row.id,
+                        isOpen: true,
+                      }),
+                    router.push("/checkin")
+                  );
+                } catch (err) {
+                  console.log(err);
+                  setToast({
+                    title: "Edit Failed",
+                    description: err.message,
+                    isOpen: true,
+                  });
+                }
+              }}
+            >
+              Check In Member
+            </button>
+          </DropdownItem>
+        </DropdownMenu.Group>
+        <DropdownSeparator />
+        <DropdownMenu.Group>
+          <DropdownItem>
+            <button
+              className='text-red11 flex items-center gap-x-1'
+              onClick={() => {
+                setIsCancelDialogOpen(true);
+              }}
+            >
+              <Cross2Icon />
+              Cancel Membership
+            </button>
+          </DropdownItem>
+          <DropdownItem>
+            <button
+              className='text-red11 flex items-center gap-x-1'
+              onClick={() => {
+                setIsDeleteDialogOpen(true);
+              }}
+            >
+              <TrashCan />
+              Delete Member
+            </button>
+          </DropdownItem>
+        </DropdownMenu.Group>
+        <DropdownMenu.Arrow />
+      </DropdownContent>
+      <AlertDialog
+        isOpen={isCancelDialogOpen}
+        setIsOpen={setIsCancelDialogOpen}
+        title='Cancel Membership?'
+        description='This action cannot be undone. This will permanently cancel the membership. The member will have access until the end of their billing cycle, and will be charged applicable cancellation fees.'
+        close='No, go back.'
+        action='Yes, cancel membership.'
+        href={`api/member/cancel/${row.userId}`}
+      />
+      <AlertDialog
+        isOpen={isDeleteDialogOpen}
+        setIsOpen={setIsDeleteDialogOpen}
+        title='Delete Member?'
+        description='This action cannot be undone. This will permanently delete the member and remove their data from our servers. If the member has an active membership, this action will fail.'
+        close='No, go back.'
+        action='Yes, delete member.'
+        href={`api/member/delete/${row.userId}`}
+      />
+    </DropdownMenu.Root>
+  );
 }

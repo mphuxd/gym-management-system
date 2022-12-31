@@ -5,13 +5,13 @@ import { toastAtom } from "@/atoms";
 import { useForm } from "react-hook-form";
 import * as ScrollArea from "@radix-ui/react-scroll-area";
 import {
+  Dialog,
+  DialogClose,
+  DialogContent,
   Searchbar,
+  Stack,
   Table,
   TableRowCell,
-  DialogClose,
-  Dialog,
-  DialogContent,
-  Stack,
 } from "@/components";
 
 export default function CheckInMemberSearch({ mutate }) {
@@ -24,9 +24,10 @@ export default function CheckInMemberSearch({ mutate }) {
         onClick={() => {
           setIsOpen(true);
         }}
-        className='w-60'
-        variant='dark'
-        placeholder='Search'
+        className=''
+        intent='primary'
+        rounded='false'
+        placeholder='Search Members'
       />
 
       <SearchDialogModal data={data} mutate={mutate} isOpen={isOpen} setIsOpen={setIsOpen} />
@@ -108,8 +109,15 @@ function SearchDialogModal({ data, mutate, isOpen, setIsOpen }) {
         member.contact.phoneNumber,
       ];
       //return members with values that include input
+
+      let count = 0;
+
       for (let i = 0; i < memberValues.length; i++) {
-        if (memberValues[i] && memberValues[i].toLowerCase().includes(input)) return member;
+        if (count >= 9) break; //limit to only 10 results
+        if (memberValues[i] && memberValues[i].toLowerCase().includes(input)) {
+          count++;
+          return member;
+        }
       }
     });
     setFilteredMembers(filteredMembers);
@@ -124,14 +132,14 @@ function SearchDialogModal({ data, mutate, isOpen, setIsOpen }) {
         resetField("searchValue");
       }}
     >
-      <DialogContent className='inset-y-1/4 inset-x-1/2 -translate-x-1/2 max-h-96 h-[500px] w-1/2'>
+      <DialogContent className='inset-y-1/4 inset-x-1/2 -translate-x-1/2 max-h-96 h-[500px] w-1/2 p-8 space-y-4'>
         <Stack direction='row' className='justify-between items-center'>
           <form onSubmit={(e) => handleSubmit(handleSubmitCheckInSearch(e))}>
             <Searchbar
               onChange={onChange}
               autoFocus={true}
-              className='w-60'
-              variant='dark'
+              intent='primary'
+              rounded='false'
               name='searchValue'
               placeholder='Search Members'
               {...register("searchValue")}

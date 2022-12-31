@@ -1,5 +1,4 @@
 export { default as Table } from "./Table";
-export { default as TableDropdown } from "./TableDropdown";
 export { default as TableDropdownItem } from "./TableDropdownItem";
 export { default as TableHeader } from "./TableHeader";
 export { default as TablePagination } from "./TablePagination";

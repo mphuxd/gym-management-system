@@ -4,7 +4,7 @@ import cx from "classnames";
 
 const DialogOverlay = React.forwardRef(({ children, ...props }, forwardedRef) => {
   const { className, ...rest } = { ...props };
-  const classNames = cx(className, "fixed bg-black opacity-30 inset-0");
+  const classNames = cx(className, "fixed bg-gray12 opacity-70 inset-0");
   return <DialogPrimitive.Overlay ref={forwardedRef} {...rest} className={classNames} />;
 });
 

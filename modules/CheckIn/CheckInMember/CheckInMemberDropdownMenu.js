@@ -20,12 +20,13 @@ function CheckInMemberDropdownMenu({ checkedInMember, mutate }) {
   return (
     <React.Fragment>
       <DropdownMenu.Root>
-        <DropdownTrigger className='overflow-hidden block'>
+        <DropdownTrigger asChild>
           <Button
-            className='text-gray-600 my-auto flex flex-row justify-center items-center focus:outline-none'
-            as='div'
-            size='small'
-            variant='default'
+            className='my-auto flex flex-row gap-x-2 items-center'
+            as='button'
+            size='base'
+            intent='tertiary'
+            rounded
           >
             <span>Actions</span>
             <ChevronDownIcon />
@@ -50,7 +51,7 @@ function CheckInMemberDropdownMenu({ checkedInMember, mutate }) {
           <DropdownMenu.Group>
             <DropdownItem>
               <button
-                className='text-red-600 font-semibold flex items-center gap-x-1'
+                className='text-red11 flex items-center gap-x-1'
                 onClick={() => {
                   setIsCancelDialogOpen(true);
                 }}
@@ -61,7 +62,7 @@ function CheckInMemberDropdownMenu({ checkedInMember, mutate }) {
             </DropdownItem>
             <DropdownItem>
               <button
-                className='text-red-600 font-semibold flex items-center gap-x-1'
+                className='text-red11 flex items-center gap-x-1'
                 onClick={() => {
                   setIsDeleteDialogOpen(true);
                 }}

@@ -1,6 +1,7 @@
 import React from "react";
 import * as AlertDialogPrimitive from "@radix-ui/react-alert-dialog";
-import { Button } from "../Button";
+import { Button, Stack } from "@/components";
+import { Cross2Icon } from "@radix-ui/react-icons";
 
 const AlertDialog = React.forwardRef(
   (
@@ -9,9 +10,8 @@ const AlertDialog = React.forwardRef(
   ) => {
     async function handleAction(e) {
       e.stopPropagation();
-      // const response = await fetch(href);
-      // const results = await response.json();
-      console.log("Works but disabled");
+      const response = await fetch(href);
+      const results = await response.json();
       // @@@ integrate with toast
     }
     return (
@@ -22,20 +22,31 @@ const AlertDialog = React.forwardRef(
         {...props}
       >
         <AlertDialogPrimitive.Portal>
-          <AlertDialogPrimitive.Overlay className='fixed bg-black opacity-30 inset-0' />
-          <AlertDialogPrimitive.Content className='absolute inset-1/2 -translate-x-1/2 -translate-y-3/4 h-fit w-[640px] bg-white p-6 rounded-lg space-y-4'>
-            <AlertDialogPrimitive.Title className='font-semibold'>
-              {title}
-            </AlertDialogPrimitive.Title>
+          <AlertDialogPrimitive.Overlay className='fixed bg-mauve12 opacity-70 inset-0' />
+          <AlertDialogPrimitive.Content
+            onClick={(e) => {
+              e.preventDefault(), e.stopPropagation();
+            }}
+            className='absolute inset-1/2 -translate-x-1/2 -translate-y-3/4 h-fit w-[640px] bg-white p-6 rounded-lg space-y-4'
+          >
+            <Stack direction='row' className='justify-between'>
+              <AlertDialogPrimitive.Title className='font-semibold'>
+                {title}
+              </AlertDialogPrimitive.Title>
+
+              <div className='p-2 block hover:bg-slate4 rounded-sm focus:outline focus:outline-slate7 active:bg-slate5'>
+                <Cross2Icon onClick={() => setIsOpen(false)} className='hover:cursor-pointer' />
+              </div>
+            </Stack>
             <AlertDialogPrimitive.Description className=''>
               {description}
             </AlertDialogPrimitive.Description>
             <div className='flex flex-row justify-end gap-x-6 '>
-              <AlertDialogPrimitive.Cancel onClick={(e) => e.stopPropagation()}>
-                <Button as='div'>{close}</Button>
+              <AlertDialogPrimitive.Cancel asChild onClick={(e) => e.stopPropagation()}>
+                <Button as='button'>{close}</Button>
               </AlertDialogPrimitive.Cancel>
-              <AlertDialogPrimitive.Action onClick={(e) => handleAction(e)}>
-                <Button variant='danger' as='div'>
+              <AlertDialogPrimitive.Action asChild onClick={(e) => handleAction(e)}>
+                <Button intent='danger' as='button'>
                   {action}
                 </Button>
               </AlertDialogPrimitive.Action>

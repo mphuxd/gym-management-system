@@ -1,13 +1,13 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import prisma from "../../../../lib/prisma";
 import { withApiAuthRequired, getSession } from "@auth0/nextjs-auth0";
+import prisma from "@/lib/prisma";
 
 export default withApiAuthRequired(async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const session = getSession(req, res);
   try {
+    const session = getSession(req, res);
     const { id } = req.query;
     const idString = id.toString();
     const member = await prisma.member.findUnique({

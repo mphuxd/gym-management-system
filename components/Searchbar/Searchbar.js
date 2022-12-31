@@ -1,26 +1,39 @@
 import React from "react";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
+import { cva } from "class-variance-authority";
 import cx from "classnames";
 
-const Searchbar = React.forwardRef(
-  ({ placeholder, name, variant, className, ...props }, forwardedRef) => {
-    let variantClassNames = null;
-    let iconVariantClassNames = null;
-    switch (variant) {
-      case "rounded":
-        variantClassNames =
-          "focus:ring-0 focus:outline-none focus:ring-offset-0 border-b border-blue-400 bg-gray-100 text-slate-600 rounded-md";
-        iconVariantClassNames = "text-gray-100";
-        break;
-      default:
-        variantClassNames =
-          "bg-gray-100 h-8 border-b border-black focus:outline-blue-600 focus:bg-white";
-        iconVariantClassNames = "text-gray-400";
-        break;
-    }
+const searchBarStyles = cva(["relative pl-6 py-1 text-sm"], {
+  variants: {
+    intent: {
+      primary:
+        "bg-white h-8 border-b border-blue9 focus:outline-blue10 hover:outline-blue11 focus:bg-white",
+      tertiary:
+        "text-slate11 outline-blue9 outline outline-[1px] hover:text-white hover:shadow-sm hover:bg-blue11 active:bg-blue11",
+      neutral:
+        "focus:ring-0 focus:outline-none focus:ring-offset-0 border-b border-blue-400 bg-gray-100 text-slate-600 rounded-md",
+    },
+    size: {
+      small: "w-60 py-1 px-2",
+      base: "w-80",
+      large: "w-96",
+    },
+    rounded: {
+      true: "rounded-md",
+      false: "",
+    },
+  },
+  defaultVariants: {
+    intent: "neutral",
+    size: "base",
+    rounded: "false",
+  },
+});
 
-    const classNames = cx(className, variantClassNames, "relative pl-6 py-1 text-sm");
-    const iconClassNames = cx(iconVariantClassNames, "absolute ml-2");
+const Searchbar = React.forwardRef(
+  ({ placeholder, name, className, intent, size, rounded, ...props }, forwardedRef) => {
+    const classNames = cx(className, searchBarStyles({ intent, size, rounded }));
+    const iconClassNames = cx("absolute ml-2");
 
     return (
       <div className='w-full flex flex-row items-center focus:ring-0 focus:outline-none'>

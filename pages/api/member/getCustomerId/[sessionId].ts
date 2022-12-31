@@ -1,8 +1,7 @@
-//trigger stripe event
-import Stripe from "stripe";
 import { NextApiRequest, NextApiResponse } from "next";
-import prisma from "../../../../lib/prisma";
 import { withApiAuthRequired, getSession } from "@auth0/nextjs-auth0";
+import Stripe from "stripe";
+import prisma from "@/lib/prisma";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   // https://github.com/stripe/stripe-node#configuration
@@ -13,10 +12,11 @@ export default withApiAuthRequired(async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const session = getSession(req, res);
   try {
+    const session = getSession(req, res);
     const { sessionId } = req.query;
     const sessionIdString = sessionId.toString();
+
     const checkoutSession = await stripe.checkout.sessions.retrieve(sessionIdString);
     const customerId = checkoutSession.customer;
 
