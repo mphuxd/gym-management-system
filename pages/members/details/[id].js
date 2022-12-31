@@ -225,7 +225,6 @@ function MemberDropdownMenu({ member, mutate }) {
                       router.push("/checkin")
                     );
                   } catch (err) {
-                    console.log(err);
                     setToast({
                       title: "Edit Failed",
                       description: err.message,

@@ -25,21 +25,17 @@ export const User = objectType({
     t.list.field("history", {
       type: "History",
       async resolve(parent, _, ctx) {
-        return await ctx.prisma.history
-          .findUnique({
-            where: { id: parent.id },
-          })
-          .history();
+        return await ctx.prisma.history.findMany({
+          where: { userId: parent.id },
+        });
       },
     });
     t.field("notes", {
       type: "Notes",
       async resolve(parent, _, ctx) {
-        return await ctx.prisma.notes
-          .findUnique({
-            where: { id: parent.id },
-          })
-          .notes();
+        return await ctx.prisma.notes.findUnique({
+          where: { userId: parent.id },
+        });
       },
     });
   },

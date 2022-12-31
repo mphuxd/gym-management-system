@@ -3,7 +3,7 @@ import { useUser } from "@auth0/nextjs-auth0";
 import { Header, AuthorizedLayout, GenericLayout } from "@/components";
 import { Assistant } from "@next/font/google";
 
-const assistant = Assistant();
+const assistant = Assistant({ subsets: "latin" });
 
 function Layout({ children }) {
   const { user } = useUser();

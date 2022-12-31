@@ -73,7 +73,6 @@ export default function EditMemberDialogForm({ member, open, setOpen, mutate }) 
         isOpen: true,
       });
     } catch (err) {
-      console.log(err);
       setToast({
         title: "Edit Failed",
         description: err.message,

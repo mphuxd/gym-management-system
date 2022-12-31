@@ -47,18 +47,18 @@ scalar DateTime
 
 type History {
   createdAt: DateTime
-  description: String
+  description: String!
   id: String
   performedBy: User
-  userId: String
+  userId: String!
 }
 
 input HistoryCreateInput {
   createdAt: DateTime
-  description: String
+  description: String!
   id: String
   performedBy: UserCreateInput
-  userId: String
+  userId: String!
 }
 
 enum Length {

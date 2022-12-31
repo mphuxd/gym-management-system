@@ -10,9 +10,8 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     const { sessionId } = req.query;
-    const sessionIdString = sessionId.toString();
-    const checkoutSession = await stripe.checkout.sessions.retrieve(sessionIdString);
-    const customerId = checkoutSession.customer;
+    const checkoutSession = await stripe.checkout.sessions.retrieve(sessionId as string);
+    const customerId = checkoutSession.customer as string;
 
     const membership = await prisma.membership.findUnique({
       where: { customerId: customerId },

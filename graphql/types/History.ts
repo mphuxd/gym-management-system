@@ -15,8 +15,8 @@ export const History = objectType({
       },
     });
     t.datetime("createdAt");
-    t.string("description");
-    t.string("userId");
+    t.nonNull.string("description");
+    t.nonNull.string("userId");
   },
 });
 
@@ -42,8 +42,8 @@ export const HistoryCreateInput = inputObjectType({
     t.string("id");
     t.field("performedBy", { type: "UserCreateInput" });
     t.datetime("createdAt");
-    t.string("description");
-    t.string("userId");
+    t.nonNull.string("userId");
+    t.nonNull.string("description");
   },
 });
 

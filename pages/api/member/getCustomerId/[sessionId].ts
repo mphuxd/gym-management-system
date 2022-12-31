@@ -21,7 +21,7 @@ export default withApiAuthRequired(async function handler(
     const customerId = checkoutSession.customer;
 
     const member = await prisma.membership
-      .findUnique({ where: { customerId: customerId } })
+      .findUnique({ where: { customerId: customerId as string } })
       .member();
 
     res.status(200).json({ statusCode: 200, customerId: customerId });

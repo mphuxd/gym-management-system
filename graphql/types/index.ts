@@ -1,5 +1,6 @@
 export * from "./CheckIn";
 export * from "./Contact";
+export * from "./DateTime";
 export * from "./ENUMS";
 export * from "./History";
 export * from "./Member";

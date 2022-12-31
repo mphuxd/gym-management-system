@@ -61,3 +61,7 @@ Prisma Studio: GUI to view and edit data in your database
 To prototype schemas/models in schema.prisma, use npx prisma db push
 
 If there already exists a migration history, use npx prisma migrate dev --name added-tags
+
+## Deployment
+
+#### Create a Docker Image

@@ -33,13 +33,16 @@ const allMembersQuery = gql`
       birthday
       createdAt
       contact {
+        id
         email
         phoneNumber
       }
       membership {
+        id
         signUpDate
         status
         plan {
+          id
           planName
         }
       }
@@ -112,8 +115,8 @@ export default function Members() {
     setFilteredMembers(filteredMembers);
   }
 
-  if (loading) return console.log("loading"); //@@@ Create skeleton
-  if (error) return <div>{error}</div>;
+  if (loading) return; //@@@ Create skeleton
+  if (error) return console.log(error);
   if (allMembers) {
     const members = filteredMembers ? { members: filteredMembers } : allMembers;
     const allRows = getRows(members);
@@ -232,7 +235,6 @@ function TableDropdown({ row }) {
                     router.push("/checkin")
                   );
                 } catch (err) {
-                  console.log(err);
                   setToast({
                     title: "Edit Failed",
                     description: err.message,

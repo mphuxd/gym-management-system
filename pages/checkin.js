@@ -13,7 +13,7 @@ export default function CheckIn() {
     error: checkInHistoryError,
     mutate,
   } = useSWR("/api/checkin/getAllCheckIns", fetcher);
-  if (!checkInHistory) return console.log("loading");
+  if (!checkInHistory) return;
   // @@@ Create Loading Skeleton
   return (
     <Stack direction='row' className='bg-slate2 min-h-screen-calc'>

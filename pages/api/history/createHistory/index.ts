@@ -8,11 +8,13 @@ export default withApiAuthRequired(async function handler(
 ) {
   try {
     const session = getSession(req, res);
-    const { description, id } = req.body;
+    let { description, id } = req.body;
 
     const history = await prisma.history.create({
-      description: description,
-      userId: id,
+      data: {
+        userId: id,
+        description: description.toString(),
+      },
     });
     res.status(200).json({ statusCode: 200, history: history });
   } catch (err) {

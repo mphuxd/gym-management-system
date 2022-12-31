@@ -141,7 +141,7 @@ const GET_NOTE = gql`
 function DashboardNotes() {
   const [open, setOpen] = useState(false);
   const { data, loading, error, refetch } = useQuery(GET_NOTE);
-  if (error) console.log(error);
+  if (error) return;
   return (
     data && (
       <ScrollArea.Root tabIndex='0' className='relative overflow-hidden h-40 hover:cursor-pointer'>

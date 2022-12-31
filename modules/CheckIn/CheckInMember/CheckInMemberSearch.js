@@ -219,6 +219,7 @@ const GET_ALL_MEMBERS = gql`
       birthday
       notes
       contact {
+        id
         streetAddress
         city
         state
@@ -228,10 +229,12 @@ const GET_ALL_MEMBERS = gql`
         phoneNumber
       }
       membership {
+        id
         signUpDate
         membershipEnds
         status
         plan {
+          id
           planName
           annualFee
           monthlyFee
