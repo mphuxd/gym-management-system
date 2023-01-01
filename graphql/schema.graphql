@@ -157,7 +157,6 @@ input MembershipPlanCreateInput {
 type Mutation {
   createCheckIn(memberId: String!): CheckIn!
   createHistory(description: String!, userId: String!): History!
-  createMember(birthday: String, contact: ContactCreateInput!, firstName: String!, gender: Boolean, image: String, lastName: String!, membership: MembershipCreateInput!, middleName: String, notes: String, userId: String!): Member!
   updateMember(firstName: String!, id: String!, lastName: String!, notes: String, userId: String!): Member
   updateNote(id: String!, note: String, userId: String!): Notes!
 }

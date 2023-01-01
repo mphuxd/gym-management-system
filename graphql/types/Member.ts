@@ -137,9 +137,7 @@ export const updateMemberDetails = mutationField("updateMember", {
     id: nonNull(stringArg()),
     userId: nonNull(stringArg()),
     firstName: nonNull(stringArg()),
-    // middleName: stringArg(),
     lastName: nonNull(stringArg()),
-    // birthday: nonNull(stringArg()),
     notes: stringArg(),
   },
   async resolve(_parent, args, ctx) {
@@ -157,57 +155,12 @@ export const updateMemberDetails = mutationField("updateMember", {
       where: { id: args.id },
       data: {
         userId: args.userId,
-        firstName: args.firstName, // 3
-        lastName: args.lastName, // 3
-        // birthday: args.birthday,
+        firstName: args.firstName,
+        lastName: args.lastName,
         notes: args.notes,
       },
     });
     return result;
-  },
-});
-
-export const CreateMemberMutation = extendType({
-  type: "Mutation",
-  definition(t) {
-    t.nonNull.field("createMember", {
-      type: Member,
-      args: {
-        userId: nonNull(stringArg()),
-        firstName: nonNull(stringArg()),
-        middleName: stringArg(),
-        lastName: nonNull(stringArg()),
-        image: stringArg(),
-        gender: booleanArg(),
-        birthday: stringArg(),
-        notes: stringArg(),
-        membership: arg({ type: nonNull("MembershipCreateInput") }),
-        contact: arg({ type: nonNull("ContactCreateInput") }),
-      },
-
-      async resolve(_parent, args, ctx) {
-        if (!ctx.user) {
-          throw new Error(`You need to be logged in to perform an action`);
-        }
-
-        const newMember = {
-          userId: args.userId,
-          firstName: args.firstName,
-          middleName: args.middleName,
-          lastName: args.lastName,
-          image: args.image,
-          gender: args.gender,
-          birthday: args.birthday,
-          notes: args.notes,
-          membership: args.membership,
-          contact: args.contact,
-        };
-
-        return await ctx.prisma.member.create({
-          data: newMember,
-        });
-      },
-    });
   },
 });
 
