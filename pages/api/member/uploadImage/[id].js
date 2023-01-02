@@ -20,9 +20,9 @@ export default withApiAuthRequired(async function handler(req, res) {
     };
 
     // Using IAM Roles
-    // AWS.config.region = process.env.AWS_CONFIG_REGION; // Region
-    // AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-    //   IdentityPoolId: process.env.AWS_CONFIG_IDENTITY_POOL_ID,
+    // AWS.config.region = process.env.MY_AWS_CONFIG_REGION; // Region
+    // AWS.config.credentials = new MY_AWS.CognitoIdentityCredentials({
+    //   IdentityPoolId: process.env.MY_AWS_CONFIG_IDENTITY_POOL_ID,
     //   Logins: {
     //     "dev-68izmldm0nk4ecox.us.auth0.com": token.idToken,
     //   },
@@ -30,9 +30,9 @@ export default withApiAuthRequired(async function handler(req, res) {
 
     // Using AWS Access ID/KEY
     AWS.config.update({
-      accessKeyId: process.env.AWS_USER_SECRET_ACCESS_ID,
-      secretAccessKey: process.env.AWS_USER_SECRET_ACCESS_KEY,
-      region: process.env.AWS_CONFIG_REGION,
+      accessKeyId: process.env.MY_AWS_USER_SECRET_ACCESS_ID,
+      secretAccessKey: process.env.MY_AWS_USER_SECRET_ACCESS_KEY,
+      region: process.env.MY_AWS_CONFIG_REGION,
     });
 
     let s3 = new S3();
@@ -45,7 +45,7 @@ export default withApiAuthRequired(async function handler(req, res) {
       Body: image,
       Key: `${id}.jpg`,
       ContentType: "image/jpeg",
-      Bucket: process.env.AWS_S3_BUCKET_NAME,
+      Bucket: process.env.MY_AWS_S3_BUCKET_NAME,
     };
 
     const response = s3.putObject(params, function (err, data) {

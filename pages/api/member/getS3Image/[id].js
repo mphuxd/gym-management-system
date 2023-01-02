@@ -12,15 +12,15 @@ export default withApiAuthRequired(async function handler(req, res) {
     };
 
     AWS.config.update({
-      accessKeyId: process.env.AWS_USER_SECRET_ACCESS_ID,
-      secretAccessKey: process.env.AWS_USER_SECRET_ACCESS_KEY,
-      region: process.env.AWS_CONFIG_REGION,
+      accessKeyId: process.env.MY_AWS_USER_SECRET_ACCESS_ID,
+      secretAccessKey: process.env.MY_AWS_USER_SECRET_ACCESS_KEY,
+      region: process.env.MY_AWS_CONFIG_REGION,
     });
 
     let s3 = new S3();
 
     const params = {
-      Bucket: process.env.AWS_S3_BUCKET_NAME,
+      Bucket: process.env.MY_AWS_S3_BUCKET_NAME,
       Key: `${id}.jpg`,
     };
 
