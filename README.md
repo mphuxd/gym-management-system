@@ -64,4 +64,34 @@ If there already exists a migration history, use npx prisma migrate dev --name a
 
 ## Deployment
 
+### ECR & ECS & EC2
+
 #### Create a Docker Image
+
+Install docker
+
+Build a docker image with docker build -t <imagename> .
+
+#### Push Docker Image to ECR
+
+Create a ECR repository.
+
+Ensure you have proper permissions for the repository.
+
+Run the push commands
+
+#### Create an ECS Cluster
+
+Create a cluster, then create a task definition.
+
+Create a port mapping with 80:3000 to allow HTTP connections to our container's exposed 3000 port
+
+In your container, set environment variables and security group to open ports 22, 80, and 433 to allow SSH, HTTP, HTTPS.
+
+#### Run service
+
+In your cluster, run the task definition as a service with EC2 launch. Auto scale will provision a new container with your task running.
+
+#### Enable HTTPS + SSL
+
+Because this is a secure web app, HTTPS must be enabled. To do this, you can purchase a custom domain and request a public certificate with Route 53 and ACM, and set up an application load balancer.
