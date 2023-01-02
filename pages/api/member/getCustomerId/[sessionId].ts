@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { withApiAuthRequired, getSession } from "@auth0/nextjs-auth0";
 import Stripe from "stripe";
-import prisma from "@/lib/prisma";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   // https://github.com/stripe/stripe-node#configuration
@@ -13,16 +12,14 @@ export default withApiAuthRequired(async function handler(
   res: NextApiResponse
 ) {
   try {
-    const session = getSession(req, res);
+    const { user } = await getSession(req, res);
+    if (!user) res.status(401).json({ message: "Unauthorized" });
+
     const { sessionId } = req.query;
     const sessionIdString = sessionId.toString();
 
     const checkoutSession = await stripe.checkout.sessions.retrieve(sessionIdString);
     const customerId = checkoutSession.customer;
-
-    const member = await prisma.membership
-      .findUnique({ where: { customerId: customerId as string } })
-      .member();
 
     res.status(200).json({ statusCode: 200, customerId: customerId });
   } catch (err) {

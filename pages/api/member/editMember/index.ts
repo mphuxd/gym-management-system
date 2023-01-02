@@ -7,7 +7,8 @@ export default withApiAuthRequired(async function handler(
   res: NextApiResponse
 ) {
   try {
-    const session = getSession(req, res);
+    const { user } = await getSession(req, res);
+    if (!user) res.status(401).json({ message: "Unauthorized" });
 
     if (req.method !== "POST") {
       res.setHeader("Allow", "POST");
@@ -54,6 +55,8 @@ export default withApiAuthRequired(async function handler(
         checkIns: true,
       },
     });
+
+    console.log(member);
     res.status(200).json({ statusCode: 200, member: member });
   } catch (err) {
     const errorMessage = err instanceof Error ? err.message : "Internal server error";

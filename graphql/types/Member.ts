@@ -1,27 +1,18 @@
-import {
-  objectType,
-  extendType,
-  nonNull,
-  stringArg,
-  booleanArg,
-  inputObjectType,
-  arg,
-  mutationField,
-} from "nexus";
+import { objectType, extendType, nonNull, stringArg, inputObjectType, mutationField } from "nexus";
 
 export const Member = objectType({
   name: "Member",
   definition(t) {
     t.string("id");
-    t.string("userId");
+    t.nullable.string("userId");
     t.string("firstName");
-    t.string("middleName");
+    t.nullable.string("middleName");
     t.string("lastName");
-    t.string("image");
-    t.boolean("gender");
-    t.string("birthday");
-    t.string("notes");
-    t.field("membership", {
+    t.nullable.string("image");
+    t.nullable.boolean("gender");
+    t.nullable.string("birthday");
+    t.nullable.string("notes");
+    t.nullable.field("membership", {
       type: "Membership",
       async resolve(_parent, _args, ctx) {
         return await ctx.prisma.member
@@ -31,7 +22,7 @@ export const Member = objectType({
           .membership();
       },
     });
-    t.string("membershipId");
+    t.nullable.string("membershipId");
     t.field("contact", {
       type: "Contact",
       async resolve(_parent, _args, ctx) {
@@ -43,7 +34,7 @@ export const Member = objectType({
       },
     });
     t.string("contactId");
-    t.field("user", {
+    t.nullable.field("user", {
       type: "User",
       async resolve(_parent, _args, ctx) {
         return await ctx.prisma.member
@@ -53,7 +44,7 @@ export const Member = objectType({
           .user();
       },
     });
-    t.list.field("checkIns", {
+    t.list.field("CheckIns", {
       type: "CheckIn",
       async resolve(_parent, _args, ctx) {
         return await ctx.prisma.member
@@ -181,7 +172,7 @@ export const MemberCreateInput = inputObjectType({
     t.field("contact", { type: "ContactCreateInput" });
     t.string("contactId");
     t.nullable.field("user", { type: "UserCreateInput" });
-    t.field("checkIn", { type: "CheckInCreateInput" });
+    t.nonNull.list.nonNull.field("checkIn", { type: "CheckInCreateInput" });
     t.datetime("updatedAt");
     t.datetime("createdAt");
   },

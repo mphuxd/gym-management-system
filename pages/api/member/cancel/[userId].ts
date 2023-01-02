@@ -13,7 +13,8 @@ export default withApiAuthRequired(async function handler(
   res: NextApiResponse
 ) {
   try {
-    const session = getSession(req, res);
+    const { user } = await getSession(req, res);
+    if (!user) res.status(401).json({ message: "Unauthorized" });
 
     const { userId } = req.query;
     const userIdString = userId.toString();
@@ -29,10 +30,10 @@ export default withApiAuthRequired(async function handler(
     }
     console.log("Subscription Id found");
 
-    const deleted = await stripe.subscriptions.del(subscription);
+    await stripe.subscriptions.del(subscription);
     console.log("Subscription cancelled.");
 
-    const updateStatus = await prisma.membership.update({
+    await prisma.membership.update({
       where: { stripeSubscriptionId: subscription },
       data: { status: "CANCELLED" },
     });

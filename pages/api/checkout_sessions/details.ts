@@ -7,7 +7,8 @@ export default withApiAuthRequired(async function handler(
   res: NextApiResponse
 ) {
   try {
-    const session = getSession(req, res);
+    const { user } = await getSession(req, res);
+    if (!user) res.status(401).json({ message: "Unauthorized" });
 
     if (req.method !== "POST") {
       res.setHeader("Allow", "POST");

@@ -241,7 +241,7 @@ const GET_ALL_MEMBERS = gql`
           contractLength
         }
       }
-      checkIns {
+      CheckIns {
         checkInDate
       }
     }

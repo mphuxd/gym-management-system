@@ -5,17 +5,17 @@ export const CheckIn = objectType({
   definition(t) {
     t.nonNull.string("id");
     t.nonNull.datetime("checkInDate");
-    t.nonNull.field("member", {
+    t.nonNull.string("memberId");
+    t.nonNull.field("Member", {
       type: "Member",
       async resolve(_parent, _args, ctx) {
-        return await ctx.prisma.contact
+        return await ctx.prisma.checkIn
           .findUnique({
             where: { id: _parent.id },
           })
           .member();
       },
     });
-    t.nonNull.string("memberId");
   },
 });
 
@@ -26,23 +26,6 @@ export const CheckInCreateInput = inputObjectType({
     t.nonNull.datetime("checkInDate");
     t.nonNull.field("member", { type: "MemberCreateInput" });
     t.nonNull.string("memberId");
-  },
-});
-
-export const GetLastCheckinMember = extendType({
-  type: "Query",
-  definition(t) {
-    t.field("lastCheckInMember", {
-      type: "Member",
-      async resolve(_parent, args, ctx) {
-        if (!ctx.user) {
-          throw new Error(`You need to be logged in to perform an action`);
-        }
-        const memberId = await (await ctx.prisma.checkIn.findFirst({ take: -1 })).memberId;
-
-        return await ctx.prisma.member.findUnique({ where: { id: memberId } });
-      },
-    });
   },
 });
 

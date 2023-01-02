@@ -5,7 +5,6 @@ const nextConfig = {
   images: {
     domains: ["gym-management-system.s3.us-west-1.amazonaws.com", "s.gravatar.com"],
   },
-  output: "standalone",
 };
 
 module.exports = nextConfig;

@@ -7,7 +7,9 @@ export default withApiAuthRequired(async function handler(
   res: NextApiResponse
 ) {
   try {
-    const session = getSession(req, res);
+    const { user } = await getSession(req, res);
+    if (!user) res.status(401).json({ message: "Unauthorized" });
+
     const history = await prisma.history.findMany();
     res.status(200).json({ statusCode: 200, history: history });
   } catch (err) {

@@ -1,19 +1,14 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { withApiAuthRequired, getSession } from "@auth0/nextjs-auth0";
-import Stripe from "stripe";
 import prisma from "@/lib/prisma";
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  // https://github.com/stripe/stripe-node#configuration
-  apiVersion: "2022-08-01",
-});
 
 export default withApiAuthRequired(async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   try {
-    const session = getSession(req, res);
+    const { user } = await getSession(req, res);
+    if (!user) res.status(401).json({ message: "Unauthorized" });
 
     const { userId } = req.query;
     const userIdString = userId.toString();
@@ -65,4 +60,4 @@ function checkMembershipIsExpired(memberEndDate) {
   return currDateString > memberEndDate;
 }
 
-//@@@ On delete, delete all related models
+//@@@ On delete, delete all related models & stripe data

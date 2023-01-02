@@ -3,9 +3,9 @@
 
 
 type CheckIn {
+  Member: Member!
   checkInDate: DateTime!
   id: String!
-  member: Member!
   memberId: String!
 }
 
@@ -68,8 +68,8 @@ enum Length {
 }
 
 type Member {
+  CheckIns: [CheckIn]
   birthday: String
-  checkIns: [CheckIn]
   contact: Contact
   contactId: String
   createdAt: DateTime
@@ -89,7 +89,7 @@ type Member {
 
 input MemberCreateInput {
   birthday: String
-  checkIn: CheckInCreateInput
+  checkIn: [CheckInCreateInput!]!
   contact: ContactCreateInput
   contactId: String
   createdAt: DateTime
@@ -181,7 +181,6 @@ input NotesCreateInput {
 
 type Query {
   history: [History]!
-  lastCheckInMember: Member
   member(birthday: String, id: String, phoneNumber: String, userId: String): Member!
   members: [Member]!
   notes: Notes!

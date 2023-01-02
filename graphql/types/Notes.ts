@@ -1,4 +1,3 @@
-import { prisma } from "@prisma/client";
 import { objectType, inputObjectType, extendType, nonNull, stringArg } from "nexus";
 
 export const Notes = objectType({
