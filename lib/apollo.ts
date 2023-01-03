@@ -3,7 +3,7 @@ import { ApolloClient, InMemoryCache } from "@apollo/client";
 
 const apolloClient = new ApolloClient({
   //graphql endpoint
-  uri: "http://localhost:3000/api/graphql",
+  uri: process.env.APOLLO_GRAPHQL_ENDPOINT,
   cache: new InMemoryCache({
     typePolicies: {
       Contact: {
