@@ -44,7 +44,7 @@ export const Member = objectType({
           .user();
       },
     });
-    t.list.field("CheckIns", {
+    t.list.field("checkIns", {
       type: "CheckIn",
       async resolve(_parent, _args, ctx) {
         return await ctx.prisma.member

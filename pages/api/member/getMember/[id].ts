@@ -12,6 +12,9 @@ export default withApiAuthRequired(async function handler(
 
     const { id } = req.query;
     const idString = id.toString();
+
+    if (!id) res.status(400).json({ message: "Member Id not provided." });
+
     const member = await prisma.member.findUnique({
       where: { id: idString },
       include: {
@@ -22,6 +25,9 @@ export default withApiAuthRequired(async function handler(
         checkIns: true,
       },
     });
+
+    if (!member) res.status(400).json({ message: "Member not found" });
+
     res.status(200).json({ statusCode: 200, member: member });
   } catch (err) {
     const errorMessage = err instanceof Error ? err.message : "Internal server error";

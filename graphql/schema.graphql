@@ -3,9 +3,9 @@
 
 
 type CheckIn {
-  Member: Member!
   checkInDate: DateTime!
   id: String!
+  member: Member!
   memberId: String!
 }
 
@@ -68,8 +68,8 @@ enum Length {
 }
 
 type Member {
-  CheckIns: [CheckIn]
   birthday: String
+  checkIns: [CheckIn]
   contact: Contact
   contactId: String
   createdAt: DateTime

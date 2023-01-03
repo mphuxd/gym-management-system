@@ -15,6 +15,7 @@ export default function CheckIn() {
   } = useSWR("/api/checkin/getAllCheckIns", fetcher);
   if (!checkInHistory) return;
   // @@@ Create Loading Skeleton
+  console.log(checkInHistory);
   return (
     <Stack direction='row' className='bg-slate2 min-h-screen-calc'>
       <CheckInSidepanel checkInHistory={checkInHistory} />

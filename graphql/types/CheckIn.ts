@@ -6,7 +6,7 @@ export const CheckIn = objectType({
     t.nonNull.string("id");
     t.nonNull.datetime("checkInDate");
     t.nonNull.string("memberId");
-    t.nonNull.field("Member", {
+    t.nonNull.field("member", {
       type: "Member",
       async resolve(_parent, _args, ctx) {
         return await ctx.prisma.checkIn
