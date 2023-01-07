@@ -27,7 +27,6 @@ export default withApiAuthRequired(async function handler(
     });
 
     if (!history) res.status(500).json({ statusCode: 500, message: "History not found." });
-    console.log(history);
 
     res.status(200).json({ statusCode: 200, history: history });
   } catch (err) {

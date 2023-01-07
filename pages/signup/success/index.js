@@ -29,7 +29,7 @@ export default function SignUpSuccess() {
   }, [sessionId, router]);
 
   return (
-    <div className='w-full grid grid-cols-12 gap-8 min-w-[768px] mx-auto bg-gray-100 p-8 min-h-screen-calc relative'>
+    <div className='w-full grid grid-cols-12 gap-8 min-w-[768px] mx-auto bg-slate2 p-8 min-h-screen-calc relative'>
       <Stack className='col-start-2 col-span-5 gap-8'>
         <Stack>
           <h3 className='text-4xl mb-4 '>Thank you!</h3>

@@ -1,6 +1,6 @@
 import React from "react";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
-import { CardSubscription } from "@/components";
+import { CardSubscription, Stack } from "@/components";
 import Link from "next/link";
 
 export const getServerSideProps = withPageAuthRequired();
@@ -17,7 +17,7 @@ export default function SignUp() {
           </Link>
         </p>
       </div>
-      <div className='flex flex-row col-span-full gap-x-8  '>
+      <Stack direction='row' className='col-span-full gap-x-8  '>
         <CardSubscription
           planName='Basic'
           planDescription='Everything you need to get started.'
@@ -26,7 +26,7 @@ export default function SignUp() {
           planIdValue='1'
           features={["Gym Access", "Unlimited group classes", "Personal training sessions"]}
           footnotes='*One Year contract, $69 cancellation fee.'
-        ></CardSubscription>
+        />
         <CardSubscription
           planName='Gold'
           planDescription='Everything you need to get started.'
@@ -39,7 +39,7 @@ export default function SignUp() {
             "Access to gold member lounge",
           ]}
           footnotes='*No contract, cancel any time for free.'
-        ></CardSubscription>
+        />
         <CardSubscription
           planName='Unlimited'
           planDescription='Everything you need to get started.'
@@ -52,8 +52,8 @@ export default function SignUp() {
             "Partner Rewards & Discounts",
           ]}
           footnotes='*One Year contract, $69 cancellation fee.'
-        ></CardSubscription>
-      </div>
+        />
+      </Stack>
     </section>
   );
 }

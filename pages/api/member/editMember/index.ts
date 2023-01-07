@@ -56,7 +56,6 @@ export default withApiAuthRequired(async function handler(
       },
     });
 
-    console.log(member);
     res.status(200).json({ statusCode: 200, member: member });
   } catch (err) {
     const errorMessage = err instanceof Error ? err.message : "Internal server error";
