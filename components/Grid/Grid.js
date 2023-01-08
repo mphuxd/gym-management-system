@@ -1,9 +1,8 @@
 import React from "react";
 import cx from "classnames";
-import styles from "./Grid.module.scss";
 
 function Grid({ as = "div", children, columns = 12, className }) {
-  const classNames = cx(styles.grid, className, `grid-cols-${columns}`);
+  const classNames = cx("grid", `grid-cols-${columns}`, className);
   return React.createElement(as, { className: classNames }, children);
 }
 

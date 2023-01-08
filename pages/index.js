@@ -18,6 +18,7 @@ import {
   Dialog,
   DialogTitle,
   DialogClose,
+  Screen,
 } from "@/components";
 
 export const getServerSideProps = withPageAuthRequired();
@@ -26,10 +27,10 @@ export default function Home() {
   const { user } = useUser();
   return (
     user && (
-      <div className='w-full bg-slate2'>
-        <Grid className='gap-8 min-w-[768px] max-w-[1920px] mx-auto px-8 min-h-screen-calc auto-rows-min grid-cols-12'>
+      <Screen>
+        <Grid className='gap-8 max-w-[1920px] mx-auto px-8 auto-rows-min'>
           <h1 className='col-span-10 mt-12 text-4xl'>Welcome, {user.nickname}</h1>
-          <Grid className='col-span-12 gap-x-8 grid-cols-4'>
+          <Grid columns={4} className='col-span-12 gap-x-8'>
             <Link href='/checkin'>
               <CardSimple
                 heading='Check In Members'
@@ -49,7 +50,7 @@ export default function Home() {
               />
             </Link>
           </Grid>
-          <Grid className='col-span-12 grid-cols-4 gap-x-8'>
+          <Grid columns={4} className='col-span-12 gap-x-8'>
             <Stack className='p-4 hover:bg-slate4 focus:bg-slate5 active:bg-slate5'>
               <h3 className='font-semibold mb-2'>Quick Navigation</h3>
               <ul className='space-y-0.5'>
@@ -116,7 +117,7 @@ export default function Home() {
             </Stack>
           </Grid>
         </Grid>
-      </div>
+      </Screen>
     )
   );
 }

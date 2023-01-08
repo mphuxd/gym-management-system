@@ -16,10 +16,12 @@ import {
   DropdownItem,
   DropdownSeparator,
   DropdownTrigger,
+  Grid,
   TabsTrigger,
   TabsContent,
   TabContentRow,
   TabContentRowItem,
+  Screen,
   Sidepanel,
   Stack,
 } from "@/components";
@@ -46,139 +48,135 @@ export default function UserId() {
   if (member && subscriptionData) {
     member = member.member;
     return (
-      <section className='flex flex-row bg-slate2 min-h-screen-calc'>
-        <Sidepanel id='sidepanel' className='flex flex-col gap-y-6 border-r'>
-          <Stack className='mb-3 gap-x-4'>
-            <h1 className='text-3xl pb-1 mb-3 font-medium'>
-              {`${member.firstName}  ${member.lastName}`}
-            </h1>
-            <CheckInMemberImage checkedInMember={member}></CheckInMemberImage>
-          </Stack>
-          <TabContentRow>
-            <TabContentRowItem label='Card Id' value={member.userId} space='full' />
-          </TabContentRow>
-          <TabContentRow className>
-            <TabContentRowItem
-              label='Contact'
-              value={
-                <div className='flex flex-col'>
-                  <span>{member.contact.email}</span>
-                  <span>{member.contact.phoneNumber}</span>
+      <Screen as='section'>
+        <Stack direction='row'>
+          <Sidepanel id='sidepanel' className='flex flex-col gap-y-6 border-r'>
+            <Stack className='mb-3 gap-x-4'>
+              <h1 className='text-3xl pb-1 mb-3 font-medium'>
+                {`${member.firstName}  ${member.lastName}`}
+              </h1>
+              <CheckInMemberImage checkedInMember={member}></CheckInMemberImage>
+            </Stack>
+            <TabContentRow>
+              <TabContentRowItem label='Card Id' value={member.userId} space='full' />
+            </TabContentRow>
+            <TabContentRow className>
+              <TabContentRowItem
+                label='Contact'
+                value={
+                  <Stack>
+                    <span>{member.contact.email}</span>
+                    <span>{member.contact.phoneNumber}</span>
+                  </Stack>
+                }
+                space='full'
+              />
+            </TabContentRow>
+            <TabContentRow className='flex flex-col'>
+              <TabContentRowItem
+                label='Mailing Address'
+                value={
+                  <Stack>
+                    <span>{`${member.firstName} ${member.lastName}`}</span>
+                    <span>{member.contact.streetAddress}</span>
+                    <span>
+                      {`${member.contact.city},
+                        ${member.contact.state},
+                        ${member.contact.zipcode}`}
+                    </span>
+                  </Stack>
+                }
+                space='full'
+              />
+            </TabContentRow>
+            <TabContentRow>
+              <TabContentRowItem label='Birthday' value={member.birthday} space='full' />
+            </TabContentRow>
+            <TabContentRow>
+              <TabContentRowItem label='Notes' value={member.notes} />
+            </TabContentRow>
+          </Sidepanel>
+          <Grid as='section' className='w-full gap-y-8 max-w-[1544px] p-8 mx-auto'>
+            <Tabs.Root className='col-span-full' defaultValue='tab1'>
+              <Tabs.List
+                className='w-full justify-between border-b flex flex-row gap-x-[2px]'
+                aria-label='tabs'
+              >
+                <div>
+                  <TabsTrigger className='py-2' value='tab1'>
+                    Membership
+                  </TabsTrigger>
+                  <TabsTrigger value='tab2'>Check-in History</TabsTrigger>
+                  <TabsTrigger value='tab3'>Payments</TabsTrigger>
+                  <TabsTrigger value='tab4'>Schedule</TabsTrigger>
+                  <TabsTrigger value='tab5'>Overview</TabsTrigger>
                 </div>
-              }
-              space='full'
-            />
-          </TabContentRow>
-          <TabContentRow className='flex flex-col'>
-            <TabContentRowItem
-              label='Mailing Address'
-              value={
-                <Stack>
-                  <span>{`${member.firstName} ${member.lastName}`}</span>
-                  <span>{member.contact.streetAddress}</span>
-                  <span>
-                    {`${member.contact.city}, 
-                      ${member.contact.state},
-                      ${member.contact.zipcode}`}
-                  </span>
-                </Stack>
-              }
-              space='full'
-            />
-          </TabContentRow>
-          <TabContentRow>
-            <TabContentRowItem label='Birthday' value={member.birthday} space='full' />
-          </TabContentRow>
-          <TabContentRow>
-            <TabContentRowItem label='Notes' value={member.notes} />
-          </TabContentRow>
-        </Sidepanel>
-
-        <section
-          id=''
-          className='w-full grid grid-cols-12 gap-y-8 min-w-[768px] max-w-[1544px] p-8 mx-auto'
-        >
-          <Tabs.Root className='col-span-full' defaultValue='tab1'>
-            <Tabs.List
-              className='w-full justify-between border-b flex flex-row gap-x-[2px]'
-              aria-label='tabs'
-            >
-              <div>
-                <TabsTrigger className='py-2' value='tab1'>
-                  Membership
-                </TabsTrigger>
-                <TabsTrigger value='tab2'>Check-in History</TabsTrigger>
-                <TabsTrigger value='tab3'>Payments</TabsTrigger>
-                <TabsTrigger value='tab4'>Schedule</TabsTrigger>
-                <TabsTrigger value='tab5'>Overview</TabsTrigger>
-              </div>
-              <div className='my-auto'>
-                <MemberDropdownMenu member={member} mutate={mutate}></MemberDropdownMenu>
-              </div>
-            </Tabs.List>
-
-            <TabsContent value='tab1'>
-              <div className='space-y-6 '>
-                <TabContentRow>
-                  <TabContentRowItem
-                    label='Membership Status'
-                    value={member.membership.status}
-                    space='third'
-                  />
-                  <TabContentRowItem
-                    label='Sign Up Date'
-                    value={new Date(member.membership.signUpDate).toLocaleString()}
-                    space='third'
-                  />
-                  <TabContentRowItem
-                    label='Membership Ends'
-                    value={new Date(member.membership.membershipEnds).toLocaleString()}
-                    space='third'
-                  />
-                </TabContentRow>
-                <TabContentRow>
-                  <TabContentRowItem
-                    label='Plan Name'
-                    value={member.membership.plan.planName}
-                    space='third'
-                  />
-                  <TabContentRowItem
-                    label='Next Billing Cycle Date'
-                    value={new Date(
-                      subscriptionData.subscription.current_period_end * 1000
-                    ).toLocaleString()}
-                    space='third'
-                  />
-                  <TabContentRowItem
-                    label='Amount'
-                    value={subscriptionData.subscription.plan.amount / 100}
-                    space='third'
-                  />
-                </TabContentRow>
-                <TabContentRow>
-                  <TabContentRowItem
-                    label='Contract Length'
-                    value={member.membership.plan.contractLength}
-                    space='third'
-                  />
-                  <TabContentRowItem
-                    label='Customer Id'
-                    value={member.membership.customerId}
-                    space='third'
-                  />
-                  <TabContentRowItem
-                    label='Stripe Subscription Id'
-                    value={member.membership.stripeSubscriptionId}
-                    space='third'
-                  />
-                </TabContentRow>
-              </div>
-            </TabsContent>
-
-            <MemberTabContentCheckInHistory value='tab2' member={member} />
-          </Tabs.Root>
-        </section>
-      </section>
+                <div className='my-auto'>
+                  <MemberDropdownMenu member={member} mutate={mutate}></MemberDropdownMenu>
+                </div>
+              </Tabs.List>
+              <TabsContent value='tab1'>
+                <div className='space-y-6 '>
+                  <TabContentRow>
+                    <TabContentRowItem
+                      label='Membership Status'
+                      value={member.membership.status}
+                      space='third'
+                    />
+                    <TabContentRowItem
+                      label='Sign Up Date'
+                      value={new Date(member.membership.signUpDate).toLocaleString()}
+                      space='third'
+                    />
+                    <TabContentRowItem
+                      label='Membership Ends'
+                      value={new Date(member.membership.membershipEnds).toLocaleString()}
+                      space='third'
+                    />
+                  </TabContentRow>
+                  <TabContentRow>
+                    <TabContentRowItem
+                      label='Plan Name'
+                      value={member.membership.plan.planName}
+                      space='third'
+                    />
+                    <TabContentRowItem
+                      label='Next Billing Cycle Date'
+                      value={new Date(
+                        subscriptionData.subscription.current_period_end * 1000
+                      ).toLocaleString()}
+                      space='third'
+                    />
+                    <TabContentRowItem
+                      label='Amount'
+                      value={subscriptionData.subscription.plan.amount / 100}
+                      space='third'
+                    />
+                  </TabContentRow>
+                  <TabContentRow>
+                    <TabContentRowItem
+                      label='Contract Length'
+                      value={member.membership.plan.contractLength}
+                      space='third'
+                    />
+                    <TabContentRowItem
+                      label='Customer Id'
+                      value={member.membership.customerId}
+                      space='third'
+                    />
+                    <TabContentRowItem
+                      label='Stripe Subscription Id'
+                      value={member.membership.stripeSubscriptionId}
+                      space='third'
+                    />
+                  </TabContentRow>
+                </div>
+              </TabsContent>
+              <MemberTabContentCheckInHistory value='tab2' member={member} />
+            </Tabs.Root>
+          </Grid>
+        </Stack>
+      </Screen>
     );
   }
 }

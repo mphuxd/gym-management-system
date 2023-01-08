@@ -12,6 +12,7 @@ export * from "./HoverCard";
 export * from "./Layout";
 export * from "./Navbar";
 export * from "./Overlay";
+export * from "./Screen";
 export * from "./Searchbar";
 export * from "./Separator";
 export * from "./Sidepanel";

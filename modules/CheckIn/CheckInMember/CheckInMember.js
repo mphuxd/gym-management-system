@@ -8,13 +8,13 @@ import {
   MemberTabContentContact,
   MemberTabContentDetails,
 } from "@/modules";
-import { Stack, Status, TabsTrigger } from "@/components";
+import { Grid, Stack, Status, TabsTrigger } from "@/components";
 
 export default function CheckInMember({ checkInHistory, mutate }) {
   const checkedInMember = checkInHistory.history[checkInHistory.history.length - 1].member;
 
   return (
-    <section className='w-full grid grid-cols-12 min-w-[768px] max-w-[1544px] p-8 mx-auto'>
+    <Grid as='section' className='w-full max-w-[1544px] p-8 mx-auto'>
       <Stack id='dashboard-member-checkin' className='col-span-full gap-y-8'>
         <h1 className='font-medium'>Check In Member</h1>
         {/* Row 1 - Image/Name/Search */}
@@ -61,6 +61,6 @@ export default function CheckInMember({ checkInHistory, mutate }) {
           </div>
         </Stack>
       </Stack>
-    </section>
+    </Grid>
   );
 }

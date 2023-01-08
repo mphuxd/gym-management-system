@@ -16,6 +16,7 @@ import {
   DropdownItem,
   DropdownSeparator,
   Grid,
+  Screen,
   Searchbar,
   Stack,
   Table,
@@ -122,74 +123,72 @@ export default function Members() {
     const allRows = getRows(members);
     const rows = allRows.slice(firstRowIndex, firstRowIndex + currentPageSize);
     return (
-      <Grid
-        as='section'
-        className='min-h-screen-calc gap-y-0 min-w-[1280px] mx-auto auto-rows-min p-8 bg-slate2'
-      >
-        <div className='col-span-full mb-2'>
-          <h1 className='font-semibold text-lg'>Members</h1>
-        </div>
-        <Stack direction='row' className='justify-between col-span-full h-fit'>
-          <Stack direction='row' className='items-center'>
-            <Searchbar
-              name='searchValue'
-              placeholder='Search'
-              intent='primary'
-              size='base'
-              onChange={onChange}
-              {...register("searchValue")}
-            />
-          </Stack>
-          <Stack direction='row' className='gap-x-2'>
-            <button>
-              <Button className='text-gray-600' as='div' size='small' variant='default'>
-                Filter
+      <Screen>
+        <Grid as='section' className='gap-y-0 mx-auto auto-rows-min p-8'>
+          <div className='col-span-full mb-2'>
+            <h1 className='font-semibold text-lg'>Members</h1>
+          </div>
+          <Stack direction='row' className='justify-between col-span-full h-fit'>
+            <Stack direction='row' className='items-center'>
+              <Searchbar
+                name='searchValue'
+                placeholder='Search'
+                intent='primary'
+                size='base'
+                onChange={onChange}
+                {...register("searchValue")}
+              />
+            </Stack>
+            <Stack direction='row' className='gap-x-2'>
+              <button>
+                <Button className='text-gray-600' as='div' size='small' variant='default'>
+                  Filter
+                </Button>
+              </button>
+              {/* TO:DO: Add Filter */}
+              <Button disabled as='button' size='small' variant='default'>
+                Reset Filter
               </Button>
-            </button>
-
-            {/* TO:DO: Add Filter */}
-            <Button disabled as='button' size='small' variant='default'>
-              Reset Filter
-            </Button>
+            </Stack>
           </Stack>
-        </Stack>
-        <div className='col-span-full h-fit mt-4'>
-          <Table
-            headers={headers}
-            rows={rows}
-            onClick={(e, row) => {
-              e.stopPropagation();
-              e.preventDefault();
-              router.push(`members/details/${row.id}`);
-            }}
-            render={(row) => {
-              return (
-                <React.Fragment>
-                  {Object.values(row).map((cell, idx) => {
-                    if (idx !== 0) {
-                      return <TableRowCell key={idx}>{cell}</TableRowCell>;
-                    }
-                  })}
-                  <TableRowCell>
-                    <TableDropdown row={row} />
-                  </TableRowCell>
-                </React.Fragment>
-              );
-            }}
-          />
-          <TablePagination
-            totalItems={allRows.length}
-            backText='Previous'
-            nextText='Next'
-            pageSize={currentPageSize}
-            pageSizes={[5, 10, 15, 25]}
-            onChange={(page, pageSize) => {
-              if (pageSize !== currentPageSize) setCurrentPageSize(pageSize);
-              setFirstRowIndex(pageSize * (page - 1));
-            }}
-          />
-        </div>
-      </Grid>
+          <div className='col-span-full h-fit mt-4'>
+            <Table
+              headers={headers}
+              rows={rows}
+              onClick={(e, row) => {
+                e.stopPropagation();
+                e.preventDefault();
+                router.push(`members/details/${row.id}`);
+              }}
+              render={(row) => {
+                return (
+                  <React.Fragment>
+                    {Object.values(row).map((cell, idx) => {
+                      if (idx !== 0) {
+                        return <TableRowCell key={idx}>{cell}</TableRowCell>;
+                      }
+                    })}
+                    <TableRowCell>
+                      <TableDropdown row={row} />
+                    </TableRowCell>
+                  </React.Fragment>
+                );
+              }}
+            />
+            <TablePagination
+              totalItems={allRows.length}
+              backText='Previous'
+              nextText='Next'
+              pageSize={currentPageSize}
+              pageSizes={[5, 10, 15, 25]}
+              onChange={(page, pageSize) => {
+                if (pageSize !== currentPageSize) setCurrentPageSize(pageSize);
+                setFirstRowIndex(pageSize * (page - 1));
+              }}
+            />
+          </div>
+        </Grid>
+      </Screen>
     );
   }
 }

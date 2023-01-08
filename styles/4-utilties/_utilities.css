@@ -24,7 +24,7 @@
   }
 
   .min-h-screen-calc {
-    min-height: calc(100vh - 112px);
+    min-height: calc(100vh - 67px);
   }
 }
 

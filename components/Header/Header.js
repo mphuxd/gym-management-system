@@ -4,8 +4,7 @@ import Link from "next/link";
 import { useUser } from "@auth0/nextjs-auth0";
 import Image from "next/image";
 import { GearIcon, ExitIcon } from "@radix-ui/react-icons";
-import { HeaderIcon, Stack } from "@/components";
-import { Navbar, NavbarLink } from "@/components";
+import { HeaderIcon, Navbar, NavbarLink, Stack } from "@/components";
 import styles from "./Header.module.scss";
 import cx from "classnames";
 import { Inter } from "@next/font/google";
@@ -15,12 +14,12 @@ const inter = Inter({ subsets: "latin" });
 const Header = () => {
   const { user } = useUser();
   return (
-    <header className='col-span-12 bg-gray1 border-b border-gray6 '>
+    <header className='col-span-12 bg-gray1 border-b border-gray6 min-w-[1280px]'>
       <Stack
         direction='row'
         className='mx-auto px-8 py-2 items-center justify-between content-between'
       >
-        <Link href='/' className='font-medium flex items-center'>
+        <Link href='/' className='flex items-center'>
           <Image
             width={50}
             height={50}
