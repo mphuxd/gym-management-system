@@ -1,21 +1,27 @@
-import React from "react";
-import cx from "classnames";
-import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
+import React from 'react';
+import cx from 'classnames';
+import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
 
-const DropdownItem = React.forwardRef(({ children, ...props }, forwardedRef) => {
-  const { className, ...rest } = { ...props };
-  const classNames = cx(
-    className,
-    "hover:bg-gray-200 focus:outline-none flex flex-row items-center px-4 font-medium"
-  );
+const DropdownItem = React.forwardRef(
+  ({ children, ...props }, forwardedRef) => {
+    const { className, ...rest } = { ...props };
+    const classNames = cx(
+      className,
+      'hover:bg-gray-200 focus:outline-none flex flex-row items-center px-4 font-regular'
+    );
 
-  return (
-    <DropdownMenuPrimitive.Item {...rest} ref={forwardedRef} className={classNames}>
-      {children}
-    </DropdownMenuPrimitive.Item>
-  );
-});
+    return (
+      <DropdownMenuPrimitive.Item
+        {...rest}
+        ref={forwardedRef}
+        className={classNames}
+      >
+        {children}
+      </DropdownMenuPrimitive.Item>
+    );
+  }
+);
 
 export default DropdownItem;
 
-DropdownItem.displayName = "DropdownItem";
+DropdownItem.displayName = 'DropdownItem';

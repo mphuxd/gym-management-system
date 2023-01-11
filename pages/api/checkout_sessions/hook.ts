@@ -1,12 +1,14 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import Cors from "micro-cors";
-import { buffer } from "micro";
-import prisma from "@/lib/prisma";
-import Stripe from "stripe";
+/* eslint-disable no-console */
+import { NextApiRequest, NextApiResponse } from 'next';
+import Cors from 'micro-cors';
+import { buffer } from 'micro';
+import Stripe from 'stripe';
+// eslint-disable-next-line import/extensions
+import prisma from '@/lib/prisma';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   // https://github.com/stripe/stripe-node#configuration
-  apiVersion: "2022-08-01",
+  apiVersion: '2022-08-01',
 });
 
 const webhookSecret: string = process.env.STRIPE_WEBHOOK_SECRET!;
@@ -19,51 +21,20 @@ export const config = {
 };
 
 const cors = Cors({
-  allowMethods: ["POST", "HEAD"],
+  allowMethods: ['POST', 'HEAD'],
 });
 
-async function webhookHandler(req: NextApiRequest, res: NextApiResponse) {
-  try {
-    if (req.method !== "POST") {
-      res.setHeader("Allow", "POST");
-      return res.status(405).json({ message: "Method not allowed" });
-    }
-
-    if (!webhookSecret) {
-      return res.status(403).json({ message: `You must provide the secret` });
-    }
-
-    const buf = await buffer(req);
-    const sig = req.headers["stripe-signature"]!;
-    let event: Stripe.Event;
-
-    event = stripe.webhooks.constructEvent(buf.toString(), sig, webhookSecret);
-    console.log("✅ Success:", event.id);
-
-    switch (event.type) {
-      case "checkout.session.completed":
-        const session = event.data.object;
-        if (session) createMember(session);
-        res.status(200).json({ message: `New member has been created successfully!` });
-        break;
-      default:
-        console.log(`Unhandled event type ${event.type}`);
-        throw new Error(`Unhandled event type ${event.type}`);
-    }
-  } catch (err) {
-    const errorMessage = err instanceof Error ? err.message : "Unknown error";
-    if (err! instanceof Error) console.log(err);
-    console.log(`❌ Error message: ${errorMessage}`);
-    res.status(500).send(`Webhook Error: ${errorMessage}`);
-    return;
-  }
+function getEndDate() {
+  const date = new Date();
+  date.setFullYear(date.getFullYear() + 1);
+  return date;
 }
 
 async function createMember(session) {
   await prisma.member.create({
     data: {
-      firstName: session.customer_details.name.split(" ")[0],
-      lastName: session.customer_details.name.split(" ")[1],
+      firstName: session.customer_details.name.split(' ')[0],
+      lastName: session.customer_details.name.split(' ')[1],
       contact: {
         create: {
           city: session.customer_details.address.city,
@@ -80,7 +51,7 @@ async function createMember(session) {
           customerId: session.customer,
           stripeSubscriptionId: session.subscription,
           membershipEnds: getEndDate(),
-          status: "ACTIVE",
+          status: 'ACTIVE',
           plan: {
             connect: { planId: Number(session.metadata.planId) },
           },
@@ -90,10 +61,45 @@ async function createMember(session) {
   });
 }
 
-function getEndDate() {
-  let date = new Date();
-  date.setFullYear(date.getFullYear() + 1);
-  return date;
+async function webhookHandler(req: NextApiRequest, res: NextApiResponse) {
+  try {
+    if (req.method !== 'POST') {
+      res.setHeader('Allow', 'POST');
+      return res.status(405).json({ message: 'Method not allowed' });
+    }
+
+    if (!webhookSecret) {
+      return res.status(403).json({ message: `You must provide the secret` });
+    }
+
+    const buf = await buffer(req);
+    const sig = req.headers['stripe-signature']!;
+    const event: Stripe.Event = stripe.webhooks.constructEvent(
+      buf.toString(),
+      sig,
+      webhookSecret
+    );
+    console.log('✅ Success:', event.id);
+
+    const session = event.data.object;
+    switch (event.type) {
+      case 'checkout.session.completed':
+        if (session) createMember(session);
+        res
+          .status(200)
+          .json({ message: `New member has been created successfully!` });
+        break;
+      default:
+        console.log(`Unhandled event type ${event.type}`);
+        throw new Error(`Unhandled event type ${event.type}`);
+    }
+  } catch (err) {
+    const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+    if (err! instanceof Error) console.log(err);
+    console.log(`❌ Error message: ${errorMessage}`);
+    res.status(500).send(`Webhook Error: ${errorMessage}`);
+  }
+  return null;
 }
 
 export default cors(webhookHandler as any);

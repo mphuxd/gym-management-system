@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["gym-management-system.s3.us-west-1.amazonaws.com", "s.gravatar.com"],
+    domains: ['gym-management-system.s3.us-west-1.amazonaws.com', 's.gravatar.com'],
   },
 };
 

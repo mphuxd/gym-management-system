@@ -1,1 +1,1 @@
-export { default as XYChartWrapper } from "./XYChartWrapper";
+export { default as XYChartWrapper } from './XYChartWrapper';

@@ -1,15 +1,12 @@
-import React from "react";
-import Toast from "../Toast/Toast";
-import { Navbar, NavbarLink } from "@/components";
+import React from 'react';
+import Toast from '../Toast/Toast';
 
 function AuthorizedLayout({ children }) {
   return (
-    <React.Fragment>
-      <main>
-        {children}
-        <Toast />
-      </main>
-    </React.Fragment>
+    <main>
+      {children}
+      <Toast />
+    </main>
   );
 }
 

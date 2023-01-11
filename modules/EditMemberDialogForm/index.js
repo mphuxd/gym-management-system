@@ -1,1 +1,1 @@
-export { default as EditMemberDialogForm } from "./EditMemberDialogForm";
+export { default as EditMemberDialogForm } from './EditMemberDialogForm';

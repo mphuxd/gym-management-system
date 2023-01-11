@@ -1,10 +1,12 @@
-import { UserProvider } from "@auth0/nextjs-auth0";
-import { ApolloProvider } from "@apollo/client";
-import apolloClient from "../lib/apollo";
-import { Provider as JotaiProvider } from "jotai";
-import { Provider as ToastProvider } from "@radix-ui/react-toast";
-import { Layout } from "@/components";
-import "../styles/styles.css";
+import React from 'react';
+import { UserProvider } from '@auth0/nextjs-auth0';
+import { ApolloProvider } from '@apollo/client';
+import { Provider as JotaiProvider } from 'jotai';
+import { Provider as ToastProvider } from '@radix-ui/react-toast';
+// eslint-disable-next-line import/extensions
+import apolloClient from '@/lib/apollo';
+import { Layout } from '@/components';
+import '../styles/styles.css';
 
 // @@ Enable Axe-core accessibility testing
 // if (typeof window !== "undefined" && process.env.NODE_ENV !== "production") {

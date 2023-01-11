@@ -1,26 +1,28 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from 'react';
 
 export const useScroll = () => {
   const [state, setState] = useState({
     lastScrollTop: 0,
     bodyOffset:
-      typeof window === "undefined" || !window.document ? 0 : document.body.getBoundingClientRect(),
+      typeof window === 'undefined' || !window.document
+        ? 0
+        : document.body.getBoundingClientRect(),
     scrollY:
-      typeof window === "undefined" || !window.document
+      typeof window === 'undefined' || !window.document
         ? 0
         : document.body.getBoundingClientRect().top,
     scrollX:
-      typeof window === "undefined" || !window.document
+      typeof window === 'undefined' || !window.document
         ? 0
         : document.body.getBoundingClientRect().left,
-    scrollDirection: "", // down, up
+    scrollDirection: '', // down, up
   });
 
-  const handleScrollEvent = useCallback((e) => {
+  const handleScrollEvent = useCallback(() => {
     setState((prevState) => {
       const prevLastScrollTop = prevState.lastScrollTop;
       const bodyOffset =
-        typeof window === "undefined" || !window.document
+        typeof window === 'undefined' || !window.document
           ? 0
           : document.body.getBoundingClientRect();
 
@@ -28,7 +30,7 @@ export const useScroll = () => {
         setBodyOffset: bodyOffset,
         scrollY: -bodyOffset.top,
         scrollX: bodyOffset.left,
-        scrollDirection: prevLastScrollTop > -bodyOffset.top ? "down" : "up",
+        scrollDirection: prevLastScrollTop > -bodyOffset.top ? 'down' : 'up',
         lastScrollTop: -bodyOffset.top,
       };
     });
@@ -38,10 +40,10 @@ export const useScroll = () => {
     const scrollListener = (e) => {
       handleScrollEvent(e);
     };
-    window.addEventListener("scroll", scrollListener);
+    window.addEventListener('scroll', scrollListener);
 
     return () => {
-      window.removeEventListener("scroll", scrollListener);
+      window.removeEventListener('scroll', scrollListener);
     };
   }, [handleScrollEvent]);
 

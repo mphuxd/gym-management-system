@@ -1,9 +1,9 @@
-import React from "react";
-import cx from "classnames";
-import * as Tabs from "@radix-ui/react-tabs";
-import styles from "./Tabs.module.scss";
+import React from 'react';
+import cx from 'classnames';
+import * as Tabs from '@radix-ui/react-tabs';
+import styles from './Tabs.module.scss';
 
-export const TabsContent = React.forwardRef(({ children, ...props }, forwardedRef) => {
+const TabsContent = React.forwardRef(({ children, ...props }, forwardedRef) => {
   const { className, ...rest } = { ...props };
   const classNames = cx(styles.tabsContent, className);
   return (
@@ -13,4 +13,6 @@ export const TabsContent = React.forwardRef(({ children, ...props }, forwardedRe
   );
 });
 
-TabsContent.displayName = "TabsContent";
+TabsContent.displayName = 'TabsContent';
+
+export default TabsContent;

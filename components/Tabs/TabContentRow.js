@@ -1,8 +1,8 @@
-import React from "react";
-import cx from "classnames";
+import React from 'react';
+import cx from 'classnames';
 
 function TabContentRow({ children, className }) {
-  const classNames = cx(className, "flex flex-row");
+  const classNames = cx(className, 'flex flex-row');
   return <div className={classNames}>{children}</div>;
 }
 

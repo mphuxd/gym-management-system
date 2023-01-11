@@ -1,10 +1,9 @@
-import React, { useState } from "react";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { useForm } from "react-hook-form";
-import { ArrowRightIcon } from "@radix-ui/react-icons";
-import { ArrowRight } from "@carbon/icons-react";
-import * as ScrollArea from "@radix-ui/react-scroll-area";
+import React, { useState } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useForm } from 'react-hook-form';
+import { ArrowRightIcon } from '@radix-ui/react-icons';
+import { ArrowRight } from '@carbon/icons-react';
 import {
   Accordion,
   AccordionItem,
@@ -18,47 +17,58 @@ import {
   TablePagination,
   TableRowCell,
   XYChartWrapper,
-} from "@/components";
+} from '@/components';
 
 export default function CheckInSidepanel({ checkInHistory }) {
   return (
     <Sidepanel>
-      <Accordion className='w-full' type='single' defaultValue='analytics' collapsible>
-        <AccordionItem className='w-full' header='Analytics' value='analytics'>
-          <CheckInDailyCount checkInHistory={checkInHistory} />
-          <CheckInXYChart checkInHistory={checkInHistory} />
-          <Link
-            href='/analytics'
-            className='flex flex-row items-center gap-x-1 w-fit text-sm hover:underline mt-2'
-          >
-            <span>View More Analytics</span>
-            <ArrowRight size={12} />
-          </Link>
+      <Accordion
+        className="w-full"
+        type="single"
+        defaultValue="analytics"
+        collapsible
+      >
+        <AccordionItem className="w-full" header="Analytics" value="analytics">
+          <Stack className="mt-8">
+            <CheckInDailyCount checkInHistory={checkInHistory} />
+            <CheckInXYChart checkInHistory={checkInHistory} />
+            <Link
+              href="/analytics"
+              className="flex flex-row items-center gap-x-1 w-fit text-sm hover:underline mt-4"
+            >
+              <span>View More Analytics</span>
+              <ArrowRight size={12} />
+            </Link>
+          </Stack>
         </AccordionItem>
       </Accordion>
-      <Separator className='my-4' />
-      <CheckInHistory className='h-1/2' checkInHistory={checkInHistory} />
+      <Separator className="my-4" />
+      <CheckInHistory className="h-1/2" checkInHistory={checkInHistory} />
     </Sidepanel>
   );
 }
 
 function getDailyCheckInCount(checkInHistory) {
   let count = 0;
-  for (let i = 0; i < checkInHistory.history.length; i++) {
+  for (let i = 0; i < checkInHistory.history.length; i += 1) {
     const currDate = new Date().toLocaleDateString();
-    const itemDate = new Date(checkInHistory.history[i].checkInDate).toLocaleDateString();
+    const itemDate = new Date(
+      checkInHistory.history[i].checkInDate
+    ).toLocaleDateString();
     if (currDate === itemDate) {
-      count++;
+      count += 1;
     }
   }
   return count;
 }
 
 function CheckInDailyCount({ checkInHistory }) {
-  const checkInCount = checkInHistory ? getDailyCheckInCount(checkInHistory) : "-";
+  const checkInCount = checkInHistory
+    ? getDailyCheckInCount(checkInHistory)
+    : '-';
   return (
     <Stack>
-      <span className='text-6xl'>{checkInCount}</span>
+      <span className="text-6xl">{checkInCount}</span>
       <span>Check-Ins</span>
     </Stack>
   );
@@ -66,16 +76,17 @@ function CheckInDailyCount({ checkInHistory }) {
 
 function processRecentHistory(history) {
   function convertTimeScale24To12(hour) {
-    while (hour < 0) hour = hour + 24;
-    const suffix = hour >= 12 ? "PM" : "AM";
-    hour = ((hour + 11) % 12) + 1;
-    const time = hour + suffix;
+    let newHour = hour;
+    while (newHour < 0) newHour += 24;
+    const suffix = newHour >= 12 ? 'PM' : 'AM';
+    const newScaleHour = ((newHour + 11) % 12) + 1;
+    const time = newScaleHour + suffix;
     return time;
   }
   const WINDOW = 6;
-  let buckets = [];
-  for (let i = WINDOW; i >= 0; i--) {
-    let hour = new Date().getHours() - i;
+  const buckets = [];
+  for (let i = WINDOW; i >= 0; i -= 1) {
+    const hour = new Date().getHours() - i;
     const time = convertTimeScale24To12(hour);
     buckets.push({ hour: time, count: 0 });
   }
@@ -86,13 +97,14 @@ function processRecentHistory(history) {
       if (itemTime >= xHoursAgo) {
         return item;
       }
+      return null;
     });
-    historyWindow.forEach((history) => {
-      for (let i = 0; i < buckets.length; i++) {
-        let eventHour = new Date(history.checkInDate).getHours();
+    historyWindow.forEach((historyItem) => {
+      for (let i = 0; i < buckets.length; i += 1) {
+        const eventHour = new Date(historyItem.checkInDate).getHours();
         const eventTime = convertTimeScale24To12(eventHour);
         if (buckets[i].hour === eventTime) {
-          buckets[i].count++;
+          buckets[i].count += 1;
           break;
         }
       }
@@ -116,7 +128,7 @@ function CheckInXYChart({ checkInHistory }) {
 
 function CheckInHistory({ checkInHistory }) {
   const router = useRouter();
-  const { register, handleSubmit, resetField } = useForm();
+  const { register } = useForm();
 
   const [firstRowIndex, setFirstRowIndex] = useState(0);
   const [currentPageSize, setCurrentPageSize] = useState(10);
@@ -131,55 +143,39 @@ function CheckInHistory({ checkInHistory }) {
 
   // @@@ Implement search check-in history
   return (
-    <Stack id='action-history' className='gap-y-4'>
-      <h3 className=''>Check In History</h3>
-      <Stack direction='row' className='items-center w-full'>
-        <Searchbar
-          disabled
-          className='w-full border-none hover:cursor-not-allowed'
-          name='searchValue'
-          placeholder='Search history'
-          {...register("searchValue")}
-        />
-      </Stack>
-
-      {/* @@@ Make ScrollArea, Scrollbar, Thumb, Corner generic */}
-      <ScrollArea.Root className='overflow-hidden'>
-        {history && (
-          <ScrollArea.Viewport className='w-full'>
-            <Stack className='w-full text-sm'>
-              <Table
-                headers={["Member Id", "Date"]}
-                rows={rows}
-                onClick={(e, row) => {
-                  router.push(`/members/details/${row.memberId}`);
-                }}
-                render={(row) => {
-                  return <CheckInHistoryRow row={row} />;
-                }}
-              />
-              <TablePagination
-                totalItems={history.length}
-                backText='Previous'
-                nextText='Next'
-                pageSize={currentPageSize}
-                pageSizes={[5, 10, 15, 25]}
-                onChange={(page, pageSize) => {
-                  if (pageSize !== currentPageSize) setCurrentPageSize(pageSize);
-                  setFirstRowIndex(pageSize * (page - 1));
-                }}
-              />
-            </Stack>
-          </ScrollArea.Viewport>
-        )}
-        <ScrollArea.Scrollbar
-          className='flex select-none touch-none w-2 bg-gray-200 opacity-50'
-          orientation='vertical'
-        >
-          <ScrollArea.Thumb data-state='' className='flex-1 relative bg-black' />
-        </ScrollArea.Scrollbar>
-        <ScrollArea.Corner />
-      </ScrollArea.Root>
+    <Stack id="action-history" className="gap-y-8">
+      <h3>Check In History</h3>
+      {history && (
+        <Stack className="w-full text-sm">
+          <Searchbar
+            disabled
+            className="w-full border-none hover:cursor-not-allowed"
+            name="searchValue"
+            placeholder="Search history table"
+            {...register('searchValue')}
+          />
+          <Table
+            className="h-[268px] max-h-[268px]  "
+            headers={['Member Id', 'Date']}
+            rows={rows}
+            onClick={(e, row) => {
+              router.push(`/members/details/${row.memberId}`);
+            }}
+            render={(row) => <CheckInHistoryRow row={row} />}
+          />
+          <TablePagination
+            totalItems={history.length}
+            backText="Previous"
+            nextText="Next"
+            pageSize={currentPageSize}
+            pageSizes={[5, 10, 15, 25]}
+            onChange={(page, pageSize) => {
+              if (pageSize !== currentPageSize) setCurrentPageSize(pageSize);
+              setFirstRowIndex(pageSize * (page - 1));
+            }}
+          />
+        </Stack>
+      )}
     </Stack>
   );
 }
@@ -191,34 +187,43 @@ async function getImage(id) {
 }
 
 function CheckInHistoryRow({ row }) {
-  const [image, setImage] = useState("/images/image-placeholder.png");
+  const [image, setImage] = useState('/images/image-placeholder.png');
   const [isLoaded, setIsLoaded] = useState(false);
 
   function onHover() {
     if (isLoaded) {
-      return;
-    } else {
-      getImage(row.memberId).then((src) => {
-        if (src.statusCode === 200) {
-          setImage(src.imageUrl);
-          setIsLoaded(true);
-        }
-      });
+      return null;
     }
+    getImage(row.memberId).then((src) => {
+      if (src.statusCode === 200) {
+        setImage(src.imageUrl);
+        setIsLoaded(true);
+      }
+    });
+    return null;
   }
 
   return (
-    <React.Fragment>
-      <TableRowCell onMouseEnter={() => onHover()}>
-        <HoverCard openDelay={250} trigger={row.member.userId}>
-          <Stack direction='row' className='gap-4'>
+    <>
+      <TableRowCell
+        className="max-w-[131px] overflow-hidden text-ellipsis  whitespace-nowrap"
+        onMouseEnter={() => onHover()}
+      >
+        <HoverCard
+          openDelay={250}
+          trigger={`${row.member.firstName} ${row.member.lastName}`}
+        >
+          <Stack direction="row" className="gap-4">
             <Avatar src={image} id={row.memberId} />
-            <Stack className='text-sm'>
-              <span className='font-medium'>
-                {row.member.firstName + " " + row.member.lastName}
+            <Stack className="text-sm">
+              <span className="font-medium">
+                {`${row.member.firstName} ${row.member.lastName}`}
               </span>
-              <Stack direction='row' className='items-center gap-x-1'>
-                <Link className='text-sm' href={`/members/details/${row.memberId}`}>
+              <Stack direction="row" className="items-center gap-x-1">
+                <Link
+                  className="text-sm"
+                  href={`/members/details/${row.memberId}`}
+                >
                   View Profile
                 </Link>
                 <ArrowRightIcon />
@@ -227,7 +232,9 @@ function CheckInHistoryRow({ row }) {
           </Stack>
         </HoverCard>
       </TableRowCell>
-      <TableRowCell className=''>{new Date(row.checkInDate).toLocaleString()}</TableRowCell>
-    </React.Fragment>
+      <TableRowCell className="w-[180px] min-w-[180px] max-w-[180px]">
+        {new Date(row.checkInDate).toLocaleString()}
+      </TableRowCell>
+    </>
   );
 }

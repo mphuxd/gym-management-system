@@ -1,5 +1,10 @@
-import React from "react";
-import { Stack, TabsContent, TabContentRow, TabContentRowItem } from "@/components";
+import React from 'react';
+import {
+  Stack,
+  TabsContent,
+  TabContentRow,
+  TabContentRowItem,
+} from '@/components';
 
 export default function MemberTabContentCheckInHistory({ member, ...props }) {
   if (member) {
@@ -9,17 +14,18 @@ export default function MemberTabContentCheckInHistory({ member, ...props }) {
         <Stack>
           <TabContentRow>
             <TabContentRowItem
-              label='Check-ins'
-              space='full'
+              label="Check-ins"
+              space="full"
               value={
                 <Stack>
-                  {memberCheckInHistory.map((checkIn, idx) => {
-                    return (
+                  {memberCheckInHistory.map(
+                    (checkIn, idx) =>
                       idx <= 9 && (
-                        <span key={idx}>{new Date(checkIn.checkInDate).toLocaleString()}</span>
+                        <span>
+                          {new Date(checkIn.checkInDate).toLocaleString()}
+                        </span>
                       )
-                    );
-                  })}
+                  )}
                 </Stack>
               }
             />
@@ -27,21 +33,20 @@ export default function MemberTabContentCheckInHistory({ member, ...props }) {
         </Stack>
       </TabsContent>
     );
-  } else {
-    return (
-      <TabsContent {...props}>
-        <Stack>
-          <TabContentRow>
-            <TabContentRowItem
-              label='Check-ins'
-              space='full'
-              value={<div className='flex flex-col'>No results found.</div>}
-            />
-          </TabContentRow>
-        </Stack>
-      </TabsContent>
-    );
   }
+  return (
+    <TabsContent {...props}>
+      <Stack>
+        <TabContentRow>
+          <TabContentRowItem
+            label="Check-ins"
+            space="full"
+            value={<div className="flex flex-col">No results found.</div>}
+          />
+        </TabContentRow>
+      </Stack>
+    </TabsContent>
+  );
 }
 
 // @@@ Add pagination & refactor into table

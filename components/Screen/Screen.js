@@ -1,23 +1,23 @@
-import React from "react";
-import { cva } from "class-variance-authority";
-import cx from "classnames";
+import React from 'react';
+import { cva } from 'class-variance-authority';
+import cx from 'classnames';
 
-const screenStyles = cva("", {
+const screenStyles = cva('', {
   variants: {
     intent: {
-      standard: "w-full min-w-[1280px] min-h-screen-calc",
+      standard: 'w-full min-w-[1280px] min-h-screen-calc',
     },
     color: {
-      primary: "bg-slate2",
+      primary: 'bg-slate2',
     },
   },
   defaultVariants: {
-    intent: "standard",
-    color: "primary",
+    intent: 'standard',
+    color: 'primary',
   },
 });
 
-function Screen({ as = "div", intent, color, className, children }) {
+function Screen({ as = 'div', intent, color, className, children }) {
   const classNames = cx(screenStyles({ intent, color }), className);
   return React.createElement(
     as,

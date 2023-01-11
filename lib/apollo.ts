@@ -1,19 +1,19 @@
 // /lib/apollo.ts
-import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { ApolloClient, InMemoryCache } from '@apollo/client';
 
 const apolloClient = new ApolloClient({
-  //graphql endpoint
-  uri: "/api/graphql",
+  // graphql endpoint
+  uri: '/api/graphql',
   cache: new InMemoryCache({
     typePolicies: {
       Contact: {
-        keyFields: ["id"],
+        keyFields: ['id'],
       },
       Membership: {
-        keyFields: ["id"],
+        keyFields: ['id'],
       },
       MembershipPlan: {
-        keyFields: ["id"],
+        keyFields: ['id'],
       },
     },
   }),

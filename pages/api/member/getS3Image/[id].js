@@ -1,16 +1,16 @@
-import AWS from "aws-sdk/global";
-import S3 from "aws-sdk/clients/s3";
-import { withApiAuthRequired, getSession } from "@auth0/nextjs-auth0";
+import AWS from 'aws-sdk/global';
+import S3 from 'aws-sdk/clients/s3';
+import { withApiAuthRequired, getSession } from '@auth0/nextjs-auth0';
 
-export default withApiAuthRequired(async function handler(req, res) {
+export default withApiAuthRequired(async (req, res) => {
   try {
     const { user } = await getSession(req, res);
-    if (!user) res.status(401).json({ message: "Unauthorized" });
+    if (!user) res.status(401).json({ message: 'Unauthorized' });
 
     const { id } = req.query;
 
     AWS.config.apiVersions = {
-      s3: "2012-10-17",
+      s3: '2012-10-17',
     };
 
     AWS.config.update({
@@ -19,7 +19,7 @@ export default withApiAuthRequired(async function handler(req, res) {
       region: process.env.MY_AWS_CONFIG_REGION,
     });
 
-    let s3 = new S3();
+    const s3 = new S3();
 
     const params = {
       Bucket: process.env.MY_AWS_S3_BUCKET_NAME,
@@ -27,10 +27,11 @@ export default withApiAuthRequired(async function handler(req, res) {
     };
 
     await s3.headObject(params).promise();
-    const url = await s3.getSignedUrlPromise("getObject", params);
+    const url = await s3.getSignedUrlPromise('getObject', params);
     return res.status(200).json({ statusCode: 200, imageUrl: url });
   } catch (error) {
-    console.log("Unknown Error: ", error, "Check if object exists.");
+    // eslint-disable-next-line no-console
+    console.log('Unknown Error: ', error, 'Check if object exists.');
     return res.json({ statusCode: error.statusCode, error });
   }
 });

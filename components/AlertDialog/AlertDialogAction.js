@@ -1,14 +1,14 @@
-import React from "react";
-import * as AlertDialogPrimitive from "@radix-ui/react-alert-dialog";
+import React from 'react';
+import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog';
 
-const AlertDialogAction = React.forwardRef(({ children, ...props }, forwardedRef) => {
-  return (
+const AlertDialogAction = React.forwardRef(
+  ({ children, ...props }, forwardedRef) => (
     <AlertDialogPrimitive.Action ref={forwardedRef} {...props}>
       {children}
     </AlertDialogPrimitive.Action>
-  );
-});
+  )
+);
 
-AlertDialogAction.displayName = "AlertDialogAction";
+AlertDialogAction.displayName = 'AlertDialogAction';
 
 export default AlertDialogAction;

@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import Link from "next/link";
-import { withPageAuthRequired } from "@auth0/nextjs-auth0";
-import { gql, useQuery } from "@apollo/client";
-import { toastAtom } from "atoms";
-import { useAtom } from "jotai";
-import { useRouter } from "next/router";
-import { useForm } from "react-hook-form";
-import { Cross2Icon, DotsHorizontalIcon } from "@radix-ui/react-icons";
-import { TrashCan } from "@carbon/icons-react";
-import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import React, { useState } from 'react';
+import Link from 'next/link';
+import { withPageAuthRequired } from '@auth0/nextjs-auth0';
+import { gql, useQuery } from '@apollo/client';
+import { toastAtom } from 'atoms';
+import { useAtom } from 'jotai';
+import { useRouter } from 'next/router';
+import { useForm } from 'react-hook-form';
+import { Cross2Icon, DotsHorizontalIcon } from '@radix-ui/react-icons';
+import { TrashCan } from '@carbon/icons-react';
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import {
   AlertDialog,
   Button,
@@ -22,7 +22,7 @@ import {
   Table,
   TableRowCell,
   TablePagination,
-} from "@/components";
+} from '@/components';
 
 const allMembersQuery = gql`
   query {
@@ -76,31 +76,26 @@ export default function Members() {
   const [filteredMembers, setFilteredMembers] = useState(null);
 
   const headers = [
-    "First Name",
-    "Last Name",
-    "User Id",
-    "Birthday",
-    "Email",
-    "Phone Number",
-    "Membership Plan",
-    "Status",
-    "Created",
-    "",
+    'First Name',
+    'Last Name',
+    'User Id',
+    'Birthday',
+    'Email',
+    'Phone Number',
+    'Membership Plan',
+    'Status',
+    'Created',
+    '',
   ];
-
-  const { register } = useForm();
-  const { onChange } = register("searchValue", {
-    onChange: (e) => handleFilterMembers(e, allMembers),
-  });
 
   function handleFilterMembers(e, data) {
     const input = e.target.value.toLowerCase().trim();
-    const filteredMembers = data.members.filter((member) => {
-      //create array of values to filter
+    const filtered = data.members.filter((member) => {
+      // create array of values to filter
       const memberValues = [
         member.firstName,
         member.lastName,
-        member.firstName + " " + member.lastName,
+        `${member.firstName} ${member.lastName}`,
         member.userId,
         member.birthday,
         member.contact.email,
@@ -108,50 +103,64 @@ export default function Members() {
         member.membership.plan.planName,
         member.membership.status,
       ];
-      //return members with values that include input
-      for (let i = 0; i < memberValues.length; i++) {
-        if (memberValues[i] && memberValues[i].toLowerCase().includes(input)) return member;
+      // return members with values that include input
+      for (let i = 0; i < memberValues.length; i += 1) {
+        if (memberValues[i] && memberValues[i].toLowerCase().includes(input))
+          return member;
       }
+
+      return null;
     });
-    setFilteredMembers(filteredMembers);
+    setFilteredMembers(filtered);
   }
 
-  if (loading) return; //@@@ Create skeleton
-  if (error) return console.log(error);
+  const { register } = useForm();
+  const { onChange } = register('searchValue', {
+    onChange: (e) => handleFilterMembers(e, allMembers),
+  });
+
+  if (loading) return null; // @@@ Create skeleton
+  if (error) return null;
   if (allMembers) {
     const members = filteredMembers ? { members: filteredMembers } : allMembers;
     const allRows = getRows(members);
     const rows = allRows.slice(firstRowIndex, firstRowIndex + currentPageSize);
     return (
       <Screen>
-        <Grid as='section' className='gap-y-0 mx-auto auto-rows-min p-8'>
-          <div className='col-span-full mb-2'>
-            <h1 className='font-semibold text-lg'>Members</h1>
+        <Grid as="section" className="gap-y-0 mx-auto auto-rows-min p-8">
+          <div className="col-span-full mb-2">
+            <h1 className="font-semibold text-lg">Members</h1>
           </div>
-          <Stack direction='row' className='justify-between col-span-full h-fit'>
-            <Stack direction='row' className='items-center'>
+          <Stack
+            direction="row"
+            className="justify-between col-span-full h-fit"
+          >
+            <Stack direction="row" className="items-center">
               <Searchbar
-                name='searchValue'
-                placeholder='Search'
-                intent='primary'
-                size='base'
+                name="searchValue"
+                placeholder="Search"
+                intent="primary"
+                size="base"
                 onChange={onChange}
-                {...register("searchValue")}
+                {...register('searchValue')}
               />
             </Stack>
-            <Stack direction='row' className='gap-x-2'>
-              <button>
-                <Button className='text-gray-600' as='div' size='small' variant='default'>
-                  Filter
-                </Button>
-              </button>
+            <Stack direction="row" className="gap-x-2">
+              <Button
+                className="text-gray-600"
+                as="div"
+                size="small"
+                variant="default"
+              >
+                Filter
+              </Button>
               {/* TO:DO: Add Filter */}
-              <Button disabled as='button' size='small' variant='default'>
+              <Button disabled as="button" size="small" variant="default">
                 Reset Filter
               </Button>
             </Stack>
           </Stack>
-          <div className='col-span-full h-fit mt-4'>
+          <div className="col-span-full h-fit mt-4">
             <Table
               headers={headers}
               rows={rows}
@@ -160,25 +169,24 @@ export default function Members() {
                 e.preventDefault();
                 router.push(`members/details/${row.id}`);
               }}
-              render={(row) => {
-                return (
-                  <React.Fragment>
-                    {Object.values(row).map((cell, idx) => {
-                      if (idx !== 0) {
-                        return <TableRowCell key={idx}>{cell}</TableRowCell>;
-                      }
-                    })}
-                    <TableRowCell>
-                      <TableDropdown row={row} />
-                    </TableRowCell>
-                  </React.Fragment>
-                );
-              }}
+              render={(row) => (
+                <>
+                  {Object.values(row).map((cell, idx) => {
+                    if (idx !== 0) {
+                      return <TableRowCell>{cell}</TableRowCell>;
+                    }
+                    return null;
+                  })}
+                  <TableRowCell>
+                    <TableDropdown row={row} />
+                  </TableRowCell>
+                </>
+              )}
             />
             <TablePagination
               totalItems={allRows.length}
-              backText='Previous'
-              nextText='Next'
+              backText="Previous"
+              nextText="Next"
               pageSize={currentPageSize}
               pageSizes={[5, 10, 15, 25]}
               onChange={(page, pageSize) => {
@@ -195,47 +203,49 @@ export default function Members() {
 
 function TableDropdown({ row }) {
   const router = useRouter();
+  // eslint-disable-next-line no-unused-vars
   const [toast, setToast] = useAtom(toastAtom);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [isCancelDialogOpen, setIsCancelDialogOpen] = useState(false);
 
   return (
-    <DropdownMenu.Root className=''>
+    <DropdownMenu.Root>
       <DropdownMenu.Trigger
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
         }}
-        className='mx-auto p-2 hover:shadow-xl hover:outline outline-1 rounded-lg outline-gray7 active:outline-gray8 active:outline overflow-hidden block'
+        className="mx-auto p-2 hover:shadow-xl hover:outline outline-1 rounded-lg outline-gray7 active:outline-gray8 active:outline overflow-hidden block"
       >
-        <DotsHorizontalIcon className='' />
+        <DotsHorizontalIcon />
       </DropdownMenu.Trigger>
-      <DropdownContent onClick={(e) => e.stopPropagation()} align='end'>
+      <DropdownContent onClick={(e) => e.stopPropagation()} align="end">
         <DropdownMenu.Group>
           <DropdownItem>
             <Link href={`members/details/${row.id}`}>View Member Details</Link>
           </DropdownItem>
           <DropdownItem>
             <button
+              type="button"
               onClick={async () => {
                 try {
                   await fetch(`/api/checkin/${row.id}`, {
-                    method: "POST",
+                    method: 'POST',
                     headers: {
-                      "Content-Type": "application/json",
+                      'Content-Type': 'application/json',
                     },
                   }).then(
-                    (res) =>
+                    () =>
                       setToast({
-                        title: "Checked In Member",
+                        title: 'Checked In Member',
                         description: row.id,
                         isOpen: true,
                       }),
-                    router.push("/checkin")
+                    router.push('/checkin')
                   );
                 } catch (err) {
                   setToast({
-                    title: "Edit Failed",
+                    title: 'Edit Failed',
                     description: err.message,
                     isOpen: true,
                   });
@@ -250,7 +260,8 @@ function TableDropdown({ row }) {
         <DropdownMenu.Group>
           <DropdownItem>
             <button
-              className='text-red11 flex items-center gap-x-1'
+              type="button"
+              className="text-red11 flex items-center gap-x-1"
               onClick={() => {
                 setIsCancelDialogOpen(true);
               }}
@@ -261,7 +272,8 @@ function TableDropdown({ row }) {
           </DropdownItem>
           <DropdownItem>
             <button
-              className='text-red11 flex items-center gap-x-1'
+              type="button"
+              className="text-red11 flex items-center gap-x-1"
               onClick={() => {
                 setIsDeleteDialogOpen(true);
               }}
@@ -276,19 +288,19 @@ function TableDropdown({ row }) {
       <AlertDialog
         isOpen={isCancelDialogOpen}
         setIsOpen={setIsCancelDialogOpen}
-        title='Cancel Membership?'
-        description='This action cannot be undone. This will permanently cancel the membership. The member will have access until the end of their billing cycle, and will be charged applicable cancellation fees.'
-        close='No, go back.'
-        action='Yes, cancel membership.'
+        title="Cancel Membership?"
+        description="This action cannot be undone. This will permanently cancel the membership. The member will have access until the end of their billing cycle, and will be charged applicable cancellation fees."
+        close="No, go back."
+        action="Yes, cancel membership."
         href={`api/member/cancel/${row.userId}`}
       />
       <AlertDialog
         isOpen={isDeleteDialogOpen}
         setIsOpen={setIsDeleteDialogOpen}
-        title='Delete Member?'
-        description='This action cannot be undone. This will permanently delete the member and remove their data from our servers. If the member has an active membership, this action will fail.'
-        close='No, go back.'
-        action='Yes, delete member.'
+        title="Delete Member?"
+        description="This action cannot be undone. This will permanently delete the member and remove their data from our servers. If the member has an active membership, this action will fail."
+        close="No, go back."
+        action="Yes, delete member."
         href={`api/member/delete/${row.userId}`}
       />
     </DropdownMenu.Root>

@@ -1,13 +1,14 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import prisma from "@/lib/prisma";
+import type { NextApiRequest, NextApiResponse } from 'next';
+// eslint-disable-next-line import/extensions
+import prisma from '@/lib/prisma';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { email, username, secret } = req.body;
 
-    if (req.method !== "POST") {
-      res.setHeader("Allow", "POST");
-      return res.status(405).json({ message: "Method not allowed" });
+    if (req.method !== 'POST') {
+      res.setHeader('Allow', 'POST');
+      return res.status(405).json({ message: 'Method not allowed' });
     }
 
     if (secret !== process.env.AUTH0_HOOK_SECRET) {
@@ -23,9 +24,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       });
     }
   } catch (err) {
-    const errorMessage = err instanceof Error ? err.message : "Internal server error";
+    const errorMessage =
+      err instanceof Error ? err.message : 'Internal server error';
     res.status(500).json({ statusCode: 500, message: errorMessage });
   }
+  return null;
 };
 
 export default handler;

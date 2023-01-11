@@ -1,15 +1,21 @@
-import { objectType, extendType, nonNull, stringArg, inputObjectType } from "nexus";
+import {
+  objectType,
+  extendType,
+  nonNull,
+  stringArg,
+  inputObjectType,
+} from 'nexus';
 
 export const CheckIn = objectType({
-  name: "CheckIn",
+  name: 'CheckIn',
   definition(t) {
-    t.nonNull.string("id");
-    t.nonNull.datetime("checkInDate");
-    t.nonNull.string("memberId");
-    t.nonNull.field("member", {
-      type: "Member",
+    t.nonNull.string('id');
+    t.nonNull.datetime('checkInDate');
+    t.nonNull.string('memberId');
+    t.nonNull.field('member', {
+      type: 'Member',
       async resolve(_parent, _args, ctx) {
-        return await ctx.prisma.checkIn
+        return ctx.prisma.checkIn
           .findUnique({
             where: { id: _parent.id },
           })
@@ -20,19 +26,19 @@ export const CheckIn = objectType({
 });
 
 export const CheckInCreateInput = inputObjectType({
-  name: "CheckInCreateInput",
+  name: 'CheckInCreateInput',
   definition(t) {
-    t.nonNull.string("id");
-    t.nonNull.datetime("checkInDate");
-    t.nonNull.field("member", { type: "MemberCreateInput" });
-    t.nonNull.string("memberId");
+    t.nonNull.string('id');
+    t.nonNull.datetime('checkInDate');
+    t.nonNull.field('member', { type: 'MemberCreateInput' });
+    t.nonNull.string('memberId');
   },
 });
 
 export const CreateCheckInMutation = extendType({
-  type: "Mutation",
+  type: 'Mutation',
   definition(t) {
-    t.nonNull.field("createCheckIn", {
+    t.nonNull.field('createCheckIn', {
       type: CheckIn,
       args: {
         memberId: nonNull(stringArg()),
@@ -44,7 +50,7 @@ export const CreateCheckInMutation = extendType({
         const newCheckIn = {
           memberId: args.memberId,
         };
-        return await ctx.prisma.checkIn.create({
+        return ctx.prisma.checkIn.create({
           data: newCheckIn,
         });
       },
