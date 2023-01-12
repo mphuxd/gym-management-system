@@ -9,13 +9,20 @@ function Table({ headers, rows, render, onClick, className }) {
       <thead>
         <tr className="bg-gray4">
           {headers &&
-            headers.map((header) => <TableHeader>{header}</TableHeader>)}
+            headers.map((header) => (
+              <TableHeader key={header}>{header}</TableHeader>
+            ))}
         </tr>
       </thead>
       <tbody>
         {rows &&
           rows.map((row) => (
-            <TableRow onClick={onClick} row={row} render={render} />
+            <TableRow
+              key={row.id}
+              onClick={onClick}
+              row={row}
+              render={render}
+            />
           ))}
       </tbody>
     </table>

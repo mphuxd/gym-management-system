@@ -50,10 +50,10 @@ export default function CheckInSidepanel({ checkInHistory }) {
 
 function getDailyCheckInCount(checkInHistory) {
   let count = 0;
-  for (let i = 0; i < checkInHistory.history.length; i += 1) {
+  for (let i = 0; i < checkInHistory.checkins.length; i += 1) {
     const currDate = new Date().toLocaleDateString();
     const itemDate = new Date(
-      checkInHistory.history[i].checkInDate
+      checkInHistory.checkins[i].checkInDate
     ).toLocaleDateString();
     if (currDate === itemDate) {
       count += 1;
@@ -91,7 +91,7 @@ function processRecentHistory(history) {
     buckets.push({ hour: time, count: 0 });
   }
   if (history) {
-    const historyWindow = history.history.filter((item) => {
+    const historyWindow = history.checkins.filter((item) => {
       const itemTime = new Date(item.checkInDate).getTime();
       const xHoursAgo = new Date().setHours(new Date().getHours() - WINDOW);
       if (itemTime >= xHoursAgo) {
@@ -137,7 +137,7 @@ function CheckInHistory({ checkInHistory }) {
   let rows = [];
 
   if (checkInHistory) {
-    history = Array.from(checkInHistory.history).reverse();
+    history = Array.from(checkInHistory.checkins).reverse();
     rows = history.slice(firstRowIndex, firstRowIndex + currentPageSize);
   }
 
@@ -181,7 +181,9 @@ function CheckInHistory({ checkInHistory }) {
 }
 
 async function getImage(id) {
-  const imageSrcRes = await fetch(`/api/member/getS3Image/${id}`);
+  const imageSrcRes = await fetch(`/api/member/image/${id}`, {
+    method: 'GET',
+  });
   const imageSrcData = await imageSrcRes.json();
   return imageSrcData;
 }

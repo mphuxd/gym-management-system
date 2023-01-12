@@ -7,7 +7,7 @@ import {
 } from '@/components';
 
 export default function MemberTabContentCheckInHistory({ member, ...props }) {
-  if (member) {
+  if (member && member.checkIns > 0) {
     const memberCheckInHistory = Array.from(member.checkIns).reverse();
     return (
       <TabsContent {...props}>
@@ -21,7 +21,7 @@ export default function MemberTabContentCheckInHistory({ member, ...props }) {
                   {memberCheckInHistory.map(
                     (checkIn, idx) =>
                       idx <= 9 && (
-                        <span>
+                        <span key={checkIn.id}>
                           {new Date(checkIn.checkInDate).toLocaleString()}
                         </span>
                       )

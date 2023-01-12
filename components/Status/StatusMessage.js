@@ -43,6 +43,7 @@ function StatusMessage({ subscriptionId, className, size }) {
   const iconClassNames = 'mt-1';
 
   // Possible values are incomplete, incomplete_expired, trialing, active, past_due, canceled, or unpaid
+  // https://stripe.com/docs/api/subscriptions/object#subscription_object-status
   switch (subscription?.subscription.status) {
     case 'incomplete':
       intent = 'error';

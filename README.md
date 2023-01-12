@@ -14,9 +14,12 @@ Radix UI primitives.
 
 This project has TailwindCSS and SASS. Some components use SCSS for practice, but the majority of the project uses TailwindCSS with CVA for DX and fast prototyping.
 
+https://tailwindcss.com/
+https://github.com/joe-bell/cva
+
 ### Typography
 
-https://fonts.google.com/specimen/Assistant
+https://fonts.google.com/specimen/IBM+Plex+Sans
 
 ### Colors
 
@@ -95,3 +98,9 @@ In your cluster, run the task definition as a service with EC2 launch. Auto scal
 #### Enable HTTPS + SSL
 
 Because this is a secure web app, HTTPS must be enabled. To do this, you can purchase a custom domain and request a public certificate with Route 53 and ACM, and set up an application load balancer.
+
+### AWS Amplify
+
+To deploy with AWS Amplify, connect your git repository with AWS amplify for CI/CD. Then, set environment variables as needed.
+
+https://docs.aws.amazon.com/amplify/latest/userguide/ssr-environment-variables.html

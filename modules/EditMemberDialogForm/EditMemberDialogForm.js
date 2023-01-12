@@ -200,7 +200,10 @@ export default function EditMemberDialogForm({
                   errorMessage={errors.state?.message}
                 >
                   {STATES.map((state) => (
-                    <FormSelectItem value={state.abbreviation}>
+                    <FormSelectItem
+                      key={state.abbreviation}
+                      value={state.abbreviation}
+                    >
                       {state.name}
                     </FormSelectItem>
                   ))}

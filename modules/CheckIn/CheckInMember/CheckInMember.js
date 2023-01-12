@@ -13,7 +13,7 @@ import { Grid, Stack, Status, StatusMessage, TabsTrigger } from '@/components';
 
 export default function CheckInMember({ checkInHistory, mutate }) {
   const checkedInMember =
-    checkInHistory.history[checkInHistory.history.length - 1].member;
+    checkInHistory.checkins[checkInHistory.checkins.length - 1].member;
 
   return (
     <Grid as="section" className="w-full max-w-[1544px] p-8 mx-auto">

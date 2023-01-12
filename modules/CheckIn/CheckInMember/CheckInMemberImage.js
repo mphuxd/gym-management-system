@@ -15,7 +15,12 @@ const videoConstraints = {
 
 export default function CheckinMemberImage({ checkedInMember }) {
   const { data: image, mutate } = useSWR(
-    `/api/member/getS3Image/${checkedInMember.id}`,
+    [
+      `/api/member/image/${checkedInMember.id}`,
+      {
+        method: 'GET',
+      },
+    ],
     fetcher
   );
   const [openWebcam, setOpenWebcam] = useState(false);
@@ -43,7 +48,7 @@ export default function CheckinMemberImage({ checkedInMember }) {
       </div>
 
       <Dialog open={openWebcam} onOpenChange={setOpenWebcam}>
-        <DialogPrimitive.Content className="absolute inset-1/2 -translate-x-1/2 -translate-y-3/4 h-fit w-1/2 bg-gray12 rounded-sm">
+        <DialogPrimitive.Content className="absolute inset-1/2 -translate-x-1/2 -translate-y-3/4 h-fit w-1/2 bg-gray12 rounded-sm z-50">
           <Stack direction="row" className="p-2 justify-end items-end w-full">
             <DialogPrimitive.Close>
               <Cross2Icon
@@ -72,13 +77,10 @@ export default function CheckinMemberImage({ checkedInMember }) {
                     className="rounded-full w-12 h-12 mx-auto bg-white hover:outline hover:outline-2 hover:outline-gray8 hover:bg-gray4 active:bg-gray6 active:outline-gray10"
                     onClick={async () => {
                       const imageSrc = getScreenshot();
-                      await fetch(
-                        `/api/member/uploadImage/${checkedInMember.id}`,
-                        {
-                          method: 'POST',
-                          body: JSON.stringify(imageSrc),
-                        }
-                      ).then(() => mutate());
+                      await fetch(`/api/member/image/${checkedInMember.id}`, {
+                        method: 'POST',
+                        body: JSON.stringify(imageSrc),
+                      }).then(() => mutate());
                       setOpenWebcam(() => false);
                     }}
                   >

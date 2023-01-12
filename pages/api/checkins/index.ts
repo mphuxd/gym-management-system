@@ -9,31 +9,39 @@ export default withApiAuthRequired(
       const { user } = await getSession(req, res);
       if (!user) res.status(401).json({ message: 'Unauthorized' });
 
-      if (req.method !== 'POST') {
-        res.setHeader('Allow', 'POST');
+      if (req.method !== 'GET') {
+        res.setHeader('Allow', 'GET');
         return res.status(405).json({ message: 'Method not allowed' });
       }
 
-      const membership = await prisma.membership.findUnique({
-        where: {
-          customerId: req.body.customerId,
-        },
+      const checkins = await prisma.checkIn.findMany({
         include: {
-          member: true,
+          member: {
+            include: {
+              contact: true,
+              membership: {
+                include: {
+                  plan: true,
+                },
+              },
+              checkIns: true,
+            },
+          },
         },
       });
 
-      res.redirect(
-        303,
-        `${req.headers.origin}/members/details/${membership.member.id}`
-      );
+      if (!checkins)
+        res
+          .status(500)
+          .json({ statusCode: 500, message: 'Check ins not found.' });
+
+      res.status(200).json({ statusCode: 200, checkins });
     } catch (err) {
       const errorMessage =
         err instanceof Error ? err.message : 'Internal server error';
       res.status(500).json({ statusCode: 500, message: errorMessage });
     }
+
     return null;
   }
 );
-
-// @@@ Delete - unused API endpoint

@@ -9,7 +9,7 @@ export const getServerSideProps = withPageAuthRequired();
 
 export default function CheckIn() {
   const { data: checkInHistory, mutate } = useSWR(
-    '/api/checkin/getAllCheckIns',
+    ['/api/checkins', { method: 'GET' }],
     fetcher
   );
   if (!checkInHistory) return null;

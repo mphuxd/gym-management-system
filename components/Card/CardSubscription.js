@@ -27,7 +27,7 @@ function CardSubscription({
           <div className="flex flex-col mb-3 gap-y-1">
             {features &&
               features.map((feature) => (
-                <div className="flex flex-row items-center">
+                <div key={feature} className="flex flex-row items-center">
                   <CheckCircledIcon width={16} height={16} className="mr-1" />
                   <span className="inline-block ">{feature}</span>
                 </div>

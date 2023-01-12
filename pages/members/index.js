@@ -169,15 +169,16 @@ export default function Members() {
                 e.preventDefault();
                 router.push(`members/details/${row.id}`);
               }}
-              render={(row) => (
+              render={(row, idx) => (
                 <>
-                  {Object.values(row).map((cell, idx) => {
-                    if (idx !== 0) {
-                      return <TableRowCell>{cell}</TableRowCell>;
+                  {Object.values(row).map((cell, jdx) => {
+                    if (jdx !== 0) {
+                      // eslint-disable-next-line react/no-array-index-key
+                      return <TableRowCell key={jdx}>{cell}</TableRowCell>;
                     }
                     return null;
                   })}
-                  <TableRowCell>
+                  <TableRowCell key={idx}>
                     <TableDropdown row={row} />
                   </TableRowCell>
                 </>
