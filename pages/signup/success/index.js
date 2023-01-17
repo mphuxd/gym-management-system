@@ -3,7 +3,7 @@ import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { Grid, Screen, Separator, Stack } from '@/components';
+import { Button, Grid, Screen, Separator, Stack } from '@/components';
 
 export const getServerSideProps = withPageAuthRequired();
 
@@ -31,10 +31,10 @@ export default function SignUpSuccess() {
 
   return (
     <Screen>
-      <Grid className="gap-8 mx-auto p-8 relative">
-        <Stack className="col-start-2 col-span-5 gap-8">
+      <Grid className="gap-8 mx-auto p-8 relative min-h-screen-calc">
+        <Stack className="col-start-2 col-span-5 gap-12">
           <Stack>
-            <h3 className="text-4xl mb-4 ">Thank you!</h3>
+            <h3 className="text-4xl mb-4 leading-normal">Thank you!</h3>
             <p>
               Your membership subscription was received and successfully
               created.
@@ -50,8 +50,8 @@ export default function SignUpSuccess() {
           </Stack>
           <Separator />
           <Stack>
-            <h3 className="text-4xl mb-4">Next Steps</h3>
-            <p>
+            <h3 className="text-4xl mb-4 leading-normal">Next Steps</h3>
+            <p className="mb-4">
               Please click on the link below to finish setting up the membership
               account.
             </p>
@@ -68,18 +68,19 @@ export default function SignUpSuccess() {
               </li>
             </ul>
             {checkoutSession && (
-              <Link
-                href={`/members/details/${checkoutSession.membership.member.id}`}
-                className="block w-fit bg-blue-600 text-white text-left py-2 pl-3 pr-6"
-              >
-                Complete Member Profile
-              </Link>
+              <Button as="div" intent="primary" rounded={false} size="large">
+                <Link
+                  href={`/members/details/${checkoutSession.membership.member.id}`}
+                >
+                  Complete Member Profile
+                </Link>
+              </Button>
             )}
           </Stack>
           <Separator />
           {checkoutSession && (
             <Stack>
-              <h3 className="text-4xl mb-4">Order Summary</h3>
+              <h3 className="text-4xl mb-4 leading-normal">Order Summary</h3>
               <h4 className="font-bold">
                 Evolve Gym Membership -{' '}
                 {checkoutSession.membership.plan.planName} Plan

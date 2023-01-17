@@ -35,7 +35,6 @@ export default function CheckInMember({ checkInHistory, mutate }) {
                   </h2>
                   <Status status={checkedInMember.membership.status} />
                 </Stack>
-                {/* <span id="membership-status">{checkedInMember.membership.status}</span> */}
                 <Stack className="mt-3">
                   <StatusMessage
                     subscriptionId={
