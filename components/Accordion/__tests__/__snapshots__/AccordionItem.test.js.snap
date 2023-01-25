@@ -1,0 +1,246 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AccordionItem:  should be collapsed and hide content on click 1`] = `
+<div
+  class="class-test"
+  data-testid="accordion"
+>
+  <div
+    data-state="closed"
+    data-testid="accordion-item"
+  >
+    <h3
+      data-state="closed"
+      data-testid="accordion-header"
+    >
+      <button
+        aria-controls="radix-:r5:"
+        aria-expanded="false"
+        class="flex flex-row justify-between items-center w-full AccordionTrigger"
+        data-radix-collection-item=""
+        data-state="closed"
+        data-testid="accordion-trigger"
+        id="radix-:r4:"
+        type="button"
+      >
+        <h3>
+          Section 1 title
+        </h3>
+        <svg
+          aria-hidden="true"
+          class="AccordionChevron"
+          fill="currentColor"
+          focusable="false"
+          height="16"
+          preserveAspectRatio="xMidYMid meet"
+          viewBox="0 0 16 16"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M8 11L3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z"
+          />
+        </svg>
+      </button>
+    </h3>
+    <div
+      aria-labelledby="radix-:r4:"
+      data-state="closed"
+      data-testid="accordion-content-text"
+      hidden=""
+      id="radix-:r5:"
+      role="region"
+      style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+    />
+  </div>
+</div>
+`;
+
+exports[`AccordionItem:  should be expanded and show content on click 1`] = `
+<div
+  class="class-test"
+  data-testid="accordion"
+>
+  <div
+    data-state="open"
+    data-testid="accordion-item"
+  >
+    <h3
+      data-state="open"
+      data-testid="accordion-header"
+    >
+      <button
+        aria-controls="radix-:r7:"
+        aria-expanded="true"
+        class="flex flex-row justify-between items-center w-full AccordionTrigger"
+        data-radix-collection-item=""
+        data-state="open"
+        data-testid="accordion-trigger"
+        id="radix-:r6:"
+        type="button"
+      >
+        <h3>
+          Section 1 title
+        </h3>
+        <svg
+          aria-hidden="true"
+          class="AccordionChevron"
+          fill="currentColor"
+          focusable="false"
+          height="16"
+          preserveAspectRatio="xMidYMid meet"
+          viewBox="0 0 16 16"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M8 11L3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z"
+          />
+        </svg>
+      </button>
+    </h3>
+    <div
+      aria-labelledby="radix-:r6:"
+      data-state="open"
+      data-testid="accordion-content-text"
+      id="radix-:r7:"
+      role="region"
+      style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+    >
+      content
+    </div>
+  </div>
+</div>
+`;
+
+exports[`AccordionItem:  should render 1`] = `
+<div
+  data-state="closed"
+  data-testid="accordion-item"
+>
+  <h3
+    data-state="closed"
+    data-testid="accordion-header"
+  >
+    <button
+      aria-controls="radix-:r1:"
+      aria-expanded="false"
+      class="flex flex-row justify-between items-center w-full AccordionTrigger"
+      data-radix-collection-item=""
+      data-state="closed"
+      data-testid="accordion-trigger"
+      id="radix-:r0:"
+      type="button"
+    >
+      <h3>
+        item-title
+      </h3>
+      <svg
+        aria-hidden="true"
+        class="AccordionChevron"
+        fill="currentColor"
+        focusable="false"
+        height="16"
+        preserveAspectRatio="xMidYMid meet"
+        viewBox="0 0 16 16"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M8 11L3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z"
+        />
+      </svg>
+    </button>
+  </h3>
+  <div
+    aria-labelledby="radix-:r0:"
+    data-state="closed"
+    data-testid="accordion-content-text"
+    hidden=""
+    id="radix-:r1:"
+    role="region"
+    style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+  />
+</div>
+`;
+
+exports[`AccordionItem:  should render 2`] = `
+<h3
+  data-state="closed"
+  data-testid="accordion-header"
+>
+  <button
+    aria-controls="radix-:r1:"
+    aria-expanded="false"
+    class="flex flex-row justify-between items-center w-full AccordionTrigger"
+    data-radix-collection-item=""
+    data-state="closed"
+    data-testid="accordion-trigger"
+    id="radix-:r0:"
+    type="button"
+  >
+    <h3>
+      item-title
+    </h3>
+    <svg
+      aria-hidden="true"
+      class="AccordionChevron"
+      fill="currentColor"
+      focusable="false"
+      height="16"
+      preserveAspectRatio="xMidYMid meet"
+      viewBox="0 0 16 16"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M8 11L3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z"
+      />
+    </svg>
+  </button>
+</h3>
+`;
+
+exports[`AccordionItem:  should render 3`] = `
+<div
+  aria-labelledby="radix-:r0:"
+  data-state="closed"
+  data-testid="accordion-content-text"
+  hidden=""
+  id="radix-:r1:"
+  role="region"
+  style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+/>
+`;
+
+exports[`AccordionItem:  should render 4`] = `
+<button
+  aria-controls="radix-:r1:"
+  aria-expanded="false"
+  class="flex flex-row justify-between items-center w-full AccordionTrigger"
+  data-radix-collection-item=""
+  data-state="closed"
+  data-testid="accordion-trigger"
+  id="radix-:r0:"
+  type="button"
+>
+  <h3>
+    item-title
+  </h3>
+  <svg
+    aria-hidden="true"
+    class="AccordionChevron"
+    fill="currentColor"
+    focusable="false"
+    height="16"
+    preserveAspectRatio="xMidYMid meet"
+    viewBox="0 0 16 16"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M8 11L3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z"
+    />
+  </svg>
+</button>
+`;

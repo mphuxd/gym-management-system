@@ -85,11 +85,13 @@ function processRecentHistory(history) {
   }
   const WINDOW = 6;
   const buckets = [];
+
   for (let i = WINDOW; i >= 0; i -= 1) {
     const hour = new Date().getHours() - i;
     const time = convertTimeScale24To12(hour);
     buckets.push({ hour: time, count: 0 });
   }
+
   if (history) {
     const historyWindow = history.checkins.filter((item) => {
       const itemTime = new Date(item.checkInDate).getTime();
@@ -97,8 +99,9 @@ function processRecentHistory(history) {
       if (itemTime >= xHoursAgo) {
         return item;
       }
-      return null;
+      return false;
     });
+
     historyWindow.forEach((historyItem) => {
       for (let i = 0; i < buckets.length; i += 1) {
         const eventHour = new Date(historyItem.checkInDate).getHours();
@@ -194,7 +197,7 @@ function CheckInHistoryRow({ row }) {
 
   function onHover() {
     if (isLoaded) {
-      return null;
+      return false;
     }
     getImage(row.memberId).then((src) => {
       if (src.statusCode === 200) {
@@ -202,7 +205,7 @@ function CheckInHistoryRow({ row }) {
         setIsLoaded(true);
       }
     });
-    return null;
+    return false;
   }
 
   return (

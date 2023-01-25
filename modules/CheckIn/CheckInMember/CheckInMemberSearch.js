@@ -122,7 +122,7 @@ function SearchDialogModal({ data, mutate, isOpen, setIsOpen }) {
         }
       }
 
-      return null;
+      return false;
     });
 
     setFilteredMembers(filtered);

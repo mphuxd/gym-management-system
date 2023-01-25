@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Avatar  should match snapshot 1`] = `
+<span
+  class="AvatarRoot"
+  data-testid="avatarTestId"
+/>
+`;

@@ -1,6 +1,8 @@
 {
   "plugins": [
-    "jsx-a11y"
+    "jsx-a11y",
+    "jest-dom",
+    "jest"
   ],
   "extends": [
     "next/core-web-vitals",
@@ -13,5 +15,8 @@
     "react/jsx-filename-extension": "off",
     "react/jsx-props-no-spreading": "off",
     "import/prefer-default-export": "off"
+  },
+  "env": {
+    "jest/globals": true
   }
 }

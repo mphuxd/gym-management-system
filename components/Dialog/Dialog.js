@@ -1,10 +1,13 @@
 import React from 'react';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import cx from 'classnames';
-import { DialogOverlay } from '@/components';
+import { DialogOverlay, DialogTrigger } from '@/components';
 
 const Dialog = React.forwardRef(
-  ({ children, open, onOpenChange, className, ...props }, forwardedRef) => (
+  (
+    { children, open, onOpenChange, className, trigger, ...props },
+    forwardedRef
+  ) => (
     <DialogPrimitive.Root
       open={open}
       onOpenChange={onOpenChange}
@@ -12,6 +15,7 @@ const Dialog = React.forwardRef(
       className={cx(className, '')}
       {...props}
     >
+      {trigger && <DialogTrigger>{trigger}</DialogTrigger>}
       <DialogPrimitive.Portal className="relative z-20">
         <DialogOverlay className="z-10" />
         {children}

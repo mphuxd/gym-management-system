@@ -24,7 +24,9 @@ const AlertDialog = React.forwardRef(
       // eslint-disable-next-line no-unused-vars
       const results = await response.json();
       // @@@ integrate with toast
+      // @@@ do some checks here
     }
+
     return (
       <AlertDialogPrimitive.Root
         open={isOpen}

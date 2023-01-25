@@ -109,7 +109,7 @@ export default function Members() {
           return member;
       }
 
-      return null;
+      return false;
     });
     setFilteredMembers(filtered);
   }

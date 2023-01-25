@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardSimple  should match snapshot 1`] = `
+<div
+  class="flex flex-col justify-between h-52 p-4 bg-white focus:bg-slate5 active:bg-slate5 shadow-xl shadow-mauve7 hover:shadow-mauve8 "
+  data-testid="cardSimpleTestId"
+>
+  <div
+    class="flex flex-col gap-y-3"
+  >
+    <h2
+      class="text-2xl font-medium"
+    >
+      Card Heading
+    </h2>
+    <p
+      class="max-w-sm text-lg"
+    >
+      Card Description
+    </p>
+  </div>
+  <svg
+    aria-hidden="true"
+    class="text-red11"
+    fill="currentColor"
+    focusable="false"
+    height="24"
+    preserveAspectRatio="xMidYMid meet"
+    viewBox="0 0 24 24"
+    width="24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M14 4L12.9 5.1 18.9 11.2 2 11.2 2 12.8 18.9 12.8 12.9 18.9 14 20 22 12z"
+    />
+  </svg>
+</div>
+`;
