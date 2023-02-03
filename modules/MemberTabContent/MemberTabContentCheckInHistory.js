@@ -7,7 +7,7 @@ import {
 } from '@/components';
 
 export default function MemberTabContentCheckInHistory({ member, ...props }) {
-  if (member && member.checkIns > 0) {
+  if (member && member.checkIns.length > 0) {
     const memberCheckInHistory = Array.from(member.checkIns).reverse();
     return (
       <TabsContent {...props}>
