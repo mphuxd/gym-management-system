@@ -92,6 +92,8 @@ function CheckInMemberDropdownMenu({ checkedInMember, mutate }) {
       <AlertDialog
         isOpen={isCancelDialogOpen}
         setIsOpen={setIsCancelDialogOpen}
+        intent="constrained"
+        actionPhrase="cancel membership"
         title="Cancel Membership?"
         description="This action cannot be undone. This will permanently cancel the membership. The member will have access until the end of their billing cycle, and will be charged applicable cancellation fees."
         close="No, go back."
@@ -101,6 +103,8 @@ function CheckInMemberDropdownMenu({ checkedInMember, mutate }) {
       <AlertDialog
         isOpen={isDeleteDialogOpen}
         setIsOpen={setIsDeleteDialogOpen}
+        intent="constrained"
+        actionPhrase="delete member"
         title="Delete Member?"
         description="This action cannot be undone. This will permanently delete the member and remove their data from our servers. If the member has an active membership, this action will fail."
         close="No, go back."

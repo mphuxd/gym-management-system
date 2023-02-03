@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog';
 import { Cross2Icon } from '@radix-ui/react-icons';
-import { Button, Stack } from '@/components';
+import { Button } from '@/components';
 
 const AlertDialog = React.forwardRef(
   (
@@ -14,6 +14,8 @@ const AlertDialog = React.forwardRef(
       isOpen,
       setIsOpen,
       href,
+      intent,
+      actionPhrase = 'delete me',
       ...props
     },
     forwardedRef
@@ -26,6 +28,8 @@ const AlertDialog = React.forwardRef(
       // @@@ integrate with toast
       // @@@ do some checks here
     }
+
+    const [input, setInput] = useState();
 
     return (
       <AlertDialogPrimitive.Root
@@ -43,22 +47,36 @@ const AlertDialog = React.forwardRef(
             }}
             className="absolute inset-1/2 -translate-x-1/2 -translate-y-3/4 h-fit w-[640px] bg-white p-6 rounded-lg space-y-4"
           >
-            <Stack direction="row" className="justify-between">
+            <div className="flex flex-row justify-between">
               <AlertDialogPrimitive.Title className="font-semibold">
                 {title}
               </AlertDialogPrimitive.Title>
-
               <div className="p-2 block hover:bg-slate4 rounded-sm focus:outline focus:outline-slate7 active:bg-slate5">
                 <Cross2Icon
                   onClick={() => setIsOpen(false)}
                   className="hover:cursor-pointer"
                 />
               </div>
-            </Stack>
+            </div>
             <AlertDialogPrimitive.Description>
               {description}
             </AlertDialogPrimitive.Description>
-            <div className="flex flex-row justify-end gap-x-6 ">
+            {intent === 'constrained' && (
+              <div className="flex flex-col gap-y-2">
+                <div className="mt-4 text-gray11">
+                  To continue, enter the phrase
+                  <span className="font-bold text-black">{` ${actionPhrase}`}</span>
+                </div>
+                <input
+                  placeholder={actionPhrase}
+                  type="text"
+                  input={input}
+                  onInput={(e) => setInput(e.target.value)}
+                  className="w-full outline outline-1 outline-gray10 px-2 py-1 my-4"
+                />
+              </div>
+            )}
+            <div className="flex flex-row justify-end gap-x-6">
               <AlertDialogPrimitive.Cancel
                 asChild
                 onClick={(e) => e.stopPropagation()}
@@ -69,9 +87,19 @@ const AlertDialog = React.forwardRef(
                 asChild
                 onClick={(e) => handleAction(e)}
               >
-                <Button intent="danger" as="button">
-                  {action}
-                </Button>
+                {intent === 'constrained' ? (
+                  <Button
+                    disabled={input !== actionPhrase}
+                    intent={input !== actionPhrase ? 'disabled' : 'danger'}
+                    as="button"
+                  >
+                    {action}
+                  </Button>
+                ) : (
+                  <Button intent="danger" as="button">
+                    {action}
+                  </Button>
+                )}
               </AlertDialogPrimitive.Action>
             </div>
             {children}

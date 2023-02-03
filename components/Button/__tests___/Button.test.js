@@ -30,16 +30,6 @@ describe('Button ', () => {
     expect(screen.getByRole('button')).toBeInTheDocument();
   });
 
-  it('should have a button role', async () => {
-    const className = 'test-class';
-    render(
-      <Button className={className}>
-        <span>child</span>
-      </Button>
-    );
-    expect(screen.getByRole('button')).toBeInTheDocument();
-  });
-
   it('should support rendering as different html elements with the as prop', async () => {
     const className = 'test-class';
     render(

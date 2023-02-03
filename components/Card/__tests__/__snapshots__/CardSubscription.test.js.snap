@@ -131,7 +131,7 @@ exports[`CardSimple  should contain text content 1`] = `
           type="submit"
         >
           <div
-            class="focus:outline text-blue11 outline-blue9 outline outline-[1px] hover:text-white hover:shadow-sm hover:bg-blue11 active:bg-blue11 active:text-white  px-4 py-2 w-fit rounded-md"
+            class="focus:outline text-blue11 outline-blue9 outline outline-1 hover:text-white hover:shadow-sm hover:bg-blue11 active:bg-blue11 active:text-white  px-4 py-2 w-fit rounded-md"
           >
             Subscribe
           </div>
@@ -278,7 +278,7 @@ exports[`CardSimple  should have stripe input values 1`] = `
           type="submit"
         >
           <div
-            class="focus:outline text-blue11 outline-blue9 outline outline-[1px] hover:text-white hover:shadow-sm hover:bg-blue11 active:bg-blue11 active:text-white  px-4 py-2 w-fit rounded-md"
+            class="focus:outline text-blue11 outline-blue9 outline outline-1 hover:text-white hover:shadow-sm hover:bg-blue11 active:bg-blue11 active:text-white  px-4 py-2 w-fit rounded-md"
           >
             Subscribe
           </div>
@@ -425,7 +425,7 @@ exports[`CardSimple  should match snapshot 1`] = `
           type="submit"
         >
           <div
-            class="focus:outline text-blue11 outline-blue9 outline outline-[1px] hover:text-white hover:shadow-sm hover:bg-blue11 active:bg-blue11 active:text-white  px-4 py-2 w-fit rounded-md"
+            class="focus:outline text-blue11 outline-blue9 outline outline-1 hover:text-white hover:shadow-sm hover:bg-blue11 active:bg-blue11 active:text-white  px-4 py-2 w-fit rounded-md"
           >
             Subscribe
           </div>
@@ -572,7 +572,7 @@ exports[`CardSimple  should pass in className 1`] = `
           type="submit"
         >
           <div
-            class="focus:outline text-blue11 outline-blue9 outline outline-[1px] hover:text-white hover:shadow-sm hover:bg-blue11 active:bg-blue11 active:text-white  px-4 py-2 w-fit rounded-md"
+            class="focus:outline text-blue11 outline-blue9 outline outline-1 hover:text-white hover:shadow-sm hover:bg-blue11 active:bg-blue11 active:text-white  px-4 py-2 w-fit rounded-md"
           >
             Subscribe
           </div>
