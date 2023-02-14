@@ -108,23 +108,22 @@ export default function UserId() {
             as="section"
             className="w-full gap-y-8 max-w-[1544px] p-8 mx-auto auto-rows-min "
           >
-            <Tabs.Root className="col-span-full" defaultValue="tab1">
+            <Tabs.Root className="col-span-full" defaultValue="membership">
               <Tabs.List
                 className="w-full justify-between border-b flex flex-row gap-x-[2px]"
                 aria-label="tabs"
               >
                 <div>
-                  <TabsTrigger value="tab1">Membership</TabsTrigger>
-                  <TabsTrigger value="tab2">Check-in History</TabsTrigger>
-                  <TabsTrigger value="tab3">Payments</TabsTrigger>
-                  <TabsTrigger value="tab4">Schedule</TabsTrigger>
-                  <TabsTrigger value="tab5">Overview</TabsTrigger>
+                  <TabsTrigger value="membership">Membership</TabsTrigger>
+                  <TabsTrigger value="history">Check-in History</TabsTrigger>
+                  <TabsTrigger value="payments">Payments</TabsTrigger>
+                  <TabsTrigger value="appointments">Appointments</TabsTrigger>
                 </div>
 
                 <MemberDropdownMenu member={member} mutate={mutate} />
               </Tabs.List>
-              <MemberTabContentMembership value="tab1" member={member} />
-              <MemberTabContentCheckInHistory value="tab2" member={member} />
+              <MemberTabContentMembership value="membership" member={member} />
+              <MemberTabContentCheckInHistory value="history" member={member} />
             </Tabs.Root>
           </Grid>
         </Stack>
@@ -174,6 +173,7 @@ function MemberDropdownMenu({ member, mutate }) {
                           title: 'Checked In Member',
                           description: member.id,
                           isOpen: true,
+                          intent: 'success',
                         }),
                       router.push('/checkin')
                     );
@@ -182,6 +182,7 @@ function MemberDropdownMenu({ member, mutate }) {
                       title: 'Edit Failed',
                       description: err.message,
                       isOpen: true,
+                      intent: 'error',
                     });
                   }
                 }}

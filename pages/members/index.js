@@ -241,6 +241,7 @@ function TableDropdown({ row }) {
                         title: 'Checked In Member',
                         description: row.id,
                         isOpen: true,
+                        intent: 'success',
                       }),
                     router.push('/checkin')
                   );
@@ -249,6 +250,7 @@ function TableDropdown({ row }) {
                     title: 'Edit Failed',
                     description: err.message,
                     isOpen: true,
+                    intent: 'error',
                   });
                 }
               }}

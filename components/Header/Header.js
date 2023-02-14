@@ -41,6 +41,8 @@ function Header() {
             <NavbarLink href="/members">Members</NavbarLink>
             <NavbarLink href="/signup">Sign Up New Member</NavbarLink>
             <NavbarLink href="/analytics">Analytics</NavbarLink>
+            <NavbarLink href="/calendar">Calendar</NavbarLink>
+            <NavbarLink href="/sales">Point of Sales</NavbarLink>
           </Navbar>
         ) : null}
 

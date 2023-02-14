@@ -1,5 +1,6 @@
 import React from 'react';
 import * as Tabs from '@radix-ui/react-tabs';
+import Link from 'next/link';
 import {
   CheckInMemberSearch,
   CheckInMemberImage,
@@ -31,7 +32,10 @@ export default function CheckInMember({ checkInHistory, mutate }) {
                   className="items-center"
                 >
                   <h2 className="text-4xl">
-                    {`${checkedInMember.firstName} ${checkedInMember.lastName}`}
+                    <Link
+                      className="hover:underline"
+                      href={`members/details/${checkedInMember.id}`}
+                    >{`${checkedInMember.firstName} ${checkedInMember.lastName}`}</Link>
                   </h2>
                   <Status status={checkedInMember.membership.status} />
                 </Stack>
@@ -58,8 +62,9 @@ export default function CheckInMember({ checkInHistory, mutate }) {
                     <TabsTrigger value="contact">Contact</TabsTrigger>
                     <TabsTrigger value="membership">Membership</TabsTrigger>
                     <TabsTrigger value="check-in-history">
-                      Check In History
+                      Check-in History
                     </TabsTrigger>
+                    <TabsTrigger value="payments">Payments</TabsTrigger>
                     <TabsTrigger value="appointments">Appointments</TabsTrigger>
                   </Stack>
                 </Tabs.List>

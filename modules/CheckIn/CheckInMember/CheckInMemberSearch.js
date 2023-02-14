@@ -98,7 +98,7 @@ function SearchDialogModal({ data, mutate, isOpen, setIsOpen }) {
   function handleFilterMembers(e, data) {
     const input =
       e.target[0]?.value.toLowerCase() || e.target.value.toLowerCase();
-
+    let count = 0;
     const filtered = data.members.filter((member) => {
       // create array of values to filter
       const memberValues = [
@@ -110,21 +110,19 @@ function SearchDialogModal({ data, mutate, isOpen, setIsOpen }) {
         member.contact.email,
         member.contact.phoneNumber,
       ];
-      // return members with values that include input
-
-      let count = 0;
-
       for (let i = 0; i < memberValues.length; i += 1) {
-        if (count >= 9) break; // limit to only 10 results
-        if (memberValues[i] && memberValues[i].toLowerCase().includes(input)) {
-          count += 1;
-          return member;
+        if (count < 10) {
+          if (
+            memberValues[i] &&
+            memberValues[i].toLowerCase().includes(input)
+          ) {
+            count += 1;
+            return member;
+          }
         }
       }
-
       return false;
     });
-
     setFilteredMembers(filtered);
   }
 
@@ -145,6 +143,7 @@ function SearchDialogModal({ data, mutate, isOpen, setIsOpen }) {
         title: 'Checked In Member',
         description: member.userId,
         isOpen: true,
+        intent: 'success',
       });
       // reset search
       setIsOpen(false);
@@ -155,6 +154,7 @@ function SearchDialogModal({ data, mutate, isOpen, setIsOpen }) {
         title: 'Unknown Error Occurred',
         description: err.message,
         isOpen: true,
+        intent: 'error',
       });
     }
   }
@@ -172,6 +172,7 @@ function SearchDialogModal({ data, mutate, isOpen, setIsOpen }) {
         title: 'Invalid Input',
         description: e.target[0].value,
         isOpen: true,
+        intent: 'error',
       });
     }
   }
@@ -202,6 +203,7 @@ function SearchDialogModal({ data, mutate, isOpen, setIsOpen }) {
               rounded="false"
               name="searchValue"
               placeholder="Search Members"
+              required
               {...register('searchValue')}
             />
           </form>

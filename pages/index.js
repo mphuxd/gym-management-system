@@ -67,11 +67,6 @@ export default function Home() {
                   </Link>
                 </li>
                 <li>
-                  <Link className="hover:underline" href="/sales">
-                    Point of Sales
-                  </Link>
-                </li>
-                <li>
                   <Link className="hover:underline" href="/classes">
                     Classes
                   </Link>
@@ -79,6 +74,11 @@ export default function Home() {
                 <li>
                   <Link className="hover:underline" href="/employee-schedule">
                     Employee Schedule
+                  </Link>
+                </li>
+                <li>
+                  <Link className="hover:underline" href="/sales">
+                    Point of Sales
                   </Link>
                 </li>
                 <li>
@@ -223,12 +223,14 @@ function DashboardNotesDialog({ open, setOpen, note, refetch }) {
         title: 'Successful Edit',
         description: note.id,
         isOpen: true,
+        intent: 'success',
       });
     } catch (err) {
       setToast({
         title: 'Edit Failed',
         description: err.message,
         isOpen: true,
+        intent: 'error',
       });
     }
     setOpen(false);

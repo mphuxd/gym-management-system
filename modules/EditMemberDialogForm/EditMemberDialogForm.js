@@ -78,12 +78,14 @@ export default function EditMemberDialogForm({
         title: 'Successful Edit',
         description: member.id,
         isOpen: true,
+        intent: 'success',
       });
     } catch (err) {
       setToast({
         title: 'Edit Failed',
         description: err.message,
         isOpen: true,
+        intent: 'error',
       });
     }
     setOpen(false);
