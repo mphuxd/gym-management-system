@@ -173,8 +173,12 @@ export default function Members() {
                 <>
                   {Object.values(row).map((cell, jdx) => {
                     if (jdx !== 0) {
-                      // eslint-disable-next-line react/no-array-index-key
-                      return <TableRowCell key={jdx}>{cell}</TableRowCell>;
+                      return (
+                        // eslint-disable-next-line react/no-array-index-key
+                        <TableRowCell className="px-2" key={jdx}>
+                          {cell}
+                        </TableRowCell>
+                      );
                     }
                     return null;
                   })}
@@ -297,7 +301,9 @@ function TableDropdown({ row }) {
         description="This action cannot be undone. This will permanently cancel the membership. The member will have access until the end of their billing cycle, and will be charged applicable cancellation fees."
         close="No, go back."
         action="Yes, cancel membership."
-        href={`api/member/cancel/${row.userId}`}
+        href={`/api/member/cancel/${row.id}`}
+        toastTitle="Membership Cancelled"
+        toastDescription="Successfully cancelled membership."
       />
       <AlertDialog
         isOpen={isDeleteDialogOpen}
@@ -308,7 +314,9 @@ function TableDropdown({ row }) {
         description="This action cannot be undone. This will permanently delete the member and remove their data from our servers. If the member has an active membership, this action will fail."
         close="No, go back."
         action="Yes, delete member."
-        href={`api/member/delete/${row.userId}`}
+        href={`/api/member/delete/${row.id}`}
+        toastTitle="Member Deleted"
+        toastDescription="Successfully deleted member."
       />
     </DropdownMenu.Root>
   );

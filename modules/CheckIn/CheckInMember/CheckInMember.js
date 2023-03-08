@@ -7,8 +7,9 @@ import {
   CheckInMemberDropdownMenu,
   MemberTabContentCheckInHistory,
   MemberTabContentContact,
-  MemberTabContentOverview,
   MemberTabContentMembership,
+  MemberTabContentOverview,
+  MemberTabContentPaymentHistory,
 } from '@/modules';
 import { Grid, Stack, Status, StatusMessage, TabsTrigger } from '@/components';
 
@@ -90,6 +91,10 @@ export default function CheckInMember({ checkInHistory, mutate }) {
               />
               <MemberTabContentCheckInHistory
                 value="check-in-history"
+                member={checkedInMember}
+              />
+              <MemberTabContentPaymentHistory
+                value="payments"
                 member={checkedInMember}
               />
             </Tabs.Root>

@@ -7,12 +7,19 @@ function processMemberDetails(member, subscriptionData) {
   const membership = {
     status: member.membership.status,
     signUpDate: new Date(member.membership.signUpDate).toLocaleString(),
-    membershipEnds: new Date(member.membership.membershipEnds).toLocaleString(),
+    membershipEnds: new Date(
+      member.membership.membershipEnds
+    ).toLocaleDateString(),
     planName: member.membership.plan.planName,
-    nextBillingCycle: new Date(
-      subscriptionData.subscription.current_period_end * 1000
-    ).toLocaleString(),
-    billAmount: subscriptionData.subscription.plan.amount / 100,
+    nextBillingCycle:
+      subscriptionData.subscription.status === 'canceled'
+        ? '-'
+        : new Date(
+            subscriptionData.subscription.current_period_end * 1000
+          ).toLocaleDateString(),
+    billAmount: `$${(subscriptionData.subscription.plan.amount / 100).toFixed(
+      2
+    )}`,
     contractLength: member.membership.plan.contractLength,
     customerId: member.membership.customerId,
     stripeSubscriptionId: member.membership.stripeSubscriptionId,

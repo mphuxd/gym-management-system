@@ -211,7 +211,7 @@ function CheckInHistoryRow({ row }) {
   return (
     <>
       <TableRowCell
-        className="max-w-[131px] overflow-hidden text-ellipsis  whitespace-nowrap"
+        className="px-1 max-w-[131px] overflow-hidden text-ellipsis whitespace-nowrap"
         onMouseEnter={() => onHover()}
       >
         <HoverCard
@@ -237,7 +237,7 @@ function CheckInHistoryRow({ row }) {
           </Stack>
         </HoverCard>
       </TableRowCell>
-      <TableRowCell className="w-[180px] min-w-[180px] max-w-[180px]">
+      <TableRowCell className="w-[180px] min-w-[180px] max-w-[180px] overflow-hidden text-ellipsis whitespace-nowrap">
         {new Date(row.checkInDate).toLocaleString()}
       </TableRowCell>
     </>

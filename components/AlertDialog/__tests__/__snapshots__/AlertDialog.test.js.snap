@@ -46,7 +46,7 @@ exports[`AlertDialog   in "constrained" intent, action button should be disabled
     Test Alert Dialog description
   </p>
   <div
-    class="flex flex-col gap-y-2"
+    class="flex flex-col"
   >
     <div
       class="mt-4 text-gray11"
@@ -95,6 +95,15 @@ exports[`AlertDialog   in "constrained" intent, action button should be disabled
 `;
 
 exports[`AlertDialog   in "constrained" intent, action button should be enabled when input value matches action text 1`] = `
+<button
+  class="focus:outline text-red11 bg-red4 hover:bg-red5 active:bg-red6  focus:outline-red7 px-4 py-1 w-fit rounded-md"
+  type="button"
+>
+  Alert Dialog Action
+</button>
+`;
+
+exports[`AlertDialog   in "constrained" intent, action button should be enabled when input value matches action text 2`] = `
 <div
   aria-describedby="radix-:rb:"
   aria-labelledby="radix-:ra:"
@@ -140,7 +149,7 @@ exports[`AlertDialog   in "constrained" intent, action button should be enabled 
     Test Alert Dialog description
   </p>
   <div
-    class="flex flex-col gap-y-2"
+    class="flex flex-col"
   >
     <div
       class="mt-4 text-gray11"
@@ -154,6 +163,7 @@ exports[`AlertDialog   in "constrained" intent, action button should be enabled 
     </div>
     <input
       class="w-full outline outline-1 outline-gray10 px-2 py-1 my-4"
+      input="test action phrase"
       placeholder="test action phrase"
       type="text"
     />
@@ -168,23 +178,13 @@ exports[`AlertDialog   in "constrained" intent, action button should be enabled 
       Alert Dialog Close
     </button>
     <button
-      class="focus:outline text-gray8 outline-gray6 outline outline-2 px-4 py-1 w-fit rounded-md"
-      disabled=""
+      class="focus:outline text-red11 bg-red4 hover:bg-red5 active:bg-red6  focus:outline-red7 px-4 py-1 w-fit rounded-md"
       type="button"
     >
       Alert Dialog Action
     </button>
   </div>
 </div>
-`;
-
-exports[`AlertDialog   in "constrained" intent, action button should be enabled when input value matches action text 2`] = `
-<button
-  class="focus:outline text-red11 bg-red4 hover:bg-red5 active:bg-red6  focus:outline-red7 px-4 py-1 w-fit rounded-md"
-  type="button"
->
-  Alert Dialog Action
-</button>
 `;
 
 exports[`AlertDialog  should render "constrained" intent 1`] = `
@@ -233,7 +233,7 @@ exports[`AlertDialog  should render "constrained" intent 1`] = `
     Test Alert Dialog description
   </p>
   <div
-    class="flex flex-col gap-y-2"
+    class="flex flex-col"
   >
     <div
       class="mt-4 text-gray11"

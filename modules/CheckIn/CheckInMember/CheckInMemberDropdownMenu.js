@@ -98,7 +98,9 @@ function CheckInMemberDropdownMenu({ checkedInMember, mutate }) {
         description="This action cannot be undone. This will permanently cancel the membership. The member will have access until the end of their billing cycle, and will be charged applicable cancellation fees."
         close="No, go back."
         action="Yes, cancel membership."
-        href={`api/member/cancel/${checkedInMember.userId}`}
+        href={`/api/member/cancel/${checkedInMember.id}`}
+        toastTitle="Membership Cancelled"
+        toastDescription="Successfully cancelled membership."
       />
       <AlertDialog
         isOpen={isDeleteDialogOpen}
@@ -109,7 +111,9 @@ function CheckInMemberDropdownMenu({ checkedInMember, mutate }) {
         description="This action cannot be undone. This will permanently delete the member and remove their data from our servers. If the member has an active membership, this action will fail."
         close="No, go back."
         action="Yes, delete member."
-        href={`api/member/delete/${checkedInMember.userId}`}
+        href={`/api/member/delete/${checkedInMember.id}`}
+        toastTitle="Member Deleted"
+        toastDescription="Successfully deleted member."
       />
     </>
   );

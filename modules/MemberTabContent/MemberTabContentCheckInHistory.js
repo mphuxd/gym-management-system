@@ -1,35 +1,59 @@
 import React from 'react';
 import {
   Stack,
+  Table,
+  TableRowCell,
   TabsContent,
   TabContentRow,
   TabContentRowItem,
 } from '@/components';
 
+function getRows(checkInHistory) {
+  return checkInHistory.map((checkIn) => ({
+    id: checkIn.id,
+    event: 'Check In',
+    status: 'OK',
+    date: new Date(checkIn.checkInDate).toLocaleString(),
+  }));
+}
+// @@@ Update values after check-in refactor
+
 export default function MemberTabContentCheckInHistory({ member, ...props }) {
   if (member && member.checkIns.length > 0) {
     const memberCheckInHistory = Array.from(member.checkIns).reverse();
+    const rows = getRows(memberCheckInHistory).slice(0, 9);
     return (
       <TabsContent {...props}>
         <Stack>
-          <TabContentRow>
-            <TabContentRowItem
-              label="Check-ins"
-              space="full"
-              value={
-                <Stack>
-                  {memberCheckInHistory.map(
-                    (checkIn, idx) =>
-                      idx <= 9 && (
-                        <span key={checkIn.id}>
-                          {new Date(checkIn.checkInDate).toLocaleString()}
-                        </span>
-                      )
-                  )}
-                </Stack>
-              }
-            />
-          </TabContentRow>
+          <Table
+            className="w-fit min-w-[600px] "
+            headers={['Event', 'Status', 'Date']}
+            rows={rows}
+            cursor="auto"
+            onClick={() => {}}
+            render={(row) => (
+              <>
+                <TableRowCell className="hidden w-[1px] whitespace-nowrap py-1 px-2">
+                  <div>{row.id}</div>
+                </TableRowCell>
+                <TableRowCell className="w-[1px] whitespace-nowrap py-1 px-2">
+                  <div>{row.event}</div>
+                </TableRowCell>
+                <TableRowCell className=" py-1 px-2">
+                  {/* @@@ Add Icon to status */}
+                  <div>{row.status}</div>
+                </TableRowCell>
+                <TableRowCell className="w-[1px] whitespace-nowrap py-1 px-2">
+                  <div>{row.date}</div>
+                </TableRowCell>
+              </>
+            )}
+          />
+          <span className="text-sm text-gray11 p-2">
+            {`Displaying ${rows.length + 1} of ${
+              memberCheckInHistory.length + 1
+            } check-ins.`}
+          </span>
         </Stack>
       </TabsContent>
     );
@@ -49,4 +73,4 @@ export default function MemberTabContentCheckInHistory({ member, ...props }) {
   );
 }
 
-// @@@ Add pagination & refactor into table
+// @@@ Add pagination

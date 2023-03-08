@@ -30,6 +30,7 @@ import {
   EditMemberDialogForm,
   MemberTabContentMembership,
   MemberTabContentCheckInHistory,
+  MemberTabContentPaymentHistory,
 } from '@/modules';
 
 export const getServerSideProps = withPageAuthRequired();
@@ -124,6 +125,10 @@ export default function UserId() {
               </Tabs.List>
               <MemberTabContentMembership value="membership" member={member} />
               <MemberTabContentCheckInHistory value="history" member={member} />
+              <MemberTabContentPaymentHistory
+                value="payments"
+                member={member}
+              />
             </Tabs.Root>
           </Grid>
         </Stack>
@@ -255,7 +260,9 @@ function MemberDropdownMenu({ member, mutate }) {
         description="This action cannot be undone. This will permanently cancel the membership. The member will have access until the end of their billing cycle, and will be charged applicable cancellation fees."
         close="No, go back."
         action="Yes, cancel membership."
-        href={`api/member/cancel/${member.userId}`}
+        href={`/api/member/cancel/${member.id}`}
+        toastTitle="Membership Cancelled"
+        toastDescription="Successfully cancelled membership."
       />
       <AlertDialog
         isOpen={isDeleteDialogOpen}
@@ -266,7 +273,9 @@ function MemberDropdownMenu({ member, mutate }) {
         description="This action cannot be undone. This will permanently delete the member and remove their data from our servers. If the member has an active membership, this action will fail."
         close="No, go back."
         action="Yes, delete member."
-        href={`api/member/delete/${member.userId}`}
+        href={`/api/member/delete/${member.id}`}
+        toastTitle="Member Deleted"
+        toastDescription="Successfully deleted member."
       />
     </>
   );

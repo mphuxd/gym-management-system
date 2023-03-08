@@ -3,7 +3,6 @@ import cx from 'classnames';
 import useSWR from 'swr';
 import { cva } from 'class-variance-authority';
 import {
-  CheckmarkFilled,
   InformationFilled,
   WarningFilled,
   ErrorFilled,
@@ -75,15 +74,8 @@ function StatusMessage({ subscriptionId, className, size }) {
       );
       break;
     case 'active':
-      intent = 'checkmark';
-      // message = 'Active';
-      // subtitle = '';
-      color = 'green10';
-      icon = (
-        <CheckmarkFilled
-          className={cx(iconClassNames, `inline fill-${color}`)}
-        />
-      );
+      // do not display a StatusMessage for active
+      // it is redundant
       break;
     case 'past_due':
       intent = 'warning';
@@ -96,8 +88,17 @@ function StatusMessage({ subscriptionId, className, size }) {
       break;
     case 'canceled':
       intent = 'error';
-      message = 'Canceled';
-      subtitle = 'Repeated failed payment attempts.';
+      message = 'Cancelled';
+      if (
+        subscription.subscription.cancellation_details.reason ===
+        'cancellation_requested'
+      )
+        subtitle = 'Requested by member.';
+      if (
+        subscription.subscription.cancellation_details.reason ===
+        'payment_failed'
+      )
+        subtitle = 'Repeated failed payment attempts.';
       color = 'red10';
       icon = (
         <ErrorFilled className={cx(iconClassNames, `inline fill-${color}`)} />

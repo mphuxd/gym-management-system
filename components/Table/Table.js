@@ -3,7 +3,7 @@ import cx from 'classnames';
 import TableHeader from './TableHeader';
 import TableRow from './TableRow';
 
-function Table({ headers, rows, render, onClick, className }) {
+function Table({ headers, rows, render, onClick, className, cursor }) {
   return (
     <table className={cx('table-auto w-full text-sm', className)}>
       <thead>
@@ -18,6 +18,7 @@ function Table({ headers, rows, render, onClick, className }) {
         {rows &&
           rows.map((row) => (
             <TableRow
+              cursor={cursor}
               key={row.id}
               onClick={onClick}
               row={row}

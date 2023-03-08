@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog';
 import { Cross2Icon } from '@radix-ui/react-icons';
+import { ErrorFilled } from '@carbon/icons-react';
+import { useAtom } from 'jotai';
 import { Button } from '@/components';
+import { toastAtom } from '@/atoms';
 
 const AlertDialog = React.forwardRef(
   (
@@ -16,25 +19,47 @@ const AlertDialog = React.forwardRef(
       href,
       intent,
       actionPhrase = 'delete me',
+      toastTitle,
+      toastDescription,
       ...props
     },
     forwardedRef
   ) => {
-    async function handleAction(e) {
-      e.stopPropagation();
+    const [input, setInput] = useState();
+    const [error, setError] = useState();
+    // eslint-disable-next-line no-unused-vars
+    const [toast, setToast] = useAtom(toastAtom);
+
+    async function handleAction() {
       const response = await fetch(href);
-      // eslint-disable-next-line no-unused-vars
       const results = await response.json();
-      // @@@ integrate with toast
-      // @@@ do some checks here
+      if (results.statusCode === 200) {
+        setIsOpen(false);
+        if (toastTitle && toastDescription) {
+          setToast({
+            title: toastTitle,
+            description: toastDescription,
+            isOpen: true,
+            intent: 'success',
+          });
+        }
+      }
+      if (results.statusCode === 403) {
+        setError(results.message);
+        setIsOpen(true);
+      }
     }
 
-    const [input, setInput] = useState();
+    const handleOpenChange = () => {
+      setIsOpen();
+      setError('');
+      setInput('');
+    };
 
     return (
       <AlertDialogPrimitive.Root
         open={isOpen}
-        onOpenChange={setIsOpen}
+        onOpenChange={handleOpenChange}
         ref={forwardedRef}
         {...props}
       >
@@ -53,7 +78,7 @@ const AlertDialog = React.forwardRef(
               </AlertDialogPrimitive.Title>
               <div className="p-2 block hover:bg-slate4 rounded-sm focus:outline focus:outline-slate7 active:bg-slate5">
                 <Cross2Icon
-                  onClick={() => setIsOpen(false)}
+                  onClick={handleOpenChange}
                   className="hover:cursor-pointer"
                 />
               </div>
@@ -62,11 +87,17 @@ const AlertDialog = React.forwardRef(
               {description}
             </AlertDialogPrimitive.Description>
             {intent === 'constrained' && (
-              <div className="flex flex-col gap-y-2">
+              <div className="flex flex-col">
                 <div className="mt-4 text-gray11">
                   To continue, enter the phrase
                   <span className="font-bold text-black">{` ${actionPhrase}`}</span>
                 </div>
+                {error && (
+                  <div className="flex flex-row items-center mt-2 gap-x-1 ">
+                    <ErrorFilled className="fill-red11" />
+                    <div className="text-red11">{error}</div>
+                  </div>
+                )}
                 <input
                   placeholder={actionPhrase}
                   type="text"
@@ -85,7 +116,11 @@ const AlertDialog = React.forwardRef(
               </AlertDialogPrimitive.Cancel>
               <AlertDialogPrimitive.Action
                 asChild
-                onClick={(e) => handleAction(e)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  handleAction(e);
+                }}
               >
                 {intent === 'constrained' ? (
                   <Button

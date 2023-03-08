@@ -16,31 +16,26 @@ export default withApiAuthRequired(
       const { user } = await getSession(req, res);
       if (!user) res.status(401).json({ message: 'Unauthorized' });
 
-      const { userId } = req.query;
-      const userIdString = userId.toString();
+      const { memberId: id } = req.query;
+      const idString = id as string;
 
       const membership = await prisma.member
-        .findUnique({ where: { userId: userIdString } })
+        .findUnique({ where: { id: idString } })
         .membership();
 
-      const subscription = membership.stripeSubscriptionId;
+      const stripeSubscriptionID = membership.stripeSubscriptionId;
 
-      if (!subscription) {
+      if (!stripeSubscriptionID) {
         throw new Error('Stripe Subscription Id not found');
       }
       console.log('Subscription Id found');
 
-      await stripe.subscriptions.del(subscription);
+      await stripe.subscriptions.del(stripeSubscriptionID);
       console.log('Subscription cancelled.');
 
-      await prisma.membership.update({
-        where: { stripeSubscriptionId: subscription },
-        data: { status: 'CANCELLED' },
+      res.status(200).json({
+        result: `Subscription: ${stripeSubscriptionID} successfully cancelled`,
       });
-
-      console.log('Member subscription status updated');
-
-      res.end(`Subscription: ${subscription} successfully cancelled`);
     } catch (err) {
       const errorMessage =
         err instanceof Error ? err.message : 'Internal server error';

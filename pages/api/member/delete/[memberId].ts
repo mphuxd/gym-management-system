@@ -16,11 +16,11 @@ export default withApiAuthRequired(
       const { user } = await getSession(req, res);
       if (!user) res.status(401).json({ message: 'Unauthorized' });
 
-      const { userId } = req.query;
-      const userIdString = userId.toString();
+      const { memberId } = req.query;
+      const memberIdString = memberId.toString();
 
       const member = await prisma.member.findUnique({
-        where: { userId: userIdString },
+        where: { id: memberIdString },
       });
 
       if (!member) {
@@ -28,7 +28,9 @@ export default withApiAuthRequired(
       }
 
       const membership = await prisma.member
-        .findUnique({ where: { userId: userIdString } })
+        .findUnique({
+          where: { id: memberIdString },
+        })
         .membership();
 
       if (!membership) {
@@ -40,26 +42,22 @@ export default withApiAuthRequired(
       );
 
       if (!membershipIsExpired) {
-        res.status(403).json({
+        res.json({
           statusCode: 403,
-          message: `Member: ${userIdString} was not deleted. Cannot delete member with an active membership. Cancel the membership and wait until it ends before deleting a member.`,
+          message: 'Cannot delete member with an active membership.',
         });
       } else {
         const deleted = await prisma.member.delete({
-          where: { userId: userIdString },
+          where: { id: memberIdString },
         });
         if (deleted) {
           console.log('Member deleted');
           res.status(200).json({
             statusCode: 200,
-            message: `Member: ${userIdString} was successfully deleted`,
+            message: `Member: ${memberIdString} was successfully deleted`,
           });
         } else {
-          console.log('Member Not Deleted');
-          res.status(200).json({
-            statusCode: 200,
-            message: `Member: ${userIdString} was not deleted`,
-          });
+          throw new Error();
         }
       }
     } catch (err) {
