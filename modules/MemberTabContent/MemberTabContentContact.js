@@ -6,32 +6,32 @@ import {
   TabContentRowItem,
 } from '@/components';
 
-function processMemberContactData(checkedInMember) {
-  const data = checkedInMember;
-  const contact = {
-    email: data.contact.email,
-    phoneNumber: data.contact.phoneNumber,
-    streetAddress: data.contact.streetAddress,
-    city: data.contact.city,
-    state: data.contact.state,
-    zipcode: data.contact.zipcode,
-    country: data.contact.country,
+function getMemberContactData(member) {
+  const defaultValues = {
+    email: '-',
+    phoneNumber: '-',
+    streetAddress: '-',
+    city: '-',
+    state: '-',
+    zipcode: '-',
+    country: '-',
   };
-  return contact;
+
+  if (!member) return defaultValues;
+
+  return {
+    email: member.contact.email,
+    phoneNumber: member.contact.phoneNumber,
+    streetAddress: member.contact.streetAddress,
+    city: member.contact.city,
+    state: member.contact.state,
+    zipcode: member.contact.zipcode,
+    country: member.contact.country,
+  };
 }
 
 export default function TabContentMemberContact({ member, ...props }) {
-  const contact = member
-    ? processMemberContactData(member)
-    : {
-        email: '-',
-        phoneNumber: '-',
-        streetAddress: '-',
-        city: '-',
-        state: '-',
-        zipcode: '-',
-        country: '-',
-      };
+  const contact = getMemberContactData(member);
 
   return (
     <TabsContent {...props}>

@@ -3,28 +3,46 @@ import useSWR from 'swr';
 import fetcher from '@/lib/useSWRFetcher';
 import { TabsContent, TabContentRow, TabContentRowItem } from '@/components';
 
-function processMemberDetails(member, subscriptionData) {
-  const membership = {
+function getNextBillingCycle(subscriptionData) {
+  if (subscriptionData.subscription.status === 'canceled') return '-';
+
+  return new Date(
+    subscriptionData.subscription.current_period_end * 1000
+  ).toLocaleDateString();
+}
+
+function getBillAmount(subscriptionData) {
+  return `$${(subscriptionData.subscription.plan.amount / 100).toFixed(2)}`;
+}
+
+function getMembershipDetails(member, subscriptionData) {
+  const defaultValues = {
+    status: '-',
+    signUpDate: '-',
+    membershipEnds: '-',
+    planName: '-',
+    nextBillingCycle: '-',
+    billAmount: '-',
+    contractLength: '-',
+    customerId: '-',
+    stripeSubscriptionId: '-',
+  };
+
+  if (!member || !subscriptionData) return defaultValues;
+
+  return {
     status: member.membership.status,
     signUpDate: new Date(member.membership.signUpDate).toLocaleString(),
     membershipEnds: new Date(
       member.membership.membershipEnds
     ).toLocaleDateString(),
     planName: member.membership.plan.planName,
-    nextBillingCycle:
-      subscriptionData.subscription.status === 'canceled'
-        ? '-'
-        : new Date(
-            subscriptionData.subscription.current_period_end * 1000
-          ).toLocaleDateString(),
-    billAmount: `$${(subscriptionData.subscription.plan.amount / 100).toFixed(
-      2
-    )}`,
+    nextBillingCycle: getNextBillingCycle(subscriptionData),
+    billAmount: getBillAmount(subscriptionData),
     contractLength: member.membership.plan.contractLength,
     customerId: member.membership.customerId,
     stripeSubscriptionId: member.membership.stripeSubscriptionId,
   };
-  return membership;
 }
 
 export default function TabContentMemberDetails({ member, ...props }) {
@@ -35,23 +53,7 @@ export default function TabContentMemberDetails({ member, ...props }) {
     fetcher
   );
 
-  let membership = null;
-
-  if (member && subscriptionData) {
-    membership = processMemberDetails(member, subscriptionData);
-  } else {
-    membership = {
-      status: '-',
-      signUpDate: '-',
-      membershipEnds: '-',
-      planName: '-',
-      nextBillingCycle: '-',
-      billAmount: '-',
-      contractLength: '-',
-      customerId: '-',
-      stripeSubscriptionId: '-',
-    };
-  }
+  const membership = getMembershipDetails(member, subscriptionData);
 
   return (
     <TabsContent {...props}>

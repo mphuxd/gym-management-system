@@ -9,8 +9,8 @@ import { useForm } from 'react-hook-form';
 import { Cross2Icon, DotsHorizontalIcon } from '@radix-ui/react-icons';
 import { TrashCan } from '@carbon/icons-react';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
+import { DialogMemberDelete, DialogMembershipCancel } from '@/modules';
 import {
-  AlertDialog,
   Button,
   DropdownContent,
   DropdownItem,
@@ -292,31 +292,15 @@ function TableDropdown({ row }) {
         </DropdownMenu.Group>
         <DropdownMenu.Arrow />
       </DropdownContent>
-      <AlertDialog
-        isOpen={isCancelDialogOpen}
-        setIsOpen={setIsCancelDialogOpen}
-        intent="constrained"
-        actionPhrase="cancel membership"
-        title="Cancel Membership?"
-        description="This action cannot be undone. This will permanently cancel the membership. The member will have access until the end of their billing cycle, and will be charged applicable cancellation fees."
-        close="No, go back."
-        action="Yes, cancel membership."
-        href={`/api/member/cancel/${row.id}`}
-        toastTitle="Membership Cancelled"
-        toastDescription="Successfully cancelled membership."
-      />
-      <AlertDialog
+      <DialogMemberDelete
         isOpen={isDeleteDialogOpen}
         setIsOpen={setIsDeleteDialogOpen}
-        intent="constrained"
-        actionPhrase="delete member"
-        title="Delete Member?"
-        description="This action cannot be undone. This will permanently delete the member and remove their data from our servers. If the member has an active membership, this action will fail."
-        close="No, go back."
-        action="Yes, delete member."
-        href={`/api/member/delete/${row.id}`}
-        toastTitle="Member Deleted"
-        toastDescription="Successfully deleted member."
+        memberId={row.id}
+      />
+      <DialogMembershipCancel
+        isOpen={isCancelDialogOpen}
+        setIsOpen={setIsCancelDialogOpen}
+        memberId={row.id}
       />
     </DropdownMenu.Root>
   );

@@ -33,7 +33,7 @@ const schema = yup
   })
   .required();
 
-export default function EditMemberDialogForm({
+export default function DialogEditMemberForm({
   member,
   open,
   setOpen,
@@ -230,7 +230,6 @@ export default function EditMemberDialogForm({
                     as="button"
                     label="Cancel"
                     intent="neutral"
-                    size=""
                     className="mt-4 h-fit w-fit"
                     onClick={() => setOpen(false)}
                   >
@@ -241,7 +240,6 @@ export default function EditMemberDialogForm({
                     label="Update Member"
                     type="submit"
                     intent="primary"
-                    size=""
                     className="mt-4 h-fit w-fit"
                   />
                 </Stack>
@@ -260,5 +258,5 @@ export default function EditMemberDialogForm({
     </Dialog>
   );
 
-  // @@@ Validate and normalize data
+  // @@@ Restyle this
 }

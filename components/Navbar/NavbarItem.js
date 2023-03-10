@@ -11,8 +11,9 @@ function NavbarItem({ children, className }) {
   else if (
     router.asPath.includes(children.props.href) &&
     children.props.href !== '/'
-  )
+  ) {
     isActive = true;
+  }
 
   const classNames = cx(className, {
     'py-2 px-4 relative': true, // default

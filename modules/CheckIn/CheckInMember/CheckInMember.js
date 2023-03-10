@@ -1,10 +1,10 @@
 import React from 'react';
 import * as Tabs from '@radix-ui/react-tabs';
-import Link from 'next/link';
 import {
   CheckInMemberSearch,
   CheckInMemberImage,
   CheckInMemberDropdownMenu,
+  CheckInMemberName,
   MemberTabContentCheckInHistory,
   MemberTabContentContact,
   MemberTabContentMembership,
@@ -32,15 +32,16 @@ export default function CheckInMember({ checkInHistory, mutate }) {
                   id="member-name"
                   className="items-center"
                 >
-                  <h2 className="text-4xl">
-                    <Link
-                      className="hover:underline"
-                      href={`members/details/${checkedInMember.id}`}
-                    >{`${checkedInMember.firstName} ${checkedInMember.lastName}`}</Link>
-                  </h2>
+                  <CheckInMemberName
+                    memberId={checkedInMember.id}
+                    memberFirstName={checkedInMember.firstName}
+                    memberLastName={checkedInMember.lastName}
+                  />
+                  {/* Indicates whether member should be allowed access */}
                   <Status status={checkedInMember.membership.status} />
                 </Stack>
                 <Stack className="mt-3">
+                  {/* Indicates whether member has billing issues. */}
                   <StatusMessage
                     subscriptionId={
                       checkedInMember.membership.stripeSubscriptionId
@@ -57,7 +58,7 @@ export default function CheckInMember({ checkInHistory, mutate }) {
           <div className="w-full">
             <Tabs.Root defaultValue="overview">
               <Stack direction="row" className="justify-between border-b">
-                <Tabs.List aria-label="checked in member details">
+                <Tabs.List aria-label="Member details">
                   <Stack direction="row" className="gap-x-[2px]">
                     <TabsTrigger value="overview">Overview</TabsTrigger>
                     <TabsTrigger value="contact">Contact</TabsTrigger>
@@ -76,7 +77,6 @@ export default function CheckInMember({ checkInHistory, mutate }) {
                   />
                 )}
               </Stack>
-
               <MemberTabContentOverview
                 value="overview"
                 member={checkedInMember}

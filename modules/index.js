@@ -1,3 +1,3 @@
 export * from './CheckIn';
-export * from './EditMemberDialogForm';
+export * from './Dialogs';
 export * from './MemberTabContent';

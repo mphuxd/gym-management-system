@@ -30,19 +30,23 @@ const AlertDialog = React.forwardRef(
     // eslint-disable-next-line no-unused-vars
     const [toast, setToast] = useAtom(toastAtom);
 
+    function sendToast() {
+      if (toastTitle && toastDescription) {
+        setToast({
+          title: toastTitle,
+          description: toastDescription,
+          isOpen: true,
+          intent: 'success',
+        });
+      }
+    }
+
     async function handleAction() {
       const response = await fetch(href);
       const results = await response.json();
       if (results.statusCode === 200) {
         setIsOpen(false);
-        if (toastTitle && toastDescription) {
-          setToast({
-            title: toastTitle,
-            description: toastDescription,
-            isOpen: true,
-            intent: 'success',
-          });
-        }
+        sendToast();
       }
       if (results.statusCode === 403) {
         setError(results.message);
@@ -85,28 +89,29 @@ const AlertDialog = React.forwardRef(
             </div>
             <AlertDialogPrimitive.Description>
               {description}
-            </AlertDialogPrimitive.Description>
-            {intent === 'constrained' && (
-              <div className="flex flex-col">
-                <div className="mt-4 text-gray11">
-                  To continue, enter the phrase
-                  <span className="font-bold text-black">{` ${actionPhrase}`}</span>
-                </div>
-                {error && (
-                  <div className="flex flex-row items-center mt-2 gap-x-1 ">
-                    <ErrorFilled className="fill-red11" />
-                    <div className="text-red11">{error}</div>
+              {intent === 'constrained' && (
+                <div className="flex flex-col">
+                  <div className="mt-4 text-gray11">
+                    To continue, enter the phrase
+                    <span className="font-bold text-black">{` ${actionPhrase}`}</span>
                   </div>
-                )}
-                <input
-                  placeholder={actionPhrase}
-                  type="text"
-                  input={input}
-                  onInput={(e) => setInput(e.target.value)}
-                  className="w-full outline outline-1 outline-gray10 px-2 py-1 my-4"
-                />
-              </div>
-            )}
+                  {error && (
+                    <div className="flex flex-row items-center mt-2 gap-x-1 ">
+                      <ErrorFilled className="fill-red11" />
+                      <div className="text-red11">{error}</div>
+                    </div>
+                  )}
+                  <input
+                    placeholder={actionPhrase}
+                    type="text"
+                    input={input}
+                    onInput={(e) => setInput(e.target.value)}
+                    className="w-full outline outline-1 outline-gray10 px-2 py-1 my-4"
+                  />
+                </div>
+              )}
+            </AlertDialogPrimitive.Description>
+
             <div className="flex flex-row justify-end gap-x-6">
               <AlertDialogPrimitive.Cancel
                 asChild

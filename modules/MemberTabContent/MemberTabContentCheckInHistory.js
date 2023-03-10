@@ -19,7 +19,7 @@ function getRows(checkInHistory) {
 // @@@ Update values after check-in refactor
 
 export default function MemberTabContentCheckInHistory({ member, ...props }) {
-  if (member && member.checkIns.length > 0) {
+  if (member && member?.checkIns.length > 0) {
     const memberCheckInHistory = Array.from(member.checkIns).reverse();
     const rows = getRows(memberCheckInHistory).slice(0, 9);
     return (

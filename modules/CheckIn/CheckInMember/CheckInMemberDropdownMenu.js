@@ -3,15 +3,18 @@ import Link from 'next/link';
 import { ChevronDownIcon, Cross2Icon } from '@radix-ui/react-icons';
 import { TrashCan } from '@carbon/icons-react';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-import { EditMemberDialogForm } from '@/modules';
 import {
-  AlertDialog,
   Button,
   DropdownContent,
   DropdownItem,
   DropdownSeparator,
   DropdownTrigger,
 } from '@/components';
+import {
+  DialogEditMemberForm,
+  DialogMemberDelete,
+  DialogMembershipCancel,
+} from '@/modules';
 
 function CheckInMemberDropdownMenu({ checkedInMember, mutate }) {
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
@@ -81,39 +84,21 @@ function CheckInMemberDropdownMenu({ checkedInMember, mutate }) {
           <DropdownMenu.Arrow />
         </DropdownContent>
       </DropdownMenu.Root>
-
-      <EditMemberDialogForm
+      <DialogEditMemberForm
         member={checkedInMember}
         open={isEditDialogOpen}
         setOpen={setIsEditDialogOpen}
         mutate={mutate}
       />
-
-      <AlertDialog
-        isOpen={isCancelDialogOpen}
-        setIsOpen={setIsCancelDialogOpen}
-        intent="constrained"
-        actionPhrase="cancel membership"
-        title="Cancel Membership?"
-        description="This action cannot be undone. This will permanently cancel the membership. The member will have access until the end of their billing cycle, and will be charged applicable cancellation fees."
-        close="No, go back."
-        action="Yes, cancel membership."
-        href={`/api/member/cancel/${checkedInMember.id}`}
-        toastTitle="Membership Cancelled"
-        toastDescription="Successfully cancelled membership."
-      />
-      <AlertDialog
+      <DialogMemberDelete
         isOpen={isDeleteDialogOpen}
         setIsOpen={setIsDeleteDialogOpen}
-        intent="constrained"
-        actionPhrase="delete member"
-        title="Delete Member?"
-        description="This action cannot be undone. This will permanently delete the member and remove their data from our servers. If the member has an active membership, this action will fail."
-        close="No, go back."
-        action="Yes, delete member."
-        href={`/api/member/delete/${checkedInMember.id}`}
-        toastTitle="Member Deleted"
-        toastDescription="Successfully deleted member."
+        memberId={checkedInMember.id}
+      />
+      <DialogMembershipCancel
+        isOpen={isCancelDialogOpen}
+        setIsOpen={setIsCancelDialogOpen}
+        memberId={checkedInMember.id}
       />
     </>
   );

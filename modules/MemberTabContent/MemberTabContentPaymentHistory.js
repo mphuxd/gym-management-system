@@ -12,7 +12,7 @@ import {
 
 function getRows(invoices) {
   return invoices.data.map((invoice) => ({
-    amount: invoice.amount_due,
+    amount: `$${(invoice.amount_due / 100).toFixed(2)}`,
     id: invoice.number,
     status: invoice.status,
     description: invoice.description,
@@ -28,9 +28,8 @@ export default function MemberTabContentPaymentHistory({ member, ...props }) {
     fetcher
   );
 
-  if (data && data.invoices.data.length > 0) {
-    const { invoices } = data;
-    const rows = getRows(invoices).slice(0, 10);
+  if (data && data?.invoices.data.length > 0) {
+    const rows = getRows(data.invoices).slice(0, 10);
     return (
       <TabsContent {...props}>
         <Stack>
@@ -41,7 +40,7 @@ export default function MemberTabContentPaymentHistory({ member, ...props }) {
             render={(row) => (
               <>
                 <TableRowCell className="w-[1px] whitespace-nowrap py-1 px-2">
-                  <div>{`$${(row.amount / 100).toFixed(2)}`}</div>
+                  <div>{row.amount}</div>
                 </TableRowCell>
                 <TableRowCell className="w-[1px] whitespace-nowrap py-1 px-2">
                   <div>{row.id}</div>
@@ -60,7 +59,7 @@ export default function MemberTabContentPaymentHistory({ member, ...props }) {
           />
           <span className="text-sm text-gray11 p-2">
             {`Displaying ${rows.length + 1} of ${
-              invoices.data.length + 1
+              data.invoices.data.length + 1
             } payments.`}
           </span>
         </Stack>
@@ -72,7 +71,7 @@ export default function MemberTabContentPaymentHistory({ member, ...props }) {
       <Stack>
         <TabContentRow>
           <TabContentRowItem
-            label="Check-ins"
+            label="Payments"
             space="full"
             value={<div className="flex flex-col">No results found.</div>}
           />
@@ -82,4 +81,4 @@ export default function MemberTabContentPaymentHistory({ member, ...props }) {
   );
 }
 
-// @@@ Add pagination & refactor into table
+// @@@ Add pagination

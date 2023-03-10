@@ -6,28 +6,9 @@ import {
   TabContentRowItem,
 } from '@/components';
 
-function processMemberOverview(checkedInMember) {
-  const data = checkedInMember;
-  const overview = {
-    id: data.id,
-    firstName: data.firstName,
-    lastName: data.lastName,
-    middleName: '-',
-    name: `${data.firstName} ${data.lastName}`,
-    userId: data.userId,
-    status: data.membership.status,
-    membershipPlan: data.membership.plan.planName,
-    notes: data.notes,
-  };
-  return overview;
-}
-
-export default function TabContentMemberOverview({ member, ...props }) {
-  let overview = {
+function getMemberOverview(member) {
+  const defaultValues = {
     id: '-',
-    firstName: '-',
-    lastName: '-',
-    middleName: '-',
     name: '-',
     userId: '-',
     status: '-',
@@ -35,7 +16,20 @@ export default function TabContentMemberOverview({ member, ...props }) {
     notes: '-',
   };
 
-  if (member) overview = processMemberOverview(member);
+  if (!member) return defaultValues;
+
+  return {
+    id: member.id,
+    name: `${member.firstName} ${member.lastName}`,
+    userId: member.userId || defaultValues.userId,
+    status: member.membership.status,
+    membershipPlan: member.membership.plan.planName,
+    notes: member.notes || defaultValues.notes,
+  };
+}
+
+export default function TabContentMemberOverview({ member, ...props }) {
+  const overview = getMemberOverview(member);
 
   return (
     <TabsContent {...props}>

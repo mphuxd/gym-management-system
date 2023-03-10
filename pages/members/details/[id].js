@@ -10,7 +10,6 @@ import * as Tabs from '@radix-ui/react-tabs';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import fetcher from '@/lib/useSWRFetcher';
 import {
-  AlertDialog,
   Button,
   DropdownContent,
   DropdownItem,
@@ -27,7 +26,9 @@ import {
 } from '@/components';
 import {
   CheckInMemberImage,
-  EditMemberDialogForm,
+  DialogEditMemberForm,
+  DialogMembershipCancel,
+  DialogMemberDelete,
   MemberTabContentMembership,
   MemberTabContentCheckInHistory,
   MemberTabContentPaymentHistory,
@@ -38,12 +39,11 @@ export const getServerSideProps = withPageAuthRequired();
 export default function UserId() {
   const router = useRouter();
   const { id } = router.query;
-
   // eslint-disable-next-line prefer-const
-  let { data: member, mutate } = useSWR(`/api/member/getMember/${id}`, fetcher);
+  let { data, mutate } = useSWR(`/api/member/getMember/${id}`, fetcher);
 
-  if (member) {
-    member = member.member;
+  if (data) {
+    const member = data?.member;
     return (
       <Screen as="section">
         <Stack direction="row">
@@ -245,37 +245,21 @@ function MemberDropdownMenu({ member, mutate }) {
           <DropdownMenu.Arrow />
         </DropdownContent>
       </DropdownMenu.Root>
-      <EditMemberDialogForm
+      <DialogEditMemberForm
         member={member}
         open={isEditDialogOpen}
         setOpen={setIsEditDialogOpen}
         mutate={mutate}
       />
-      <AlertDialog
-        isOpen={isCancelDialogOpen}
-        setIsOpen={setIsCancelDialogOpen}
-        intent="constrained"
-        actionPhrase="cancel membership"
-        title="Cancel Membership?"
-        description="This action cannot be undone. This will permanently cancel the membership. The member will have access until the end of their billing cycle, and will be charged applicable cancellation fees."
-        close="No, go back."
-        action="Yes, cancel membership."
-        href={`/api/member/cancel/${member.id}`}
-        toastTitle="Membership Cancelled"
-        toastDescription="Successfully cancelled membership."
-      />
-      <AlertDialog
+      <DialogMemberDelete
         isOpen={isDeleteDialogOpen}
         setIsOpen={setIsDeleteDialogOpen}
-        intent="constrained"
-        actionPhrase="delete member"
-        title="Delete Member?"
-        description="This action cannot be undone. This will permanently delete the member and remove their data from our servers. If the member has an active membership, this action will fail."
-        close="No, go back."
-        action="Yes, delete member."
-        href={`/api/member/delete/${member.id}`}
-        toastTitle="Member Deleted"
-        toastDescription="Successfully deleted member."
+        memberId={member.id}
+      />
+      <DialogMembershipCancel
+        isOpen={isCancelDialogOpen}
+        setIsOpen={setIsCancelDialogOpen}
+        memberId={member.id}
       />
     </>
   );

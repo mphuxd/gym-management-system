@@ -9,10 +9,8 @@ import {
 } from '@carbon/icons-react';
 import fetcher from '@/lib/useSWRFetcher';
 
-const notificationStyles = cva(
-  [
-    'flex flex-row gap-x-1 outline outline-1 px-2 py-1 w-fit border-l-2 border-solid',
-  ],
+const statusMessageStyles = cva(
+  'flex flex-row gap-x-1 outline outline-1 px-2 py-1 w-fit border-l-2 border-solid',
   {
     variants: {
       intent: {
@@ -92,13 +90,15 @@ function StatusMessage({ subscriptionId, className, size }) {
       if (
         subscription.subscription.cancellation_details.reason ===
         'cancellation_requested'
-      )
+      ) {
         subtitle = 'Requested by member.';
+      }
       if (
         subscription.subscription.cancellation_details.reason ===
         'payment_failed'
-      )
+      ) {
         subtitle = 'Repeated failed payment attempts.';
+      }
       color = 'red10';
       icon = (
         <ErrorFilled className={cx(iconClassNames, `inline fill-${color}`)} />
@@ -117,7 +117,7 @@ function StatusMessage({ subscriptionId, className, size }) {
       break;
   }
 
-  const classNames = cx(notificationStyles({ intent }), className);
+  const classNames = cx(statusMessageStyles({ intent }), className);
 
   return (
     subscription &&

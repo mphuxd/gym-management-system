@@ -88,7 +88,6 @@ export default function Home() {
                 </li>
               </ul>
             </Stack>
-
             <Stack className="col-span-2 gap-y-8">
               <Stack className="hover:bg-slate4 focus:bg-slate5 active:bg-slate5 p-4">
                 <DashboardNotes />
@@ -175,7 +174,6 @@ function DashboardNotes() {
           <ScrollArea.Thumb className="flex-grow w-1 rounded-lg bg-gray-400 relative" />
         </ScrollArea.Scrollbar>
         <ScrollArea.Corner className="bg-black" />
-
         <DashboardNotesDialog
           open={open}
           setOpen={setOpen}
@@ -246,10 +244,9 @@ function DashboardNotesDialog({ open, setOpen, note, refetch }) {
         <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
           <FormField
             id="note"
-            label={null}
             as="textarea"
             type="text"
-            className="h-80"
+            className="h-48"
             defaultValue={note.note}
             register={register}
           />

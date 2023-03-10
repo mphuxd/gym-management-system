@@ -48,6 +48,6 @@ function TablePagination({
   );
 }
 
-// TO-DO: Add support for variable page size
+// @@@ TO-DO: Add support for variable page size
 
 export default TablePagination;
