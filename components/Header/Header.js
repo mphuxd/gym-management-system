@@ -24,7 +24,7 @@ function Header() {
             width={48}
             height={48}
             className="py-2"
-            src="/images/logo/evolve.svg"
+            src="/images/logo/evolve_fragments.svg"
             alt="Evolve Gyms Logo is a triangle with 3 intersecting lines radiating from the center."
           />
           <span

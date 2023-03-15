@@ -93,7 +93,10 @@ export default function DialogEditMemberForm({
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent className="inset-1/2 -translate-x-1/2 -translate-y-1/2 h-3/4 w-fit">
+      <DialogContent
+        rounded={false}
+        className="inset-1/2 -translate-x-1/2 -translate-y-1/2 h-3/4 w-fit"
+      >
         <ScrollArea.Root
           tabIndex="0"
           className="relative h-full overflow-hidden hover:cursor-pointer"

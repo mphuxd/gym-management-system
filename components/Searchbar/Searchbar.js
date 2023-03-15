@@ -11,7 +11,7 @@ const searchBarStyles = cva(['relative pl-6 text-sm'], {
       tertiary:
         'text-slate11 outline-blue9 outline outline-[1px] hover:text-white hover:shadow-sm hover:bg-blue11 active:bg-blue11',
       neutral:
-        'focus:ring-0 focus:outline-none focus:ring-offset-0 border-b border-blue-400 bg-gray-100 text-slate-600',
+        'focus:ring-0 h-8 focus:outline-none focus:ring-offset-0 border-2  border-blue9 focus:border-blue10 hover:border-blue11 bg-white hover:bg-gray3 focus:bg-gray2 active:bg-gray2  text-slate-600',
     },
     size: {
       small: 'w-60 py-1 px-2',
