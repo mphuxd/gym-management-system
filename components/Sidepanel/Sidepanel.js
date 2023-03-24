@@ -4,9 +4,11 @@ import cx from 'classnames';
 function Sidepanel({ children, className }) {
   const classNames = cx(
     className,
-    'min-w-[376px] w-[376px] p-8 flex flex-col h-full min-h-screen-calc border-r border-black'
+    'flex flex-col w-left-sidepanel p-8  border-r border-secondary min-h-screen-no-header h-ful'
   );
   return <aside className={classNames}>{children}</aside>;
 }
 
 export default Sidepanel;
+
+// @@@ revisit border style
