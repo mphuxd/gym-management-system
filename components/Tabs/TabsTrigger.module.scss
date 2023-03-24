@@ -1,0 +1,21 @@
+.trigger {
+  @apply relative bg-transparent py-2 px-4 tracking-[0.012em] text-slate8Dark;
+
+  &:after {
+    @apply absolute bottom-0 left-1/2 block 
+    h-0.5 w-full -translate-x-1/2 transform bg-border-strong-dark content-[""];
+  }
+
+  &:hover {
+    @apply bg-gray5 text-slate3Dark;
+  }
+
+  &[data-state='active'] {
+    @apply relative font-medium text-body;
+
+    &:after {
+      @apply absolute bottom-0 left-1/2 block 
+        h-0.5 w-full -translate-x-1/2 transform bg-primary content-[""];
+    }
+  }
+}

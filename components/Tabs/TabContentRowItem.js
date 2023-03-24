@@ -4,26 +4,17 @@ import * as Label from '@radix-ui/react-label';
 
 function TabContentRowItem({ label, value = '-', space }) {
   const id = label.toLowerCase().replaceAll(' ', '-');
-  let basisValue = null;
 
-  switch (space) {
-    case 'half':
-      basisValue = 'basis-1/2';
-      break;
-    case 'third':
-      basisValue = 'basis-1/3';
-      break;
-    default:
-      basisValue = 'basis-full';
-  }
-
-  const defaultClassName = 'flex flex-col';
-  const classNames = cx(defaultClassName, basisValue);
+  const classNames = cx('flex flex-col', {
+    'basis-1/2': space === 'half',
+    'basis-1/3': space === 'third',
+    'basis-full': space === 'full' || null,
+  });
 
   return (
     <div className={classNames}>
       <Label.Root
-        className="text-sm mb-1 font-medium text-gray-500"
+        className="mb-1 text-sm font-medium text-support"
         htmlFor={id}
       >
         {label}
