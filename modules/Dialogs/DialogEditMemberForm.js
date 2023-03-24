@@ -92,16 +92,14 @@ export default function DialogEditMemberForm({
   }
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog tabIndex={-1} open={open} onOpenChange={setOpen}>
       <DialogContent
+        tabIndex={-1}
         rounded={false}
-        className="inset-1/2 -translate-x-1/2 -translate-y-1/2 h-3/4 w-fit"
+        className="inset-0 m-auto h-3/4 w-fit outline-none"
       >
-        <ScrollArea.Root
-          tabIndex="0"
-          className="relative h-full overflow-hidden hover:cursor-pointer"
-        >
-          <ScrollArea.Viewport className="h-full w-full pb-20">
+        <ScrollArea.Root className="relative h-full overflow-hidden hover:cursor-pointer outline-none">
+          <ScrollArea.Viewport className="h-full w-full pb-20 outline-none">
             <Stack className="space-y-8 p-8 h-full">
               <Stack direction="row" className="justify-between items-center">
                 <DialogTitle>Edit Member</DialogTitle>
@@ -110,7 +108,7 @@ export default function DialogEditMemberForm({
 
               <form
                 tabIndex={-1}
-                className="flex flex-col gap-y-4 "
+                className="flex flex-col gap-y-4 outline-none"
                 onSubmit={handleSubmit(onSubmit)}
               >
                 <Stack direction="row" className="gap-x-4">

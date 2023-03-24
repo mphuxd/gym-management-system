@@ -42,7 +42,7 @@ export default function CheckInSidepanel({ checkInHistory }) {
           </Stack>
         </AccordionItem>
       </Accordion>
-      <Separator className="my-4" />
+      <Separator className="my-4 bg-border-strong" />
       <CheckInHistory className="h-1/2" checkInHistory={checkInHistory} />
     </Sidepanel>
   );
@@ -168,8 +168,6 @@ function CheckInHistory({ checkInHistory }) {
           />
           <TablePagination
             totalItems={history.length}
-            backText="Previous"
-            nextText="Next"
             pageSize={currentPageSize}
             pageSizes={[5, 10, 15, 25]}
             onChange={(page, pageSize) => {

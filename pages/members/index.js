@@ -11,7 +11,6 @@ import { TrashCan } from '@carbon/icons-react';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { DialogMemberDelete, DialogMembershipCancel } from '@/modules';
 import {
-  Button,
   DropdownContent,
   DropdownItem,
   DropdownSeparator,
@@ -127,7 +126,10 @@ export default function Members() {
     const rows = allRows.slice(firstRowIndex, firstRowIndex + currentPageSize);
     return (
       <Screen>
-        <Grid as="section" className="gap-y-0 mx-auto auto-rows-min p-8">
+        <Grid
+          as="section"
+          className="max-w-[1920px] gap-y-0 mx-auto auto-rows-min p-8"
+        >
           <div className="col-span-full mb-2">
             <h1 className="font-semibold text-lg">Members</h1>
           </div>
@@ -139,55 +141,44 @@ export default function Members() {
               <Searchbar
                 name="searchValue"
                 placeholder="Search"
-                intent="primary"
+                intent="neutral"
                 size="base"
                 onChange={onChange}
                 {...register('searchValue')}
               />
             </Stack>
-            <Stack direction="row" className="gap-x-2">
-              <Button
-                className="text-gray-600"
-                as="div"
-                size="small"
-                variant="default"
-              >
-                Filter
-              </Button>
-              {/* TO:DO: Add Filter */}
-              <Button disabled as="button" size="small" variant="default">
-                Reset Filter
-              </Button>
-            </Stack>
           </Stack>
-          <div className="col-span-full h-fit mt-4">
-            <Table
-              headers={headers}
-              rows={rows}
-              onClick={(e, row) => {
-                e.stopPropagation();
-                e.preventDefault();
-                router.push(`members/details/${row.id}`);
-              }}
-              render={(row, idx) => (
-                <>
-                  {Object.values(row).map((cell, jdx) => {
-                    if (jdx !== 0) {
-                      return (
-                        // eslint-disable-next-line react/no-array-index-key
-                        <TableRowCell className="px-2" key={jdx}>
-                          {cell}
-                        </TableRowCell>
-                      );
-                    }
-                    return null;
-                  })}
-                  <TableRowCell key={idx}>
-                    <TableDropdown row={row} />
-                  </TableRowCell>
-                </>
-              )}
-            />
+          <div className="col-span-full h-fit">
+            <div className="h-[378px] bg-white">
+              <Table
+                className=""
+                headers={headers}
+                rows={rows}
+                onClick={(e, row) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  router.push(`members/details/${row.id}`);
+                }}
+                render={(row, idx) => (
+                  <>
+                    {Object.values(row).map((cell, jdx) => {
+                      if (jdx !== 0) {
+                        return (
+                          // eslint-disable-next-line react/no-array-index-key
+                          <TableRowCell className="px-2" key={jdx}>
+                            {cell}
+                          </TableRowCell>
+                        );
+                      }
+                      return null;
+                    })}
+                    <TableRowCell key={idx}>
+                      <TableDropdown row={row} />
+                    </TableRowCell>
+                  </>
+                )}
+              />
+            </div>
             <TablePagination
               totalItems={allRows.length}
               backText="Previous"
@@ -220,16 +211,16 @@ function TableDropdown({ row }) {
           e.preventDefault();
           e.stopPropagation();
         }}
-        className="mx-auto p-2 hover:shadow-xl hover:outline outline-1 rounded-lg outline-gray7 active:outline-gray8 active:outline overflow-hidden block"
+        className="mx-auto p-2 hover:shadow-xl hover:outline outline-2 outline-blue9 active:outline-blue9 active:outline overflow-hidden block bg-transparent"
       >
         <DotsHorizontalIcon />
       </DropdownMenu.Trigger>
       <DropdownContent onClick={(e) => e.stopPropagation()} align="end">
         <DropdownMenu.Group>
-          <DropdownItem>
+          <DropdownItem asChild>
             <Link href={`members/details/${row.id}`}>View Member Details</Link>
           </DropdownItem>
-          <DropdownItem>
+          <DropdownItem asChild>
             <button
               type="button"
               onClick={async () => {
@@ -265,7 +256,7 @@ function TableDropdown({ row }) {
         </DropdownMenu.Group>
         <DropdownSeparator />
         <DropdownMenu.Group>
-          <DropdownItem>
+          <DropdownItem asChild>
             <button
               type="button"
               className="text-red11 flex items-center gap-x-1"
@@ -277,7 +268,7 @@ function TableDropdown({ row }) {
               Cancel Membership
             </button>
           </DropdownItem>
-          <DropdownItem>
+          <DropdownItem asChild>
             <button
               type="button"
               className="text-red11 flex items-center gap-x-1"

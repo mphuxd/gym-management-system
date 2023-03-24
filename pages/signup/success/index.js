@@ -31,7 +31,7 @@ export default function SignUpSuccess() {
 
   return (
     <Screen>
-      <Grid className="gap-8 mx-auto p-8 relative min-h-screen-calc">
+      <Grid className="gap-8 mx-auto p-8 relative min-h-screen-no-header">
         <Stack className="col-start-2 col-span-5 gap-12">
           <Stack>
             <h3 className="text-4xl mb-4 leading-normal">Thank you!</h3>
@@ -68,7 +68,7 @@ export default function SignUpSuccess() {
               </li>
             </ul>
             {checkoutSession && (
-              <Button as="div" intent="primary" rounded={false} size="large">
+              <Button as="div" intent="primary" size="large">
                 <Link
                   href={`/members/details/${checkoutSession.membership.member.id}`}
                 >

@@ -111,16 +111,15 @@ export default function UserId() {
           >
             <Tabs.Root className="col-span-full" defaultValue="membership">
               <Tabs.List
-                className="w-full justify-between border-b flex flex-row gap-x-[2px]"
-                aria-label="tabs"
+                className="w-full justify-between border-b flex flex-row gap-x-[2px] border-border-subtle-dark"
+                aria-label="Member details"
               >
-                <div>
+                <Stack direction="row" className="gap-x-[2px]">
                   <TabsTrigger value="membership">Membership</TabsTrigger>
                   <TabsTrigger value="history">Check-in History</TabsTrigger>
                   <TabsTrigger value="payments">Payments</TabsTrigger>
                   <TabsTrigger value="appointments">Appointments</TabsTrigger>
-                </div>
-
+                </Stack>
                 <MemberDropdownMenu member={member} mutate={mutate} />
               </Tabs.List>
               <MemberTabContentMembership value="membership" member={member} />
@@ -154,7 +153,6 @@ function MemberDropdownMenu({ member, mutate }) {
             as="div"
             size="large"
             intent="tertiary"
-            rounded="false"
           >
             <span>Actions</span>
             <ChevronDownIcon />
@@ -162,7 +160,7 @@ function MemberDropdownMenu({ member, mutate }) {
         </DropdownTrigger>
         <DropdownContent className="shadow-xl" align="end">
           <DropdownMenu.Group>
-            <DropdownItem>
+            <DropdownItem asChild>
               <button
                 type="button"
                 onClick={async () => {
@@ -195,7 +193,7 @@ function MemberDropdownMenu({ member, mutate }) {
                 Check In Member
               </button>
             </DropdownItem>
-            <DropdownItem>
+            <DropdownItem asChild>
               <button
                 type="button"
                 className="hover:cursor-not-allowed"
@@ -206,7 +204,7 @@ function MemberDropdownMenu({ member, mutate }) {
             </DropdownItem>
           </DropdownMenu.Group>
           <DropdownMenu.Group>
-            <DropdownItem>
+            <DropdownItem asChild>
               <button
                 type="button"
                 onClick={() => {
@@ -217,10 +215,10 @@ function MemberDropdownMenu({ member, mutate }) {
               </button>
             </DropdownItem>
             <DropdownSeparator />
-            <DropdownItem>
+            <DropdownItem asChild>
               <button
                 type="button"
-                className="text-red-600 flex items-center gap-x-1"
+                className="text-error flex items-center gap-x-1"
                 onClick={() => {
                   setIsCancelDialogOpen(true);
                 }}
@@ -229,10 +227,10 @@ function MemberDropdownMenu({ member, mutate }) {
                 Cancel Membership
               </button>
             </DropdownItem>
-            <DropdownItem>
+            <DropdownItem asChild>
               <button
                 type="button"
-                className="text-red-600 flex items-center gap-x-1"
+                className="text-error flex items-center gap-x-1"
                 onClick={() => {
                   setIsDeleteDialogOpen(true);
                 }}

@@ -18,7 +18,10 @@ export default function CheckInMember({ checkInHistory, mutate }) {
     checkInHistory.checkins[checkInHistory.checkins.length - 1].member;
 
   return (
-    <Grid as="section" className="w-full max-w-[1544px] p-8 mx-auto">
+    <Grid
+      as="section"
+      className="w-full max-w-[theme(width.content)] p-8 mx-auto"
+    >
       <Stack id="dashboard-member-checkin" className="col-span-full gap-y-8">
         <h1>Check In Member</h1>
         {/* Row 1 - Image/Name/Search */}
@@ -57,7 +60,10 @@ export default function CheckInMember({ checkInHistory, mutate }) {
         <Stack as="section" className="gap-x-4">
           <div className="w-full">
             <Tabs.Root defaultValue="overview">
-              <Stack direction="row" className="justify-between border-b">
+              <Stack
+                direction="row"
+                className="justify-between border-b border-border-subtle-dark"
+              >
                 <Tabs.List aria-label="Member details">
                   <Stack direction="row" className="gap-x-[2px]">
                     <TabsTrigger value="overview">Overview</TabsTrigger>

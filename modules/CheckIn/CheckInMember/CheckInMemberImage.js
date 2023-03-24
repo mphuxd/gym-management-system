@@ -27,11 +27,12 @@ export default function CheckinMemberImage({ checkedInMember }) {
           priority
           className="h-[200px] w-[180px]"
         />
-        <div className="opacity-0 hover:opacity-100 absolute h-full w-full inset-0 p-4">
+        <div className=" absolute h-full w-full inset-0 p-4">
           <button
+            tabIndex={0}
             type="button"
             onClick={() => setOpenWebcam(true)}
-            className="bg-white p-2"
+            className="bg-white p-2 opacity-0 focus:opacity-100 hover:opacity-100"
           >
             Edit Image
           </button>

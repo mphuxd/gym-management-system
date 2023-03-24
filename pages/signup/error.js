@@ -11,7 +11,7 @@ export default function SignUpError() {
     <Screen>
       <Grid
         columns={12}
-        className="w-full gap-8 mx-auto p-8 relative min-h-screen-calc"
+        className="w-full gap-8 mx-auto p-8 relative min-h-screen-no-header"
       >
         <Stack className="col-start-2 col-span-5 gap-12 h-full">
           <Stack className="">
@@ -30,7 +30,7 @@ export default function SignUpError() {
             <p className="mb-4">
               Click the link below to try signing up a new member again.
             </p>
-            <Button as="div" intent="primary" rounded={false} size="large">
+            <Button as="div" intent="primary" size="large">
               <Link href="/signup" className="">
                 Sign Up New Member
               </Link>
