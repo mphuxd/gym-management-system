@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog';
-import { Cross2Icon } from '@radix-ui/react-icons';
 import { ErrorFilled } from '@carbon/icons-react';
 import { useAtom } from 'jotai';
-import { Button } from '@/components';
+import { AlertDialogCross, Button } from '@/components';
 import { toastAtom } from '@/atoms';
 
 const AlertDialog = React.forwardRef(
@@ -54,8 +53,11 @@ const AlertDialog = React.forwardRef(
       }
     }
 
-    const handleOpenChange = () => {
-      setIsOpen();
+    const handleOpenChange = (e) => {
+      if (e) {
+        e.stopPropagation();
+      }
+      setIsOpen(!isOpen);
       setError('');
       setInput('');
     };
@@ -68,48 +70,51 @@ const AlertDialog = React.forwardRef(
         {...props}
       >
         <AlertDialogPrimitive.Portal>
-          <AlertDialogPrimitive.Overlay className="fixed bg-mauve12 opacity-70 inset-0" />
+          <AlertDialogPrimitive.Overlay
+            onClick={handleOpenChange}
+            className="fixed inset-0 z-10 bg-overlay-neg opacity-70"
+          />
           <AlertDialogPrimitive.Content
+            tabIndex={-1}
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
             }}
-            className="absolute inset-1/2 -translate-x-1/2 -translate-y-3/4 h-fit w-[640px] bg-white p-6 rounded-lg space-y-4"
+            className="absolute inset-1/2 z-20 h-fit w-[640px] -translate-x-1/2 -translate-y-3/4 space-y-4 bg-layer p-6"
           >
             <div className="flex flex-row justify-between">
               <AlertDialogPrimitive.Title className="font-semibold">
                 {title}
               </AlertDialogPrimitive.Title>
-              <div className="p-2 block hover:bg-slate4 rounded-sm focus:outline focus:outline-slate7 active:bg-slate5">
-                <Cross2Icon
-                  onClick={handleOpenChange}
-                  className="hover:cursor-pointer"
-                />
-              </div>
+              <AlertDialogCross onClick={handleOpenChange} />
             </div>
-            <AlertDialogPrimitive.Description>
-              {description}
-              {intent === 'constrained' && (
-                <div className="flex flex-col">
-                  <div className="mt-4 text-gray11">
-                    To continue, enter the phrase
-                    <span className="font-bold text-black">{` ${actionPhrase}`}</span>
-                  </div>
-                  {error && (
-                    <div className="flex flex-row items-center mt-2 gap-x-1 ">
-                      <ErrorFilled className="fill-red11" />
-                      <div className="text-red11">{error}</div>
+            <AlertDialogPrimitive.Description asChild>
+              <div>
+                {description}
+                {intent === 'constrained' && (
+                  <div className="flex flex-col">
+                    <div>
+                      <span className="mt-4 inline-block text-support">
+                        To continue, enter the phrase
+                      </span>
+                      <span className="font-bold">{` ${actionPhrase}`}</span>
                     </div>
-                  )}
-                  <input
-                    placeholder={actionPhrase}
-                    type="text"
-                    input={input}
-                    onInput={(e) => setInput(e.target.value)}
-                    className="w-full outline outline-1 outline-gray10 px-2 py-1 my-4"
-                  />
-                </div>
-              )}
+                    {error && (
+                      <div className="mt-2 flex flex-row items-center gap-x-1 text-neg-text">
+                        <ErrorFilled className="fill-icon-neg" />
+                        <div>{error}</div>
+                      </div>
+                    )}
+                    <input
+                      placeholder={actionPhrase}
+                      type="text"
+                      input={input}
+                      onInput={(e) => setInput(e.target.value)}
+                      className="my-4 w-full px-2 py-1 outline outline-1 outline-border-interactive"
+                    />
+                  </div>
+                )}
+              </div>
             </AlertDialogPrimitive.Description>
 
             <div className="flex flex-row justify-end gap-x-6">
@@ -117,7 +122,9 @@ const AlertDialog = React.forwardRef(
                 asChild
                 onClick={(e) => e.stopPropagation()}
               >
-                <Button as="button">{close}</Button>
+                <Button as="button" role="button">
+                  {close}
+                </Button>
               </AlertDialogPrimitive.Cancel>
               <AlertDialogPrimitive.Action
                 asChild
@@ -129,9 +136,10 @@ const AlertDialog = React.forwardRef(
               >
                 {intent === 'constrained' ? (
                   <Button
+                    as="button"
+                    role="button"
                     disabled={input !== actionPhrase}
                     intent={input !== actionPhrase ? 'disabled' : 'danger'}
-                    as="button"
                   >
                     {action}
                   </Button>

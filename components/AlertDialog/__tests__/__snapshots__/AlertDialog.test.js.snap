@@ -4,7 +4,7 @@ exports[`AlertDialog   in "constrained" intent, action button should be disabled
 <div
   aria-describedby="radix-:r8:"
   aria-labelledby="radix-:r7:"
-  class="absolute inset-1/2 -translate-x-1/2 -translate-y-3/4 h-fit w-[640px] bg-white p-6 rounded-lg space-y-4"
+  class="absolute inset-1/2 z-20 h-fit w-[640px] -translate-x-1/2 -translate-y-3/4 space-y-4 bg-layer p-6"
   data-state="open"
   id="radix-:r6:"
   role="alertdialog"
@@ -20,11 +20,12 @@ exports[`AlertDialog   in "constrained" intent, action button should be disabled
     >
       Test Alert Dialog title
     </h2>
-    <div
-      class="p-2 block hover:bg-slate4 rounded-sm focus:outline focus:outline-slate7 active:bg-slate5"
+    <button
+      class="bg-transparent p-2 hover:bg-neg-hover hover:text-white active:bg-neg-active active:outline-none"
+      type="button"
     >
       <svg
-        class="hover:cursor-pointer"
+        class="fill-icon"
         fill="none"
         height="15"
         viewBox="0 0 15 15"
@@ -38,44 +39,48 @@ exports[`AlertDialog   in "constrained" intent, action button should be disabled
           fill-rule="evenodd"
         />
       </svg>
-    </div>
+    </button>
   </div>
-  <p
+  <div
     id="radix-:r8:"
   >
     Test Alert Dialog description
-  </p>
-  <div
-    class="flex flex-col"
-  >
     <div
-      class="mt-4 text-gray11"
+      class="flex flex-col"
     >
-      To continue, enter the phrase
-      <span
-        class="font-bold text-black"
-      >
-         test action phrase
-      </span>
+      <div>
+        <span
+          class="mt-4 inline-block text-support"
+        >
+          To continue, enter the phrase
+        </span>
+        <span
+          class="font-bold"
+        >
+           test action phrase
+        </span>
+      </div>
+      <input
+        class="my-4 w-full px-2 py-1 outline outline-1 outline-border-interactive"
+        placeholder="test action phrase"
+        type="text"
+      />
     </div>
-    <input
-      class="w-full outline outline-1 outline-gray10 px-2 py-1 my-4"
-      placeholder="test action phrase"
-      type="text"
-    />
   </div>
   <div
     class="flex flex-row justify-end gap-x-6"
   >
     <button
-      class="focus:outline text-slate11 border-slate9 border-[1px] hover:text-slate12 hover:shadow-sm hover:shadow-sand8 hover:bg-slate3 hover:border-slate10 hover:ring-0 focus:bg-slate4 active:bg-slate5 px-4 py-1 w-fit rounded-md"
+      class="bg-initial text-support outline-border-strong-darker outline outline-1 -outline-offset-1 hover:shadow-sm hover:shadow-sand8 hover:bg-layer-hover hover:outline-border-strong-darkest active:bg-layer-active px-4 py-1 w-fit"
+      role="button"
       type="button"
     >
       Alert Dialog Close
     </button>
     <button
-      class="focus:outline text-gray8 outline-gray6 outline outline-2 px-4 py-1 w-fit rounded-md"
+      class="bg-initial text-gray8 outline-gray6 outline outline-2 px-4 py-1 w-fit"
       disabled=""
+      role="button"
       type="button"
     >
       Alert Dialog Action
@@ -86,8 +91,9 @@ exports[`AlertDialog   in "constrained" intent, action button should be disabled
 
 exports[`AlertDialog   in "constrained" intent, action button should be disabled by default 2`] = `
 <button
-  class="focus:outline text-gray8 outline-gray6 outline outline-2 px-4 py-1 w-fit rounded-md"
+  class="bg-initial text-gray8 outline-gray6 outline outline-2 px-4 py-1 w-fit"
   disabled=""
+  role="button"
   type="button"
 >
   Alert Dialog Action
@@ -96,7 +102,8 @@ exports[`AlertDialog   in "constrained" intent, action button should be disabled
 
 exports[`AlertDialog   in "constrained" intent, action button should be enabled when input value matches action text 1`] = `
 <button
-  class="focus:outline text-red11 bg-red4 hover:bg-red5 active:bg-red6  focus:outline-red7 px-4 py-1 w-fit rounded-md"
+  class="bg-initial block text-white bg-neg hover:bg-neg-hover active:bg-neg-active focus:outline-red7 px-4 py-1 w-fit"
+  role="button"
   type="button"
 >
   Alert Dialog Action
@@ -107,7 +114,7 @@ exports[`AlertDialog   in "constrained" intent, action button should be enabled 
 <div
   aria-describedby="radix-:rb:"
   aria-labelledby="radix-:ra:"
-  class="absolute inset-1/2 -translate-x-1/2 -translate-y-3/4 h-fit w-[640px] bg-white p-6 rounded-lg space-y-4"
+  class="absolute inset-1/2 z-20 h-fit w-[640px] -translate-x-1/2 -translate-y-3/4 space-y-4 bg-layer p-6"
   data-state="open"
   id="radix-:r9:"
   role="alertdialog"
@@ -123,11 +130,12 @@ exports[`AlertDialog   in "constrained" intent, action button should be enabled 
     >
       Test Alert Dialog title
     </h2>
-    <div
-      class="p-2 block hover:bg-slate4 rounded-sm focus:outline focus:outline-slate7 active:bg-slate5"
+    <button
+      class="bg-transparent p-2 hover:bg-neg-hover hover:text-white active:bg-neg-active active:outline-none"
+      type="button"
     >
       <svg
-        class="hover:cursor-pointer"
+        class="fill-icon"
         fill="none"
         height="15"
         viewBox="0 0 15 15"
@@ -141,44 +149,48 @@ exports[`AlertDialog   in "constrained" intent, action button should be enabled 
           fill-rule="evenodd"
         />
       </svg>
-    </div>
+    </button>
   </div>
-  <p
+  <div
     id="radix-:rb:"
   >
     Test Alert Dialog description
-  </p>
-  <div
-    class="flex flex-col"
-  >
     <div
-      class="mt-4 text-gray11"
+      class="flex flex-col"
     >
-      To continue, enter the phrase
-      <span
-        class="font-bold text-black"
-      >
-         test action phrase
-      </span>
+      <div>
+        <span
+          class="mt-4 inline-block text-support"
+        >
+          To continue, enter the phrase
+        </span>
+        <span
+          class="font-bold"
+        >
+           test action phrase
+        </span>
+      </div>
+      <input
+        class="my-4 w-full px-2 py-1 outline outline-1 outline-border-interactive"
+        input="test action phrase"
+        placeholder="test action phrase"
+        type="text"
+      />
     </div>
-    <input
-      class="w-full outline outline-1 outline-gray10 px-2 py-1 my-4"
-      input="test action phrase"
-      placeholder="test action phrase"
-      type="text"
-    />
   </div>
   <div
     class="flex flex-row justify-end gap-x-6"
   >
     <button
-      class="focus:outline text-slate11 border-slate9 border-[1px] hover:text-slate12 hover:shadow-sm hover:shadow-sand8 hover:bg-slate3 hover:border-slate10 hover:ring-0 focus:bg-slate4 active:bg-slate5 px-4 py-1 w-fit rounded-md"
+      class="bg-initial text-support outline-border-strong-darker outline outline-1 -outline-offset-1 hover:shadow-sm hover:shadow-sand8 hover:bg-layer-hover hover:outline-border-strong-darkest active:bg-layer-active px-4 py-1 w-fit"
+      role="button"
       type="button"
     >
       Alert Dialog Close
     </button>
     <button
-      class="focus:outline text-red11 bg-red4 hover:bg-red5 active:bg-red6  focus:outline-red7 px-4 py-1 w-fit rounded-md"
+      class="bg-initial block text-white bg-neg hover:bg-neg-hover active:bg-neg-active focus:outline-red7 px-4 py-1 w-fit"
+      role="button"
       type="button"
     >
       Alert Dialog Action
@@ -191,7 +203,7 @@ exports[`AlertDialog  should render "constrained" intent 1`] = `
 <div
   aria-describedby="radix-:r5:"
   aria-labelledby="radix-:r4:"
-  class="absolute inset-1/2 -translate-x-1/2 -translate-y-3/4 h-fit w-[640px] bg-white p-6 rounded-lg space-y-4"
+  class="absolute inset-1/2 z-20 h-fit w-[640px] -translate-x-1/2 -translate-y-3/4 space-y-4 bg-layer p-6"
   data-state="open"
   id="radix-:r3:"
   role="alertdialog"
@@ -207,11 +219,12 @@ exports[`AlertDialog  should render "constrained" intent 1`] = `
     >
       Test Alert Dialog title
     </h2>
-    <div
-      class="p-2 block hover:bg-slate4 rounded-sm focus:outline focus:outline-slate7 active:bg-slate5"
+    <button
+      class="bg-transparent p-2 hover:bg-neg-hover hover:text-white active:bg-neg-active active:outline-none"
+      type="button"
     >
       <svg
-        class="hover:cursor-pointer"
+        class="fill-icon"
         fill="none"
         height="15"
         viewBox="0 0 15 15"
@@ -225,44 +238,48 @@ exports[`AlertDialog  should render "constrained" intent 1`] = `
           fill-rule="evenodd"
         />
       </svg>
-    </div>
+    </button>
   </div>
-  <p
+  <div
     id="radix-:r5:"
   >
     Test Alert Dialog description
-  </p>
-  <div
-    class="flex flex-col"
-  >
     <div
-      class="mt-4 text-gray11"
+      class="flex flex-col"
     >
-      To continue, enter the phrase
-      <span
-        class="font-bold text-black"
-      >
-         test action phrase
-      </span>
+      <div>
+        <span
+          class="mt-4 inline-block text-support"
+        >
+          To continue, enter the phrase
+        </span>
+        <span
+          class="font-bold"
+        >
+           test action phrase
+        </span>
+      </div>
+      <input
+        class="my-4 w-full px-2 py-1 outline outline-1 outline-border-interactive"
+        placeholder="test action phrase"
+        type="text"
+      />
     </div>
-    <input
-      class="w-full outline outline-1 outline-gray10 px-2 py-1 my-4"
-      placeholder="test action phrase"
-      type="text"
-    />
   </div>
   <div
     class="flex flex-row justify-end gap-x-6"
   >
     <button
-      class="focus:outline text-slate11 border-slate9 border-[1px] hover:text-slate12 hover:shadow-sm hover:shadow-sand8 hover:bg-slate3 hover:border-slate10 hover:ring-0 focus:bg-slate4 active:bg-slate5 px-4 py-1 w-fit rounded-md"
+      class="bg-initial text-support outline-border-strong-darker outline outline-1 -outline-offset-1 hover:shadow-sm hover:shadow-sand8 hover:bg-layer-hover hover:outline-border-strong-darkest active:bg-layer-active px-4 py-1 w-fit"
+      role="button"
       type="button"
     >
       Alert Dialog Close
     </button>
     <button
-      class="focus:outline text-gray8 outline-gray6 outline outline-2 px-4 py-1 w-fit rounded-md"
+      class="bg-initial text-gray8 outline-gray6 outline outline-2 px-4 py-1 w-fit"
       disabled=""
+      role="button"
       type="button"
     >
       Alert Dialog Action
@@ -273,7 +290,7 @@ exports[`AlertDialog  should render "constrained" intent 1`] = `
 
 exports[`AlertDialog  should render "constrained" intent 2`] = `
 <input
-  class="w-full outline outline-1 outline-gray10 px-2 py-1 my-4"
+  class="my-4 w-full px-2 py-1 outline outline-1 outline-border-interactive"
   placeholder="test action phrase"
   type="text"
 />
@@ -283,7 +300,7 @@ exports[`AlertDialog  should render "default" intent 1`] = `
 <div
   aria-describedby="radix-:r2:"
   aria-labelledby="radix-:r1:"
-  class="absolute inset-1/2 -translate-x-1/2 -translate-y-3/4 h-fit w-[640px] bg-white p-6 rounded-lg space-y-4"
+  class="absolute inset-1/2 z-20 h-fit w-[640px] -translate-x-1/2 -translate-y-3/4 space-y-4 bg-layer p-6"
   data-state="open"
   id="radix-:r0:"
   role="alertdialog"
@@ -299,11 +316,12 @@ exports[`AlertDialog  should render "default" intent 1`] = `
     >
       Test Alert Dialog title
     </h2>
-    <div
-      class="p-2 block hover:bg-slate4 rounded-sm focus:outline focus:outline-slate7 active:bg-slate5"
+    <button
+      class="bg-transparent p-2 hover:bg-neg-hover hover:text-white active:bg-neg-active active:outline-none"
+      type="button"
     >
       <svg
-        class="hover:cursor-pointer"
+        class="fill-icon"
         fill="none"
         height="15"
         viewBox="0 0 15 15"
@@ -317,24 +335,25 @@ exports[`AlertDialog  should render "default" intent 1`] = `
           fill-rule="evenodd"
         />
       </svg>
-    </div>
+    </button>
   </div>
-  <p
+  <div
     id="radix-:r2:"
   >
     Test Alert Dialog description
-  </p>
+  </div>
   <div
     class="flex flex-row justify-end gap-x-6"
   >
     <button
-      class="focus:outline text-slate11 border-slate9 border-[1px] hover:text-slate12 hover:shadow-sm hover:shadow-sand8 hover:bg-slate3 hover:border-slate10 hover:ring-0 focus:bg-slate4 active:bg-slate5 px-4 py-1 w-fit rounded-md"
+      class="bg-initial text-support outline-border-strong-darker outline outline-1 -outline-offset-1 hover:shadow-sm hover:shadow-sand8 hover:bg-layer-hover hover:outline-border-strong-darkest active:bg-layer-active px-4 py-1 w-fit"
+      role="button"
       type="button"
     >
       Alert Dialog Close
     </button>
     <button
-      class="focus:outline text-red11 bg-red4 hover:bg-red5 active:bg-red6  focus:outline-red7 px-4 py-1 w-fit rounded-md"
+      class="bg-initial block text-white bg-neg hover:bg-neg-hover active:bg-neg-active focus:outline-red7 px-4 py-1 w-fit"
       type="button"
     >
       Alert Dialog Action
