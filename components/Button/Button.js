@@ -2,18 +2,22 @@ import React from 'react';
 import { cva } from 'class-variance-authority';
 import cx from 'classnames';
 
-const buttonStyles = cva(['focus:outline'], {
+const buttonStyles = cva(['bg-initial'], {
   variants: {
     intent: {
-      primary: 'bg-blue10 text-white hover:bg-blue11',
-      secondary: 'bg-red-400 text-white',
+      primary:
+        'text-white bg-primary hover:bg-blue9 active:bg-blue11 active:outline-none',
+      secondary:
+        'text-white bg-secondary hover:bg-slate9 active:bg-slate11 active:outline-none',
       tertiary:
-        'text-blue11 outline-blue9 outline outline-1 hover:text-white hover:shadow-sm hover:bg-blue11 active:bg-blue11 active:text-white ',
+        'text-blue11 bg-white outline outline-1 outline-blue9 -outline-offset-1 hover:text-white hover:shadow-sm hover:bg-blue11 focus:bg-primary focus:text-white focus:outline-white active:bg-blue11 active:text-white active:outline-none',
       neutral:
-        'text-slate11 border-slate9 border-[1px] hover:text-slate12 hover:shadow-sm hover:shadow-sand8 hover:bg-slate3 hover:border-slate10 hover:ring-0 focus:bg-slate4 active:bg-slate5',
-      warning: '',
+        'text-support outline-border-strong-darker outline outline-1 -outline-offset-1 hover:shadow-sm hover:shadow-sand8 hover:bg-layer-hover hover:outline-border-strong-darkest active:bg-layer-active',
       danger:
-        'text-red11 bg-red4 hover:bg-red5 active:bg-red6  focus:outline-red7',
+        'block text-white bg-neg hover:bg-neg-hover active:bg-neg-active focus:outline-red7',
+      dark: 'text-white bg-slate3Dark hover:bg-slate4Dark active:bg-slate3Dark active:outline-none',
+      brand:
+        'text-white bg-brand hover:bg-red9 active:bg-red11 active:outline-none',
       disabled: 'text-gray8 outline-gray6 outline outline-2',
     },
     size: {
@@ -26,16 +30,11 @@ const buttonStyles = cva(['focus:outline'], {
       medium: 'w-32',
       large: 'w-36',
     },
-    rounded: {
-      true: 'rounded-md',
-      false: '',
-    },
   },
   defaultVariants: {
     intent: 'neutral',
     size: 'base',
     length: 'auto',
-    rounded: 'true',
   },
 });
 
@@ -51,15 +50,11 @@ const Button = React.forwardRef(
       className,
       label,
       children,
-      rounded,
       ...props
     },
     forwardedRef
   ) => {
-    const classNames = cx(
-      buttonStyles({ intent, size, rounded, length }),
-      className
-    );
+    const classNames = cx(buttonStyles({ intent, size, length }), className);
     return React.createElement(
       as,
       {
