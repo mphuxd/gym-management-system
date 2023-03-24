@@ -2,7 +2,7 @@
 
 exports[`CardSimple  should match snapshot 1`] = `
 <div
-  class="flex flex-col justify-between h-52 p-4 bg-white focus:bg-slate5 active:bg-slate5 shadow-xl shadow-mauve7 hover:shadow-mauve8 "
+  class="flex h-52 flex-col justify-between bg-layer p-4 shadow-xl shadow-mauve7 hover:bg-layer-hover hover:shadow-mauve8 focus:bg-slate5 active:bg-layer-active"
   data-testid="cardSimpleTestId"
 >
   <div
@@ -21,7 +21,7 @@ exports[`CardSimple  should match snapshot 1`] = `
   </div>
   <svg
     aria-hidden="true"
-    class="text-red11"
+    class="text-brand"
     fill="currentColor"
     focusable="false"
     height="24"
