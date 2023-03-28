@@ -49,9 +49,8 @@ export default function CheckInMemberSearchDialogTable({
 
   return (
     <div>
-      <Stack className="h-[328px] w-[1080px] text-sm">
+      <Stack className="h-[268px] w-full text-sm">
         <Table
-          layer="alt"
           headers={[
             'First Name',
             'Last Name',

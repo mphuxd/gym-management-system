@@ -10,9 +10,9 @@ import { Layout } from '@/components';
 import '../styles/styles.css';
 
 // @@ Enable Axe-core accessibility testing
-// if (typeof window !== 'undefined' && process.env.NODE_ENV !== 'production') {
-//   const ReactDOM = require('react-dom');
-//   const axe = require('@axe-core/react');
+// if (typeof window !== "undefined" && process.env.NODE_ENV !== "production") {
+//   const ReactDOM = require("react-dom");
+//   const axe = require("@axe-core/react");
 //   axe(React, ReactDOM, 1000);
 // }
 

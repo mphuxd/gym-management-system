@@ -19,30 +19,30 @@ const FormSelect = React.forwardRef(
     },
     forwardedRef
   ) => (
-    <Select.Root className={cx(className, 'w-full')} {...props}>
+    <Select.Root className={cx('w-full', className)} {...props}>
       <div className="flex flex-col">
         <Label.Root
-          className="mb-2 text-sm font-medium text-support"
+          className="text-sm text-slate12 font-medium mb-2"
           htmlFor={id}
         >
           {label}
         </Label.Root>
         <Select.Trigger
-          className="relative flex h-8 w-full flex-row items-center justify-between border-b px-2 py-1 focus:shadow-md focus:shadow-blue4"
+          className="flex flex-row items-center justify-between w-full px-2 py-1 h-8 relative border border-gray7 hover:border-gray8 focus:outline-blue8 focus:shadow-md focus:shadow-blue4"
           aria-label={ariaLabel}
           ref={forwardedRef}
         >
           <Select.Value placeholder={placeholder} />
           <Select.Icon>
-            <ChevronDownIcon className="fill-icon" />
+            <ChevronDownIcon />
           </Select.Icon>
         </Select.Trigger>
         {error && <span>{errorMessage}</span>}
       </div>
 
       <Select.Portal>
-        <Select.Content className="z-40 w-full overflow-hidden bg-white">
-          <Select.Viewport className="w-full rounded-sm border border-gray7 hover:border-border-strong-dark">
+        <Select.Content className="bg-white overflow-hidden w-full">
+          <Select.Viewport className="w-full border border-1 border-gray7 hover:border-gray8 rounded-md ">
             {children}
           </Select.Viewport>
           <Select.ScrollDownButton>

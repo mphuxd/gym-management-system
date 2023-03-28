@@ -26,6 +26,7 @@ const gridStyles = cva('grid', {
 });
 
 function Grid({ as = 'div', children, columns, className }) {
+  // eslint-disable-next-line prefer-const
   const classNames = cx(gridStyles({ columns }), className);
   return React.createElement(as, { className: classNames }, children);
 }

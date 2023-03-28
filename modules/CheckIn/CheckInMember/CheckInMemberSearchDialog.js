@@ -69,7 +69,6 @@ export default function CheckInMemberSearchDialog({
 
   return (
     <Dialog
-      tabIndex={-1}
       open={isOpen}
       onOpenChange={() => {
         setIsOpen(!isOpen);
@@ -79,17 +78,17 @@ export default function CheckInMemberSearchDialog({
       }}
     >
       <DialogContent
-        tabIndex={-1}
         rounded={false}
-        className="inset-0 m-auto w-fit h-fit p-8 bg-white"
+        className="inset-y-1/4 inset-x-1/2 -translate-x-1/2 h-[480] w-1/2 p-8"
       >
         <Stack direction="row" className="justify-between items-center">
           <form onSubmit={(e) => handleSubmit(onSubmit(e))}>
             <Searchbar
               onChange={onChange}
-              autoFocus
               size="large"
-              intent="secondary"
+              autoFocus
+              intent="neutral"
+              rounded="false"
               name="searchValue"
               placeholder="Search Members"
               required

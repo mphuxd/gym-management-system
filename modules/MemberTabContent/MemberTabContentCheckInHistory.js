@@ -21,13 +21,12 @@ function getRows(checkInHistory) {
 export default function MemberTabContentCheckInHistory({ member, ...props }) {
   if (member && member?.checkIns.length > 0) {
     const memberCheckInHistory = Array.from(member.checkIns).reverse();
-    const rows = getRows(memberCheckInHistory).slice(0, 10);
+    const rows = getRows(memberCheckInHistory).slice(0, 9);
     return (
       <TabsContent {...props}>
         <Stack>
           <Table
-            layer="alt"
-            className="w-full"
+            className="w-fit min-w-[600px] "
             headers={['Event', 'Status', 'Date']}
             rows={rows}
             cursor="auto"
@@ -50,8 +49,10 @@ export default function MemberTabContentCheckInHistory({ member, ...props }) {
               </>
             )}
           />
-          <span className="p-2 text-sm text-gray11">
-            {`Displaying ${rows.length} of ${memberCheckInHistory.length} check-ins.`}
+          <span className="text-sm text-gray11 p-2">
+            {`Displaying ${rows.length + 1} of ${
+              memberCheckInHistory.length + 1
+            } check-ins.`}
           </span>
         </Stack>
       </TabsContent>

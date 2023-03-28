@@ -2,16 +2,11 @@ import React from 'react';
 import cx from 'classnames';
 
 function Sidepanel({ children, className }) {
-  return (
-    <aside
-      className={cx(
-        className,
-        'flex w-left-sidepanel flex-col border-none p-8 '
-      )}
-    >
-      {children}
-    </aside>
+  const classNames = cx(
+    className,
+    'min-w-[376px] w-[376px] p-8 flex flex-col h-full min-h-screen-calc border-r border-black'
   );
+  return <aside className={classNames}>{children}</aside>;
 }
 
 export default Sidepanel;

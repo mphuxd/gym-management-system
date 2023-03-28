@@ -1,7 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import cx from 'classnames';
-import styles from './Navbar.module.scss';
 
 function NavbarItem({ children, className }) {
   const router = useRouter();
@@ -16,11 +15,11 @@ function NavbarItem({ children, className }) {
     isActive = true;
   }
 
-  const classNames = cx(
-    className,
-    'relative py-2 px-4',
-    isActive ? styles.navItemActive : styles.navItemInactive
-  );
+  const classNames = cx(className, {
+    'py-2 px-4 relative': true, // default
+    'font-semibold border-b-2 border-red9': isActive, // selected
+    'hover:border-b-2 hover:border-red8 ': !isActive, // not selected
+  });
 
   return <div className={classNames}>{children}</div>;
 }

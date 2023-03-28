@@ -1,0 +1,52 @@
+@use "/styles/0-settings/sizes";
+@use "/styles/0-settings/colors";
+@use "/styles/0-settings/fonts";
+
+.tabsTrigger {
+  color: colors.$gray-800;
+  padding: sizes.$size-100 sizes.$size-200;
+  letter-spacing: fonts.$font-letter-spacing-small;
+  position: relative;
+
+
+  &:after {
+    content: "";
+    display: block;
+    background: colors.$gray-400;
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100%);
+    height: sizes.$size-25;
+  }
+
+  &:hover {
+    background: colors.$gray-300;
+  }
+
+  &[data-state=active] {
+    color: colors.$black;
+    font-weight: fonts.$font-weight-medium;
+    position: relative;
+
+    &:after {
+      content: "";
+      background: colors.$blue-600;
+      display: block;
+      position: absolute;
+      bottom: 0px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100%);
+      height: sizes.$size-25;
+    }
+  }
+}
+
+.tabsContent {
+  padding: sizes.$size-400;
+  height: sizes.$size-4600;
+  // outline: colors.$gray-200 solid 2px;
+  background-color: white;
+}

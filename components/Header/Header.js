@@ -7,16 +7,17 @@ import { GearIcon, ExitIcon } from '@radix-ui/react-icons';
 import { UserAvatar } from '@carbon/icons-react';
 import { Inter } from '@next/font/google';
 import { HeaderIcon, Navbar, NavbarLink, Stack } from '@/components';
+import styles from './Header.module.scss';
 
 const inter = Inter({ subsets: 'latin' });
 
 function Header() {
   const { user } = useUser();
   return (
-    <header className="col-span-12 h-16 min-w-[1280px] border-b border-gray6 bg-white shadow-sm drop-shadow-sm">
+    <header className="col-span-12 bg-gray1 border-b border-gray6 min-w-[1280px] h-16">
       <Stack
         direction="row"
-        className="mx-auto content-between justify-between px-8"
+        className="mx-auto px-8 justify-between content-between"
       >
         <Link href="/" className="flex">
           <Image
@@ -27,7 +28,7 @@ function Header() {
             alt="Evolve Gyms Logo is a triangle with 3 intersecting lines radiating from the center."
           />
           <span
-            className={cx(inter.className, 'py-4 px-1 text-2xl font-semibold')}
+            className={cx(inter.className, 'font-semibold text-2xl py-4 px-1')}
           >
             EVOLVE
           </span>
@@ -48,33 +49,28 @@ function Header() {
         <Stack
           as="nav"
           direction="row"
-          className="ml-auto items-center justify-center"
+          className="items-center justify-center ml-auto"
         >
           {user ? (
             <Stack direction="row" className="items-center space-x-6">
               <HeaderIcon
-                aria-label="User Settings"
+                content="Settings"
                 href="/settings"
                 icon={<GearIcon />}
-                content="Go to user settings."
               />
               <HeaderIcon
                 content="Logout"
                 href="/api/auth/logout"
                 icon={<ExitIcon />}
-                aria-label="Logout."
               />
               <UserAvatar
                 height={24}
                 width={24}
-                className="h-full w-full p-5 hover:cursor-pointer hover:bg-layer-hover"
+                className="h-full w-full p-5 hover:cursor-pointer hover:bg-gray4"
               />
             </Stack>
           ) : (
-            <Link
-              href="/api/auth/login"
-              className="inline-flex items-center bg-layer-alt py-1 px-3 hover:bg-layer-hover"
-            >
+            <Link href="/api/auth/login" className={styles.login}>
               Login
             </Link>
           )}

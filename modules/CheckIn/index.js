@@ -1,2 +1,2 @@
 export * from './CheckInMember';
-export * from './CheckInSidepanel';
+export { default as CheckInSidepanel } from './CheckInSidepanel';

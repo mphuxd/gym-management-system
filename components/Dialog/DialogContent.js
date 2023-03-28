@@ -4,7 +4,7 @@ import * as DialogPrimitive from '@radix-ui/react-dialog';
 
 const DialogContent = React.forwardRef(
   ({ children, className, title, rounded = true, ...props }, forwardedRef) => {
-    const classNames = cx(className, 'absolute z-30 bg-white', {
+    const classNames = cx(className, 'absolute bg-white z-50', {
       'rounded-lg': rounded,
     });
     return (

@@ -9,12 +9,11 @@ const HoverCard = React.forwardRef(
       </HoverCardPrimitive.Trigger>
       <HoverCardPrimitive.Portal>
         <HoverCardPrimitive.Content
-          tabIndex={0}
           side="top"
           align="start"
-          className="bg-layer px-4 py-3 shadow-md shadow-mauve10 outline outline-1 outline-border-subtle-dark drop-shadow-md hover:bg-layer-hover hover:outline-border-subtle-darker"
+          className="px-4 py-3 bg-slate2 hover:bg-white outline outline-2 rounded-sm  outline-slate6 focus:outline-slate7 hover:outline-slate8"
         >
-          <HoverCardPrimitive.Arrow className="fill-icon" />
+          <HoverCardPrimitive.Arrow className="fill-slate9" />
           {children}
         </HoverCardPrimitive.Content>
       </HoverCardPrimitive.Portal>

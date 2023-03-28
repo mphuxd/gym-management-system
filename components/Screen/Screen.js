@@ -5,16 +5,15 @@ import cx from 'classnames';
 const screenStyles = cva('', {
   variants: {
     intent: {
-      standard: 'w-full min-w-[1440px] min-h-screen-no-header',
+      standard: 'w-full min-w-[1280px] min-h-screen-calc',
     },
-    background: {
-      primary: 'bg-background',
-      alt: 'bg-background-alt',
+    color: {
+      primary: 'bg-slate2',
     },
   },
   defaultVariants: {
     intent: 'standard',
-    background: 'primary',
+    color: 'primary',
   },
 });
 

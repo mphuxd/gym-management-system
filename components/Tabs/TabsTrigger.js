@@ -1,16 +1,13 @@
 import React from 'react';
 import cx from 'classnames';
 import * as Tabs from '@radix-ui/react-tabs';
-import styles from './TabsTrigger.module.scss';
+import styles from './Tabs.module.scss';
 
-const TabsTrigger = React.forwardRef(
-  ({ className, ...props }, forwardedRef) => {
-    const classNames = cx(className, styles.trigger);
-    return (
-      <Tabs.Trigger className={classNames} ref={forwardedRef} {...props} />
-    );
-  }
-);
+const TabsTrigger = React.forwardRef((props, forwardedRef) => {
+  const { className, ...rest } = { ...props };
+  const classNames = cx(styles.tabsTrigger, className);
+  return <Tabs.Trigger className={classNames} {...rest} ref={forwardedRef} />;
+});
 
 TabsTrigger.displayName = 'TabsTrigger';
 

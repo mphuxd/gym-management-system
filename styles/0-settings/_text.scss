@@ -1,0 +1,85 @@
+@use './fonts'as *;
+@use './sizes'as *;
+
+$line-height-body: $font-line-height-medium;
+$line-height-title: $font-line-height-small;
+
+$body-text-font-family: $font-family-base;
+$body-text-line-height: $font-line-height-medium;
+$body-text-font-weight: $font-weight-regular;
+$body-text-font-weight-strong: $font-weight-bold;
+
+$button-text-line-height: $font-line-height-small;
+
+$heading-text-line-height: $font-line-height-small;
+$heading-text-font-weight-regular: $font-weight-bold;
+$heading-text-font-weight-regular-strong: $font-weight-black;
+$heading-text-font-weight-quiet: $font-weight-light;
+$heading-text-font-weight-quiet-strong: $font-weight-bold;
+$heading-text-font-weight-strong: $font-weight-black;
+
+$subheading-text-font-weight: $font-weight-bold;
+$subheading-text-font-weight-strong: $font-weight-black;
+
+$detail-text-font-weight: $font-weight-bold;
+$detail-text-font-weight-light: $font-weight-regular;
+$detail-text-font-weight-strong: $font-weight-black;
+
+$serif-text-font-family: $font-family-serif;
+
+$code-text-font-family: $font-family-code;
+$code-text-font-weight-regular: $font-weight-regular;
+$code-text-font-weight-strong: $font-weight-bold;
+$code-text-line-height: $font-line-height-medium;
+
+$heading-margin-bottom: $font-multiplier-25;
+
+$body-margin-bottom: $font-multiplier-75;
+
+$font-size-default: $font-size-100;
+
+$line-height-small: $size-200;
+$line-height-medium: $size-250;
+$line-height-large: $size-300;
+$line-height-xlarge: $size-400;
+$line-height-xxlarge: $size-600;
+
+$heading-display1-text-size: $font-size-1300;
+$heading-3xl-text-size: $font-size-1300;
+$heading-display1-margin-top: $font-size-1200;
+$heading-3xl-margin-top: $font-size-1200;
+
+$heading-display2-text-size: $font-size-1100;
+$heading-2xl-text-size: $font-size-1100;
+$heading-display2-margin-top: $font-size-900;
+$heading-2xl-margin-top: $font-size-900;
+
+$heading1-text-size: $font-size-900;
+$heading-xl-text-size: $font-size-900;
+$heading1-margin-top: $font-size-800;
+$heading-xl-margin-top: $font-size-800;
+
+$heading2-text-size: $font-size-700;
+$heading-l-text-size: $font-size-700;
+$heading2-margin-top: $font-size-600;
+$heading-l-margin-top: $font-size-600;
+
+$heading3-text-size: $font-size-500;
+$heading-m-text-size: $font-size-500;
+$heading3-margin-top: $font-size-400;
+$heading-m-margin-top: $font-size-400;
+
+$heading4-text-size: $font-size-300;
+$heading-s-text-size: $font-size-300;
+$heading4-margin-top: $font-size-200;
+$heading-s-margin-top: $font-size-200;
+
+$heading5-text-size: $font-size-200;
+$heading-xs-text-size: $font-size-200;
+$heading5-margin-top: $font-size-100;
+$heading-xs-margin-top: $font-size-100;
+
+$heading6-text-size: $font-size-100;
+$heading-xxs-text-size: $font-size-100;
+$heading6-margin-top: $font-size-75;
+$heading-xxs-margin-top: $font-size-75;

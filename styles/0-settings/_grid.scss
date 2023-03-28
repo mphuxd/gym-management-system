@@ -1,0 +1,36 @@
+@use './sizes'as *;
+
+$grid-columns: 12;
+$grid-fluid-width: 100%;
+$grid-fixed-max-width: 1920px;
+$baseline: $size-100;
+
+$gutter-xsmall: $size-100;
+$gutter-small: $size-100;
+$gutter-medium: $size-300;
+$gutter-large: $size-300;
+$gutter-xlarge: $size-300;
+$gutter-2xlarge: $size-400;
+
+$padding-2xsmall: $size-100;
+$padding-xsmall: $size-200;
+$padding-small: $size-400;
+$padding-medium: $size-300;
+$padding-large: $size-400;
+$padding-xlarge: $size-400;
+$padding-2xlarge: $size-400;
+
+$margin-2xsmall: $size-100;
+$margin-xsmall: $size-200;
+$margin-small: $size-300;
+$margin-medium: $size-400;
+$margin-large: $size-400;
+$margin-xlarge: $size-400;
+$margin-2xlarge: $size-400;
+
+$layout-region-margin-bottom-xsmall: $size-200;
+$layout-region-margin-bottom-small: $size-300;
+$layout-region-margin-bottom-medium: $size-400;
+$layout-region-margin-bottom-large: $size-400;
+$layout-region-margin-bottom-xlarge: $size-400;
+$layout-region-margin-bottom-2xlarge: $size-400;

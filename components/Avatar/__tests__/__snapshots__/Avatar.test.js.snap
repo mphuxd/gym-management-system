@@ -2,7 +2,7 @@
 
 exports[`Avatar  should match snapshot 1`] = `
 <span
-  class="inline-flex h-12 w-12 select-none items-center justify-center overflow-hidden rounded-full align-middle"
+  class="AvatarRoot"
   data-testid="avatarTestId"
 />
 `;

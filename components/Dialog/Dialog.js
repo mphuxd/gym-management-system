@@ -12,12 +12,12 @@ const Dialog = React.forwardRef(
       open={open}
       onOpenChange={onOpenChange}
       ref={forwardedRef}
-      className={cx(className)}
+      className={cx(className, '')}
       {...props}
     >
       {trigger && <DialogTrigger>{trigger}</DialogTrigger>}
       <DialogPrimitive.Portal className="relative z-20">
-        <DialogOverlay />
+        <DialogOverlay className="z-10" />
         {children}
       </DialogPrimitive.Portal>
     </DialogPrimitive.Root>

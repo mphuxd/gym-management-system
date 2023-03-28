@@ -7,23 +7,24 @@ export const getServerSideProps = withPageAuthRequired();
 
 export default function SignUp() {
   return (
-    <Screen background="alt">
+    <Screen>
       <Grid
         as="section"
-        className="mx-auto max-w-screen-max auto-rows-min justify-center gap-y-0 p-8"
+        className="gap-y-0 max-w-screen-[1839px] mx-auto justify-center p-8 auto-rows-min"
       >
         <div className="col-span-full">
-          <h1 className="mb-8 text-lg font-semibold ">Sign Up New Member</h1>
-          <p className="mb-8">
+          <h1 className="text-lg font-semibold mb-4 ">Sign Up New Member</h1>
+          <p className="mb-4">
             Select a plan, or{' '}
             <Link className="underline" href="/" disabled>
               manually sign up a new member.
             </Link>
           </p>
         </div>
-        <Stack direction="row" className="col-span-full gap-x-8">
+        <Stack direction="row" className="col-span-full gap-x-8  ">
           <CardSubscription
-            planName="Standard"
+            planName="Basic"
+            planDescription="Everything you need to get started."
             price="$15.00 / month*"
             planLookUpKey="price_1M2NTUByvJkIkjZn5gEQDS8i"
             planIdValue="1"
@@ -36,6 +37,7 @@ export default function SignUp() {
           />
           <CardSubscription
             planName="Gold"
+            planDescription="Everything you need to get started."
             price="$25.00 / month*"
             planLookUpKey="price_1M2NTxByvJkIkjZn9IRkoopV"
             planIdValue="2"
@@ -48,6 +50,7 @@ export default function SignUp() {
           />
           <CardSubscription
             planName="Unlimited"
+            planDescription="Everything you need to get started."
             price="$40.00 / month*"
             planLookUpKey="price_1M2NUYByvJkIkjZn66ovpP5V"
             planIdValue="3"

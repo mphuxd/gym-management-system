@@ -8,6 +8,7 @@ export const CARD_SUBSCRIPTION_TEST_ID = 'cardSubscriptionTestId';
 
 function CardSubscription({
   planName,
+  planDescription,
   price,
   planLookUpKey,
   planIdValue,
@@ -15,32 +16,22 @@ function CardSubscription({
   features,
   footnotes,
 }) {
+  const classNames = cx(className, 'flex flex-col items-center');
+
   return (
-    <div
-      className={cx(
-        className,
-        'w-82 flex h-[32rem] flex-col items-center justify-between bg-layer  hover:bg-layer-hover'
-      )}
-      data-testid={CARD_SUBSCRIPTION_TEST_ID}
-    >
-      <div className="flex h-full w-full flex-col justify-between p-8">
-        <div className="flex flex-col justify-center">
-          <h2 className="w-fit text-2xl font-semibold">{planName}</h2>
-          <h3 className="mt-6 text-2xl">{price}</h3>
-          <Separator.Root className="my-6 h-px bg-border-subtle-darker" />
-          <div className="mb-3 flex flex-col gap-y-2">
+    <div className={classNames} data-testid={CARD_SUBSCRIPTION_TEST_ID}>
+      <div className="flex flex-col p-8 bg-white hover:bg-slate3 active:bg-slate4 outline outline-slate7 outline-[1px] focus:outline-slate8 focus:ring-2 focus:ring-blue8 rounded-2xl justify-between h-[32rem] hover:shadow-lg hover:shadow-purple6">
+        <div className="description flex flex-col justify-center">
+          <h2 className="text-2xl font-semibold w-fit ">{planName}</h2>
+          <h3 className="mt-5">{planDescription}</h3>
+          <h4 className="text-2xl font-bold mt-6">{price}</h4>
+          <Separator.Root className="h-[1px] my-4" />
+          <div className="flex flex-col mb-3 gap-y-1">
             {features &&
               features.map((feature) => (
-                <div
-                  key={feature}
-                  className="flex flex-row items-center text-sm"
-                >
-                  <CheckCircledIcon
-                    width={16}
-                    height={16}
-                    className="mr-1 text-brand"
-                  />
-                  <span className="inline-block">{`${feature}`}</span>
+                <div key={feature} className="flex flex-row items-center">
+                  <CheckCircledIcon width={16} height={16} className="mr-1" />
+                  <span className="inline-block ">{feature}</span>
                 </div>
               ))}
           </div>
@@ -50,17 +41,13 @@ function CardSubscription({
             {/* Stripe - Add a hidden field with the lookup_key of your Price */}
             <input type="hidden" name="lookup_key" value={planLookUpKey} />
             <input type="hidden" name="planId" value={planIdValue} />
-            <Button
-              type="submit"
-              id="checkout-and-portal-button"
-              intent="tertiary"
-              size="large"
-              length="medium"
-            >
-              Subscribe
-            </Button>
+            <button id="checkout-and-portal-button" type="submit">
+              <Button as="div" intent="tertiary" size="large">
+                Subscribe
+              </Button>
+            </button>
           </form>
-          <span className="mt-4 text-sm">{footnotes}</span>
+          <span className="text-sm mt-4">{footnotes}</span>
         </div>
       </div>
     </div>

@@ -28,7 +28,7 @@ export default function Home() {
   return (
     user && (
       <Screen>
-        <Grid className="mx-auto max-w-[1920px] auto-rows-min gap-8 px-8">
+        <Grid className="gap-8 max-w-[1920px] mx-auto px-8 auto-rows-min">
           <h1 className="col-span-10 mt-12 mb-8 text-4xl">
             Welcome, {user.nickname}
           </h1>
@@ -54,7 +54,7 @@ export default function Home() {
           </Grid>
           <Grid columns={4} className="col-span-12 gap-x-8">
             <Stack className="p-4 hover:bg-slate4 focus:bg-slate5 active:bg-slate5">
-              <h3 className="mb-2 font-semibold">Quick Navigation</h3>
+              <h3 className="font-semibold mb-2">Quick Navigation</h3>
               <ul className="space-y-0.5">
                 <li>
                   <Link className="hover:underline" href="/members">
@@ -89,9 +89,11 @@ export default function Home() {
               </ul>
             </Stack>
             <Stack className="col-span-2 gap-y-8">
-              <DashboardNotes />
+              <Stack className="hover:bg-slate4 focus:bg-slate5 active:bg-slate5 p-4">
+                <DashboardNotes />
+              </Stack>
               <Stack className=" p-4 ">
-                <h3 className="mb-2 font-semibold">Contacts</h3>
+                <h3 className="font-semibold mb-2">Contacts</h3>
                 <Stack direction="row" className="gap-x-8">
                   <Stack>
                     <span>Evolve Gym</span>
@@ -145,18 +147,17 @@ function DashboardNotes() {
   return (
     data && (
       <ScrollArea.Root
-        className="focusable relative h-40 w-full overflow-hidden p-4 hover:cursor-pointer hover:bg-layer-hover active:bg-layer-active"
         tabIndex="0"
-        onKeyDown={(e) => {
-          if (e.key === 'Enter') setOpen(true);
-        }}
-        onClick={() => {
-          setOpen(true);
-        }}
+        className="relative overflow-hidden h-40 hover:cursor-pointer"
       >
-        <ScrollArea.Viewport>
+        <ScrollArea.Viewport
+          onClick={() => {
+            setOpen(true);
+          }}
+          className="w-full h-full"
+        >
           <Stack>
-            <h3 className="mb-2 font-semibold">Notes</h3>
+            <h3 className="font-semibold mb-2">Notes</h3>
             <div className="whitespace-pre-wrap">{data.notes.note}</div>
             <Stack className="mt-4">
               <span>
@@ -167,10 +168,10 @@ function DashboardNotes() {
           </Stack>
         </ScrollArea.Viewport>
         <ScrollArea.Scrollbar
-          className="bg-gray-200 flex w-2 px-[1px]"
+          className="flex px-[1px] w-2 bg-gray-200"
           orientation="vertical"
         >
-          <ScrollArea.Thumb className="bg-gray-400 relative w-1 flex-grow rounded-lg" />
+          <ScrollArea.Thumb className="flex-grow w-1 rounded-lg bg-gray-400 relative" />
         </ScrollArea.Scrollbar>
         <ScrollArea.Corner className="bg-black" />
         <DashboardNotesDialog
@@ -235,11 +236,8 @@ function DashboardNotesDialog({ open, setOpen, note, refetch }) {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent
-        rounded={false}
-        className="inset-1/2 h-fit w-1/3 -translate-x-1/2 -translate-y-3/4 space-y-4 p-8"
-      >
-        <Stack direction="row" className="items-center justify-between">
+      <DialogContent className="inset-1/2 -translate-x-1/2 -translate-y-3/4 h-fit w-1/3 p-8 space-y-4">
+        <Stack direction="row" className="justify-between items-center">
           <DialogTitle>Edit Note</DialogTitle>
           <DialogClose />
         </Stack>
@@ -252,15 +250,13 @@ function DashboardNotesDialog({ open, setOpen, note, refetch }) {
             defaultValue={note.note}
             register={register}
           />
-          <div className="flex flex-row justify-end">
-            <Button
-              className="ml-auto"
-              as="input"
-              label="Save Note"
-              type="submit"
-              intent="primary"
-            />
-          </div>
+          <Button
+            className="ml-auto"
+            as="input"
+            label="Save Note"
+            type="submit"
+            intent="primary"
+          />
         </form>
       </DialogContent>
     </Dialog>

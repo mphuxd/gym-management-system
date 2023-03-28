@@ -8,13 +8,13 @@ import {
   WarningFilled,
 } from '@carbon/icons-react';
 
-const iconStyles = cva('mt-1', {
+const iconStyles = cva('inline', {
   variants: {
     intent: {
-      checkmark: 'fill-icon-pos',
-      information: 'fill-icon-info',
-      warning: 'fill-icon-warn',
-      error: 'fill-icon-neg',
+      checkmark: 'fill-green10',
+      information: 'fill-blue10',
+      warning: 'fill-yellow8',
+      error: 'fill-red10',
     },
   },
   defaultVariants: {
@@ -24,14 +24,23 @@ const iconStyles = cva('mt-1', {
 
 function NotificationIcon({ className, intent }) {
   const classNames = cx(iconStyles({ intent }), className);
-  const iconMap = {
-    checkmark: <CheckmarkFilled className={classNames} />,
-    error: <ErrorFilled className={classNames} />,
-    information: <InformationFilled className={classNames} />,
-    warning: <WarningFilled className={classNames} />,
-  };
-
-  const icon = iconMap[intent] || null;
+  let icon = null;
+  switch (intent) {
+    case 'checkmark':
+      icon = <CheckmarkFilled className={classNames} />;
+      break;
+    case 'error':
+      icon = <ErrorFilled className={classNames} />;
+      break;
+    case 'information':
+      icon = <InformationFilled className={classNames} />;
+      break;
+    case 'warning':
+      icon = <WarningFilled className={classNames} />;
+      break;
+    default:
+      break;
+  }
   return icon && <div>{icon}</div>;
 }
 

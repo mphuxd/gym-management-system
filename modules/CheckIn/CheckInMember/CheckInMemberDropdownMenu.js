@@ -25,10 +25,11 @@ function CheckInMemberDropdownMenu({ checkedInMember, mutate }) {
       <DropdownMenu.Root>
         <DropdownTrigger asChild>
           <Button
-            className="my-auto flex flex-row items-center justify-between"
+            className="my-auto flex flex-row gap-x-2 items-center z-10 justify-between"
             as="button"
             size="large"
             intent="tertiary"
+            rounded="false"
             length="medium"
           >
             <span>Actions</span>
@@ -37,17 +38,14 @@ function CheckInMemberDropdownMenu({ checkedInMember, mutate }) {
         </DropdownTrigger>
         <DropdownContent align="end">
           <DropdownMenu.Group>
-            <DropdownItem asChild>
+            <DropdownItem>
               <Link href={`members/details/${checkedInMember.id}`}>
                 View Member Details
               </Link>
             </DropdownItem>
-            <DropdownItem asChild>
+            <DropdownItem>
               <button
                 type="button"
-                onSelect={() => {
-                  setIsEditDialogOpen(true);
-                }}
                 onClick={() => {
                   setIsEditDialogOpen(true);
                 }}
@@ -58,14 +56,11 @@ function CheckInMemberDropdownMenu({ checkedInMember, mutate }) {
           </DropdownMenu.Group>
           <DropdownSeparator />
           <DropdownMenu.Group>
-            <DropdownItem asChild>
+            <DropdownItem>
               <button
                 type="button"
-                className="flex items-center gap-x-1 text-error"
+                className="text-red11 flex items-center gap-x-1"
                 onClick={() => {
-                  setIsCancelDialogOpen(true);
-                }}
-                onSelect={() => {
                   setIsCancelDialogOpen(true);
                 }}
               >
@@ -73,13 +68,10 @@ function CheckInMemberDropdownMenu({ checkedInMember, mutate }) {
                 Cancel Membership
               </button>
             </DropdownItem>
-            <DropdownItem asChild>
+            <DropdownItem>
               <button
                 type="button"
-                className="flex items-center gap-x-1 text-error"
-                onSelect={() => {
-                  setIsDeleteDialogOpen(true);
-                }}
+                className="text-red11 flex items-center gap-x-1"
                 onClick={() => {
                   setIsDeleteDialogOpen(true);
                 }}

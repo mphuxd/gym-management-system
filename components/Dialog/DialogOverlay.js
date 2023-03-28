@@ -3,13 +3,17 @@ import * as DialogPrimitive from '@radix-ui/react-dialog';
 import cx from 'classnames';
 
 const DialogOverlay = React.forwardRef(
-  ({ children, className, ...props }, forwardedRef) => (
-    <DialogPrimitive.Overlay
-      {...props}
-      ref={forwardedRef}
-      className={cx(className, 'fixed inset-0 z-10 bg-gray12 opacity-70')}
-    />
-  )
+  ({ children, ...props }, forwardedRef) => {
+    const { className, ...rest } = { ...props };
+    const classNames = cx(className, 'fixed bg-gray12 opacity-70 inset-0');
+    return (
+      <DialogPrimitive.Overlay
+        ref={forwardedRef}
+        {...rest}
+        className={classNames}
+      />
+    );
+  }
 );
 
 DialogOverlay.displayName = 'DialogOverlay';

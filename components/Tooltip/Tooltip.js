@@ -5,17 +5,16 @@ const Tooltip = React.forwardRef(
   ({ trigger, content, ...props }, forwardedRef) => (
     <TooltipPrimitive.Provider ref={forwardedRef} {...props}>
       <TooltipPrimitive.Root delayDuration={0}>
-        <TooltipPrimitive.Trigger asChild className="relative bg-transparent">
+        <TooltipPrimitive.Trigger className="relative">
           {trigger}
         </TooltipPrimitive.Trigger>
         <TooltipPrimitive.Portal className="relative">
           <TooltipPrimitive.Content
-            id={content}
             sideOffset={4}
-            className="h-fit w-fit rounded-lg bg-dark px-2 py-1 text-sm text-white"
+            className="bg-slate-600 text-white text-sm px-2 py-1 rounded-lg  h-fit w-fit"
           >
             {content}
-            <TooltipPrimitive.Arrow className="fill-dark" />
+            <TooltipPrimitive.Arrow className="fill-slate-600" />
           </TooltipPrimitive.Content>
         </TooltipPrimitive.Portal>
       </TooltipPrimitive.Root>

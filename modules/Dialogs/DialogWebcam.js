@@ -2,7 +2,7 @@ import React from 'react';
 import Webcam from 'react-webcam';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { Cross2Icon, CameraIcon } from '@radix-ui/react-icons';
-import { Stack, Dialog, DialogClose } from '@/components';
+import { Stack, Dialog } from '@/components';
 
 export default function DialogWebcam({
   openWebcam,
@@ -19,7 +19,13 @@ export default function DialogWebcam({
     <Dialog open={openWebcam} onOpenChange={setOpenWebcam}>
       <DialogPrimitive.Content className="absolute inset-1/2 -translate-x-1/2 -translate-y-3/4 h-fit w-1/2 bg-gray12 rounded-sm z-50">
         <Stack direction="row" className="p-2 justify-end items-end w-full">
-          <DialogClose className="text-white" />
+          <DialogPrimitive.Close>
+            <Cross2Icon
+              className="text-white rounded-sm hover:bg-gray11 hover:text-gray3 active:text-gray5"
+              height={20}
+              width={20}
+            />
+          </DialogPrimitive.Close>
         </Stack>
         <Stack className="mx-auto w-full bg-black">
           <Webcam
@@ -59,7 +65,7 @@ function WebcamTakePhotoButton({
   return (
     <button
       type="button"
-      className="rounded-full w-12 h-12 mx-auto bg-white hover:outline hover:outline-2 hover:outline-primary hover:bg-gray4 active:bg-gray6 active:outline-gray10"
+      className="rounded-full w-12 h-12 mx-auto bg-white hover:outline hover:outline-2 hover:outline-gray8 hover:bg-gray4 active:bg-gray6 active:outline-gray10"
       onClick={async () => {
         const imageSrc = getScreenshot();
         await fetch(`/api/member/image/${memberId}`, {

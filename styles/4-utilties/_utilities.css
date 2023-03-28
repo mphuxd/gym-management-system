@@ -23,7 +23,31 @@
     transform: translate(-50%, -50%);
   }
 
-  .focusable {
-    @apply focus:rounded-none focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-focus;
+  .min-h-screen-calc {
+    min-height: calc(100vh - 64px);
   }
+}
+
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.horizontal-center {
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }

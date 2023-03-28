@@ -57,7 +57,7 @@ describe('Button ', () => {
   it('should render default styles', async () => {
     render(
       <div>
-        <Button intent="neutral" size="base" length="auto">
+        <Button intent="neutral" size="base" length="auto" rounded>
           Text Label
         </Button>
         <Button>Text Label</Button>
