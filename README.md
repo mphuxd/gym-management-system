@@ -1,44 +1,51 @@
+Gym management software is a type of software that is designed to help gym owners and operators manage their operations, including tracking clients and memberships, scheduling appointments, and processing payments.
+
+Gym management software can include a variety of features, such as a client database, a calendar for scheduling classes and personal training sessions, and a payment system for membership renewals and additional services. It can be used to improve the efficiency and accuracy of gym operations, as well as to provide a better experience for clients through a seamless identification and billing process.
+
+This project focuses on member registration and management, subscription management, and member check-in. Additional features such as point of sale, member class scheduling, employee management, and analytics are mentioned throughout the application, but are outside the project scope.
+
+To learn more, you can read the case study on my portfolio website.
+
+## Project Demo
+
+https://main.dcu3l4nw2pzwu.amplifyapp.com/
+
+To login, I provided guest credentials which can be found in the case study on my portfolio website.
+
+## Stack
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## React
+Other tech involved in this project are
 
-This project uses React with Next.js.
+- Figma,
+- TailwindCSS
+- SCSS
+- CVA
+- Radix UI
+- Jotai
+- Auth0
+- AWS RDS w/ Postgres, S3, and Amplify
+- GraphQL, Apollo, Prisma, Nexus
+- Stripe
+- Jest & RTL
 
-### Component/UI Library
-
-Radix UI primitives.
-
-- https://www.radix-ui.com/docs/primitives
-
-## CSS
-
-This project has TailwindCSS and SASS. Some components use SCSS for practice, but the majority of the project uses TailwindCSS with CVA for DX and fast prototyping.
-
-https://tailwindcss.com/
 https://github.com/joe-bell/cva
 
-### Typography
+## Design
 
-https://fonts.google.com/specimen/IBM+Plex+Sans
-
-### Colors
-
-Radix colors.
-
+- https://fonts.google.com/specimen/IBM+Plex+Sans
 - https://www.radix-ui.com/colors
+- https://icons.radix-ui.com/
+- https://carbondesignsystem.com/guidelines/icons/library/
 
 ## Testing
 
-### Unit Testing
-
 Use Jest & RTL for Unit testing.
-To run jest, use npm run test.
+To run jest, use `npm run test`.
 
 - https://jestjs.io/docs/getting-started
 - https://testing-library.com/docs/
-- https://testing-library.com/docs/user-event/intro/
-
-### Integration & E2E Testing
 
 For integration & E2E testing, use Cypress or playright with Percy integration.
 
@@ -46,24 +53,11 @@ For integration & E2E testing, use Cypress or playright with Percy integration.
 
 Use @axe-core by uncommenting \_App.js.
 
-## Icons
-
-Radix-icons & Carbon icons
-
-- https://icons.radix-ui.com/
-- https://carbondesignsystem.com/guidelines/icons/library/
-
 ### ORM
 
-Prisma Client: Auto-generated and type-safe query builder for Node.js & TypeScript
-Prisma Migrate: Migration system
-Prisma Studio: GUI to view and edit data in your database
+To prototype schemas/models in schema.prisma, use `npx prisma db push`
 
-#### Synchronize Prisma schema with DB schema
-
-To prototype schemas/models in schema.prisma, use npx prisma db push
-
-If there already exists a migration history, use npx prisma migrate dev --name added-tags
+If a migration history already exists, use `npx prisma migrate dev --name added-tags`
 
 ## Deployment
 
@@ -73,7 +67,7 @@ If there already exists a migration history, use npx prisma migrate dev --name a
 
 Install docker
 
-Build a docker image with docker build -t <imagename> .
+Build a docker image with `docker build -t <imagename>`
 
 #### Push Docker Image to ECR
 
@@ -81,7 +75,7 @@ Create a ECR repository.
 
 Ensure you have proper permissions for the repository.
 
-Run the push commands
+Run the push commands.
 
 #### Create an ECS Cluster
 
