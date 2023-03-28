@@ -3,9 +3,17 @@ import cx from 'classnames';
 import TableHeader from './TableHeader';
 import TableRow from './TableRow';
 
-function Table({ headers, rows, render, onClick, className, cursor }) {
+function Table({
+  headers,
+  rows,
+  render,
+  onClick,
+  className,
+  cursor,
+  layer = 'default',
+}) {
   return (
-    <table className={cx('table-auto w-full text-sm', className)}>
+    <table className={cx(className, 'w-full table-auto text-sm')}>
       <thead>
         <tr className="bg-gray4">
           {headers &&
@@ -18,11 +26,12 @@ function Table({ headers, rows, render, onClick, className, cursor }) {
         {rows &&
           rows.map((row) => (
             <TableRow
-              cursor={cursor}
+              layer={layer}
               key={row.id}
-              onClick={onClick}
               row={row}
               render={render}
+              cursor={cursor}
+              onClick={onClick}
             />
           ))}
       </tbody>
@@ -31,3 +40,6 @@ function Table({ headers, rows, render, onClick, className, cursor }) {
 }
 
 export default Table;
+
+// @@@ consider refactoring away from render function
+// @@@ consider tanstack tables

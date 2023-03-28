@@ -8,7 +8,7 @@ function HeaderIcon({ icon, content, href }) {
       content={content}
       trigger={
         <Link
-          className="p-2 block hover:bg-slate4 rounded-sm focus:outline focus:outline-slate7 active:bg-slate5"
+          className="block p-2 hover:bg-layer-hover active:bg-layer-active"
           href={href}
         >
           {icon}

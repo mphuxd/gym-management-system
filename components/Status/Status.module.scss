@@ -1,0 +1,27 @@
+.icon {
+  @apply m-2 h-5 w-5;
+}
+
+.active {
+  @apply icon fill-icon-pos;
+}
+
+.undefined {
+  @apply icon fill-purple10;
+}
+
+.warning {
+  @apply icon fill-icon-warn;
+}
+
+.error {
+  @apply icon fill-icon-neg;
+}
+
+.misuse {
+  @apply icon fill-icon-neg;
+}
+
+.unknown {
+  @apply icon fill-gray9;
+}

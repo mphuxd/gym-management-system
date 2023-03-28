@@ -3,20 +3,15 @@ import cx from 'classnames';
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
 
 const DropdownTrigger = React.forwardRef(
-  ({ children, ...props }, forwardedRef) => {
-    const { className, ...rest } = { ...props };
-    const classNames = cx(className, 'overflow-hidden block');
-
-    return (
-      <DropdownMenuPrimitive.Trigger
-        ref={forwardedRef}
-        {...rest}
-        className={classNames}
-      >
-        {children}
-      </DropdownMenuPrimitive.Trigger>
-    );
-  }
+  ({ children, className, ...props }, forwardedRef) => (
+    <DropdownMenuPrimitive.Trigger
+      {...props}
+      ref={forwardedRef}
+      className={cx(className, 'overflow-hidden')}
+    >
+      {children}
+    </DropdownMenuPrimitive.Trigger>
+  )
 );
 
 DropdownTrigger.displayName = 'DropdownTrigger';

@@ -4,7 +4,7 @@ exports[`Dialog:  should match snapshot 1`] = `
 <div
   aria-describedby="radix-:r2:"
   aria-labelledby="radix-:r1:"
-  class="absolute bg-white rounded-lg z-50"
+  class="absolute z-30 bg-white rounded-lg"
   data-state="open"
   id="radix-:r0:"
   role="dialog"
@@ -12,20 +12,21 @@ exports[`Dialog:  should match snapshot 1`] = `
   tabindex="-1"
 >
   <h2
-    class="font-bold text-lg"
+    class="text-lg font-bold"
     id="radix-:r1:"
   >
     Test Dialog
   </h2>
   <button
-    class="p-2 block hover:bg-slate4 rounded-sm focus:outline focus:outline-slate7 active:bg-slate5"
+    class="bg-transparent p-2 hover:bg-neg-hover hover:text-white active:bg-neg-active active:outline-none"
     type="button"
   >
     <svg
+      class="h-4 w-4 fill-icon"
       fill="none"
-      height="16"
+      height="15"
       viewBox="0 0 15 15"
-      width="16"
+      width="15"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path

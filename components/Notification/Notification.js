@@ -28,8 +28,8 @@ function Notification({ className, size, message, subtitle, intent }) {
       <div className={classNames}>
         <NotificationIcon intent={intent} />
         <div className={size === 'sm' ? 'flex flex-col' : 'flex flex-row'}>
-          <span className="font-semibold pr-1">{message}</span>
-          <span className="font-regular">{subtitle}</span>
+          <span className="pr-1 font-semibold">{message}</span>
+          <span>{subtitle}</span>
         </div>
       </div>
     )

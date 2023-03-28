@@ -3,20 +3,15 @@ import cx from 'classnames';
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
 
 const DropdownSeparator = React.forwardRef(
-  ({ children, ...props }, forwardedRef) => {
-    const { className, ...rest } = { ...props };
-    const classNames = cx(className, 'bg-black h-[1px] my-2 mx-4');
-
-    return (
-      <DropdownMenuPrimitive.Separator
-        {...rest}
-        ref={forwardedRef}
-        className={classNames}
-      >
-        {children}
-      </DropdownMenuPrimitive.Separator>
-    );
-  }
+  ({ children, className, ...props }, forwardedRef) => (
+    <DropdownMenuPrimitive.Separator
+      {...props}
+      ref={forwardedRef}
+      className={cx(className, 'my-2 mx-4 h-px bg-black')}
+    >
+      {children}
+    </DropdownMenuPrimitive.Separator>
+  )
 );
 
 export default DropdownSeparator;

@@ -1,0 +1,15 @@
+.navItemActive {
+  @apply border-b-2 border-brand font-semibold;
+}
+
+.navItemInactive {
+  @apply hover:border-b-2 hover:border-red8;
+}
+
+.navLinkActive {
+  @apply after:absolute after:inset-0 after:inset-y-3/4 after:h-0.5 after:w-1/2 after:translate-x-1/2 after:bg-brand;
+}
+
+.navLinkInactive {
+  @apply after:translate-x-1/2 hover:after:absolute hover:after:inset-0 hover:after:inset-y-3/4 hover:after:h-0.5 hover:after:w-1/2 hover:after:bg-red7;
+}

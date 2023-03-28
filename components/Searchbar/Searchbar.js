@@ -1,48 +1,58 @@
 import React from 'react';
+import cx from 'classnames';
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons';
 import { cva } from 'class-variance-authority';
-import cx from 'classnames';
 
-const searchBarStyles = cva(['relative pl-6 text-sm'], {
+const searchBarStyles = cva('relative pl-7 text-sm', {
   variants: {
     intent: {
       primary:
-        'bg-white h-8 border-b border-blue9 focus:outline-blue10 hover:outline-blue11 focus:bg-white',
+        'border-b border-primary bg-white hover:bg-layer-hover focus:bg-white',
+      secondary: 'bg-layer-alt hover:bg-layer-hover',
       tertiary:
-        'text-slate11 outline-blue9 outline outline-[1px] hover:text-white hover:shadow-sm hover:bg-blue11 active:bg-blue11',
+        'bg-white outline outline-1 -outline-offset-1 outline-primary hover:bg-layer-hover',
       neutral:
-        'focus:ring-0 h-8 focus:outline-none focus:ring-offset-0 border-2  border-blue9 focus:border-blue10 hover:border-blue11 bg-white hover:bg-gray3 focus:bg-gray2 active:bg-gray2  text-slate-600',
+        'border-b border-slate11 bg-white hover:bg-layer-hover focus:bg-white',
+      dark: 'bg-secondary text-white outline outline-1 -outline-offset-1 outline-white hover:bg-slate3Dark',
+      neutralAlt:
+        'border-b border-slate11 bg-layer hover:bg-layer-hover focus:bg-white',
+    },
+    width: {
+      small: 'w-60',
+      base: 'w-80',
+      large: 'w-96',
+    },
+    height: {
+      small: 'h-8',
+      base: 'h-9',
+      large: 'h-10',
     },
     size: {
-      small: 'w-60 py-1 px-2',
-      base: 'w-80 py-2  ',
-      large: 'w-96 py-5',
-    },
-    rounded: {
-      true: 'rounded-md',
-      false: '',
+      small: 'py-1 px-2',
+      base: 'py-2',
+      large: 'py-5',
     },
   },
   defaultVariants: {
     intent: 'neutral',
     size: 'base',
-    rounded: 'false',
+    height: 'base',
+    width: 'base',
   },
 });
 
 const Searchbar = React.forwardRef(
   (
-    { placeholder, name, className, intent, size, rounded, ...props },
+    { placeholder, name, className, intent, width, height, size, ...props },
     forwardedRef
   ) => {
     const classNames = cx(
       className,
-      searchBarStyles({ intent, size, rounded })
+      searchBarStyles({ intent, width, height, size })
     );
-    const iconClassNames = cx('absolute ml-2');
 
     return (
-      <div className="w-full flex flex-row items-center focus:ring-0 focus:outline-none">
+      <div className="flex w-full flex-row items-center">
         <input
           {...props}
           ref={forwardedRef}
@@ -51,7 +61,7 @@ const Searchbar = React.forwardRef(
           name={name}
           placeholder={placeholder}
         />
-        <MagnifyingGlassIcon className={iconClassNames} />
+        <MagnifyingGlassIcon className="absolute ml-2" />
       </div>
     );
   }

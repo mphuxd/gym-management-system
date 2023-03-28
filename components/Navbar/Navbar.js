@@ -3,8 +3,8 @@ import React from 'react';
 function Navbar({ children }) {
   return (
     <section id="navbar" className="col-span-full px-8">
-      <nav>
-        <ul className="flex flex-row text-sm font-regular">{children}</ul>
+      <nav aria-label="main-nav" className="h-full">
+        <ul className="my-auto flex h-full flex-row text-sm">{children}</ul>
       </nav>
     </section>
   );

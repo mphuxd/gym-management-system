@@ -18,11 +18,14 @@ export default function CheckInMember({ checkInHistory, mutate }) {
     checkInHistory.checkins[checkInHistory.checkins.length - 1].member;
 
   return (
-    <Grid as="section" className="w-full max-w-[1544px] p-8 mx-auto">
-      <Stack id="dashboard-member-checkin" className="col-span-full gap-y-8">
+    <Grid
+      as="section"
+      className="mx-auto h-fit w-full max-w-[theme(width.content)] p-8"
+    >
+      <Stack id="dashboard-member-checkin" className="col-span-full h-fit">
         <h1>Check In Member</h1>
         {/* Row 1 - Image/Name/Search */}
-        <Stack direction="row" as="section" className="justify-between">
+        <Stack direction="row" as="section" className="mt-6 justify-between">
           <Stack direction="row" className="gap-x-3">
             <CheckInMemberImage checkedInMember={checkedInMember} />
             {checkedInMember && (
@@ -54,10 +57,13 @@ export default function CheckInMember({ checkInHistory, mutate }) {
           <CheckInMemberSearch mutate={mutate} />
         </Stack>
         {/* Row 2 - Tabs && Action / TabsContent */}
-        <Stack as="section" className="gap-x-4">
+        <Stack as="section" className="mt-6 gap-x-4">
           <div className="w-full">
             <Tabs.Root defaultValue="overview">
-              <Stack direction="row" className="justify-between border-b">
+              <Stack
+                direction="row"
+                className="justify-between border-b border-border-subtle-dark"
+              >
                 <Tabs.List aria-label="Member details">
                   <Stack direction="row" className="gap-x-[2px]">
                     <TabsTrigger value="overview">Overview</TabsTrigger>
