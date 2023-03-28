@@ -7,37 +7,22 @@ import {
   Undefined,
   Unknown,
 } from '@carbon/icons-react';
-import cx from 'classnames';
+import styles from './Status.module.scss';
 
 function Status({ status }) {
-  let icon = null;
-  const className = 'm-2 h-5 w-5';
+  const statusIconMap = {
+    ACTIVE: <CheckmarkFilled className={styles.active} />,
+    INACTIVE: <Undefined className={styles.undefined} />,
+    LATE: <CheckmarkOutlineWarning className={styles.warning} />,
+    CANCELLED: <CheckmarkOutlineError className={styles.error} />,
+    BANNED: <MisuseOutline className={styles.misuse} />,
+    default: <Unknown className={styles.unknown} />,
+  };
 
-  switch (status) {
-    case 'ACTIVE':
-      icon = <CheckmarkFilled className={cx(className, 'fill-green10')} />;
-      break;
-    case 'INACTIVE':
-      icon = <Undefined className={cx(className, ' fill-purple10 ')} />;
-      break;
-    case 'LATE':
-      icon = (
-        <CheckmarkOutlineWarning className={cx(className, 'fill-yellow8')} />
-      );
-      break;
-    case 'CANCELLED':
-      icon = (
-        <CheckmarkOutlineError className={cx(className, 'fill-green10')} />
-      );
-      break;
-    case 'BANNED':
-      icon = <MisuseOutline className={cx(className, 'fill-red10')} />;
-      break;
-    default:
-      icon = <Unknown className={cx(className, 'fill-gray9')} />;
-      break;
-  }
+  const icon = statusIconMap[status] || statusIconMap.default;
   return icon;
 }
 
 export default Status;
+
+// @@@ update after check-in refactor

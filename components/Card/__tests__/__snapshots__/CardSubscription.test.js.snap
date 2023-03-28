@@ -2,43 +2,38 @@
 
 exports[`CardSimple  should contain text content 1`] = `
 <div
-  class="test-classname flex flex-col items-center"
+  class="test-classname w-82 flex h-[32rem] flex-col items-center justify-between bg-layer  hover:bg-layer-hover"
   data-testid="cardSubscriptionTestId"
 >
   <div
-    class="flex flex-col p-8 bg-white hover:bg-slate3 active:bg-slate4 outline outline-slate7 outline-[1px] focus:outline-slate8 focus:ring-2 focus:ring-blue8 rounded-2xl justify-between h-[32rem] hover:shadow-lg hover:shadow-purple6"
+    class="flex h-full w-full flex-col justify-between p-8"
   >
     <div
-      class="description flex flex-col justify-center"
+      class="flex flex-col justify-center"
     >
       <h2
-        class="text-2xl font-semibold w-fit "
+        class="w-fit text-2xl font-semibold"
       >
         Test Plan
       </h2>
       <h3
-        class="mt-5"
-      >
-        Test Plan Description
-      </h3>
-      <h4
-        class="text-2xl font-bold mt-6"
+        class="mt-6 text-2xl"
       >
         $1
-      </h4>
+      </h3>
       <div
-        class="h-[1px] my-4"
+        class="my-6 h-px bg-border-subtle-darker"
         data-orientation="horizontal"
         role="separator"
       />
       <div
-        class="flex flex-col mb-3 gap-y-1"
+        class="mb-3 flex flex-col gap-y-2"
       >
         <div
-          class="flex flex-row items-center"
+          class="flex flex-row items-center text-sm"
         >
           <svg
-            class="mr-1"
+            class="mr-1 text-brand"
             fill="none"
             height="16"
             viewBox="0 0 15 15"
@@ -53,16 +48,16 @@ exports[`CardSimple  should contain text content 1`] = `
             />
           </svg>
           <span
-            class="inline-block "
+            class="inline-block"
           >
             Feature One
           </span>
         </div>
         <div
-          class="flex flex-row items-center"
+          class="flex flex-row items-center text-sm"
         >
           <svg
-            class="mr-1"
+            class="mr-1 text-brand"
             fill="none"
             height="16"
             viewBox="0 0 15 15"
@@ -77,16 +72,16 @@ exports[`CardSimple  should contain text content 1`] = `
             />
           </svg>
           <span
-            class="inline-block "
+            class="inline-block"
           >
             Feature Two
           </span>
         </div>
         <div
-          class="flex flex-row items-center"
+          class="flex flex-row items-center text-sm"
         >
           <svg
-            class="mr-1"
+            class="mr-1 text-brand"
             fill="none"
             height="16"
             viewBox="0 0 15 15"
@@ -101,7 +96,7 @@ exports[`CardSimple  should contain text content 1`] = `
             />
           </svg>
           <span
-            class="inline-block "
+            class="inline-block"
           >
             Feature Three
           </span>
@@ -127,18 +122,15 @@ exports[`CardSimple  should contain text content 1`] = `
           value="idValue"
         />
         <button
+          class="text-sm focusable bg-white text-blue11 outline outline-1 -outline-offset-1 outline-blue9 hover:bg-blue11 hover:text-white focus:bg-primary focus:text-white focus:ring-[3px] focus:ring-inset focus:ring-white active:bg-blue12 active:text-white active:outline-none active:ring-0 px-4 py-3 w-32"
           id="checkout-and-portal-button"
           type="submit"
         >
-          <div
-            class="focus:outline text-blue11 outline-blue9 outline outline-1 hover:text-white hover:shadow-sm hover:bg-blue11 active:bg-blue11 active:text-white  px-4 py-2 w-fit rounded-md"
-          >
-            Subscribe
-          </div>
+          Subscribe
         </button>
       </form>
       <span
-        class="text-sm mt-4"
+        class="mt-4 text-sm"
       >
         Test Footnotes
       </span>
@@ -149,43 +141,38 @@ exports[`CardSimple  should contain text content 1`] = `
 
 exports[`CardSimple  should have stripe input values 1`] = `
 <div
-  class="test-classname flex flex-col items-center"
+  class="test-classname w-82 flex h-[32rem] flex-col items-center justify-between bg-layer  hover:bg-layer-hover"
   data-testid="cardSubscriptionTestId"
 >
   <div
-    class="flex flex-col p-8 bg-white hover:bg-slate3 active:bg-slate4 outline outline-slate7 outline-[1px] focus:outline-slate8 focus:ring-2 focus:ring-blue8 rounded-2xl justify-between h-[32rem] hover:shadow-lg hover:shadow-purple6"
+    class="flex h-full w-full flex-col justify-between p-8"
   >
     <div
-      class="description flex flex-col justify-center"
+      class="flex flex-col justify-center"
     >
       <h2
-        class="text-2xl font-semibold w-fit "
+        class="w-fit text-2xl font-semibold"
       >
         Test Plan
       </h2>
       <h3
-        class="mt-5"
-      >
-        Test Plan Description
-      </h3>
-      <h4
-        class="text-2xl font-bold mt-6"
+        class="mt-6 text-2xl"
       >
         $1
-      </h4>
+      </h3>
       <div
-        class="h-[1px] my-4"
+        class="my-6 h-px bg-border-subtle-darker"
         data-orientation="horizontal"
         role="separator"
       />
       <div
-        class="flex flex-col mb-3 gap-y-1"
+        class="mb-3 flex flex-col gap-y-2"
       >
         <div
-          class="flex flex-row items-center"
+          class="flex flex-row items-center text-sm"
         >
           <svg
-            class="mr-1"
+            class="mr-1 text-brand"
             fill="none"
             height="16"
             viewBox="0 0 15 15"
@@ -200,16 +187,16 @@ exports[`CardSimple  should have stripe input values 1`] = `
             />
           </svg>
           <span
-            class="inline-block "
+            class="inline-block"
           >
             Feature One
           </span>
         </div>
         <div
-          class="flex flex-row items-center"
+          class="flex flex-row items-center text-sm"
         >
           <svg
-            class="mr-1"
+            class="mr-1 text-brand"
             fill="none"
             height="16"
             viewBox="0 0 15 15"
@@ -224,16 +211,16 @@ exports[`CardSimple  should have stripe input values 1`] = `
             />
           </svg>
           <span
-            class="inline-block "
+            class="inline-block"
           >
             Feature Two
           </span>
         </div>
         <div
-          class="flex flex-row items-center"
+          class="flex flex-row items-center text-sm"
         >
           <svg
-            class="mr-1"
+            class="mr-1 text-brand"
             fill="none"
             height="16"
             viewBox="0 0 15 15"
@@ -248,7 +235,7 @@ exports[`CardSimple  should have stripe input values 1`] = `
             />
           </svg>
           <span
-            class="inline-block "
+            class="inline-block"
           >
             Feature Three
           </span>
@@ -274,18 +261,15 @@ exports[`CardSimple  should have stripe input values 1`] = `
           value="idValue"
         />
         <button
+          class="text-sm focusable bg-white text-blue11 outline outline-1 -outline-offset-1 outline-blue9 hover:bg-blue11 hover:text-white focus:bg-primary focus:text-white focus:ring-[3px] focus:ring-inset focus:ring-white active:bg-blue12 active:text-white active:outline-none active:ring-0 px-4 py-3 w-32"
           id="checkout-and-portal-button"
           type="submit"
         >
-          <div
-            class="focus:outline text-blue11 outline-blue9 outline outline-1 hover:text-white hover:shadow-sm hover:bg-blue11 active:bg-blue11 active:text-white  px-4 py-2 w-fit rounded-md"
-          >
-            Subscribe
-          </div>
+          Subscribe
         </button>
       </form>
       <span
-        class="text-sm mt-4"
+        class="mt-4 text-sm"
       >
         Test Footnotes
       </span>
@@ -296,43 +280,38 @@ exports[`CardSimple  should have stripe input values 1`] = `
 
 exports[`CardSimple  should match snapshot 1`] = `
 <div
-  class="test-classname flex flex-col items-center"
+  class="test-classname w-82 flex h-[32rem] flex-col items-center justify-between bg-layer  hover:bg-layer-hover"
   data-testid="cardSubscriptionTestId"
 >
   <div
-    class="flex flex-col p-8 bg-white hover:bg-slate3 active:bg-slate4 outline outline-slate7 outline-[1px] focus:outline-slate8 focus:ring-2 focus:ring-blue8 rounded-2xl justify-between h-[32rem] hover:shadow-lg hover:shadow-purple6"
+    class="flex h-full w-full flex-col justify-between p-8"
   >
     <div
-      class="description flex flex-col justify-center"
+      class="flex flex-col justify-center"
     >
       <h2
-        class="text-2xl font-semibold w-fit "
+        class="w-fit text-2xl font-semibold"
       >
         Test Plan
       </h2>
       <h3
-        class="mt-5"
-      >
-        Test Plan Description
-      </h3>
-      <h4
-        class="text-2xl font-bold mt-6"
+        class="mt-6 text-2xl"
       >
         $1
-      </h4>
+      </h3>
       <div
-        class="h-[1px] my-4"
+        class="my-6 h-px bg-border-subtle-darker"
         data-orientation="horizontal"
         role="separator"
       />
       <div
-        class="flex flex-col mb-3 gap-y-1"
+        class="mb-3 flex flex-col gap-y-2"
       >
         <div
-          class="flex flex-row items-center"
+          class="flex flex-row items-center text-sm"
         >
           <svg
-            class="mr-1"
+            class="mr-1 text-brand"
             fill="none"
             height="16"
             viewBox="0 0 15 15"
@@ -347,16 +326,16 @@ exports[`CardSimple  should match snapshot 1`] = `
             />
           </svg>
           <span
-            class="inline-block "
+            class="inline-block"
           >
             Feature One
           </span>
         </div>
         <div
-          class="flex flex-row items-center"
+          class="flex flex-row items-center text-sm"
         >
           <svg
-            class="mr-1"
+            class="mr-1 text-brand"
             fill="none"
             height="16"
             viewBox="0 0 15 15"
@@ -371,16 +350,16 @@ exports[`CardSimple  should match snapshot 1`] = `
             />
           </svg>
           <span
-            class="inline-block "
+            class="inline-block"
           >
             Feature Two
           </span>
         </div>
         <div
-          class="flex flex-row items-center"
+          class="flex flex-row items-center text-sm"
         >
           <svg
-            class="mr-1"
+            class="mr-1 text-brand"
             fill="none"
             height="16"
             viewBox="0 0 15 15"
@@ -395,7 +374,7 @@ exports[`CardSimple  should match snapshot 1`] = `
             />
           </svg>
           <span
-            class="inline-block "
+            class="inline-block"
           >
             Feature Three
           </span>
@@ -421,18 +400,15 @@ exports[`CardSimple  should match snapshot 1`] = `
           value="idValue"
         />
         <button
+          class="text-sm focusable bg-white text-blue11 outline outline-1 -outline-offset-1 outline-blue9 hover:bg-blue11 hover:text-white focus:bg-primary focus:text-white focus:ring-[3px] focus:ring-inset focus:ring-white active:bg-blue12 active:text-white active:outline-none active:ring-0 px-4 py-3 w-32"
           id="checkout-and-portal-button"
           type="submit"
         >
-          <div
-            class="focus:outline text-blue11 outline-blue9 outline outline-1 hover:text-white hover:shadow-sm hover:bg-blue11 active:bg-blue11 active:text-white  px-4 py-2 w-fit rounded-md"
-          >
-            Subscribe
-          </div>
+          Subscribe
         </button>
       </form>
       <span
-        class="text-sm mt-4"
+        class="mt-4 text-sm"
       >
         Test Footnotes
       </span>
@@ -443,43 +419,38 @@ exports[`CardSimple  should match snapshot 1`] = `
 
 exports[`CardSimple  should pass in className 1`] = `
 <div
-  class="test-classname flex flex-col items-center"
+  class="test-classname w-82 flex h-[32rem] flex-col items-center justify-between bg-layer  hover:bg-layer-hover"
   data-testid="cardSubscriptionTestId"
 >
   <div
-    class="flex flex-col p-8 bg-white hover:bg-slate3 active:bg-slate4 outline outline-slate7 outline-[1px] focus:outline-slate8 focus:ring-2 focus:ring-blue8 rounded-2xl justify-between h-[32rem] hover:shadow-lg hover:shadow-purple6"
+    class="flex h-full w-full flex-col justify-between p-8"
   >
     <div
-      class="description flex flex-col justify-center"
+      class="flex flex-col justify-center"
     >
       <h2
-        class="text-2xl font-semibold w-fit "
+        class="w-fit text-2xl font-semibold"
       >
         Test Plan
       </h2>
       <h3
-        class="mt-5"
-      >
-        Test Plan Description
-      </h3>
-      <h4
-        class="text-2xl font-bold mt-6"
+        class="mt-6 text-2xl"
       >
         $1
-      </h4>
+      </h3>
       <div
-        class="h-[1px] my-4"
+        class="my-6 h-px bg-border-subtle-darker"
         data-orientation="horizontal"
         role="separator"
       />
       <div
-        class="flex flex-col mb-3 gap-y-1"
+        class="mb-3 flex flex-col gap-y-2"
       >
         <div
-          class="flex flex-row items-center"
+          class="flex flex-row items-center text-sm"
         >
           <svg
-            class="mr-1"
+            class="mr-1 text-brand"
             fill="none"
             height="16"
             viewBox="0 0 15 15"
@@ -494,16 +465,16 @@ exports[`CardSimple  should pass in className 1`] = `
             />
           </svg>
           <span
-            class="inline-block "
+            class="inline-block"
           >
             Feature One
           </span>
         </div>
         <div
-          class="flex flex-row items-center"
+          class="flex flex-row items-center text-sm"
         >
           <svg
-            class="mr-1"
+            class="mr-1 text-brand"
             fill="none"
             height="16"
             viewBox="0 0 15 15"
@@ -518,16 +489,16 @@ exports[`CardSimple  should pass in className 1`] = `
             />
           </svg>
           <span
-            class="inline-block "
+            class="inline-block"
           >
             Feature Two
           </span>
         </div>
         <div
-          class="flex flex-row items-center"
+          class="flex flex-row items-center text-sm"
         >
           <svg
-            class="mr-1"
+            class="mr-1 text-brand"
             fill="none"
             height="16"
             viewBox="0 0 15 15"
@@ -542,7 +513,7 @@ exports[`CardSimple  should pass in className 1`] = `
             />
           </svg>
           <span
-            class="inline-block "
+            class="inline-block"
           >
             Feature Three
           </span>
@@ -568,18 +539,15 @@ exports[`CardSimple  should pass in className 1`] = `
           value="idValue"
         />
         <button
+          class="text-sm focusable bg-white text-blue11 outline outline-1 -outline-offset-1 outline-blue9 hover:bg-blue11 hover:text-white focus:bg-primary focus:text-white focus:ring-[3px] focus:ring-inset focus:ring-white active:bg-blue12 active:text-white active:outline-none active:ring-0 px-4 py-3 w-32"
           id="checkout-and-portal-button"
           type="submit"
         >
-          <div
-            class="focus:outline text-blue11 outline-blue9 outline outline-1 hover:text-white hover:shadow-sm hover:bg-blue11 active:bg-blue11 active:text-white  px-4 py-2 w-fit rounded-md"
-          >
-            Subscribe
-          </div>
+          Subscribe
         </button>
       </form>
       <span
-        class="text-sm mt-4"
+        class="mt-4 text-sm"
       >
         Test Footnotes
       </span>

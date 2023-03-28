@@ -16,7 +16,7 @@ exports[`AccordionItem:  should be collapsed and hide content on click 1`] = `
       <button
         aria-controls="radix-:r5:"
         aria-expanded="false"
-        class="flex flex-row justify-between items-center w-full AccordionTrigger"
+        class="group flex w-full flex-row items-center justify-between bg-transparent"
         data-radix-collection-item=""
         data-state="closed"
         data-testid="accordion-trigger"
@@ -28,7 +28,7 @@ exports[`AccordionItem:  should be collapsed and hide content on click 1`] = `
         </h3>
         <svg
           aria-hidden="true"
-          class="AccordionChevron"
+          class="transition duration-300 group-data-[state=open]:rotate-180 group-data-[state=open]:transform"
           fill="currentColor"
           focusable="false"
           height="16"
@@ -72,7 +72,7 @@ exports[`AccordionItem:  should be expanded and show content on click 1`] = `
       <button
         aria-controls="radix-:r7:"
         aria-expanded="true"
-        class="flex flex-row justify-between items-center w-full AccordionTrigger"
+        class="group flex w-full flex-row items-center justify-between bg-transparent"
         data-radix-collection-item=""
         data-state="open"
         data-testid="accordion-trigger"
@@ -84,7 +84,7 @@ exports[`AccordionItem:  should be expanded and show content on click 1`] = `
         </h3>
         <svg
           aria-hidden="true"
-          class="AccordionChevron"
+          class="transition duration-300 group-data-[state=open]:rotate-180 group-data-[state=open]:transform"
           fill="currentColor"
           focusable="false"
           height="16"
@@ -125,7 +125,7 @@ exports[`AccordionItem:  should render 1`] = `
     <button
       aria-controls="radix-:r1:"
       aria-expanded="false"
-      class="flex flex-row justify-between items-center w-full AccordionTrigger"
+      class="group flex w-full flex-row items-center justify-between bg-transparent"
       data-radix-collection-item=""
       data-state="closed"
       data-testid="accordion-trigger"
@@ -137,7 +137,7 @@ exports[`AccordionItem:  should render 1`] = `
       </h3>
       <svg
         aria-hidden="true"
-        class="AccordionChevron"
+        class="transition duration-300 group-data-[state=open]:rotate-180 group-data-[state=open]:transform"
         fill="currentColor"
         focusable="false"
         height="16"
@@ -172,7 +172,7 @@ exports[`AccordionItem:  should render 2`] = `
   <button
     aria-controls="radix-:r1:"
     aria-expanded="false"
-    class="flex flex-row justify-between items-center w-full AccordionTrigger"
+    class="group flex w-full flex-row items-center justify-between bg-transparent"
     data-radix-collection-item=""
     data-state="closed"
     data-testid="accordion-trigger"
@@ -184,7 +184,7 @@ exports[`AccordionItem:  should render 2`] = `
     </h3>
     <svg
       aria-hidden="true"
-      class="AccordionChevron"
+      class="transition duration-300 group-data-[state=open]:rotate-180 group-data-[state=open]:transform"
       fill="currentColor"
       focusable="false"
       height="16"
@@ -217,7 +217,7 @@ exports[`AccordionItem:  should render 4`] = `
 <button
   aria-controls="radix-:r1:"
   aria-expanded="false"
-  class="flex flex-row justify-between items-center w-full AccordionTrigger"
+  class="group flex w-full flex-row items-center justify-between bg-transparent"
   data-radix-collection-item=""
   data-state="closed"
   data-testid="accordion-trigger"
@@ -229,7 +229,7 @@ exports[`AccordionItem:  should render 4`] = `
   </h3>
   <svg
     aria-hidden="true"
-    class="AccordionChevron"
+    class="transition duration-300 group-data-[state=open]:rotate-180 group-data-[state=open]:transform"
     fill="currentColor"
     focusable="false"
     height="16"

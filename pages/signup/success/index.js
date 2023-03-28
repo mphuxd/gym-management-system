@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
 import { Button, Grid, Screen, Separator, Stack } from '@/components';
 
 export const getServerSideProps = withPageAuthRequired();
@@ -30,15 +29,15 @@ export default function SignUpSuccess() {
   }, [sessionId, router]);
 
   return (
-    <Screen>
-      <Grid className="gap-8 mx-auto p-8 relative min-h-screen-calc">
-        <Stack className="col-start-2 col-span-5 gap-12">
+    <Screen background="primary">
+      <Grid className="relative mx-auto max-w-screen-max gap-8 p-8">
+        <Stack className="col-span-5 col-start-1 gap-10 lg:col-start-2">
           <Stack>
-            <h3 className="text-4xl mb-4 leading-normal">Thank you!</h3>
-            <p>
+            <h1 className="mb-4 text-3xl leading-normal">Thank you!</h1>
+            <h2>
               Your membership subscription was received and successfully
               created.
-            </p>
+            </h2>
             <p>
               {checkoutSession &&
                 `A confirmation email will be sent to ${checkoutSession.checkoutSession.customer_details.email} shortly.`}
@@ -48,14 +47,14 @@ export default function SignUpSuccess() {
               inbox.
             </p>
           </Stack>
-          <Separator />
+          <Separator className="bg-border-strong-dark" />
           <Stack>
-            <h3 className="text-4xl mb-4 leading-normal">Next Steps</h3>
+            <h3 className="mb-4 text-3xl leading-normal">Next Steps</h3>
             <p className="mb-4">
-              Please click on the link below to finish setting up the membership
+              Click on the link below to finish setting up the membership
               account.
             </p>
-            <ul className="list-inside mb-4">
+            <ul className="mb-4 list-inside">
               <li className="list-disc">
                 Take a photo and upload a photo of the member using the
                 computer’s webcam.
@@ -68,43 +67,45 @@ export default function SignUpSuccess() {
               </li>
             </ul>
             {checkoutSession && (
-              <Button as="div" intent="primary" rounded={false} size="large">
-                <Link
-                  href={`/members/details/${checkoutSession.membership.member.id}`}
-                >
-                  Complete Member Profile
-                </Link>
+              <Button
+                as="link"
+                className="mt-2"
+                intent="primary"
+                size="large"
+                href={`/members/details/${checkoutSession.membership.member.id}`}
+              >
+                Complete Member Profile
               </Button>
             )}
           </Stack>
-          <Separator />
+          <Separator className="bg-border-strong-dark" />
           {checkoutSession && (
             <Stack>
-              <h3 className="text-4xl mb-4 leading-normal">Order Summary</h3>
+              <h3 className="mb-4 text-3xl leading-normal">Order Summary</h3>
               <h4 className="font-bold">
                 Evolve Gym Membership -{' '}
                 {checkoutSession.membership.plan.planName} Plan
               </h4>
-              <ul className="flex flex-col w-96 mt-3 gap-y-1">
-                <li className="w-full flex justify-between">
+              <ul className="mt-3 flex w-96 flex-col gap-y-1">
+                <li className="flex w-full justify-between">
                   <span className="w-1/2">Invoice Id</span>
                   <span className="w-1/2">
                     {checkoutSession.checkoutSession.invoice}
                   </span>
                 </li>
-                <li className="w-full flex justify-between">
+                <li className="flex w-full justify-between">
                   <span className="w-1/2">Member</span>
                   <span className="w-1/2">
                     {checkoutSession.checkoutSession.customer_details.name}
                   </span>
                 </li>
-                <li className="w-full flex justify-between">
+                <li className="flex w-full justify-between">
                   <span className="w-1/2">Plan</span>
                   <span className="w-1/2">
                     {checkoutSession.membership.plan.planName}
                   </span>
                 </li>
-                <li className="w-full flex justify-between">
+                <li className="flex w-full justify-between">
                   <span className="w-1/2">Total</span>
                   <span className="w-1/2">
                     $
@@ -113,7 +114,7 @@ export default function SignUpSuccess() {
                     ).toFixed(2)}
                   </span>
                 </li>
-                <li className="w-full flex justify-between">
+                <li className="flex w-full justify-between">
                   <span className="w-1/2">Order Date</span>
                   <span className="w-1/2">
                     {new Date(
@@ -121,7 +122,7 @@ export default function SignUpSuccess() {
                     ).toLocaleDateString()}
                   </span>
                 </li>
-                <li className="w-full flex justify-between">
+                <li className="flex w-full justify-between">
                   <span className="w-1/2">Membership Ends</span>
                   <span className="w-1/2">
                     {new Date(
@@ -133,10 +134,10 @@ export default function SignUpSuccess() {
             </Stack>
           )}
         </Stack>
-        <div className="col-span-5 relative">
+        <div className="relative col-span-5">
           <Image
             fill="contain"
-            className="opacity-10 col-span-5"
+            className="col-span-5 opacity-10"
             alt="Evolve Logo"
             src="/images/logo/evolve.svg"
           />

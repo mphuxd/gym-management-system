@@ -6,11 +6,9 @@ function FormInput({ id, defaultValue, type }) {
       id={id}
       defaultValue={defaultValue}
       type={type}
-      className="z-20 px-2 py-1 border border-gray-400 hover:border-gray-600 focus:outline-blue-600 focus:shadow-md focus:shadow-blue-200"
+      className="z-20 bg-layer-alt px-2 py-1 focus:shadow-md focus:shadow-blue12"
     />
   );
 }
 
 export default FormInput;
-
-// @@@style

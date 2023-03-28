@@ -34,8 +34,10 @@ export default function MemberTabContentPaymentHistory({ member, ...props }) {
       <TabsContent {...props}>
         <Stack>
           <Table
+            layer="alt"
             headers={['Amount', 'Invoice ID', 'Status', 'Description', 'Date']}
             rows={rows}
+            cursor="auto"
             onClick={() => {}}
             render={(row) => (
               <>
@@ -57,10 +59,8 @@ export default function MemberTabContentPaymentHistory({ member, ...props }) {
               </>
             )}
           />
-          <span className="text-sm text-gray11 p-2">
-            {`Displaying ${rows.length + 1} of ${
-              data.invoices.data.length + 1
-            } payments.`}
+          <span className="p-2 text-sm text-support">
+            {`Displaying ${rows.length} of ${data.invoices.data.length} payments.`}
           </span>
         </Stack>
       </TabsContent>
