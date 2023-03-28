@@ -3,7 +3,7 @@ import cx from 'classnames';
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons';
 import { cva } from 'class-variance-authority';
 
-const searchBarStyles = cva('relative pl-6 text-sm', {
+const searchBarStyles = cva('relative pl-7 text-sm', {
   variants: {
     intent: {
       primary:
@@ -14,6 +14,8 @@ const searchBarStyles = cva('relative pl-6 text-sm', {
       neutral:
         'border-b border-slate11 bg-white hover:bg-layer-hover focus:bg-white',
       dark: 'bg-secondary text-white outline outline-1 -outline-offset-1 outline-white hover:bg-slate3Dark',
+      neutralAlt:
+        'border-b border-slate11 bg-layer hover:bg-layer-hover focus:bg-white',
     },
     width: {
       small: 'w-60',

@@ -45,7 +45,7 @@ function Toast() {
         <ToastPrimitive.Description className="text-sm font-medium text-body">
           {toastValue.description}
         </ToastPrimitive.Description>
-        <ToastPrimitive.Action />
+        <ToastPrimitive.Action altText="Action" />
         <ToastPrimitive.Close />
       </ToastPrimitive.Root>
       <ToastPrimitive.Viewport className="fixed right-8 bottom-8 z-50 h-fit" />

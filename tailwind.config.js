@@ -13,7 +13,8 @@ module.exports = {
       black: 'black',
       white: 'white',
 
-      background: 'var(--color-slate2)',
+      background: 'var(--color-white)',
+      'background-alt': 'var(--color-gray2)',
       brand: 'var(--color-brand)',
       primary: 'var(--color-blue10)',
       secondary: 'var(--color-slate11)',
@@ -28,10 +29,10 @@ module.exports = {
       },
 
       layer: {
-        DEFAULT: 'white',
-        alt: 'var(--color-slate3)',
-        hover: 'var(--color-slate4)',
-        active: 'var(--color-slate5)',
+        DEFAULT: 'var(--color-gray3)',
+        alt: 'var(--color-white)',
+        hover: 'var(--color-gray4)',
+        active: 'var(--color-gray5)',
       },
 
       field: {
@@ -83,7 +84,7 @@ module.exports = {
         border: 'var(--color-red10)',
         icon: 'var(--color-red10)',
         text: 'var(--color-red11)',
-        hover: 'var(--color-red9)',
+        hover: 'var(--color-red11)',
         active: 'var(--color-red11)',
         focus: 'var(--color-red7)',
       },
@@ -532,6 +533,9 @@ module.exports = {
           '0px 0px 29px rgba(0, 0, 0, 0.13), 0px 0px 44px rgba(0, 0, 0, 0.15), 0px 0px 0px rgba(0, 0, 0, 0.2)',
         blur: '0 0 20px 0 rgba(0, 0, 0, 0.3)',
         xs: '0px 1px 2px rgba(16, 24, 40, 0.05)',
+      },
+      screens: {
+        max: '1920px',
       },
       transitionTimingFunction: {
         'ease-in-out-custom': 'cubic-bezier(0.45, 0, 0.4, 1)',

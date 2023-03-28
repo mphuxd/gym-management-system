@@ -6,7 +6,7 @@ export const CARD_SIMPLE_TEST_ID = 'cardSimpleTestId';
 function CardSimple({ heading, description }) {
   return (
     <div
-      className="flex h-52 flex-col justify-between bg-layer p-4 shadow-xl shadow-mauve7 hover:bg-layer-hover hover:shadow-mauve8 focus:bg-slate5 active:bg-layer-active"
+      className="flex h-52 flex-col justify-between bg-layer p-4 shadow-lg shadow-mauve7 hover:bg-layer-hover hover:shadow-mauve8 focus:bg-slate5 active:bg-layer-active"
       data-testid={CARD_SIMPLE_TEST_ID}
     >
       <div className="flex flex-col gap-y-3">

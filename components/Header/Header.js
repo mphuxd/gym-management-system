@@ -13,7 +13,7 @@ const inter = Inter({ subsets: 'latin' });
 function Header() {
   const { user } = useUser();
   return (
-    <header className="col-span-12 h-16 min-w-[1280px] border-b border-gray6 bg-gray1 shadow-sm drop-shadow-sm">
+    <header className="col-span-12 h-16 min-w-[1280px] border-b border-gray6 bg-white shadow-sm drop-shadow-sm">
       <Stack
         direction="row"
         className="mx-auto content-between justify-between px-8"
@@ -53,19 +53,21 @@ function Header() {
           {user ? (
             <Stack direction="row" className="items-center space-x-6">
               <HeaderIcon
-                content="Settings"
+                aria-label="User Settings"
                 href="/settings"
                 icon={<GearIcon />}
+                content="Go to user settings."
               />
               <HeaderIcon
                 content="Logout"
                 href="/api/auth/logout"
                 icon={<ExitIcon />}
+                aria-label="Logout."
               />
               <UserAvatar
                 height={24}
                 width={24}
-                className="h-full w-full p-5 hover:cursor-pointer hover:bg-gray4"
+                className="h-full w-full p-5 hover:cursor-pointer hover:bg-layer-hover"
               />
             </Stack>
           ) : (

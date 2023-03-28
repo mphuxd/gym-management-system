@@ -6,7 +6,7 @@ import { toastAtom } from 'atoms';
 import { useAtom } from 'jotai';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
-import { Cross2Icon, DotsHorizontalIcon } from '@radix-ui/react-icons';
+import { Cross2Icon, DotsVerticalIcon } from '@radix-ui/react-icons';
 import { TrashCan } from '@carbon/icons-react';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { DialogMemberDelete, DialogMembershipCancel } from '@/modules';
@@ -128,20 +128,20 @@ export default function Members() {
       <Screen>
         <Grid
           as="section"
-          className="max-w-[1920px] gap-y-0 mx-auto auto-rows-min p-8"
+          className="mx-auto max-w-[1920px] auto-rows-min gap-y-0 p-8"
         >
-          <div className="col-span-full mb-2">
-            <h1 className="font-semibold text-lg">Members</h1>
+          <div className="col-span-full mb-8">
+            <h1 className="text-lg font-semibold">Members</h1>
           </div>
           <Stack
             direction="row"
-            className="justify-between col-span-full h-fit"
+            className="col-span-full h-fit justify-between"
           >
-            <Stack direction="row" className="items-center">
+            <Stack direction="row" className="mb-6 items-center">
               <Searchbar
                 name="searchValue"
                 placeholder="Search"
-                intent="neutral"
+                intent="primary"
                 size="base"
                 onChange={onChange}
                 {...register('searchValue')}
@@ -149,9 +149,9 @@ export default function Members() {
             </Stack>
           </Stack>
           <div className="col-span-full h-fit">
-            <div className="h-[378px] bg-white">
+            <div className="mb-6 h-[378px] bg-white">
               <Table
-                className=""
+                layer="alt"
                 headers={headers}
                 rows={rows}
                 onClick={(e, row) => {
@@ -181,8 +181,6 @@ export default function Members() {
             </div>
             <TablePagination
               totalItems={allRows.length}
-              backText="Previous"
-              nextText="Next"
               pageSize={currentPageSize}
               pageSizes={[5, 10, 15, 25]}
               onChange={(page, pageSize) => {
@@ -211,9 +209,9 @@ function TableDropdown({ row }) {
           e.preventDefault();
           e.stopPropagation();
         }}
-        className="mx-auto p-2 hover:shadow-xl hover:outline outline-2 outline-blue9 active:outline-blue9 active:outline overflow-hidden block bg-transparent"
+        className="mx-auto block overflow-hidden bg-transparent p-2 outline-2 outline-blue9 hover:shadow-xl hover:outline active:outline active:outline-blue9"
       >
-        <DotsHorizontalIcon />
+        <DotsVerticalIcon />
       </DropdownMenu.Trigger>
       <DropdownContent onClick={(e) => e.stopPropagation()} align="end">
         <DropdownMenu.Group>
@@ -259,7 +257,7 @@ function TableDropdown({ row }) {
           <DropdownItem asChild>
             <button
               type="button"
-              className="text-red11 flex items-center gap-x-1"
+              className="flex items-center gap-x-1 text-red11"
               onClick={() => {
                 setIsCancelDialogOpen(true);
               }}
@@ -271,7 +269,7 @@ function TableDropdown({ row }) {
           <DropdownItem asChild>
             <button
               type="button"
-              className="text-red11 flex items-center gap-x-1"
+              className="flex items-center gap-x-1 text-red11"
               onClick={() => {
                 setIsDeleteDialogOpen(true);
               }}

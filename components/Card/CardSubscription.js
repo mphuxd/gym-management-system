@@ -8,7 +8,6 @@ export const CARD_SUBSCRIPTION_TEST_ID = 'cardSubscriptionTestId';
 
 function CardSubscription({
   planName,
-  planDescription,
   price,
   planLookUpKey,
   planIdValue,
@@ -20,22 +19,28 @@ function CardSubscription({
     <div
       className={cx(
         className,
-        'flex h-[32rem] flex-col items-center justify-between bg-white shadow-mauve7 drop-shadow-xl hover:shadow-lg hover:shadow-mauve8'
+        'w-82 flex h-[32rem] flex-col items-center justify-between bg-layer  hover:bg-layer-hover'
       )}
       data-testid={CARD_SUBSCRIPTION_TEST_ID}
     >
-      <div className="flex flex-col p-8">
+      <div className="flex h-full w-full flex-col justify-between p-8">
         <div className="flex flex-col justify-center">
           <h2 className="w-fit text-2xl font-semibold">{planName}</h2>
-          <h3 className="mt-5">{planDescription}</h3>
-          <h4 className="mt-6 text-2xl font-bold">{price}</h4>
-          <Separator.Root className="my-4 h-px" />
-          <div className="mb-3 flex flex-col gap-y-1">
+          <h3 className="mt-6 text-2xl">{price}</h3>
+          <Separator.Root className="my-6 h-px bg-border-subtle-darker" />
+          <div className="mb-3 flex flex-col gap-y-2">
             {features &&
               features.map((feature) => (
-                <div key={feature} className="flex flex-row items-center">
-                  <CheckCircledIcon width={16} height={16} className="mr-1" />
-                  <span className="inline-block">{feature}</span>
+                <div
+                  key={feature}
+                  className="flex flex-row items-center text-sm"
+                >
+                  <CheckCircledIcon
+                    width={16}
+                    height={16}
+                    className="mr-1 text-brand"
+                  />
+                  <span className="inline-block">{`${feature}`}</span>
                 </div>
               ))}
           </div>
@@ -45,11 +50,15 @@ function CardSubscription({
             {/* Stripe - Add a hidden field with the lookup_key of your Price */}
             <input type="hidden" name="lookup_key" value={planLookUpKey} />
             <input type="hidden" name="planId" value={planIdValue} />
-            <button id="checkout-and-portal-button" type="submit">
-              <Button as="div" intent="tertiary" size="large">
-                Subscribe
-              </Button>
-            </button>
+            <Button
+              type="submit"
+              id="checkout-and-portal-button"
+              intent="tertiary"
+              size="large"
+              length="medium"
+            >
+              Subscribe
+            </Button>
           </form>
           <span className="mt-4 text-sm">{footnotes}</span>
         </div>

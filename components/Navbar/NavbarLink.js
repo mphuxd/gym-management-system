@@ -19,9 +19,11 @@ const NavbarLink = React.forwardRef(
     );
 
     return (
-      <Link ref={forwardedRef} href={href} {...props} className={classNames}>
-        <span className="leading-6">{children}</span>
-      </Link>
+      <li className="my-auto">
+        <Link ref={forwardedRef} href={href} {...props} className={classNames}>
+          <span className="leading-6">{children}</span>
+        </Link>
+      </li>
     );
   }
 );

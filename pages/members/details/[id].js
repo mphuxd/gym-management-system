@@ -46,10 +46,10 @@ export default function UserId() {
     const member = data?.member;
     return (
       <Screen as="section">
-        <Stack direction="row">
+        <Stack direction="row" className="mx-auto max-w-[1920px]">
           <Sidepanel id="sidepanel" className="flex flex-col gap-y-6 border-r">
             <Stack className="gap-x-4">
-              <h1 className="text-3xl pb-1 mb-3 font-medium">
+              <h1 className="mb-3 pb-1 text-3xl font-medium">
                 {`${member.firstName}  ${member.lastName}`}
               </h1>
               <CheckInMemberImage checkedInMember={member} />
@@ -107,11 +107,11 @@ export default function UserId() {
           </Sidepanel>
           <Grid
             as="section"
-            className="w-full gap-y-8 max-w-[1544px] p-8 mx-auto auto-rows-min "
+            className="mx-auto w-full max-w-[1544px] auto-rows-min gap-y-8 p-8 "
           >
             <Tabs.Root className="col-span-full" defaultValue="membership">
               <Tabs.List
-                className="w-full justify-between border-b flex flex-row gap-x-[2px] border-border-subtle-dark"
+                className="flex w-full flex-row justify-between gap-x-[2px] border-b border-border-subtle-dark"
                 aria-label="Member details"
               >
                 <Stack direction="row" className="gap-x-[2px]">
@@ -147,11 +147,12 @@ function MemberDropdownMenu({ member, mutate }) {
   return (
     <>
       <DropdownMenu.Root>
-        <DropdownTrigger asChild className="overflow-hidden block">
+        <DropdownTrigger asChild className="block overflow-hidden">
           <Button
-            className="my-auto flex flex-row justify-center items-center"
-            as="div"
+            className="my-auto flex flex-row items-center justify-between"
+            as="button"
             size="large"
+            length="medium"
             intent="tertiary"
           >
             <span>Actions</span>
@@ -218,7 +219,7 @@ function MemberDropdownMenu({ member, mutate }) {
             <DropdownItem asChild>
               <button
                 type="button"
-                className="text-error flex items-center gap-x-1"
+                className="flex items-center gap-x-1 text-error"
                 onClick={() => {
                   setIsCancelDialogOpen(true);
                 }}
@@ -230,7 +231,7 @@ function MemberDropdownMenu({ member, mutate }) {
             <DropdownItem asChild>
               <button
                 type="button"
-                className="text-error flex items-center gap-x-1"
+                className="flex items-center gap-x-1 text-error"
                 onClick={() => {
                   setIsDeleteDialogOpen(true);
                 }}
