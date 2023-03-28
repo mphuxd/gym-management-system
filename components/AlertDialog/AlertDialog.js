@@ -122,7 +122,7 @@ const AlertDialog = React.forwardRef(
                 asChild
                 onClick={(e) => e.stopPropagation()}
               >
-                <Button as="button" role="button">
+                <Button as="button" role="button" intent="ghost" size="large">
                   {close}
                 </Button>
               </AlertDialogPrimitive.Cancel>

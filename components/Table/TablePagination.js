@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import cx from 'classnames';
 import { CaretLeftIcon, CaretRightIcon } from '@radix-ui/react-icons';
-import Button from '../Button';
+import { Button } from '../Button';
 
 function TablePagination({
   totalItems,
@@ -10,13 +10,11 @@ function TablePagination({
   backText,
   nextText,
   size = 'base',
-  intent = 'default',
 }) {
   const [page, setPage] = useState(1);
   const firstIndex = pageSize * (page - 1);
   const lastIndex =
     totalItems < firstIndex + pageSize ? totalItems : firstIndex + pageSize;
-  const numRows = lastIndex - firstIndex;
 
   const handlePageForward = () => {
     if (page >= totalItems / pageSize) return;
@@ -33,12 +31,7 @@ function TablePagination({
   };
 
   const classNames = cx(
-    'flex flex-row justify-between font-light pl-2 text-sm border-border-subtle-dark',
-    {
-      'border-t': pageSize !== numRows,
-      'bg-white': intent === 'default',
-      'bg-layer-alt': intent === 'alt',
-    }
+    'flex flex-row justify-between font-light pl-2 text-sm'
   );
 
   return (
@@ -71,12 +64,17 @@ function TablePaginationPrev({ backText, handlePageBack }) {
   return (
     <button type="button" onClick={() => handlePageBack()}>
       {backText ? (
-        <Button as="div" className="pagination border-x py-2" intent="neutral">
+        <Button
+          as="div"
+          className="pagination border-x py-2"
+          intent="neutral"
+          length="small"
+        >
           {backText}
         </Button>
       ) : (
-        <div className="border-x border-border-strong-dark py-2 px-4 outline-0 hover:bg-layer-hover active:bg-layer-active">
-          <CaretLeftIcon className="text-icon-dark" />
+        <div className="group border-r border-border-strong-dark py-2 px-4 outline-0 hover:bg-layer-hover hover:shadow-md active:bg-layer-active">
+          <CaretLeftIcon className="text-icon-dark group-hover:text-black" />
         </div>
       )}
     </button>
@@ -91,12 +89,13 @@ function TablePaginationNext({ nextText, handlePageForward }) {
           as="div"
           className="border-border-subtle py-2 outline-0"
           intent="neutral"
+          length="small"
         >
           {nextText}
         </Button>
       ) : (
-        <div className="border-border-strong-dark py-2 px-4 outline-0 hover:bg-layer-hover active:bg-layer-active">
-          <CaretRightIcon className="text-icon-dark" />
+        <div className="group border-border-strong-dark py-2 px-4 outline-0 hover:bg-layer-hover hover:shadow-md active:bg-layer-active">
+          <CaretRightIcon className="text-icon-dark group-hover:text-black" />
         </div>
       )}
     </button>

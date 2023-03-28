@@ -71,14 +71,14 @@ exports[`AlertDialog   in "constrained" intent, action button should be disabled
     class="flex flex-row justify-end gap-x-6"
   >
     <button
-      class="bg-initial text-support outline-border-strong-darker outline outline-1 -outline-offset-1 hover:shadow-sm hover:shadow-sand8 hover:bg-layer-hover hover:outline-border-strong-darkest active:bg-layer-active px-4 py-1 w-fit"
+      class="text-sm focusable text-dark hover:bg-gray6 active:bg-layer-active px-4 py-3 w-fit"
       role="button"
       type="button"
     >
       Alert Dialog Close
     </button>
     <button
-      class="bg-initial text-gray8 outline-gray6 outline outline-2 px-4 py-1 w-fit"
+      class="text-sm text-gray8 outline outline-2 outline-gray6 px-4 py-1 w-fit"
       disabled=""
       role="button"
       type="button"
@@ -91,7 +91,7 @@ exports[`AlertDialog   in "constrained" intent, action button should be disabled
 
 exports[`AlertDialog   in "constrained" intent, action button should be disabled by default 2`] = `
 <button
-  class="bg-initial text-gray8 outline-gray6 outline outline-2 px-4 py-1 w-fit"
+  class="text-sm text-gray8 outline outline-2 outline-gray6 px-4 py-1 w-fit"
   disabled=""
   role="button"
   type="button"
@@ -102,7 +102,7 @@ exports[`AlertDialog   in "constrained" intent, action button should be disabled
 
 exports[`AlertDialog   in "constrained" intent, action button should be enabled when input value matches action text 1`] = `
 <button
-  class="bg-initial block text-white bg-neg hover:bg-neg-hover active:bg-neg-active focus:outline-red7 px-4 py-1 w-fit"
+  class="text-sm focusable block bg-neg text-white hover:bg-neg-hover focus:ring-[3px] focus:ring-inset focus:ring-focus-inset active:bg-neg-active active:outline-red8 active:ring-0 active:drop-shadow px-4 py-1 w-fit"
   role="button"
   type="button"
 >
@@ -182,14 +182,14 @@ exports[`AlertDialog   in "constrained" intent, action button should be enabled 
     class="flex flex-row justify-end gap-x-6"
   >
     <button
-      class="bg-initial text-support outline-border-strong-darker outline outline-1 -outline-offset-1 hover:shadow-sm hover:shadow-sand8 hover:bg-layer-hover hover:outline-border-strong-darkest active:bg-layer-active px-4 py-1 w-fit"
+      class="text-sm focusable text-dark hover:bg-gray6 active:bg-layer-active px-4 py-3 w-fit"
       role="button"
       type="button"
     >
       Alert Dialog Close
     </button>
     <button
-      class="bg-initial block text-white bg-neg hover:bg-neg-hover active:bg-neg-active focus:outline-red7 px-4 py-1 w-fit"
+      class="text-sm focusable block bg-neg text-white hover:bg-neg-hover focus:ring-[3px] focus:ring-inset focus:ring-focus-inset active:bg-neg-active active:outline-red8 active:ring-0 active:drop-shadow px-4 py-1 w-fit"
       role="button"
       type="button"
     >
@@ -270,14 +270,14 @@ exports[`AlertDialog  should render "constrained" intent 1`] = `
     class="flex flex-row justify-end gap-x-6"
   >
     <button
-      class="bg-initial text-support outline-border-strong-darker outline outline-1 -outline-offset-1 hover:shadow-sm hover:shadow-sand8 hover:bg-layer-hover hover:outline-border-strong-darkest active:bg-layer-active px-4 py-1 w-fit"
+      class="text-sm focusable text-dark hover:bg-gray6 active:bg-layer-active px-4 py-3 w-fit"
       role="button"
       type="button"
     >
       Alert Dialog Close
     </button>
     <button
-      class="bg-initial text-gray8 outline-gray6 outline outline-2 px-4 py-1 w-fit"
+      class="text-sm text-gray8 outline outline-2 outline-gray6 px-4 py-1 w-fit"
       disabled=""
       role="button"
       type="button"
@@ -346,14 +346,14 @@ exports[`AlertDialog  should render "default" intent 1`] = `
     class="flex flex-row justify-end gap-x-6"
   >
     <button
-      class="bg-initial text-support outline-border-strong-darker outline outline-1 -outline-offset-1 hover:shadow-sm hover:shadow-sand8 hover:bg-layer-hover hover:outline-border-strong-darkest active:bg-layer-active px-4 py-1 w-fit"
+      class="text-sm focusable text-dark hover:bg-gray6 active:bg-layer-active px-4 py-3 w-fit"
       role="button"
       type="button"
     >
       Alert Dialog Close
     </button>
     <button
-      class="bg-initial block text-white bg-neg hover:bg-neg-hover active:bg-neg-active focus:outline-red7 px-4 py-1 w-fit"
+      class="text-sm focusable block bg-neg text-white hover:bg-neg-hover focus:ring-[3px] focus:ring-inset focus:ring-focus-inset active:bg-neg-active active:outline-red8 active:ring-0 active:drop-shadow px-4 py-1 w-fit"
       type="button"
     >
       Alert Dialog Action

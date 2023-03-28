@@ -2,7 +2,7 @@
 
 exports[`CardSimple  should match snapshot 1`] = `
 <div
-  class="flex h-52 flex-col justify-between bg-layer p-4 shadow-xl shadow-mauve7 hover:bg-layer-hover hover:shadow-mauve8 focus:bg-slate5 active:bg-layer-active"
+  class="flex h-52 flex-col justify-between bg-layer p-4 shadow-lg shadow-mauve7 hover:bg-layer-hover hover:shadow-mauve8 focus:bg-slate5 active:bg-layer-active"
   data-testid="cardSimpleTestId"
 >
   <div

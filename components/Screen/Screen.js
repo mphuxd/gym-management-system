@@ -5,11 +5,11 @@ import cx from 'classnames';
 const screenStyles = cva('', {
   variants: {
     intent: {
-      standard: ' w-full min-w-[1440px] min-h-screen-no-header',
+      standard: 'w-full min-w-[1440px] min-h-screen-no-header',
     },
     background: {
       primary: 'bg-background',
-      alt: 'bg-white',
+      alt: 'bg-background-alt',
     },
   },
   defaultVariants: {

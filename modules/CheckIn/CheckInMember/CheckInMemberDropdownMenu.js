@@ -25,7 +25,7 @@ function CheckInMemberDropdownMenu({ checkedInMember, mutate }) {
       <DropdownMenu.Root>
         <DropdownTrigger asChild>
           <Button
-            className="my-auto flex flex-row gap-x-2 items-center justify-between"
+            className="my-auto flex flex-row items-center justify-between"
             as="button"
             size="large"
             intent="tertiary"
@@ -61,7 +61,7 @@ function CheckInMemberDropdownMenu({ checkedInMember, mutate }) {
             <DropdownItem asChild>
               <button
                 type="button"
-                className="text-error flex items-center gap-x-1"
+                className="flex items-center gap-x-1 text-error"
                 onClick={() => {
                   setIsCancelDialogOpen(true);
                 }}
@@ -76,7 +76,7 @@ function CheckInMemberDropdownMenu({ checkedInMember, mutate }) {
             <DropdownItem asChild>
               <button
                 type="button"
-                className="text-error flex items-center gap-x-1"
+                className="flex items-center gap-x-1 text-error"
                 onSelect={() => {
                   setIsDeleteDialogOpen(true);
                 }}

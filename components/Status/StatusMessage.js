@@ -1,6 +1,6 @@
 import React from 'react';
 import useSWR from 'swr';
-import { Notification } from '@/components';
+import { Notification } from '../Notification';
 import fetcher from '@/lib/useSWRFetcher';
 
 function StatusMessage({ subscriptionId, className, size }) {

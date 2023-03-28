@@ -7,7 +7,7 @@ const FormSelectItem = React.forwardRef(
   ({ children, className, value, ...props }, forwardedRef) => {
     const classNames = cx(
       className,
-      'relative flex w-full flex-row items-center px-2 hover:bg-layer-hover'
+      'group relative flex w-full flex-row items-center px-2 hover:bg-layer-hover data-[highlighted]:bg-primary data-[highlighted]:text-white ring-0 outline-none'
     );
     return (
       <Select.Item
@@ -18,7 +18,7 @@ const FormSelectItem = React.forwardRef(
       >
         <Select.ItemText>{children}</Select.ItemText>
         <Select.ItemIndicator>
-          <CheckIcon />
+          <CheckIcon className="text-blue11 group-data-[highlighted]:text-white" />
         </Select.ItemIndicator>
       </Select.Item>
     );

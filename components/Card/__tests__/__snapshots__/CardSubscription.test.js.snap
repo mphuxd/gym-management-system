@@ -2,11 +2,11 @@
 
 exports[`CardSimple  should contain text content 1`] = `
 <div
-  class="test-classname flex h-[32rem] flex-col items-center justify-between bg-white shadow-mauve7 drop-shadow-xl hover:shadow-lg hover:shadow-mauve8"
+  class="test-classname w-82 flex h-[32rem] flex-col items-center justify-between bg-layer  hover:bg-layer-hover"
   data-testid="cardSubscriptionTestId"
 >
   <div
-    class="flex flex-col p-8"
+    class="flex h-full w-full flex-col justify-between p-8"
   >
     <div
       class="flex flex-col justify-center"
@@ -17,28 +17,23 @@ exports[`CardSimple  should contain text content 1`] = `
         Test Plan
       </h2>
       <h3
-        class="mt-5"
-      >
-        Test Plan Description
-      </h3>
-      <h4
-        class="mt-6 text-2xl font-bold"
+        class="mt-6 text-2xl"
       >
         $1
-      </h4>
+      </h3>
       <div
-        class="my-4 h-px"
+        class="my-6 h-px bg-border-subtle-darker"
         data-orientation="horizontal"
         role="separator"
       />
       <div
-        class="mb-3 flex flex-col gap-y-1"
+        class="mb-3 flex flex-col gap-y-2"
       >
         <div
-          class="flex flex-row items-center"
+          class="flex flex-row items-center text-sm"
         >
           <svg
-            class="mr-1"
+            class="mr-1 text-brand"
             fill="none"
             height="16"
             viewBox="0 0 15 15"
@@ -59,10 +54,10 @@ exports[`CardSimple  should contain text content 1`] = `
           </span>
         </div>
         <div
-          class="flex flex-row items-center"
+          class="flex flex-row items-center text-sm"
         >
           <svg
-            class="mr-1"
+            class="mr-1 text-brand"
             fill="none"
             height="16"
             viewBox="0 0 15 15"
@@ -83,10 +78,10 @@ exports[`CardSimple  should contain text content 1`] = `
           </span>
         </div>
         <div
-          class="flex flex-row items-center"
+          class="flex flex-row items-center text-sm"
         >
           <svg
-            class="mr-1"
+            class="mr-1 text-brand"
             fill="none"
             height="16"
             viewBox="0 0 15 15"
@@ -127,14 +122,11 @@ exports[`CardSimple  should contain text content 1`] = `
           value="idValue"
         />
         <button
+          class="text-sm focusable bg-white text-blue11 outline outline-1 -outline-offset-1 outline-blue9 hover:bg-blue11 hover:text-white focus:bg-primary focus:text-white focus:ring-[3px] focus:ring-inset focus:ring-white active:bg-blue12 active:text-white active:outline-none active:ring-0 px-4 py-3 w-32"
           id="checkout-and-portal-button"
           type="submit"
         >
-          <div
-            class="bg-initial text-blue11 bg-white outline outline-1 outline-blue9 -outline-offset-1 hover:text-white hover:shadow-sm hover:bg-blue11 focus:bg-primary focus:text-white focus:outline-white active:bg-blue11 active:text-white active:outline-none px-4 py-2 w-fit"
-          >
-            Subscribe
-          </div>
+          Subscribe
         </button>
       </form>
       <span
@@ -149,11 +141,11 @@ exports[`CardSimple  should contain text content 1`] = `
 
 exports[`CardSimple  should have stripe input values 1`] = `
 <div
-  class="test-classname flex h-[32rem] flex-col items-center justify-between bg-white shadow-mauve7 drop-shadow-xl hover:shadow-lg hover:shadow-mauve8"
+  class="test-classname w-82 flex h-[32rem] flex-col items-center justify-between bg-layer  hover:bg-layer-hover"
   data-testid="cardSubscriptionTestId"
 >
   <div
-    class="flex flex-col p-8"
+    class="flex h-full w-full flex-col justify-between p-8"
   >
     <div
       class="flex flex-col justify-center"
@@ -164,28 +156,23 @@ exports[`CardSimple  should have stripe input values 1`] = `
         Test Plan
       </h2>
       <h3
-        class="mt-5"
-      >
-        Test Plan Description
-      </h3>
-      <h4
-        class="mt-6 text-2xl font-bold"
+        class="mt-6 text-2xl"
       >
         $1
-      </h4>
+      </h3>
       <div
-        class="my-4 h-px"
+        class="my-6 h-px bg-border-subtle-darker"
         data-orientation="horizontal"
         role="separator"
       />
       <div
-        class="mb-3 flex flex-col gap-y-1"
+        class="mb-3 flex flex-col gap-y-2"
       >
         <div
-          class="flex flex-row items-center"
+          class="flex flex-row items-center text-sm"
         >
           <svg
-            class="mr-1"
+            class="mr-1 text-brand"
             fill="none"
             height="16"
             viewBox="0 0 15 15"
@@ -206,10 +193,10 @@ exports[`CardSimple  should have stripe input values 1`] = `
           </span>
         </div>
         <div
-          class="flex flex-row items-center"
+          class="flex flex-row items-center text-sm"
         >
           <svg
-            class="mr-1"
+            class="mr-1 text-brand"
             fill="none"
             height="16"
             viewBox="0 0 15 15"
@@ -230,10 +217,10 @@ exports[`CardSimple  should have stripe input values 1`] = `
           </span>
         </div>
         <div
-          class="flex flex-row items-center"
+          class="flex flex-row items-center text-sm"
         >
           <svg
-            class="mr-1"
+            class="mr-1 text-brand"
             fill="none"
             height="16"
             viewBox="0 0 15 15"
@@ -274,14 +261,11 @@ exports[`CardSimple  should have stripe input values 1`] = `
           value="idValue"
         />
         <button
+          class="text-sm focusable bg-white text-blue11 outline outline-1 -outline-offset-1 outline-blue9 hover:bg-blue11 hover:text-white focus:bg-primary focus:text-white focus:ring-[3px] focus:ring-inset focus:ring-white active:bg-blue12 active:text-white active:outline-none active:ring-0 px-4 py-3 w-32"
           id="checkout-and-portal-button"
           type="submit"
         >
-          <div
-            class="bg-initial text-blue11 bg-white outline outline-1 outline-blue9 -outline-offset-1 hover:text-white hover:shadow-sm hover:bg-blue11 focus:bg-primary focus:text-white focus:outline-white active:bg-blue11 active:text-white active:outline-none px-4 py-2 w-fit"
-          >
-            Subscribe
-          </div>
+          Subscribe
         </button>
       </form>
       <span
@@ -296,11 +280,11 @@ exports[`CardSimple  should have stripe input values 1`] = `
 
 exports[`CardSimple  should match snapshot 1`] = `
 <div
-  class="test-classname flex h-[32rem] flex-col items-center justify-between bg-white shadow-mauve7 drop-shadow-xl hover:shadow-lg hover:shadow-mauve8"
+  class="test-classname w-82 flex h-[32rem] flex-col items-center justify-between bg-layer  hover:bg-layer-hover"
   data-testid="cardSubscriptionTestId"
 >
   <div
-    class="flex flex-col p-8"
+    class="flex h-full w-full flex-col justify-between p-8"
   >
     <div
       class="flex flex-col justify-center"
@@ -311,28 +295,23 @@ exports[`CardSimple  should match snapshot 1`] = `
         Test Plan
       </h2>
       <h3
-        class="mt-5"
-      >
-        Test Plan Description
-      </h3>
-      <h4
-        class="mt-6 text-2xl font-bold"
+        class="mt-6 text-2xl"
       >
         $1
-      </h4>
+      </h3>
       <div
-        class="my-4 h-px"
+        class="my-6 h-px bg-border-subtle-darker"
         data-orientation="horizontal"
         role="separator"
       />
       <div
-        class="mb-3 flex flex-col gap-y-1"
+        class="mb-3 flex flex-col gap-y-2"
       >
         <div
-          class="flex flex-row items-center"
+          class="flex flex-row items-center text-sm"
         >
           <svg
-            class="mr-1"
+            class="mr-1 text-brand"
             fill="none"
             height="16"
             viewBox="0 0 15 15"
@@ -353,10 +332,10 @@ exports[`CardSimple  should match snapshot 1`] = `
           </span>
         </div>
         <div
-          class="flex flex-row items-center"
+          class="flex flex-row items-center text-sm"
         >
           <svg
-            class="mr-1"
+            class="mr-1 text-brand"
             fill="none"
             height="16"
             viewBox="0 0 15 15"
@@ -377,10 +356,10 @@ exports[`CardSimple  should match snapshot 1`] = `
           </span>
         </div>
         <div
-          class="flex flex-row items-center"
+          class="flex flex-row items-center text-sm"
         >
           <svg
-            class="mr-1"
+            class="mr-1 text-brand"
             fill="none"
             height="16"
             viewBox="0 0 15 15"
@@ -421,14 +400,11 @@ exports[`CardSimple  should match snapshot 1`] = `
           value="idValue"
         />
         <button
+          class="text-sm focusable bg-white text-blue11 outline outline-1 -outline-offset-1 outline-blue9 hover:bg-blue11 hover:text-white focus:bg-primary focus:text-white focus:ring-[3px] focus:ring-inset focus:ring-white active:bg-blue12 active:text-white active:outline-none active:ring-0 px-4 py-3 w-32"
           id="checkout-and-portal-button"
           type="submit"
         >
-          <div
-            class="bg-initial text-blue11 bg-white outline outline-1 outline-blue9 -outline-offset-1 hover:text-white hover:shadow-sm hover:bg-blue11 focus:bg-primary focus:text-white focus:outline-white active:bg-blue11 active:text-white active:outline-none px-4 py-2 w-fit"
-          >
-            Subscribe
-          </div>
+          Subscribe
         </button>
       </form>
       <span
@@ -443,11 +419,11 @@ exports[`CardSimple  should match snapshot 1`] = `
 
 exports[`CardSimple  should pass in className 1`] = `
 <div
-  class="test-classname flex h-[32rem] flex-col items-center justify-between bg-white shadow-mauve7 drop-shadow-xl hover:shadow-lg hover:shadow-mauve8"
+  class="test-classname w-82 flex h-[32rem] flex-col items-center justify-between bg-layer  hover:bg-layer-hover"
   data-testid="cardSubscriptionTestId"
 >
   <div
-    class="flex flex-col p-8"
+    class="flex h-full w-full flex-col justify-between p-8"
   >
     <div
       class="flex flex-col justify-center"
@@ -458,28 +434,23 @@ exports[`CardSimple  should pass in className 1`] = `
         Test Plan
       </h2>
       <h3
-        class="mt-5"
-      >
-        Test Plan Description
-      </h3>
-      <h4
-        class="mt-6 text-2xl font-bold"
+        class="mt-6 text-2xl"
       >
         $1
-      </h4>
+      </h3>
       <div
-        class="my-4 h-px"
+        class="my-6 h-px bg-border-subtle-darker"
         data-orientation="horizontal"
         role="separator"
       />
       <div
-        class="mb-3 flex flex-col gap-y-1"
+        class="mb-3 flex flex-col gap-y-2"
       >
         <div
-          class="flex flex-row items-center"
+          class="flex flex-row items-center text-sm"
         >
           <svg
-            class="mr-1"
+            class="mr-1 text-brand"
             fill="none"
             height="16"
             viewBox="0 0 15 15"
@@ -500,10 +471,10 @@ exports[`CardSimple  should pass in className 1`] = `
           </span>
         </div>
         <div
-          class="flex flex-row items-center"
+          class="flex flex-row items-center text-sm"
         >
           <svg
-            class="mr-1"
+            class="mr-1 text-brand"
             fill="none"
             height="16"
             viewBox="0 0 15 15"
@@ -524,10 +495,10 @@ exports[`CardSimple  should pass in className 1`] = `
           </span>
         </div>
         <div
-          class="flex flex-row items-center"
+          class="flex flex-row items-center text-sm"
         >
           <svg
-            class="mr-1"
+            class="mr-1 text-brand"
             fill="none"
             height="16"
             viewBox="0 0 15 15"
@@ -568,14 +539,11 @@ exports[`CardSimple  should pass in className 1`] = `
           value="idValue"
         />
         <button
+          class="text-sm focusable bg-white text-blue11 outline outline-1 -outline-offset-1 outline-blue9 hover:bg-blue11 hover:text-white focus:bg-primary focus:text-white focus:ring-[3px] focus:ring-inset focus:ring-white active:bg-blue12 active:text-white active:outline-none active:ring-0 px-4 py-3 w-32"
           id="checkout-and-portal-button"
           type="submit"
         >
-          <div
-            class="bg-initial text-blue11 bg-white outline outline-1 outline-blue9 -outline-offset-1 hover:text-white hover:shadow-sm hover:bg-blue11 focus:bg-primary focus:text-white focus:outline-white active:bg-blue11 active:text-white active:outline-none px-4 py-2 w-fit"
-          >
-            Subscribe
-          </div>
+          Subscribe
         </button>
       </form>
       <span

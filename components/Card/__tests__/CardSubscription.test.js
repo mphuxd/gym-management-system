@@ -7,7 +7,6 @@ import CardSubscription, {
 describe('CardSimple ', () => {
   it('should contain text content', async () => {
     const planName = 'Test Plan';
-    const planDescription = 'Test Plan Description';
     const price = '$1';
     const planLookUpKey = 'lookUpKey';
     const planIdValue = 'idValue';
@@ -17,7 +16,6 @@ describe('CardSimple ', () => {
     render(
       <CardSubscription
         planName={planName}
-        planDescription={planDescription}
         price={price}
         planLookUpKey={planLookUpKey}
         planIdValue={planIdValue}
@@ -29,7 +27,6 @@ describe('CardSimple ', () => {
 
     const card = await screen.findByTestId(CARD_SUBSCRIPTION_TEST_ID);
     expect(card).toHaveTextContent(planName);
-    expect(card).toHaveTextContent(planDescription);
     expect(card).toHaveTextContent(price);
     expect(card).toHaveTextContent('Feature One');
     expect(card).toHaveTextContent('Feature Two');
@@ -42,7 +39,6 @@ describe('CardSimple ', () => {
   it('should pass in className', async () => {
     const className = 'test-classname';
     const planName = 'Test Plan';
-    const planDescription = 'Test Plan Description';
     const price = '$1';
     const planLookUpKey = 'lookUpKey';
     const planIdValue = 'idValue';
@@ -51,7 +47,6 @@ describe('CardSimple ', () => {
     render(
       <CardSubscription
         planName={planName}
-        planDescription={planDescription}
         price={price}
         planLookUpKey={planLookUpKey}
         planIdValue={planIdValue}
@@ -68,7 +63,6 @@ describe('CardSimple ', () => {
 
   it('should have stripe input values', async () => {
     const planName = 'Test Plan';
-    const planDescription = 'Test Plan Description';
     const price = '$1';
     const planLookUpKey = 'lookUpKey';
     const planIdValue = 'idValue';
@@ -78,7 +72,6 @@ describe('CardSimple ', () => {
     render(
       <CardSubscription
         planName={planName}
-        planDescription={planDescription}
         price={price}
         planLookUpKey={planLookUpKey}
         planIdValue={planIdValue}
@@ -96,7 +89,6 @@ describe('CardSimple ', () => {
 
   it('should match snapshot', async () => {
     const planName = 'Test Plan';
-    const planDescription = 'Test Plan Description';
     const price = '$1';
     const planLookUpKey = 'lookUpKey';
     const planIdValue = 'idValue';
@@ -106,7 +98,6 @@ describe('CardSimple ', () => {
     render(
       <CardSubscription
         planName={planName}
-        planDescription={planDescription}
         price={price}
         planLookUpKey={planLookUpKey}
         planIdValue={planIdValue}

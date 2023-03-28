@@ -15,7 +15,7 @@ function Table({
   return (
     <table className={cx(className, 'w-full table-auto text-sm')}>
       <thead>
-        <tr className="bg-gray6">
+        <tr className="bg-gray4">
           {headers &&
             headers.map((header) => (
               <TableHeader key={header}>{header}</TableHeader>

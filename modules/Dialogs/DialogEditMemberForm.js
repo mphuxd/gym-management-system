@@ -92,25 +92,22 @@ export default function DialogEditMemberForm({
   }
 
   return (
-    <Dialog tabIndex={-1} open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent
-        tabIndex={-1}
         rounded={false}
         className="inset-0 m-auto h-3/4 w-fit outline-none"
       >
-        <ScrollArea.Root className="relative h-full overflow-hidden hover:cursor-pointer outline-none">
-          <ScrollArea.Viewport className="h-full w-full pb-20 outline-none">
-            <Stack className="space-y-8 p-8 h-full">
-              <Stack direction="row" className="justify-between items-center">
-                <DialogTitle>Edit Member</DialogTitle>
-                <DialogClose />
-              </Stack>
-
-              <form
-                tabIndex={-1}
-                className="flex flex-col gap-y-4 outline-none"
-                onSubmit={handleSubmit(onSubmit)}
-              >
+        <form
+          className="relative flex h-full flex-col gap-y-4 overflow-hidden outline-none"
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <ScrollArea.Root className="h-full">
+            <ScrollArea.Viewport className="h-full w-full pb-20">
+              <Stack className="h-full space-y-8 p-8">
+                <Stack direction="row" className="items-center justify-between">
+                  <DialogTitle>Edit Member</DialogTitle>
+                  <DialogClose />
+                </Stack>
                 <Stack direction="row" className="gap-x-4">
                   <FormField
                     id="firstName"
@@ -223,41 +220,43 @@ export default function DialogEditMemberForm({
                     required
                   />
                 </Stack>
-                <Stack
-                  direction="row"
-                  className="-mx-8 w-full px-8 h-20 gap-x-2 bg-white absolute inset-y-[90%] justify-end border-t border-gray7 hover:border-gray8"
-                >
-                  <Button
-                    as="button"
-                    label="Cancel"
-                    intent="neutral"
-                    className="mt-4 h-fit w-fit"
-                    onClick={() => setOpen(false)}
-                  >
-                    Cancel
-                  </Button>
-                  <Button
-                    as="input"
-                    label="Update Member"
-                    type="submit"
-                    intent="primary"
-                    className="mt-4 h-fit w-fit"
-                  />
-                </Stack>
-              </form>
-            </Stack>
-          </ScrollArea.Viewport>
-          <ScrollArea.Scrollbar
-            className="flex px-[1px] w-2 bg-gray-200 rounded-lg"
-            orientation="vertical"
+              </Stack>
+            </ScrollArea.Viewport>
+            <ScrollArea.Scrollbar
+              className="relative flex w-2 rounded-lg"
+              orientation="vertical"
+            >
+              <ScrollArea.Thumb className="relative w-1 flex-grow bg-gray9" />
+            </ScrollArea.Scrollbar>
+            <ScrollArea.Corner className="bg-black" />
+          </ScrollArea.Root>
+          <Stack
+            direction="row"
+            className="absolute inset-y-[90%] z-10 h-20 w-full justify-end gap-x-2 bg-layer-alt px-8 shadow-custom"
           >
-            <ScrollArea.Thumb className="flex-grow w-1 rounded-lg bg-gray-400 relative" />
-          </ScrollArea.Scrollbar>
-          <ScrollArea.Corner className="bg-black" />
-        </ScrollArea.Root>
+            <Button
+              as="button"
+              label="Cancel"
+              intent="ghost"
+              size="large"
+              length="medium"
+              className="mt-4 h-fit"
+              onClick={() => setOpen(false)}
+            >
+              Cancel
+            </Button>
+            <Button
+              as="input"
+              type="submit"
+              label="Update Member"
+              intent="primary"
+              size="large"
+              length="medium"
+              className="mt-4 h-fit"
+            />
+          </Stack>
+        </form>
       </DialogContent>
     </Dialog>
   );
-
-  // @@@ Restyle this
 }

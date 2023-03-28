@@ -4,7 +4,7 @@ import cx from 'classnames';
 
 const Separator = React.forwardRef(
   ({ children, className, ...props }, forwardedRef) => {
-    const classNames = cx(className, 'h-px bg-secondary');
+    const classNames = cx(className, 'h-px');
     return (
       <SeparatorPrimitive.Root
         {...props}

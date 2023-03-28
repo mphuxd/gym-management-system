@@ -7,7 +7,11 @@
   }
 
   &:hover {
-    @apply bg-gray5 text-slate3Dark;
+    @apply bg-layer-hover text-slate3Dark;
+  }
+
+  &:active {
+    @apply bg-layer-active;
   }
 
   &[data-state='active'] {

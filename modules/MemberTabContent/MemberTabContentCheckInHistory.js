@@ -26,6 +26,7 @@ export default function MemberTabContentCheckInHistory({ member, ...props }) {
       <TabsContent {...props}>
         <Stack>
           <Table
+            layer="alt"
             className="w-full"
             headers={['Event', 'Status', 'Date']}
             rows={rows}
@@ -49,7 +50,7 @@ export default function MemberTabContentCheckInHistory({ member, ...props }) {
               </>
             )}
           />
-          <span className="text-sm text-gray11 p-2">
+          <span className="p-2 text-sm text-gray11">
             {`Displaying ${rows.length} of ${memberCheckInHistory.length} check-ins.`}
           </span>
         </Stack>
