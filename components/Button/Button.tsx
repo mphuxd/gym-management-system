@@ -1,5 +1,5 @@
-import React from 'react';
-import { cva } from 'class-variance-authority';
+import React, { type ReactNode, Ref } from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
 import cx from 'classnames';
 import Link from 'next/link';
 
@@ -17,14 +17,12 @@ const buttonStyles = cva(['text-sm'], {
       danger:
         'focusable block bg-neg text-white hover:bg-neg-hover focus:ring-[3px] focus:ring-inset focus:ring-focus-inset active:bg-neg-active active:outline-red8 active:ring-0 active:drop-shadow',
       dark: 'bg-slate3Dark text-white hover:bg-slate4Dark active:bg-slate3Dark active:outline-none',
-      brand:
-        'bg-brand text-white hover:bg-red9 active:bg-red11 active:outline-none',
       disabled: 'text-gray8 outline outline-2 outline-gray6',
       ghost: 'focusable text-dark hover:bg-gray6 active:bg-layer-active',
     },
     size: {
-      small: 'py-1 px-2',
-      base: 'px-4 py-1',
+      small: 'px-2 py-1',
+      base: 'px-4 py-2',
       large: 'px-4 py-3',
     },
     length: {
@@ -42,6 +40,16 @@ const buttonStyles = cva(['text-sm'], {
   },
 });
 
+export interface ButtonProps extends VariantProps<typeof buttonStyles> {
+  as: 'button' | 'link' | 'div';
+  type: 'button' | 'submit' | 'reset';
+  onClick: () => void;
+  className: string;
+  label: string;
+  children?: ReactNode;
+  href?: string;
+}
+
 const Button = React.forwardRef(
   (
     {
@@ -54,13 +62,19 @@ const Button = React.forwardRef(
       className,
       label,
       children,
+      href,
       ...props
-    },
+    }: ButtonProps,
     forwardedRef
   ) => {
     const classNames = cx(buttonStyles({ intent, size, length }), className);
     return as === 'link' ? (
-      <Link ref={forwardedRef} className={classNames} {...props}>
+      <Link
+        href={href}
+        ref={forwardedRef as Ref<HTMLAnchorElement>}
+        className={classNames}
+        {...props}
+      >
         {children}
       </Link>
     ) : (
