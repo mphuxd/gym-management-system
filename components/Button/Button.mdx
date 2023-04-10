@@ -1,0 +1,71 @@
+import {
+  Meta,
+  Story,
+  ArgsTable,
+  Canvas,
+  Controls,
+  Stories,
+} from '@storybook/addon-docs';
+import { Button } from '../Button';
+import * as ButtonStories from './Button.stories.tsx';
+
+<Meta of={ButtonStories} />
+
+# Button
+
+[Source code](https://github.com/mphuxd/gym-management-system/blob/main/components/Button/Button.tsx)
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Component API](#component-api)
+  - [Button `as`](#button-as)
+  - [Button `className`](#button-classname)
+  - [Button `href`](#button-href)
+  - [Button `intent`](#button-intent)
+  - [Button `role`](#button-role)
+  - [Button `size`](#button-size)
+  - [Button `length`](#button-size)
+- [References](#references)
+
+## Overview
+
+<Stories />
+
+## Component API
+
+<ArgsTable of={Button} />
+
+### Button `as`
+
+`as` allows you to specify a different HTML element to be rendered as a
+`Button`.
+
+### Button `className`
+
+`className` allows the user to pass custom class names for greater styling flexibility.
+
+### Button `href`
+
+`href` specifies an address to navigate to on click. This changes the `Button` component to be rendered as an `a` anchor element using next/link `Link` component.
+
+### Button `intent`
+
+`intent` specifies which button variant to render. Possible options are `primary`, `secondary`, `tertiary`, `neutral`, `danger`, `dark`, `disabled`, and `ghost`.
+
+### Button `role`
+
+If you use the [as](#button-as) prop to render a non-button html element as a button, you may need to add a `role` for accessibility reasons. Adding `role="button"` will make
+an element appear as a button control to a screen reader.
+
+### Button `size`
+
+This prop specifies which size the `Button` should be rendered at by modifying vertical and horizontal padding. If no `size` is specified, `size` is defaulted to `base`.
+
+### Button `length`
+
+This prop specifies which length the `Button` should be rendered at by changing button width. If no `length` is specified, `length` is defaulted to `auto`.
+
+## References
+
+[MDN: ARIA button role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/button_role)
