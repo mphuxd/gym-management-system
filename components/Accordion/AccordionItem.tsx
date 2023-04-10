@@ -7,7 +7,16 @@ export const ACCORDION_TRIGGER_TEST_ID = 'accordion-trigger';
 export const ACCORDION_HEADER_TEST_ID = 'accordion-header';
 export const ACCORDION_CONTENT_TEST_ID = 'accordion-content-text';
 
-const AccordionItem = React.forwardRef(
+type AccordionItemRef = React.ElementRef<typeof AccordionPrimitive.Item>;
+
+export interface AccordionItemProps
+  extends AccordionPrimitive.AccordionItemProps {
+  children?: React.ReactNode;
+  header?: string;
+  value: string;
+}
+
+const AccordionItem = React.forwardRef<AccordionItemRef, AccordionItemProps>(
   ({ children, header, value, ...props }, forwardedRef) => (
     <AccordionPrimitive.Item
       {...props}
