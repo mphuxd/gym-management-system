@@ -43,7 +43,7 @@ export default {
   },
 } as Meta;
 
-type Story = StoryObj<ButtonProps>;
+type Story = StoryObj<typeof ButtonProps>;
 
 export const Primary: Story = {
   render: (props) => (

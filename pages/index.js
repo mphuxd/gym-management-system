@@ -196,7 +196,7 @@ const UPDATE_NOTE = gql`
 
 function DashboardNotesDialog({ open, setOpen, note, refetch }) {
   const [updateNote] = useMutation(UPDATE_NOTE);
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
   const [toast, setToast] = useAtom(toastAtom);
 
   const schema = yup

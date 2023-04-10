@@ -3,7 +3,7 @@ import { UserProvider } from '@auth0/nextjs-auth0';
 import { ApolloProvider } from '@apollo/client';
 import { Provider as JotaiProvider } from 'jotai';
 import { Provider as ToastProvider } from '@radix-ui/react-toast';
-import apolloClient from '@/lib/apollo.ts';
+import apolloClient from '@/lib/apollo';
 import { Layout } from '@/components';
 import '@fontsource/ibm-plex-sans/latin.css';
 import '../styles/styles.css';
