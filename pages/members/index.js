@@ -197,7 +197,7 @@ export default function Members() {
 
 function TableDropdown({ row }) {
   const router = useRouter();
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
   const [toast, setToast] = useAtom(toastAtom);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [isCancelDialogOpen, setIsCancelDialogOpen] = useState(false);

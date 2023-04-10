@@ -7,16 +7,25 @@
   "extends": [
     "next/core-web-vitals",
     "airbnb",
-    "prettier"
+    "airbnb-typescript",
+    "prettier",
+    "plugin:storybook/recommended",
+    "plugin:mdx/recommended"
   ],
   "rules": {
     "linebreak-style": "off",
     "react/prop-types": "off", //reenable when I convert to TS
     "react/jsx-filename-extension": "off",
     "react/jsx-props-no-spreading": "off",
-    "import/prefer-default-export": "off"
+    "react/tsx-filename-extension": "off",
+    "import/prefer-default-export": "off",
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": "off"
   },
   "env": {
     "jest/globals": true
+  },
+  "parserOptions": {
+    "project": "./tsconfig.json"
   }
 }

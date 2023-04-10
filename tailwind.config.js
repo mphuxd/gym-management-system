@@ -1,3 +1,5 @@
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -516,6 +518,10 @@ module.exports = {
       slate12Dark: 'var(--color-slate12Dark)',
     },
     extend: {
+      fontFamily: {
+        system: defaultTheme.fontFamily.sans,
+        sans: ['IBM Plex Sans', ...defaultTheme.fontFamily.sans],
+      },
       height: {
         header: '4rem',
       },

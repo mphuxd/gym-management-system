@@ -29,7 +29,7 @@ export default function Home() {
     user && (
       <Screen>
         <Grid className="mx-auto max-w-[1920px] auto-rows-min gap-8 px-8">
-          <h1 className="col-span-10 mt-12 mb-8 text-4xl">
+          <h1 className="col-span-10 mb-8 mt-12 text-4xl">
             Welcome, {user.nickname}
           </h1>
           <Grid columns={4} className="col-span-12 gap-x-8">
@@ -196,7 +196,7 @@ const UPDATE_NOTE = gql`
 
 function DashboardNotesDialog({ open, setOpen, note, refetch }) {
   const [updateNote] = useMutation(UPDATE_NOTE);
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
   const [toast, setToast] = useAtom(toastAtom);
 
   const schema = yup
@@ -259,6 +259,8 @@ function DashboardNotesDialog({ open, setOpen, note, refetch }) {
               label="Save Note"
               type="submit"
               intent="primary"
+              size="large"
+              length="medium"
             />
           </div>
         </form>

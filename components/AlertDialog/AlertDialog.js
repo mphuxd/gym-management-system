@@ -26,7 +26,7 @@ const AlertDialog = React.forwardRef(
   ) => {
     const [input, setInput] = useState();
     const [error, setError] = useState();
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
     const [toast, setToast] = useAtom(toastAtom);
 
     function sendToast() {

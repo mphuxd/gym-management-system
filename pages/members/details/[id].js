@@ -138,7 +138,7 @@ export default function UserId() {
 
 function MemberDropdownMenu({ member, mutate }) {
   const router = useRouter();
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
   const [toast, setToast] = useAtom(toastAtom);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [isCancelDialogOpen, setIsCancelDialogOpen] = useState(false);
