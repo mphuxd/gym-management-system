@@ -9,6 +9,12 @@
     "airbnb",
     "prettier"
   ],
+  "overrides": [
+    {
+      "files": "*.mdx",
+      "extends": "plugin:mdx/recommended"
+    }
+  ],
   "rules": {
     "linebreak-style": "off",
     "react/prop-types": "off", //reenable when I convert to TS

@@ -6,8 +6,10 @@
   h5,
   p,
   div,
-  li {
-    @apply text-body;
+  li,
+  button,
+  body {
+    @apply text-body antialiased font-sans;
   }
 
   a,
@@ -18,9 +20,5 @@
   [tabindex>-1],
   [contenteditable] {
     @apply focusable;
-  }
-
-  body {
-    @apply antialiased;
   }
 }
