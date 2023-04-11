@@ -3,6 +3,11 @@ import { ArrowRight } from '@carbon/icons-react';
 
 export const CARD_SIMPLE_TEST_ID = 'cardSimpleTestId';
 
+export interface CardSimpleProps {
+  heading: string;
+  description: string;
+}
+
 function CardSimple({ heading, description }) {
   return (
     <div

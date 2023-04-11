@@ -6,6 +6,16 @@ import { Button } from '@/components';
 
 export const CARD_SUBSCRIPTION_TEST_ID = 'cardSubscriptionTestId';
 
+export interface CardSubscriptionProps {
+  planName: string;
+  price: string;
+  planLookUpKey: string;
+  planIdValue: string;
+  className: string;
+  features: string[];
+  footnotes: string;
+}
+
 function CardSubscription({
   planName,
   price,
