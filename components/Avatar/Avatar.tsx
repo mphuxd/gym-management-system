@@ -3,9 +3,17 @@ import * as AvatarPrimitive from '@radix-ui/react-avatar';
 
 export const AVATAR_TEST_ID = 'avatarTestId';
 
-const Avatar = React.forwardRef(
+type AvatarRef = React.ElementRef<typeof AvatarPrimitive.Root>;
+export interface AvatarProps extends AvatarPrimitive.AvatarProps {
+  id?: string;
+  src: string;
+  alt: string;
+}
+
+const Avatar = React.forwardRef<AvatarRef, AvatarProps>(
   ({ children, id, src, alt, ...props }, forwardedRef) => (
     <AvatarPrimitive.Root
+      id={id}
       className="inline-flex h-12 w-12 select-none items-center justify-center overflow-hidden rounded-full align-middle"
       ref={forwardedRef}
       {...props}
