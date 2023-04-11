@@ -1,7 +1,7 @@
-import React, { type ReactNode, Ref } from 'react';
+import React, { type ReactNode, Ref, ComponentPropsWithoutRef } from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import cx from 'classnames';
-import Link from 'next/link';
+import Link, { type LinkProps } from 'next/link';
 
 const buttonStyles = cva(['text-sm'], {
   variants: {
@@ -40,39 +40,49 @@ const buttonStyles = cva(['text-sm'], {
   },
 });
 
-export interface ButtonProps extends VariantProps<typeof buttonStyles> {
-  as: 'button' | 'link' | 'div';
-  type: 'button' | 'submit' | 'reset';
-  onClick: () => void;
-  className: string;
-  label: string;
+interface ButtonPropsWithLink
+  extends Omit<
+    Partial<LinkProps> &
+      ComponentPropsWithoutRef<'a'> &
+      ComponentPropsWithoutRef<'button'>,
+    'ref'
+  > {}
+
+export interface ButtonProps
+  extends VariantProps<typeof buttonStyles>,
+    ButtonPropsWithLink {
+  as?: 'button' | 'link' | 'div';
   children?: ReactNode;
+  className?: string;
   href?: string;
+  label?: string;
+  type?: 'button' | 'submit' | 'reset';
 }
 
-const Button = React.forwardRef(
+const Button = React.forwardRef<
+  HTMLAnchorElement | HTMLButtonElement,
+  ButtonProps
+>(
   (
     {
       as = 'button',
-      type,
-      intent,
-      size,
-      length,
-      onClick,
-      className,
-      label,
       children,
+      className,
       href,
+      intent,
+      label,
+      length,
+      size,
       ...props
-    }: ButtonProps,
-    forwardedRef
+    },
+    forwardedRef: any
   ) => {
     const classNames = cx(buttonStyles({ intent, size, length }), className);
     return as === 'link' ? (
       <Link
+        className={classNames}
         href={href}
         ref={forwardedRef as Ref<HTMLAnchorElement>}
-        className={classNames}
         {...props}
       >
         {children}
@@ -81,11 +91,9 @@ const Button = React.forwardRef(
       React.createElement(
         as,
         {
-          type,
-          onClick,
           className: classNames,
-          value: label,
           ref: forwardedRef,
+          value: label,
           ...props,
         },
         children
