@@ -5,7 +5,7 @@ export interface HoverCardProps extends HoverCardPrimitive.HoverCardProps {
   trigger: string;
 }
 
-function HoverCard({ children, trigger, ...props }) {
+function HoverCard({ children, trigger, ...props }: HoverCardProps) {
   return (
     <HoverCardPrimitive.Root {...props}>
       <HoverCardPrimitive.Trigger className="hover:underline">
