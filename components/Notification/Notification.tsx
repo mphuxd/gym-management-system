@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { cva } from 'class-variance-authority';
+import { cva, type VariantProps } from 'class-variance-authority';
 import NotificationIcon from './NotificationIcon';
 
 const notificationStyles = cva(
@@ -20,7 +20,21 @@ const notificationStyles = cva(
   }
 );
 
-function Notification({ className, size, message, subtitle, intent }) {
+export interface NotificationProps
+  extends VariantProps<typeof notificationStyles> {
+  className?: string;
+  message?: string;
+  size?: 'sm' | null | undefined;
+  subtitle?: string;
+}
+
+function Notification({
+  className,
+  intent,
+  message,
+  size,
+  subtitle,
+}: NotificationProps) {
   const classNames = cx(notificationStyles({ intent }), className);
   return (
     message &&

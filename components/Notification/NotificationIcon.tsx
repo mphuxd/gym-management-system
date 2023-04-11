@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { cva } from 'class-variance-authority';
+import { cva, type VariantProps } from 'class-variance-authority';
 import {
   CheckmarkFilled,
   ErrorFilled,
@@ -22,7 +22,11 @@ const iconStyles = cva('mt-1', {
   },
 });
 
-function NotificationIcon({ className, intent }) {
+export interface IconProps extends VariantProps<typeof iconStyles> {
+  className?: string;
+}
+
+function NotificationIcon({ className, intent }: IconProps) {
   const classNames = cx(iconStyles({ intent }), className);
   const iconMap = {
     checkmark: <CheckmarkFilled className={classNames} />,
