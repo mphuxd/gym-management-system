@@ -13,13 +13,15 @@ function Dialog({
   trigger,
   ...props
 }: DialogProps) {
-  <DialogPrimitive.Root open={open} onOpenChange={onOpenChange} {...props}>
-    {trigger && <DialogTrigger>{trigger}</DialogTrigger>}
-    <DialogPrimitive.Portal className="relative z-20">
-      <DialogOverlay />
-      {children}
-    </DialogPrimitive.Portal>
-  </DialogPrimitive.Root>;
+  return (
+    <DialogPrimitive.Root open={open} onOpenChange={onOpenChange} {...props}>
+      {trigger && <DialogTrigger>{trigger}</DialogTrigger>}
+      <DialogPrimitive.Portal className="relative z-20">
+        <DialogOverlay />
+        {children}
+      </DialogPrimitive.Portal>
+    </DialogPrimitive.Root>
+  );
 }
 
 Dialog.displayName = 'Dialog';
