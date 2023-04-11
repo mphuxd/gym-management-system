@@ -4,7 +4,19 @@ import * as Select from '@radix-ui/react-select';
 import * as Label from '@radix-ui/react-label';
 import cx from 'classnames';
 
-const FormSelect = React.forwardRef(
+type FormSelectRef = React.ElementRef<typeof Select.Trigger>;
+
+export interface FormSelectProps extends Select.SelectProps {
+  id: string;
+  label: string;
+  ariaLabel: string;
+  placeholder: string;
+  className: string;
+  error: boolean | null;
+  errorMessage: string;
+}
+
+const FormSelect = React.forwardRef<FormSelectRef, FormSelectProps>(
   (
     {
       id,
@@ -12,14 +24,13 @@ const FormSelect = React.forwardRef(
       ariaLabel,
       children,
       placeholder,
-      className,
       error = null,
       errorMessage,
       ...props
     },
     forwardedRef
   ) => (
-    <Select.Root className={cx(className, 'w-full')} {...props}>
+    <Select.Root className={cx(props.className, 'w-full')} {...props}>
       <div className="flex flex-col">
         <Label.Root
           className="mb-2 text-sm font-medium text-support"

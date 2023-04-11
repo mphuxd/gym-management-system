@@ -2,7 +2,20 @@ import React from 'react';
 import * as Label from '@radix-ui/react-label';
 import cx from 'classnames';
 
-const FormField = React.forwardRef(
+type FormFieldRef = React.ElementRef<'input'>;
+
+export interface FormFieldProps
+  extends React.ComponentPropsWithoutRef<'fieldset'> {
+  as?: string;
+  label: string;
+  type: string;
+  error?: boolean | null;
+  errorMessage?: string;
+  register: React.FC;
+  required?: boolean;
+}
+
+const FormField = React.forwardRef<FormFieldRef, FormFieldProps>(
   (
     {
       as = 'input',
@@ -54,3 +67,5 @@ const FormField = React.forwardRef(
 
 FormField.displayName = 'FormField';
 export default FormField;
+
+// refactor

@@ -1,6 +1,8 @@
 import React from 'react';
 
-function FormInput({ id, defaultValue, type }) {
+export interface FormInputProps extends HTMLInputElement {}
+
+function FormInput({ id, defaultValue, type }: FormInputProps) {
   return (
     <input
       id={id}

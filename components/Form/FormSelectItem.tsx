@@ -3,7 +3,10 @@ import cx from 'classnames';
 import * as Select from '@radix-ui/react-select';
 import { CheckIcon } from '@radix-ui/react-icons';
 
-const FormSelectItem = React.forwardRef(
+type FormSelectItemRef = React.ElementRef<typeof Select.Item>;
+export interface FormSelectItemProps extends Select.SelectItemProps {}
+
+const FormSelectItem = React.forwardRef<FormSelectItemRef, FormSelectItemProps>(
   ({ children, className, value, ...props }, forwardedRef) => {
     const classNames = cx(
       className,
