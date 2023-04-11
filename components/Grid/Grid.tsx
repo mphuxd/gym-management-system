@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { cva } from 'class-variance-authority';
+import { cva, type VariantProps } from 'class-variance-authority';
 
 const gridStyles = cva('grid', {
   variants: {
@@ -21,11 +21,17 @@ const gridStyles = cva('grid', {
     gap: {},
   },
   defaultVariants: {
-    columns: '12',
+    columns: 12,
   },
 });
 
-function Grid({ as = 'div', children, columns, className }) {
+export interface GridProps extends VariantProps<typeof gridStyles> {
+  as?: 'div' | 'section' | 'article';
+  children?: React.ReactNode;
+  className?: number;
+}
+
+function Grid({ as = 'div', children, columns, className }: GridProps) {
   const classNames = cx(gridStyles({ columns }), className);
   return React.createElement(as, { className: classNames }, children);
 }

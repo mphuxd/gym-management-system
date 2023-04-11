@@ -1,9 +1,14 @@
 import React from 'react';
 import * as TooltipPrimitive from '@radix-ui/react-tooltip';
 
-const Tooltip = React.forwardRef(
-  ({ trigger, content, ...props }, forwardedRef) => (
-    <TooltipPrimitive.Provider ref={forwardedRef} {...props}>
+export interface TooltipProps extends TooltipPrimitive.TooltipProviderProps {
+  trigger?: string;
+  content?: string;
+}
+
+function Tooltip({ trigger, content, ...props }) {
+  return (
+    <TooltipPrimitive.Provider {...props}>
       <TooltipPrimitive.Root delayDuration={0}>
         <TooltipPrimitive.Trigger asChild className="relative bg-transparent">
           {trigger}
@@ -20,8 +25,8 @@ const Tooltip = React.forwardRef(
         </TooltipPrimitive.Portal>
       </TooltipPrimitive.Root>
     </TooltipPrimitive.Provider>
-  )
-);
+  );
+}
 
 Tooltip.displayName = 'Tooltip';
 

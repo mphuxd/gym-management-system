@@ -1,9 +1,13 @@
 import React from 'react';
 import * as HoverCardPrimitive from '@radix-ui/react-hover-card';
 
-const HoverCard = React.forwardRef(
-  ({ children, trigger, ...props }, forwardedRef) => (
-    <HoverCardPrimitive.Root ref={forwardedRef} {...props}>
+export interface HoverCardProps extends HoverCardPrimitive.HoverCardProps {
+  trigger: string;
+}
+
+function HoverCard({ children, trigger, ...props }) {
+  return (
+    <HoverCardPrimitive.Root {...props}>
       <HoverCardPrimitive.Trigger className="hover:underline">
         {trigger}
       </HoverCardPrimitive.Trigger>
@@ -19,8 +23,8 @@ const HoverCard = React.forwardRef(
         </HoverCardPrimitive.Content>
       </HoverCardPrimitive.Portal>
     </HoverCardPrimitive.Root>
-  )
-);
+  );
+}
 
 HoverCard.displayName = 'HoverCard';
 

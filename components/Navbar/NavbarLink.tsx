@@ -1,10 +1,17 @@
 import React from 'react';
-import Link from 'next/link';
+import Link, { type LinkProps } from 'next/link';
 import { useRouter } from 'next/router';
 import cx from 'classnames';
 import styles from './Navbar.module.scss';
 
-const NavbarLink = React.forwardRef(
+type NavbarLinkRef = React.ElementRef<typeof Link>;
+export interface NavbarLinkProps extends LinkProps {
+  children?: React.ReactNode;
+  className?: string;
+  href: string;
+}
+
+const NavbarLink = React.forwardRef<NavbarLinkRef, NavbarLinkProps>(
   ({ children, className, href, ...props }, forwardedRef) => {
     const router = useRouter();
     let isActive = false;

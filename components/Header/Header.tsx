@@ -8,7 +8,7 @@ import { UserAvatar } from '@carbon/icons-react';
 import { Inter } from '@next/font/google';
 import { HeaderIcon, Navbar, NavbarLink, Stack } from '@/components';
 
-const inter = Inter({ subsets: 'latin' });
+const inter = Inter({ subsets: ['latin'] });
 
 function Header() {
   const { user } = useUser();
@@ -27,7 +27,7 @@ function Header() {
             alt="Evolve Gyms Logo is a triangle with 3 intersecting lines radiating from the center."
           />
           <span
-            className={cx(inter.className, 'py-4 px-1 text-2xl font-semibold')}
+            className={cx(inter.className, 'px-1 py-4 text-2xl font-semibold')}
           >
             EVOLVE
           </span>
@@ -73,7 +73,7 @@ function Header() {
           ) : (
             <Link
               href="/api/auth/login"
-              className="inline-flex items-center bg-layer-alt py-1 px-3 hover:bg-layer-hover"
+              className="inline-flex items-center bg-layer-alt px-3 py-1 hover:bg-layer-hover"
             >
               Login
             </Link>
