@@ -1,7 +1,11 @@
 import React from 'react';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 
-const DialogTrigger = React.forwardRef(
+type DialogTriggerRef = React.ElementRef<typeof DialogPrimitive.Trigger>;
+export interface DialogTriggerProps
+  extends DialogPrimitive.DialogTriggerProps {}
+
+const DialogTrigger = React.forwardRef<DialogTriggerRef, DialogTriggerProps>(
   ({ children, ...props }, forwardedRef) => (
     <DialogPrimitive.Trigger {...props} ref={forwardedRef}>
       {children}
