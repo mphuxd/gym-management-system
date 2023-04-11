@@ -1,5 +1,5 @@
 import React from 'react';
-import { cva } from 'class-variance-authority';
+import { cva, type VariantProps } from 'class-variance-authority';
 import cx from 'classnames';
 
 const screenStyles = cva('', {
@@ -18,8 +18,20 @@ const screenStyles = cva('', {
   },
 });
 
-function Screen({ as = 'div', intent, color, className, children }) {
-  const classNames = cx(screenStyles({ intent, color }), className);
+export interface ScreenProps extends VariantProps<typeof screenStyles> {
+  as?: 'div' | 'section' | 'article';
+  className?: string;
+  children: React.ReactNode;
+}
+
+function Screen({
+  as = 'div',
+  intent,
+  background,
+  className,
+  children,
+}: ScreenProps) {
+  const classNames = cx(screenStyles({ intent, background }), className);
   return React.createElement(
     as,
     {
