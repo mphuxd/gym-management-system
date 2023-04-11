@@ -1,7 +1,10 @@
 import React from 'react';
 import { Cross2Icon } from '@radix-ui/react-icons';
 
-function AlertDialogCross(props) {
+export interface AlertDialogCrossProps
+  extends React.ComponentPropsWithoutRef<'button'> {}
+
+function AlertDialogCross(props: AlertDialogCrossProps) {
   return (
     <button
       {...props}
