@@ -30,15 +30,15 @@ function Toast() {
       <ToastPrimitive.Root
         open={toastValue.isOpen}
         onOpenChange={() => {
-          setToastValue({ isOpen: !toastValue.isOpen });
+          setToastValue({ ...toastValue, isOpen: !toastValue.isOpen });
         }}
-        className={toastStyles({ intent: toastValue.intent })}
+        className={toastStyles({ intent: toastValue.intent as any })}
       >
         <div className="relative flex flex-row items-center justify-between">
           <ToastPrimitive.Title className="font-semibold">
             {toastValue.title}
           </ToastPrimitive.Title>
-          <ToastPrimitive.Close className="relative after:absolute after:-top-1/2 after:-left-1/2 after:h-[200%] after:w-[200%] after:content-['']">
+          <ToastPrimitive.Close className="relative after:absolute after:-left-1/2 after:-top-1/2 after:h-[200%] after:w-[200%] after:content-['']">
             <Cross2Icon />
           </ToastPrimitive.Close>
         </div>
@@ -48,7 +48,7 @@ function Toast() {
         <ToastPrimitive.Action altText="Action" />
         <ToastPrimitive.Close />
       </ToastPrimitive.Root>
-      <ToastPrimitive.Viewport className="fixed right-8 bottom-8 z-50 h-fit" />
+      <ToastPrimitive.Viewport className="fixed bottom-8 right-8 z-50 h-fit" />
     </>
   );
 }

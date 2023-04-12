@@ -2,16 +2,15 @@ import React from 'react';
 import * as TooltipPrimitive from '@radix-ui/react-tooltip';
 
 export interface TooltipProps extends TooltipPrimitive.TooltipProviderProps {
-  trigger?: string;
   content?: string;
 }
 
-function Tooltip({ trigger, content, ...props }) {
+function Tooltip({ children, content, ...props }: TooltipProps) {
   return (
     <TooltipPrimitive.Provider {...props}>
       <TooltipPrimitive.Root delayDuration={0}>
         <TooltipPrimitive.Trigger asChild className="relative bg-transparent">
-          {trigger}
+          {children}
         </TooltipPrimitive.Trigger>
         <TooltipPrimitive.Portal className="relative">
           <TooltipPrimitive.Content

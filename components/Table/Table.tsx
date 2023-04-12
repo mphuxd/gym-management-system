@@ -3,6 +3,15 @@ import cx from 'classnames';
 import TableHeader from './TableHeader';
 import TableRow from './TableRow';
 
+export interface TableProps
+  extends React.ComponentPropsWithoutRef<typeof TableRow> {
+  headers: string[];
+  rows: { id: string }[];
+  render: () => React.ReactNode;
+  onClick: () => void;
+  className?: string;
+}
+
 function Table({
   headers,
   rows,
@@ -11,7 +20,7 @@ function Table({
   className,
   cursor,
   layer = 'default',
-}) {
+}: TableProps) {
   return (
     <table className={cx(className, 'w-full table-auto text-sm')}>
       <thead>

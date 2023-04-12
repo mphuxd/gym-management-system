@@ -1,9 +1,9 @@
 import React from 'react';
 import cx from 'classnames';
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons';
-import { cva } from 'class-variance-authority';
+import { cva, type VariantProps } from 'class-variance-authority';
 
-const searchBarStyles = cva('relative pl-7 text-sm', {
+const searchbarStyles = cva('relative pl-7 text-sm', {
   variants: {
     intent: {
       primary:
@@ -41,14 +41,21 @@ const searchBarStyles = cva('relative pl-7 text-sm', {
   },
 });
 
-const Searchbar = React.forwardRef(
+type SearchbarRef = React.ElementRef<'input'>;
+export interface SearchbarProps extends VariantProps<typeof searchbarStyles> {
+  name: string;
+  placeholder: string;
+  className?: string;
+}
+
+const Searchbar = React.forwardRef<SearchbarRef, SearchbarProps>(
   (
     { placeholder, name, className, intent, width, height, size, ...props },
     forwardedRef
   ) => {
     const classNames = cx(
       className,
-      searchBarStyles({ intent, width, height, size })
+      searchbarStyles({ intent, width, height, size })
     );
 
     return (

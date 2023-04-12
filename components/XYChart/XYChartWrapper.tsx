@@ -17,7 +17,7 @@ export default function XYChartWrapper({ data, accessors }) {
       yScale={{ type: 'linear' }}
     >
       <AnimatedAxis numTicks={6} orientation="right" />
-      <AnimatedAxis width={310} orientation="bottom" />
+      <AnimatedAxis orientation="bottom" />
       <AnimatedGrid columns={false} numTicks={6} />
       <AnimatedLineSeries
         className="stroke-primary"

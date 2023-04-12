@@ -3,7 +3,17 @@ import useSWR from 'swr';
 import { Notification } from '../Notification';
 import fetcher from '@/lib/useSWRFetcher';
 
-function StatusMessage({ subscriptionId, className, size }) {
+export interface StatusMessageProps
+  extends React.ComponentPropsWithoutRef<typeof Notification> {
+  subscriptionId: string;
+  className?: string;
+}
+
+function StatusMessage({
+  subscriptionId,
+  className,
+  size,
+}: StatusMessageProps) {
   const { data: subscription } = useSWR(
     `/api/member/getStripeSubscription/${subscriptionId}`,
     fetcher

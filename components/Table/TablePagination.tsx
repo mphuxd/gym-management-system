@@ -3,15 +3,22 @@ import cx from 'classnames';
 import { CaretLeftIcon, CaretRightIcon } from '@radix-ui/react-icons';
 import { Button } from '../Button';
 
+export interface TablePaginationProps {
+  totalItems: number;
+  pageSize: number;
+  onChange: (newPage, pageSize) => void;
+  backText?: string;
+  nextText?: string;
+}
+
 function TablePagination({
   totalItems,
   pageSize,
   onChange,
   backText,
   nextText,
-  size = 'base',
-}) {
-  const [page, setPage] = useState(1);
+}: TablePaginationProps) {
+  const [page, setPage] = useState<number>(1);
   const firstIndex = pageSize * (page - 1);
   const lastIndex =
     totalItems < firstIndex + pageSize ? totalItems : firstIndex + pageSize;
@@ -42,12 +49,10 @@ function TablePagination({
       </span>
       <div className="flex flex-row">
         <TablePaginationPrev
-          size={size}
           backText={backText}
           handlePageBack={handlePageBack}
         />
         <TablePaginationNext
-          size={size}
           nextText={nextText}
           handlePageForward={handlePageForward}
         />
@@ -60,7 +65,15 @@ function TablePagination({
 
 export default TablePagination;
 
-function TablePaginationPrev({ backText, handlePageBack }) {
+export interface TablePaginationPrevProps {
+  backText?: string;
+  handlePageBack: () => void;
+}
+
+function TablePaginationPrev({
+  backText,
+  handlePageBack,
+}: TablePaginationPrevProps) {
   return (
     <button type="button" onClick={() => handlePageBack()}>
       {backText ? (
@@ -73,7 +86,7 @@ function TablePaginationPrev({ backText, handlePageBack }) {
           {backText}
         </Button>
       ) : (
-        <div className="group border-r border-border-strong-dark py-2 px-4 outline-0 hover:bg-layer-hover hover:shadow-md active:bg-layer-active">
+        <div className="group border-r border-border-strong-dark px-4 py-2 outline-0 hover:bg-layer-hover hover:shadow-md active:bg-layer-active">
           <CaretLeftIcon className="text-icon-dark group-hover:text-black" />
         </div>
       )}
@@ -81,7 +94,15 @@ function TablePaginationPrev({ backText, handlePageBack }) {
   );
 }
 
-function TablePaginationNext({ nextText, handlePageForward }) {
+export interface TablePaginationNextProps {
+  nextText?: string;
+  handlePageForward: () => void;
+}
+
+function TablePaginationNext({
+  nextText,
+  handlePageForward,
+}: TablePaginationNextProps) {
   return (
     <button type="button" onClick={() => handlePageForward()}>
       {nextText ? (
@@ -94,7 +115,7 @@ function TablePaginationNext({ nextText, handlePageForward }) {
           {nextText}
         </Button>
       ) : (
-        <div className="group border-border-strong-dark py-2 px-4 outline-0 hover:bg-layer-hover hover:shadow-md active:bg-layer-active">
+        <div className="group border-border-strong-dark px-4 py-2 outline-0 hover:bg-layer-hover hover:shadow-md active:bg-layer-active">
           <CaretRightIcon className="text-icon-dark group-hover:text-black" />
         </div>
       )}

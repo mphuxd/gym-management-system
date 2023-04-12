@@ -9,7 +9,11 @@ import {
 } from '@carbon/icons-react';
 import styles from './Status.module.scss';
 
-function Status({ status }) {
+export interface StatusProps {
+  status?: 'ACTIVE' | 'INACTIVE' | 'LATE' | 'CANCELLED' | 'BANNED';
+}
+
+function Status({ status }: StatusProps) {
   const statusIconMap = {
     ACTIVE: <CheckmarkFilled className={styles.active} />,
     INACTIVE: <Undefined className={styles.undefined} />,

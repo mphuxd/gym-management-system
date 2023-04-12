@@ -2,7 +2,17 @@ import React from 'react';
 import cx from 'classnames';
 import * as Label from '@radix-ui/react-label';
 
-function TabContentRowItem({ label, value = '-', space }) {
+export interface TableContentRowItemProps {
+  label: string;
+  value?: string;
+  space?: 'third' | 'half' | 'full';
+}
+
+function TabContentRowItem({
+  label,
+  value = '-',
+  space,
+}: TableContentRowItemProps) {
   const id = label.toLowerCase().replaceAll(' ', '-');
 
   const classNames = cx('flex flex-col', {

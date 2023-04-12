@@ -6,7 +6,11 @@
     "outDir": "dist",
     "strict": false,
     "noUnusedLocals": true,
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
@@ -24,11 +28,27 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"],
-      "@tokens/*": ["/styles/tokens/*"],
-      "@styles/*": ["/styles/*"]
+      "@/*": [
+        "./*"
+      ],
+      "@tokens/*": [
+        "/styles/tokens/*"
+      ],
+      "@styles/*": [
+        "/styles/*"
+      ]
     }
   },
-  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js",
+    "**/*.jsx",
+    "components/Status/StatusMessage.tssx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

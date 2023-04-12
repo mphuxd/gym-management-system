@@ -55,15 +55,17 @@ function Header() {
               <HeaderIcon
                 aria-label="User Settings"
                 href="/settings"
-                icon={<GearIcon />}
-                content="Go to user settings."
-              />
+                content="User settings"
+              >
+                <GearIcon />
+              </HeaderIcon>
               <HeaderIcon
+                aria-label="Logout"
                 content="Logout"
                 href="/api/auth/logout"
-                icon={<ExitIcon />}
-                aria-label="Logout."
-              />
+              >
+                <ExitIcon />
+              </HeaderIcon>
               <UserAvatar
                 height={24}
                 width={24}

@@ -1,7 +1,11 @@
 import React from 'react';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 
-function TableDropdownItem({ children }) {
+export interface TableDropdownItemProps {
+  children: React.ReactNode;
+}
+
+function TableDropdownItem({ children }: TableDropdownItemProps) {
   return (
     <DropdownMenu.Item className="focus:outline-none">
       {children}
