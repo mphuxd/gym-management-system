@@ -20,8 +20,7 @@ export default function CheckInMemberSearchDialogTable({
   filteredMembers,
 }) {
   const [checkInMember] = useMutation(CHECKIN_MEMBER);
-  // eslint-disable-next-line no-unused-vars
-  const [toast, setToast] = useAtom(toastAtom);
+  const [, setToast] = useAtom(toastAtom);
 
   const handleOnClickCheckIn = async (e, row) => {
     e.stopPropagation();
@@ -94,8 +93,8 @@ export default function CheckInMemberSearchDialogTable({
 function NoResultsFound({ searchWarning }) {
   return (
     searchWarning && (
-      <Stack direction="row" className="justify-center items-center h-full">
-        <Stack direction="row" className="justify-center items-center my-auto">
+      <Stack direction="row" className="h-full items-center justify-center">
+        <Stack direction="row" className="my-auto items-center justify-center">
           <Query className="mx-1" />
           No results found.
         </Stack>

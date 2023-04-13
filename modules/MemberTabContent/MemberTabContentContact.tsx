@@ -30,11 +30,11 @@ function getMemberContactData(member) {
   };
 }
 
-export default function TabContentMemberContact({ member, ...props }) {
+export default function TabContentMemberContact({ member, value, ...props }) {
   const contact = getMemberContactData(member);
 
   return (
-    <TabsContent {...props}>
+    <TabsContent value={value} {...props}>
       <Stack className="gap-y-6">
         <TabContentRow>
           <TabContentRowItem label="Email" value={contact.email} space="half" />

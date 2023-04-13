@@ -1,4 +1,9 @@
-const STATES = [
+export interface State {
+  name: string;
+  abbreviation: string;
+}
+
+const STATES: Array<State> = [
   {
     name: 'Alabama',
     abbreviation: 'AL',

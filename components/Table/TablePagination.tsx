@@ -62,6 +62,7 @@ function TablePagination({
 }
 
 // @@@ TO-DO: Add support for variable page size
+// pageSizes={[5, 10, 15, 25]}
 
 export default TablePagination;
 

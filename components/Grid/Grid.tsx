@@ -28,7 +28,7 @@ const gridStyles = cva('grid', {
 export interface GridProps extends VariantProps<typeof gridStyles> {
   as?: 'div' | 'section' | 'article';
   children?: React.ReactNode;
-  className?: number;
+  className?: string;
 }
 
 function Grid({ as = 'div', children, columns, className }: GridProps) {

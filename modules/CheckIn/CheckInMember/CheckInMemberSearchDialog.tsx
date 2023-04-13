@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAtom } from 'jotai';
-import { useForm } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { toastAtom } from '@/atoms';
 import {
   Dialog,
@@ -10,6 +10,10 @@ import {
   Stack,
 } from '@/components';
 import { CheckInMemberSearchDialogTable } from '@/modules';
+
+interface FormValues {
+  searchValue?: string;
+}
 
 export default function CheckInMemberSearchDialog({
   data,
@@ -23,14 +27,13 @@ export default function CheckInMemberSearchDialog({
   searchWarning,
   setSearchWarning,
 }) {
-  // eslint-disable-next-line no-unused-vars
-  const [toast, setToast] = useAtom(toastAtom);
   const [filteredMembers, setFilteredMembers] = useState(searchMemberResults);
   const { register, handleSubmit, resetField, getValues } = useForm({
     defaultValues: {
       searchValue: searchQuery,
     },
   });
+  const [, setToast] = useAtom(toastAtom);
 
   const { onChange } = register('searchValue', {
     onChange: () => {
@@ -42,7 +45,7 @@ export default function CheckInMemberSearchDialog({
     },
   });
 
-  async function onSubmit(e) {
+  const onSubmit: SubmitHandler<FormValues> = async (formData, e) => {
     try {
       e.preventDefault();
       const results = handleFilterForMember(getValues('searchValue'), data);
@@ -65,11 +68,10 @@ export default function CheckInMemberSearchDialog({
         intent: 'error',
       });
     }
-  }
+  };
 
   return (
     <Dialog
-      tabIndex={-1}
       open={isOpen}
       onOpenChange={() => {
         setIsOpen(!isOpen);
@@ -81,10 +83,10 @@ export default function CheckInMemberSearchDialog({
       <DialogContent
         tabIndex={-1}
         rounded={false}
-        className="inset-0 m-auto w-fit h-fit p-8 bg-white"
+        className="inset-0 m-auto h-fit w-fit bg-white p-8"
       >
-        <Stack direction="row" className="justify-between items-center">
-          <form onSubmit={(e) => handleSubmit(onSubmit(e))}>
+        <Stack direction="row" className="items-center justify-between">
+          <form onSubmit={handleSubmit(onSubmit)}>
             <Searchbar
               onChange={onChange}
               autoFocus

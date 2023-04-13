@@ -46,7 +46,6 @@
     "**/*.tsx",
     "**/*.js",
     "**/*.jsx",
-    "components/Status/StatusMessage.tssx"
   ],
   "exclude": [
     "node_modules"

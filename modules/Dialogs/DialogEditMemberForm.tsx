@@ -22,7 +22,12 @@ const schema = yup
   .object({
     firstName: yup.string().required().trim(),
     lastName: yup.string().required().trim(),
-    userId: yup.string().matches('^[0-9]*$').length(12).required().trim(),
+    userId: yup
+      .string()
+      .matches(/^[0-9]*$/)
+      .length(12)
+      .required()
+      .trim(),
     notes: yup.string().trim(),
     email: yup.string().email().trim(),
     phoneNumber: yup.string().trim(),
@@ -32,6 +37,8 @@ const schema = yup
     zipcode: yup.string().length(5).trim(),
   })
   .required();
+
+type FormData = yup.InferType<typeof schema>;
 
 export default function DialogEditMemberForm({
   member,
@@ -44,14 +51,14 @@ export default function DialogEditMemberForm({
     setValue,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<FormData>({
     resolver: yupResolver(schema),
     defaultValues: {
       state: member.contact.state,
     },
   });
-  // eslint-disable-next-line no-unused-vars
-  const [toast, setToast] = useAtom(toastAtom);
+
+  const [, setToast] = useAtom(toastAtom);
 
   function onSubmit(submitData) {
     try {
@@ -114,7 +121,7 @@ export default function DialogEditMemberForm({
                     label="First Name"
                     type="text"
                     defaultValue={member.firstName}
-                    error={errors.firstName}
+                    error={errors.firstName as any}
                     errorMessage="This field is required"
                     register={register}
                     required
@@ -235,7 +242,6 @@ export default function DialogEditMemberForm({
             className="absolute inset-y-[90%] z-10 h-20 w-full justify-end gap-x-2 bg-layer-alt px-8 shadow-custom"
           >
             <Button
-              as="button"
               label="Cancel"
               intent="ghost"
               size="large"
@@ -246,14 +252,14 @@ export default function DialogEditMemberForm({
               Cancel
             </Button>
             <Button
-              as="input"
-              type="submit"
               label="Update Member"
               intent="primary"
               size="large"
               length="medium"
               className="mt-4 h-fit"
-            />
+            >
+              Submit
+            </Button>
           </Stack>
         </form>
       </DialogContent>

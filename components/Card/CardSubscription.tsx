@@ -11,7 +11,7 @@ export interface CardSubscriptionProps {
   price: string;
   planLookUpKey: string;
   planIdValue: string;
-  className: string;
+  className?: string;
   features: string[];
   footnotes: string;
 }
@@ -24,7 +24,7 @@ function CardSubscription({
   className,
   features,
   footnotes,
-}) {
+}: CardSubscriptionProps) {
   return (
     <div
       className={cx(

@@ -1,7 +1,8 @@
 import React from 'react';
 import cx from 'classnames';
 
-export interface SidepanelProps {
+export interface SidepanelProps
+  extends React.ComponentPropsWithoutRef<'aside'> {
   children: React.ReactNode;
   className?: string;
 }
