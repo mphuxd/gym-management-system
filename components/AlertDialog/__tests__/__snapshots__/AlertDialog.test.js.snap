@@ -78,7 +78,7 @@ exports[`AlertDialog   in "constrained" intent, action button should be disabled
       Alert Dialog Close
     </button>
     <button
-      class="text-sm text-gray8 outline outline-2 outline-gray6 px-4 py-1 w-fit"
+      class="text-sm text-gray8 outline outline-2 outline-gray6 px-4 py-2 w-fit"
       disabled=""
       role="button"
       type="button"
@@ -91,7 +91,7 @@ exports[`AlertDialog   in "constrained" intent, action button should be disabled
 
 exports[`AlertDialog   in "constrained" intent, action button should be disabled by default 2`] = `
 <button
-  class="text-sm text-gray8 outline outline-2 outline-gray6 px-4 py-1 w-fit"
+  class="text-sm text-gray8 outline outline-2 outline-gray6 px-4 py-2 w-fit"
   disabled=""
   role="button"
   type="button"
@@ -102,7 +102,7 @@ exports[`AlertDialog   in "constrained" intent, action button should be disabled
 
 exports[`AlertDialog   in "constrained" intent, action button should be enabled when input value matches action text 1`] = `
 <button
-  class="text-sm focusable block bg-neg text-white hover:bg-neg-hover focus:ring-[3px] focus:ring-inset focus:ring-focus-inset active:bg-neg-active active:outline-red8 active:ring-0 active:drop-shadow px-4 py-1 w-fit"
+  class="text-sm focusable block bg-neg text-white hover:bg-neg-hover focus:ring-[3px] focus:ring-inset focus:ring-focus-inset active:bg-neg-active active:outline-red8 active:ring-0 active:drop-shadow px-4 py-2 w-fit"
   role="button"
   type="button"
 >
@@ -172,7 +172,6 @@ exports[`AlertDialog   in "constrained" intent, action button should be enabled 
       </div>
       <input
         class="my-4 w-full px-2 py-1 outline outline-1 outline-border-interactive"
-        input="test action phrase"
         placeholder="test action phrase"
         type="text"
       />
@@ -189,7 +188,7 @@ exports[`AlertDialog   in "constrained" intent, action button should be enabled 
       Alert Dialog Close
     </button>
     <button
-      class="text-sm focusable block bg-neg text-white hover:bg-neg-hover focus:ring-[3px] focus:ring-inset focus:ring-focus-inset active:bg-neg-active active:outline-red8 active:ring-0 active:drop-shadow px-4 py-1 w-fit"
+      class="text-sm focusable block bg-neg text-white hover:bg-neg-hover focus:ring-[3px] focus:ring-inset focus:ring-focus-inset active:bg-neg-active active:outline-red8 active:ring-0 active:drop-shadow px-4 py-2 w-fit"
       role="button"
       type="button"
     >
@@ -277,7 +276,7 @@ exports[`AlertDialog  should render "constrained" intent 1`] = `
       Alert Dialog Close
     </button>
     <button
-      class="text-sm text-gray8 outline outline-2 outline-gray6 px-4 py-1 w-fit"
+      class="text-sm text-gray8 outline outline-2 outline-gray6 px-4 py-2 w-fit"
       disabled=""
       role="button"
       type="button"
@@ -353,7 +352,7 @@ exports[`AlertDialog  should render "default" intent 1`] = `
       Alert Dialog Close
     </button>
     <button
-      class="text-sm focusable block bg-neg text-white hover:bg-neg-hover focus:ring-[3px] focus:ring-inset focus:ring-focus-inset active:bg-neg-active active:outline-red8 active:ring-0 active:drop-shadow px-4 py-1 w-fit"
+      class="text-sm focusable block bg-neg text-white hover:bg-neg-hover focus:ring-[3px] focus:ring-inset focus:ring-focus-inset active:bg-neg-active active:outline-red8 active:ring-0 active:drop-shadow px-4 py-2 w-fit"
       type="button"
     >
       Alert Dialog Action

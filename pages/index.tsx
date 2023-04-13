@@ -9,16 +9,16 @@ import * as ScrollArea from '@radix-ui/react-scroll-area';
 import Link from 'next/link';
 import { toastAtom } from '@/atoms';
 import {
-  Grid,
-  CardSimple,
-  FormField,
   Button,
-  Stack,
-  DialogContent,
+  CardSimple,
   Dialog,
-  DialogTitle,
   DialogClose,
+  DialogContent,
+  DialogTitle,
+  FormField,
+  Grid,
   Screen,
+  Stack,
 } from '@/components';
 
 export const getServerSideProps = withPageAuthRequired();
@@ -235,12 +235,18 @@ function DashboardNotesDialog({ open, setOpen, note, refetch }) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent
+        tabIndex={-1}
         rounded={false}
         className="inset-1/2 h-fit w-1/3 -translate-x-1/2 -translate-y-3/4 space-y-4 p-8"
       >
         <Stack direction="row" className="items-center justify-between">
           <DialogTitle>Edit Note</DialogTitle>
-          <DialogClose />
+          <DialogClose
+            onClick={(e) => {
+              e.stopPropagation();
+              setOpen(false);
+            }}
+          />
         </Stack>
         <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
           <FormField
@@ -253,14 +259,14 @@ function DashboardNotesDialog({ open, setOpen, note, refetch }) {
           />
           <div className="flex flex-row justify-end">
             <Button
-              as="button"
               className="ml-auto"
-              label="Save Note"
               type="submit"
               intent="primary"
               size="large"
               length="medium"
-            />
+            >
+              Save Note
+            </Button>
           </div>
         </form>
       </DialogContent>

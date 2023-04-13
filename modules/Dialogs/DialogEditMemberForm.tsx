@@ -242,7 +242,6 @@ export default function DialogEditMemberForm({
             className="absolute inset-y-[90%] z-10 h-20 w-full justify-end gap-x-2 bg-layer-alt px-8 shadow-custom"
           >
             <Button
-              as="button"
               label="Cancel"
               intent="ghost"
               size="large"
@@ -253,13 +252,14 @@ export default function DialogEditMemberForm({
               Cancel
             </Button>
             <Button
-              type="submit"
               label="Update Member"
               intent="primary"
               size="large"
               length="medium"
               className="mt-4 h-fit"
-            />
+            >
+              Submit
+            </Button>
           </Stack>
         </form>
       </DialogContent>
