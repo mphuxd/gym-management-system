@@ -45,7 +45,7 @@ function getMembershipDetails(member, subscriptionData) {
   };
 }
 
-export default function TabContentMemberDetails({ member, ...props }) {
+export default function TabContentMemberDetails({ member, value, ...props }) {
   const { data: subscriptionData } = useSWR(
     member
       ? `/api/member/getStripeSubscription/${member.membership.stripeSubscriptionId}`
@@ -56,7 +56,7 @@ export default function TabContentMemberDetails({ member, ...props }) {
   const membership = getMembershipDetails(member, subscriptionData);
 
   return (
-    <TabsContent {...props}>
+    <TabsContent value={value} {...props}>
       <div className="space-y-6 ">
         <TabContentRow>
           <TabContentRowItem

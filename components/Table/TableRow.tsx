@@ -5,7 +5,7 @@ export interface TableRowProps extends React.ComponentPropsWithoutRef<'tr'> {
   cursor?: 'pointer' | 'auto' | 'text';
   layer?: 'default' | string;
   onClick: (...args) => void;
-  render: (row) => React.ReactNode;
+  render: (...args) => React.ReactNode;
   row: { id: string };
 }
 

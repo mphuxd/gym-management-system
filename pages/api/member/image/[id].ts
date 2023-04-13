@@ -41,7 +41,7 @@ export default withApiAuthRequired(async (req, res) => {
           Bucket: process.env.MY_AWS_S3_BUCKET_NAME,
         };
         s3.putObject(params, (err) => {
-          if (err) throw new Error(err, err.stack);
+          if (err) throw new Error(err.message);
         });
         return res
           .status(200)

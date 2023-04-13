@@ -138,8 +138,7 @@ export default function UserId() {
 
 function MemberDropdownMenu({ member, mutate }) {
   const router = useRouter();
-  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
-  const [toast, setToast] = useAtom(toastAtom);
+  const [, setToast] = useAtom(toastAtom);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [isCancelDialogOpen, setIsCancelDialogOpen] = useState(false);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
@@ -171,16 +170,15 @@ function MemberDropdownMenu({ member, mutate }) {
                       headers: {
                         'Content-Type': 'application/json',
                       },
-                    }).then(
-                      () =>
-                        setToast({
-                          title: 'Checked In Member',
-                          description: member.id,
-                          isOpen: true,
-                          intent: 'success',
-                        }),
-                      router.push('/checkin')
+                    }).then(() =>
+                      setToast({
+                        title: 'Checked In Member',
+                        description: member.id,
+                        isOpen: true,
+                        intent: 'success',
+                      })
                     );
+                    await router.push('/checkin');
                   } catch (err) {
                     setToast({
                       title: 'Edit Failed',

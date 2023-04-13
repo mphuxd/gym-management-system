@@ -136,7 +136,7 @@ export default function SignUpSuccess() {
         </Stack>
         <div className="relative col-span-5">
           <Image
-            fill="contain"
+            fill
             className="col-span-5 opacity-10"
             alt="Evolve Logo"
             src="/images/logo/evolve.svg"

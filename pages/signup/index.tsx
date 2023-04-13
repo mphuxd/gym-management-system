@@ -16,7 +16,7 @@ export default function SignUp() {
           <h1 className="mb-8 text-lg font-semibold ">Sign Up New Member</h1>
           <p className="mb-8">
             Select a plan, or{' '}
-            <Link className="underline" href="/" disabled>
+            <Link className="underline" href="/">
               manually sign up a new member.
             </Link>
           </p>

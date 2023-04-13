@@ -166,7 +166,7 @@ export default function Members() {
                         return (
                           // eslint-disable-next-line react/no-array-index-key
                           <TableRowCell className="px-2" key={jdx}>
-                            {cell}
+                            {cell as any}
                           </TableRowCell>
                         );
                       }
@@ -182,7 +182,6 @@ export default function Members() {
             <TablePagination
               totalItems={allRows.length}
               pageSize={currentPageSize}
-              pageSizes={[5, 10, 15, 25]}
               onChange={(page, pageSize) => {
                 if (pageSize !== currentPageSize) setCurrentPageSize(pageSize);
                 setFirstRowIndex(pageSize * (page - 1));
@@ -197,8 +196,7 @@ export default function Members() {
 
 function TableDropdown({ row }) {
   const router = useRouter();
-  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
-  const [toast, setToast] = useAtom(toastAtom);
+  const [, setToast] = useAtom(toastAtom);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [isCancelDialogOpen, setIsCancelDialogOpen] = useState(false);
 
@@ -228,16 +226,15 @@ function TableDropdown({ row }) {
                     headers: {
                       'Content-Type': 'application/json',
                     },
-                  }).then(
-                    () =>
-                      setToast({
-                        title: 'Checked In Member',
-                        description: row.id,
-                        isOpen: true,
-                        intent: 'success',
-                      }),
-                    router.push('/checkin')
+                  }).then(() =>
+                    setToast({
+                      title: 'Checked In Member',
+                      description: row.id,
+                      isOpen: true,
+                      intent: 'success',
+                    })
                   );
+                  await router.push('/checkin');
                 } catch (err) {
                   setToast({
                     title: 'Edit Failed',

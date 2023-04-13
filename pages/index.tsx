@@ -146,7 +146,7 @@ function DashboardNotes() {
     data && (
       <ScrollArea.Root
         className="focusable relative h-40 w-full overflow-hidden p-4 hover:cursor-pointer hover:bg-layer-hover active:bg-layer-active"
-        tabIndex="0"
+        tabIndex={0}
         onKeyDown={(e) => {
           if (e.key === 'Enter') setOpen(true);
         }}
@@ -196,8 +196,7 @@ const UPDATE_NOTE = gql`
 
 function DashboardNotesDialog({ open, setOpen, note, refetch }) {
   const [updateNote] = useMutation(UPDATE_NOTE);
-  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
-  const [toast, setToast] = useAtom(toastAtom);
+  const [, setToast] = useAtom(toastAtom);
 
   const schema = yup
     .object({
@@ -254,8 +253,8 @@ function DashboardNotesDialog({ open, setOpen, note, refetch }) {
           />
           <div className="flex flex-row justify-end">
             <Button
+              as="button"
               className="ml-auto"
-              as="input"
               label="Save Note"
               type="submit"
               intent="primary"

@@ -28,11 +28,11 @@ function getMemberOverview(member) {
   };
 }
 
-export default function TabContentMemberOverview({ member, ...props }) {
+export default function TabContentMemberOverview({ member, value, ...props }) {
   const overview = getMemberOverview(member);
 
   return (
-    <TabsContent {...props}>
+    <TabsContent value={value} {...props}>
       <Stack className="gap-y-6">
         <TabContentRow>
           <TabContentRowItem label="Name" value={overview.name} space="half" />

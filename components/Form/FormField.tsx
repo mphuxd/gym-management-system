@@ -7,7 +7,7 @@ type FormFieldRef = React.ElementRef<'input'>;
 export interface FormFieldProps
   extends React.ComponentPropsWithoutRef<'fieldset'> {
   as?: string;
-  label: string;
+  label?: string;
   type: string;
   error?: any;
   errorMessage?: string;
@@ -50,12 +50,14 @@ const FormField = React.forwardRef<FormFieldRef, FormFieldProps>(
     );
     return (
       <fieldset {...props} className="flex flex-col gap-y-1">
-        <Label.Root
-          className="mb-1 text-sm font-medium text-support"
-          htmlFor={id}
-        >
-          {label}
-        </Label.Root>
+        {label && (
+          <Label.Root
+            className="mb-1 text-sm font-medium text-support"
+            htmlFor={id}
+          >
+            {label}
+          </Label.Root>
+        )}
         {field}
         {error && (
           <span className="mt-1 text-sm text-neg-text">{errorMessage}</span>
