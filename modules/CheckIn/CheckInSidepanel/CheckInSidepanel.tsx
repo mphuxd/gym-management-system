@@ -17,7 +17,6 @@ export default function CheckInSidepanel({ checkInHistory }) {
         className="w-full"
         type="multiple"
         defaultValue={['analytics', 'history']}
-        collapsible="true"
       >
         <AccordionItem className="w-full" header="Analytics" value="analytics">
           <Stack className="mt-6">
@@ -32,10 +31,7 @@ export default function CheckInSidepanel({ checkInHistory }) {
           header="Check-in History"
           value="history"
         >
-          <CheckInHistoryTable
-            className="h-1/2"
-            checkInHistory={checkInHistory}
-          />
+          <CheckInHistoryTable checkInHistory={checkInHistory} />
         </AccordionItem>
       </Accordion>
       <Separator className="my-4 bg-border-subtle-darker" />

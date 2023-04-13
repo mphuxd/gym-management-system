@@ -4,11 +4,9 @@ import TableHeader from './TableHeader';
 import TableRow from './TableRow';
 
 export interface TableProps
-  extends React.ComponentPropsWithoutRef<typeof TableRow> {
+  extends Omit<React.ComponentPropsWithoutRef<typeof TableRow>, 'row'> {
   headers: string[];
   rows: { id: string }[];
-  render: () => React.ReactNode;
-  onClick: () => void;
   className?: string;
 }
 

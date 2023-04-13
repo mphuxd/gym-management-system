@@ -31,8 +31,8 @@ export default function CheckInMember({ checkInHistory, mutate }) {
             {checkedInMember && (
               <Stack>
                 <Stack
-                  direction="row"
                   id="member-name"
+                  direction="row"
                   className="items-center"
                 >
                   <CheckInMemberName

@@ -52,10 +52,8 @@ export default function CheckInHistoryTable({ checkInHistory }) {
           />
           <div className="pt-3">
             <TablePagination
-              intent="default"
               totalItems={history.length}
               pageSize={currentPageSize}
-              pageSizes={[5, 10, 15, 25]}
               onChange={(page, pageSize) => {
                 if (pageSize !== currentPageSize) setCurrentPageSize(pageSize);
                 setFirstRowIndex(pageSize * (page - 1));
@@ -104,7 +102,11 @@ function CheckInHistoryRow({ row }) {
           trigger={`${row.member.firstName} ${row.member.lastName}`}
         >
           <Stack direction="row" className="gap-4">
-            <Avatar src={image} id={row.memberId} />
+            <Avatar
+              src={image}
+              id={row.memberId}
+              alt={`${row.member.firstName} ${row.member.lastName}`}
+            />
             <Stack className="text-sm">
               <span className="font-medium">
                 {`${row.member.firstName} ${row.member.lastName}`}

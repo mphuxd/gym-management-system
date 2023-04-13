@@ -9,9 +9,9 @@ export interface FormFieldProps
   as?: string;
   label: string;
   type: string;
-  error?: boolean | null;
+  error?: any;
   errorMessage?: string;
-  register: React.FC;
+  register: Function;
   required?: boolean;
 }
 

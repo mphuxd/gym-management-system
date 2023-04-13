@@ -1,7 +1,13 @@
 import React from 'react';
 import { Stack } from '@/components';
 
-function getDailyCheckInCount(checkInHistory) {
+interface CheckInHistory {
+  checkins: {
+    checkInDate: string;
+  }[];
+}
+
+function getDailyCheckInCount(checkInHistory: CheckInHistory): number {
   let count = 0;
   for (let i = 0; i < checkInHistory.checkins.length; i += 1) {
     const currDate = new Date().toLocaleDateString();

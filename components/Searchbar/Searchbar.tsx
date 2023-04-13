@@ -43,6 +43,7 @@ const searchbarStyles = cva('relative pl-7 text-sm', {
 
 type SearchbarRef = React.ElementRef<'input'>;
 export interface SearchbarProps extends VariantProps<typeof searchbarStyles> {
+  autoFocus?: boolean;
   name: string;
   placeholder: string;
   className?: string;
@@ -50,7 +51,17 @@ export interface SearchbarProps extends VariantProps<typeof searchbarStyles> {
 
 const Searchbar = React.forwardRef<SearchbarRef, SearchbarProps>(
   (
-    { placeholder, name, className, intent, width, height, size, ...props },
+    {
+      autoFocus = false,
+      className,
+      height,
+      intent,
+      name,
+      placeholder,
+      size,
+      width,
+      ...props
+    },
     forwardedRef
   ) => {
     const classNames = cx(
@@ -61,12 +72,14 @@ const Searchbar = React.forwardRef<SearchbarRef, SearchbarProps>(
     return (
       <div className="flex w-full flex-row items-center">
         <input
-          {...props}
-          ref={forwardedRef}
+          // eslint-disable-next-line jsx-a11y/no-autofocus
+          autoFocus={autoFocus}
           className={classNames}
-          type="text"
           name={name}
           placeholder={placeholder}
+          ref={forwardedRef}
+          type="text"
+          {...props}
         />
         <MagnifyingGlassIcon className="absolute ml-2" />
       </div>

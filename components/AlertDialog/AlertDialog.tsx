@@ -24,7 +24,7 @@ export interface AlertDialogProps
 function AlertDialog({
   action,
   actionPhrase = 'delete me',
-  children,
+  children = null,
   close,
   description,
   href,

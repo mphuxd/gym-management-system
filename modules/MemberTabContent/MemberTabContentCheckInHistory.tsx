@@ -18,12 +18,16 @@ function getRows(checkInHistory) {
 }
 // @@@ Update values after check-in refactor
 
-export default function MemberTabContentCheckInHistory({ member, ...props }) {
+export default function MemberTabContentCheckInHistory({
+  member,
+  value,
+  ...props
+}) {
   if (member && member?.checkIns.length > 0) {
     const memberCheckInHistory = Array.from(member.checkIns).reverse();
     const rows = getRows(memberCheckInHistory).slice(0, 10);
     return (
-      <TabsContent {...props}>
+      <TabsContent value={value} {...props}>
         <Stack>
           <Table
             layer="alt"
@@ -34,17 +38,17 @@ export default function MemberTabContentCheckInHistory({ member, ...props }) {
             onClick={() => {}}
             render={(row) => (
               <>
-                <TableRowCell className="hidden w-[1px] whitespace-nowrap py-1 px-2">
+                <TableRowCell className="hidden w-[1px] whitespace-nowrap px-2 py-1">
                   <div>{row.id}</div>
                 </TableRowCell>
-                <TableRowCell className="w-[1px] whitespace-nowrap py-1 px-2">
+                <TableRowCell className="w-[1px] whitespace-nowrap px-2 py-1">
                   <div>{row.event}</div>
                 </TableRowCell>
-                <TableRowCell className=" py-1 px-2">
+                <TableRowCell className=" px-2 py-1">
                   {/* @@@ Add Icon to status */}
                   <div>{row.status}</div>
                 </TableRowCell>
-                <TableRowCell className="w-[1px] whitespace-nowrap py-1 px-2">
+                <TableRowCell className="w-[1px] whitespace-nowrap px-2 py-1">
                   <div>{row.date}</div>
                 </TableRowCell>
               </>
@@ -58,7 +62,7 @@ export default function MemberTabContentCheckInHistory({ member, ...props }) {
     );
   }
   return (
-    <TabsContent {...props}>
+    <TabsContent value={value} {...props}>
       <Stack>
         <TabContentRow>
           <TabContentRowItem

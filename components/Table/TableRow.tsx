@@ -2,18 +2,19 @@ import React from 'react';
 import cx from 'classnames';
 
 export interface TableRowProps extends React.ComponentPropsWithoutRef<'tr'> {
-  render: (row) => React.ReactNode;
-  row: { id: string };
   cursor?: 'pointer' | 'auto' | 'text';
   layer?: 'default' | string;
+  onClick: (...args) => void;
+  render: (row) => React.ReactNode;
+  row: { id: string };
 }
 
 function TableRow({
+  cursor = 'pointer',
+  layer,
   onClick,
   render,
   row,
-  cursor = 'pointer',
-  layer,
 }: TableRowProps) {
   const classNames = cx(
     'relative h-fit overflow-hidden border-y border-border-subtle-darker focusable hover:bg-layer-hover active:bg-layer-active',
@@ -27,7 +28,7 @@ function TableRow({
   );
 
   return (
-    <tr tabIndex={0} onClick={(e) => onClick(e)} className={classNames}>
+    <tr tabIndex={0} onClick={(e) => onClick(e, row)} className={classNames}>
       {render(row)}
     </tr>
   );

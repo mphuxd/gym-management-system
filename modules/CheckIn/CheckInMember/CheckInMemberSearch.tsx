@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { gql, useQuery, useMutation } from '@apollo/client';
 import { useAtom } from 'jotai';
-import { useForm } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { toastAtom } from '@/atoms';
 import { Searchbar } from '@/components';
 import { CheckInMemberSearchDialog } from '@/modules';
@@ -55,16 +55,23 @@ const CHECKIN_MEMBER = gql`
   }
 `;
 
+type FormValues = {
+  searchValue?: string;
+};
+
 export default function CheckInMemberSearch({ mutate }) {
-  const { register, handleSubmit, reset, getValues } = useForm();
   const { data } = useQuery(GET_ALL_MEMBERS);
-  const [checkInMember] = useMutation(CHECKIN_MEMBER);
   const [searchQuery, setSearchQuery] = useState('');
+
+  const [checkInMember] = useMutation(CHECKIN_MEMBER);
+
+  const { register, handleSubmit, reset, getValues } = useForm<FormValues>();
   const [searchMemberResults, handleFilterForMember] = useSearchForMember();
-  const [searchWarning, setSearchWarning] = useState('');
+
+  const [searchWarning, setSearchWarning] = useState<string | boolean>('');
   const [isOpenDialog, setIsOpenDialog] = useState(false);
-  // eslint-disable-next-line no-unused-vars
-  const [toast, setToast] = useAtom(toastAtom);
+
+  const [, setToast] = useAtom(toastAtom);
 
   const handleCheckInMember = async (result) => {
     if (result.length === 0) {
@@ -82,7 +89,7 @@ export default function CheckInMemberSearch({ mutate }) {
     return true;
   };
 
-  async function onSubmit(e) {
+  const onSubmit: SubmitHandler<FormValues> = async (formValues, e) => {
     e.preventDefault();
     try {
       const input = getValues('searchValue');
@@ -101,14 +108,13 @@ export default function CheckInMemberSearch({ mutate }) {
     } finally {
       reset();
     }
-  }
+  };
 
   return (
     <div>
-      <form onSubmit={(e) => handleSubmit(onSubmit(e))}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Searchbar
           intent="primary"
-          rounded="false"
           placeholder="Search Members"
           size="large"
           required

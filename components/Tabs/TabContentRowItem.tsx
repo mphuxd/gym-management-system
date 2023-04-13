@@ -4,7 +4,7 @@ import * as Label from '@radix-ui/react-label';
 
 export interface TableContentRowItemProps {
   label: string;
-  value?: string;
+  value?: React.ReactNode;
   space?: 'third' | 'half' | 'full';
 }
 

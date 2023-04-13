@@ -1,9 +1,30 @@
 import { useState } from 'react';
 
-const useSearchForMember = () => {
-  const [searchMemberResults, setSearchMemberResults] = useState([]);
+type Member = {
+  firstName: string;
+  lastName: string;
+  userId: string;
+  birthday: string;
+  contact: {
+    email: string;
+    phoneNumber: string;
+  };
+};
 
-  function handleSearchMembers(searchInput, data) {
+type SearchMemberResults = Member[];
+type HandleSearchMembers = (
+  searchInput: string,
+  data: { members: Member[] }
+) => SearchMemberResults;
+
+const useSearchForMember = (): [SearchMemberResults, HandleSearchMembers] => {
+  const [searchMemberResults, setSearchMemberResults] =
+    useState<SearchMemberResults>([]);
+
+  function handleSearchMembers(
+    searchInput: string,
+    data: { members: Member[] }
+  ) {
     let count = 0;
     const filtered = data.members.filter((member) => {
       if (count >= 10) return false;

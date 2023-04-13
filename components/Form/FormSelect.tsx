@@ -9,10 +9,10 @@ type FormSelectRef = React.ElementRef<typeof Select.Trigger>;
 export interface FormSelectProps extends Select.SelectProps {
   id: string;
   label: string;
-  ariaLabel: string;
+  ariaLabel?: string;
   placeholder: string;
-  className: string;
-  error: boolean | null;
+  className?: string;
+  error: any;
   errorMessage: string;
 }
 

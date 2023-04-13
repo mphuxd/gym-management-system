@@ -3,7 +3,7 @@ import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { DialogOverlay, DialogTrigger } from '@/components';
 
 export interface DialogProps extends DialogPrimitive.DialogProps {
-  trigger: string;
+  trigger?: string | React.ReactNode;
 }
 
 function Dialog({
